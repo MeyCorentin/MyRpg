@@ -25,6 +25,7 @@ typedef struct grid_cell {
     int ground;
     int sprite;
     int hitbox;
+    int click;
     sfRectangleShape *rect;
     struct grid_cell *next_cell;
     struct grid_cell *prev_cell;
@@ -34,4 +35,9 @@ void init_rect(grid_cell_ *grid, sfRectangleShape *rect);
 void create_map(game_ *game, struct grid_cell *grid, int x, int y);
 void display_map(game_ *game, grid_cell_ *grid);
 void launch_map_generator(game_ *game);
+void moov_up(grid_cell_ *grid);
+void moov_down(grid_cell_ *grid);
+void moov_left(grid_cell_ *grid);
+void moov_right(grid_cell_ *grid);
+void moov_map(game_ *game, grid_cell_ *grid);
 #endif /* !MAP_GRID_H_ */
