@@ -31,21 +31,22 @@ void create_map(game_ *game, struct grid_cell *grid, int x, int y)
     sfRectangleShape *rect = sfRectangleShape_create();
     grid_cell_ *new = malloc(sizeof(grid_cell_));
     sfVector2f size = {40, 40};
-    sfVector2f pos = {40 * grid->l_pos, 40 * (grid->g_pos / 60)};
+    sfVector2f pos = {40 * grid->l_pos, 40 * (grid->g_pos / x)};
+
     new->pos_x = 40 * grid->l_pos,
-    new->pos_y = 40 * (grid->g_pos / 60);
+    new->pos_y = 40 * (grid->g_pos / x);
     new->rect = rect;
     new->click = 0;
     sfRectangleShape_setSize(new->rect, size);
     sfRectangleShape_setPosition(new->rect, pos);
     new->l_pos = grid->l_pos + 1;
-    if (new->l_pos > 59)
+    if (new->l_pos > x - 1)
         new->l_pos = 0;
     new->g_pos = grid->g_pos + 1;
     new->next_cell = NULL;
     new->prev_cell = grid;
     grid->next_cell = new;
-    if (grid->g_pos != x * y)
+    if (grid->g_pos != (x * y) - 1)
         create_map(game, grid->next_cell, x, y);
 }
 
@@ -77,7 +78,7 @@ void launch_map_generator(game_ *game)
     sfRectangleShape *rect = sfRectangleShape_create();
 
     init_rect(grid, rect);
-    create_map(game, grid, 45, 45);
+    create_map(game, grid, 10, 5);
     while (sfRenderWindow_isOpen(game->window)) {
         sfRenderWindow_clear(game->window, sfGreen);
         check_event_game(game);
