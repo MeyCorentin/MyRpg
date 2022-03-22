@@ -40,7 +40,7 @@ char **str_to_array(char *map, char stop)
 
     for (int cmpt = 0; map[cmpt] != '\0'; cmpt += 1) {
         new_map[line] = malloc(sizeof(char) * (get_len(map, cmpt, stop) + 1));
-	    for (column = 0; map[cmpt] != stop && map[cmpt] != '\0'; column += 1) {
+        for (column = 0; map[cmpt] != stop && map[cmpt] != '\0'; column += 1) {
             new_map[line][column] = map[cmpt];
             cmpt += 1;
         }

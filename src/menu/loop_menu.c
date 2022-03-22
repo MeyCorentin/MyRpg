@@ -16,6 +16,8 @@ void check_event_menu(game_ *game)
             launch_game(game);
         if (sfKeyboard_isKeyPressed(sfKeyL))
             launch_game(game);
+        if (sfKeyboard_isKeyPressed(sfKeyG))
+            launch_map_generator(game);
     }
 }
 

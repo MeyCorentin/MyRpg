@@ -17,7 +17,8 @@ LIB	=	lib/my_strlen.c      \
 		lib/new_put_nbr.c	\
 		lib/str_to_array.c	\
 
-SRC =	src/menu/*.c	\
+SRC =	src/generator/*.c \
+		src/menu/*.c	\
 		src/gestion/*.c	\
 		src/main.c	\
 		src/game/*.c
