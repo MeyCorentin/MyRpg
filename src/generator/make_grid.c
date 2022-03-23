@@ -56,33 +56,34 @@ void display_map(game_ *game, grid_cell_ *grid)
 
     if (pos_mouse.x > grid->pos_x && pos_mouse.x < grid->pos_x + 40 &&
         pos_mouse.y > grid->pos_y && pos_mouse.y < grid->pos_y + 40) {
-        if (grid->click != 1)
+        if (grid->click == 0)
             sfRectangleShape_setFillColor(grid->rect, sfGreen);
-        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) {
-            grid->click = 1;
-            sfRectangleShape_setFillColor(grid->rect, sfBlue);
-        }
-        sfRenderWindow_drawRectangleShape(game->window, grid->rect, sfFalse);
     } else {
-        if (grid->click != 1)
+        if (grid->click == 0)
             sfRectangleShape_setFillColor(grid->rect, sfWhite);
-        sfRenderWindow_drawRectangleShape(game->window, grid->rect, sfFalse);
     }
+    if (grid->click == 1)
+        sfRectangleShape_setFillColor(grid->rect, sfBlue);
+    sfRenderWindow_drawRectangleShape(game->window, grid->rect, sfFalse);
     if (grid->next_cell != NULL)
         display_map(game, grid->next_cell);
 }
 
 void launch_map_generator(game_ *game)
 {
+    paint_ *paint = malloc(sizeof(paint_));
     grid_cell_ *grid = malloc(sizeof(grid_cell_));
     sfRectangleShape *rect = sfRectangleShape_create();
+    sfColor color = {150, 150, 150, 150};
 
+    paint->scale = 1;
     init_rect(grid, rect);
-    create_map(game, grid, 10, 5);
+    create_map(game, grid, 30, 60);
     while (sfRenderWindow_isOpen(game->window)) {
-        sfRenderWindow_clear(game->window, sfGreen);
+        sfRenderWindow_clear(game->window, color);
         check_event_game(game);
-        moov_map(game, grid);
+        map_key_input(game, grid);
+        map_mouse_input(game, grid, paint);
         display_map(game, grid);
         sfRenderWindow_display(game->window);
     }

@@ -47,14 +47,9 @@ void moov_right(grid_cell_ *grid)
         moov_right(grid->next_cell);
 }
 
-void moov_map(game_ *game, grid_cell_ *grid)
+void reset_grid(grid_cell_ *grid)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
-        moov_up(grid);
-    if (sfKeyboard_isKeyPressed(sfKeyS))
-        moov_down(grid);
-    if (sfKeyboard_isKeyPressed(sfKeyQ))
-        moov_left(grid);
-    if (sfKeyboard_isKeyPressed(sfKeyD))
-        moov_right(grid);
+    grid->click = 0;
+    if (grid->next_cell != NULL)
+        reset_grid(grid->next_cell);
 }
