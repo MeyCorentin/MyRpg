@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include "map_grid.h"
+#include "menu.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <SFML/Graphics.h>
@@ -19,10 +20,9 @@ typedef struct game {
     sfEvent event;
 } game_;
 
-
 void check_event_game(game_ *game);
 int global_gestion(int argc, char **argv);
-void launch_menu(char *pseudo);
+sfIntRect change_rect(sfIntRect rect, float x, float y);
 void launch_game(game_ *game);
 
 #endif /* PROJECT_H_ */

@@ -21,6 +21,7 @@ SRC =	src/generator/*.c \
 		src/menu/*.c	\
 		src/gestion/*.c	\
 		src/main.c	\
+		src/globales_funct.c	\
 		src/game/*.c
 
 OBJ = $(LIB:.c=.o)
