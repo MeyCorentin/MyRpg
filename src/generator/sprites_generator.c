@@ -37,7 +37,8 @@ void create_down(gen_control_ *gen_control)
     gen_control->down->scale.y = 3;
     sfSprite_setTexture\
     (gen_control->down->sprite, gen_control->down->texture, sfFalse);
-    sfSprite_setPosition(gen_control->down->sprite, gen_control->down->position);
+    sfSprite_setPosition(gen_control->down->sprite,
+    gen_control->down->position);
     gen_control->down->rect = change_rect\
     (gen_control->down->rect, 22, 26);
     gen_control->down->rect.top = 418;
@@ -58,12 +59,16 @@ void create_zoom_up(gen_control_ *gen_control)
     gen_control->zoom_up->scale.y = 3;
     sfSprite_setTexture\
     (gen_control->zoom_up->sprite, gen_control->zoom_up->texture, sfFalse);
-    sfSprite_setPosition(gen_control->zoom_up->sprite, gen_control->zoom_up->position);
-    gen_control->zoom_up->rect = change_rect(gen_control->zoom_up->rect, 22, 26);
+    sfSprite_setPosition(gen_control->zoom_up->sprite,
+    gen_control->zoom_up->position);
+    gen_control->zoom_up->rect = change_rect
+    (gen_control->zoom_up->rect, 22, 26);
     gen_control->zoom_up->rect.top = 418;
     gen_control->zoom_up->rect.left = 350;
-    sfSprite_setScale(gen_control->zoom_up->sprite, gen_control->zoom_up->scale);
-    sfSprite_setTextureRect(gen_control->zoom_up->sprite, gen_control->zoom_up->rect);
+    sfSprite_setScale(gen_control->zoom_up->sprite,
+    gen_control->zoom_up->scale);
+    sfSprite_setTextureRect(gen_control->zoom_up->sprite,
+    gen_control->zoom_up->rect);
 }
 
 void create_zoom_down(gen_control_ *gen_control)
@@ -77,34 +82,14 @@ void create_zoom_down(gen_control_ *gen_control)
     gen_control->zoom_down->scale.y = 3;
     sfSprite_setTexture\
     (gen_control->zoom_down->sprite, gen_control->zoom_down->texture, sfFalse);
-    sfSprite_setPosition(gen_control->zoom_down->sprite, gen_control->zoom_down->position);
+    sfSprite_setPosition(gen_control->zoom_down->sprite, \
+    gen_control->zoom_down->position);
     gen_control->zoom_down->rect = change_rect\
     (gen_control->zoom_down->rect, 22, 26);
     gen_control->zoom_down->rect.top = 418;
     gen_control->zoom_down->rect.left = 350;
-    sfSprite_setScale(gen_control->zoom_down->sprite, gen_control->zoom_down->scale);
-    sfSprite_setTextureRect(gen_control->zoom_down->sprite, \
+    sfSprite_setScale(gen_control->zoom_down->sprite,
+    gen_control->zoom_down->scale);
+    sfSprite_setTextureRect(gen_control->zoom_down->sprite,
     gen_control->zoom_down->rect);
-}
-
-void create_sprites(gen_control_ *gen_control)
-{
-    gen_control->list->sprite = sfSprite_create();
-    gen_control->list->texture = sfTexture_createFromFile\
-    ("pictures/env/trees.png", NULL);
-    gen_control->list->position.x = 10;
-    gen_control->list->position.y = 10;
-    gen_control->list->scale.x = 0;
-    gen_control->list->scale.y = 0;
-    gen_control->list->rect = change_rect(gen_control->list->rect, 16, 18);
-    gen_control->list->rect.top = 30;
-    gen_control->list->rect.left = 20;
-    gen_control->list->next = NULL;
-    sfSprite_setTexture(gen_control->list->sprite, \
-    gen_control->list->texture, sfFalse);
-    sfSprite_setPosition(gen_control->list->sprite, \
-    gen_control->list->position);
-    sfSprite_setScale(gen_control->list->sprite, gen_control->list->scale);
-    sfSprite_setTextureRect(gen_control->list->sprite, \
-    gen_control->list->rect);
 }

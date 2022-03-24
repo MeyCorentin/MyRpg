@@ -50,4 +50,6 @@ void reset_grid(grid_cell_ *grid);
 void right_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint);
 void left_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint);
 void map_mouse_input(game_ *game, grid_cell_ *grid, paint_ *paint);
+void check_event_gen(game_ *game, gen_control_ *gen_control, paint_ *paint);
+
 #endif /* !MAP_GRID_H_ */
