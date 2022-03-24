@@ -29,6 +29,7 @@ void create_back(menu_ *menu)
 
 void create_logo(menu_ *menu)
 {
+    menu->on_parrot = 1;
     menu->logo->sprite = sfSprite_create();
     menu->logo->texture = sfTexture_createFromFile\
     ("pictures/menu/buttons.png", NULL);
@@ -53,11 +54,14 @@ void create_menu(menu_ *menu)
     create_exit(menu);
     create_load(menu);
     create_parrot(menu);
+    create_secret(menu);
+    create_help(menu);
 }
 
 void malloc_menu(menu_ *menu)
 {
     menu->back = malloc(sizeof(button_));
+    menu->secret = malloc(sizeof(button_));
     menu->help = malloc(sizeof(button_));
     menu->load1 = malloc(sizeof(load_));
     menu->load2 = malloc(sizeof(load_));

@@ -13,6 +13,7 @@
     #define MENU_H_
 
     #include "rpg.h"
+    #include "map_grid.h"
 
 typedef struct animal {
     sfSprite *sprite;
@@ -44,6 +45,7 @@ typedef struct button {
 
 typedef struct menu {
     button_ *back;
+    button_ *secret;
     load_ *load1;
     load_ *load2;
     load_ *load3;
@@ -55,7 +57,25 @@ typedef struct menu {
     button_ *sounds;
     button_ *help;
     animal_ *parrot;
+    int on_parrot;
 } menu_;
+
+typedef struct sprite {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f position;
+    sfVector2f scale;
+    sfIntRect rect;
+    struct sprite *next;
+} sprite_;
+
+typedef struct gen_control {
+    button_ *up;
+    button_ *down;
+    button_ *zoom_up;
+    button_ *zoom_down;
+    sprite_ *list;
+} gen_control_;
 
 void malloc_menu(menu_ *menu);
 void launch_menu(char *pseudo);
@@ -64,5 +84,13 @@ void create_exit(menu_ *menu);
 void create_load(menu_ *menu);
 void create_parrot(menu_ *menu);
 void update_animal(animal_ *animal, int x, int y);
+void check_button(game_ *game, button_ *button, int who);
+void create_secret(menu_ *menu);
+void check_parrot(game_ *game, menu_ *menu);
+void create_help(menu_ *menu);
+void check_square(game_ *game, button_ *button, int who);
+void create_up(gen_control_ *gen_control);
+void create_down(gen_control_ *gen_control);
+void create_sprites(gen_control_ *gen_control);
 
 #endif /* MENU_H_ */

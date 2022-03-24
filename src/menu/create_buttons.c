@@ -59,3 +59,32 @@ void create_load(menu_ *menu)
     menu->load->rect.left = 74;
     sfSprite_setTextureRect(menu->load->sprite, menu->load->rect);
 }
+
+void create_help(menu_ *menu)
+{
+    menu->help->sprite = sfSprite_create();
+    menu->help->texture = sfTexture_createFromFile\
+    ("pictures/menu/buttons.png", NULL);
+    menu->help->position.x = 10;
+    menu->help->position.y = 10;
+    menu->help->scale.x = 3;
+    menu->help->scale.y = 3;
+    sfSprite_setTexture(menu->help->sprite, menu->help->texture, sfFalse);
+    sfSprite_setPosition(menu->help->sprite, menu->help->position);
+    menu->help->rect = change_rect(menu->help->rect, 22, 26);
+    menu->help->rect.top = 418;
+    menu->help->rect.left = 350;
+    sfSprite_setScale(menu->help->sprite, menu->help->scale);
+    sfSprite_setTextureRect(menu->help->sprite, menu->help->rect);
+}
+
+void create_secret(menu_ *menu)
+{
+    menu->secret->sprite = sfSprite_create();
+    menu->secret->texture = sfTexture_createFromFile\
+    ("pictures/menu/pirate.png", NULL);
+    sfSprite_setTexture(menu->secret->sprite, menu->secret->texture, sfFalse);
+    menu->secret->position.x = 600;
+    menu->secret->position.y = 0;
+    sfSprite_setPosition(menu->secret->sprite, menu->secret->position);
+}

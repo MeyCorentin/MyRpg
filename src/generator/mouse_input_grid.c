@@ -10,6 +10,7 @@
 void left_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint)
 {
     sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(game->window);
+
     if (pos_mouse.x > grid->pos_x && pos_mouse.x < grid->pos_x + \
         (40 * paint->scale) && pos_mouse.y > grid->pos_y && pos_mouse.y\
         < grid->pos_y + (40 * paint->scale)) {
@@ -22,6 +23,7 @@ void left_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint)
 void right_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint)
 {
     sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(game->window);
+
     if (pos_mouse.x > grid->pos_x && pos_mouse.x < grid->pos_x + \
         (40 * paint->scale) && pos_mouse.y > grid->pos_y && pos_mouse.y\
         < grid->pos_y + (40 * paint->scale)) {

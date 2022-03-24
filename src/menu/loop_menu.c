@@ -11,10 +11,13 @@ void draw_menu(game_ *game, menu_ *menu)
 {
     sfRenderWindow_drawSprite(game->window, menu->back->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window, menu->logo->sprite, sfFalse);
+    if (menu->on_parrot == 0)
+        sfRenderWindow_drawSprite(game->window, menu->secret->sprite, sfFalse);
+    sfRenderWindow_drawSprite(game->window, menu->parrot->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window, menu->new->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window, menu->exit->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window, menu->load->sprite, sfFalse);
-    sfRenderWindow_drawSprite(game->window, menu->parrot->sprite, sfFalse);
+    sfRenderWindow_drawSprite(game->window, menu->help->sprite, sfFalse);
     update_animal(menu->parrot, 48, 48);
 }
 
@@ -29,6 +32,10 @@ void check_event_menu(game_ *game, menu_ *menu)
             launch_game(game);
         if (sfKeyboard_isKeyPressed(sfKeyG))
             launch_map_generator(game);
+        check_button(game, menu->new, 1);
+        check_button(game, menu->load, 2);
+        check_button(game, menu->exit, 3);
+        check_parrot(game, menu);
     }
 }
 

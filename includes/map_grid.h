@@ -13,6 +13,7 @@
     #define MAP_GRID_H_
 
     #include "rpg.h"
+    #include "menu.h"
 
 typedef struct grid_cell {
     int x;
