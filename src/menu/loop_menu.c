@@ -47,7 +47,7 @@ void launch_menu(char *pseudo)
 
     game->window = sfRenderWindow_create(mode, "MY_RPG", \
     sfResize | sfClose, NULL);
-    sfRenderWindow_setFramerateLimit(game->window, 240);
+    sfRenderWindow_setFramerateLimit(game->window, 120);
     malloc_menu(menu);
     while (sfRenderWindow_isOpen(game->window)) {
         sfRenderWindow_clear(game->window, sfBlue);

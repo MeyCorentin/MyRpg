@@ -101,6 +101,7 @@ void create_gen(gen_control_ *gen_control)
     gen_control->zoom_down = malloc(sizeof(button_));
     gen_control->zoom_up = malloc(sizeof(button_));
     gen_control->selected = malloc(sizeof(sprite_));
+    gen_control->sprites_on = 1;
     create_up(gen_control);
     create_down(gen_control);
     create_zoom_up(gen_control);

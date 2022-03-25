@@ -18,13 +18,15 @@
 typedef struct animal {
     sfSprite *sprite;
     sfTexture *texture;
+    sfTexture *r_texture;
     sfVector2f position;
     sfVector2f scale;
     sfIntRect rect;
-    sfVector2f move;
     sfClock *clock;
     sfTime time;
     int secs;
+    int moved;
+    int version;
 } animal_;
 
 typedef struct load {
@@ -57,6 +59,7 @@ typedef struct menu {
     button_ *sounds;
     button_ *help;
     animal_ *parrot;
+    animal_ *coin;
     int on_parrot;
 } menu_;
 
@@ -77,6 +80,7 @@ typedef struct gen_control {
     button_ *zoom_down;
     sprite_ *list;
     sprite_ *selected;
+    int sprites_on;
 } gen_control_;
 
 void malloc_menu(menu_ *menu);

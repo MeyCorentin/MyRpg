@@ -40,9 +40,11 @@ void interact_sprite(game_ *game, sprite_ *sprite, gen_control_ *gen_control)
     sprite->rect.width * sprite->scale.x && mouse.y > sprite->position.y &&
     mouse.y < sprite->position.y + sprite->rect.height * sprite->scale.y) {
         sfSprite_setColor(sprite->sprite, color);
-        if (game->event.type == sfEvtMouseButtonReleased)
+        if (game->event.type == sfEvtMouseButtonReleased) {
             sfSprite_setTextureRect(gen_control->selected->sprite,
             sprite->rect);
+            gen_control->sprites_on = 1;
+        }
     } else
         sfSprite_setColor(sprite->sprite, clear);
     if (sprite->next != NULL)
@@ -58,6 +60,8 @@ void check_event_gen(game_ *game, gen_control_ *gen_control, paint_ *paint)
             paint->scale += 1;
         if (sfKeyboard_isKeyPressed(sfKeyHyphen) && paint->scale > 1)
             paint->scale -= 1;
+        if (sfKeyboard_isKeyPressed(sfKeyO))
+            gen_control->sprites_on = 0;
         check_gen(game, gen_control->up, 1, paint);
         check_gen(game, gen_control->down, 2, paint);
         check_gen(game, gen_control->zoom_up, 3, paint);
@@ -76,5 +80,6 @@ void draw_sprites_gen(game_ *game, gen_control_ *gen_control)
     sfFalse);
     sfRenderWindow_drawSprite(game->window, gen_control->selected->sprite,
     sfFalse);
-    draw_env(game, gen_control->list);
+    if (gen_control->sprites_on == 0)
+        draw_env(game, gen_control->list);
 }
