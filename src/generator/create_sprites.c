@@ -78,7 +78,8 @@ void create_selected(gen_control_ *gen_control)
     ("pictures/env/spring.png", NULL);
     gen_control->selected->position.x = 1800;
     gen_control->selected->position.y = 450;
-    gen_control->selected->scale.x, gen_control->selected->scale.y = 4;
+    gen_control->selected->scale.x = 4;
+    gen_control->selected->scale.y = 4;
     gen_control->selected->next = NULL;
     gen_control->selected->first = gen_control->selected;
     gen_control->selected->rect = change_rect(gen_control->selected->rect,
