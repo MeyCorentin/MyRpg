@@ -64,6 +64,8 @@ typedef struct menu {
 } menu_;
 
 typedef struct sprite {
+    int ok;
+    int id;
     sfSprite *sprite;
     sfTexture *texture;
     sfVector2f position;
@@ -81,6 +83,7 @@ typedef struct gen_control {
     sprite_ *list;
     sprite_ *selected;
     int sprites_on;
+    int selected_;
 } gen_control_;
 
 void malloc_menu(menu_ *menu);

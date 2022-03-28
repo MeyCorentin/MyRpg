@@ -13,6 +13,11 @@ void moov_up(grid_cell_ *grid)
 
     grid->pos_y += 40;
     sfRectangleShape_setPosition(grid->rect, pos);
+    if (grid->foreground->sprite != NULL) {
+        grid->foreground->position.y += 40;
+        sfSprite_setPosition(grid->foreground->sprite,
+        grid->foreground->position);
+    }
     if (grid->next_cell != NULL)
         moov_up(grid->next_cell);
 }
@@ -23,6 +28,11 @@ void moov_down(grid_cell_ *grid)
 
     grid->pos_y -= 40;
     sfRectangleShape_setPosition(grid->rect, pos);
+    if (grid->foreground->sprite != NULL) {
+        grid->foreground->position.y -= 40;
+        sfSprite_setPosition(grid->foreground->sprite,
+        grid->foreground->position);
+    }
     if (grid->next_cell != NULL)
         moov_down(grid->next_cell);
 }
@@ -33,6 +43,11 @@ void moov_left(grid_cell_ *grid)
 
     grid->pos_x += 40;
     sfRectangleShape_setPosition(grid->rect, pos);
+    if (grid->foreground->sprite != NULL) {
+        grid->foreground->position.x += 40;
+        sfSprite_setPosition(grid->foreground->sprite,
+        grid->foreground->position);
+    }
     if (grid->next_cell != NULL)
         moov_left(grid->next_cell);
 }
@@ -43,6 +58,11 @@ void moov_right(grid_cell_ *grid)
 
     grid->pos_x -= 40;
     sfRectangleShape_setPosition(grid->rect, pos);
+    if (grid->foreground->sprite != NULL) {
+        grid->foreground->position.x -= 40;
+        sfSprite_setPosition(grid->foreground->sprite,
+        grid->foreground->position);
+    }
     if (grid->next_cell != NULL)
         moov_right(grid->next_cell);
 }
@@ -50,6 +70,8 @@ void moov_right(grid_cell_ *grid)
 void reset_grid(grid_cell_ *grid)
 {
     grid->click = 0;
+    grid->background->ok = 0;
+    grid->foreground->ok = 0;
     if (grid->next_cell != NULL)
         reset_grid(grid->next_cell);
 }

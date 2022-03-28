@@ -8,6 +8,8 @@
 #ifndef MY_H_
     #define MY_H_
 
+    #include <stdio.h>
+
 int my_atoi(char *str);
 void my_putchar(char c);
 int my_getnbr(char const *str);
@@ -21,5 +23,6 @@ int my_printf(char *s, ...);
 char *new_put_nbr(int nb);
 int puissance(int y);
 char **str_to_array(char *map, char stop);
+void my_fputstr(char const *str, char *file_name);
 
 #endif /* MY_H_ */

@@ -18,7 +18,7 @@ void check_event_game(game_ *game)
 void launch_game(game_ *game)
 {
     while (sfRenderWindow_isOpen(game->window)) {
-        sfRenderWindow_clear(game->window, sfGreen);
+        sfRenderWindow_clear(game->window, sfWhite);
         check_event_game(game);
         sfRenderWindow_display(game->window);
     }

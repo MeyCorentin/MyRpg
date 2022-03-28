@@ -6,6 +6,10 @@
 */
 
 #include "my.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
 
 void my_putstr(char const *str)
 {
