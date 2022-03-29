@@ -12,15 +12,6 @@ gen_control_ *gen_control)
 {
     sfVector2f sprite_pos = {grid->pos_x, grid->pos_y};
     sfVector2f sprite_scale = {2.5, 2.5};
-    if (gen_control->selected->id == 621) {
-        grid->background->position = sprite_pos;
-        grid->background_id = gen_control->selected->id;
-        grid->background->ok = 1;
-        grid->background->sprite =
-        sfSprite_copy(gen_control->selected->sprite);
-        sfSprite_setPosition(grid->background->sprite, sprite_pos);
-        sfSprite_setScale(grid->background->sprite, sprite_scale);
-    } else {
         grid->foreground->position = sprite_pos;
         grid->foreground_id = gen_control->selected->id;
         grid->foreground->ok = 1;
@@ -28,7 +19,6 @@ gen_control_ *gen_control)
         sfSprite_copy(gen_control->selected->sprite);
         sfSprite_setPosition(grid->foreground->sprite, sprite_pos);
         sfSprite_setScale(grid->foreground->sprite, sprite_scale);
-    }
 }
 
 void left_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint,

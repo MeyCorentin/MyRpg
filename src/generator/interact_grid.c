@@ -33,20 +33,79 @@ void save_all(game_ *game, grid_cell_ *grid)
     fclose(background_file);
 }
 
-void map_key_input(game_ *game, grid_cell_ *grid)
+void moov_up_gen(sprite_ *sprite)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
+    sprite->position.y += 40;
+    sfSprite_setPosition(sprite->sprite, sprite->position);
+    if (sprite->next != NULL)
+        moov_up_gen(sprite->next);
+}
+
+void moov_down_gen(sprite_ *sprite)
+{
+    sprite->position.y -= 40;
+    sfSprite_setPosition(sprite->sprite, sprite->position);
+    if (sprite->next != NULL)
+        moov_down_gen(sprite->next);
+}
+
+void moov_right_gen(sprite_ *sprite)
+{
+    sprite->position.x += 40;
+    sfSprite_setPosition(sprite->sprite, sprite->position);
+    if (sprite->next != NULL)
+        moov_right_gen(sprite->next);
+}
+
+void moov_left_gen(sprite_ *sprite)
+{
+    sprite->position.x -= 40;
+    sfSprite_setPosition(sprite->sprite, sprite->position);
+    if (sprite->next != NULL)
+        moov_left_gen(sprite->next);
+}
+
+void page_handle(gen_control_ *gen_control)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyNum1)) {
+        create_gen(gen_control, 1);
+        gen_control->sprites_on = 0;
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyNum2)) {
+        create_gen(gen_control, 2);
+        gen_control->sprites_on = 0;
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyNum3)) {
+        create_gen(gen_control, 3);
+        gen_control->sprites_on = 0;
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyNum4)) {
+        create_gen(gen_control, 4);
+        gen_control->sprites_on = 0;
+    }
+}
+
+void map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyZ)) {
+        (gen_control->sprites_on == 0) ? moov_up_gen(gen_control->list) :
         moov_up(grid);
-    if (sfKeyboard_isKeyPressed(sfKeyS))
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyS)) {
+        (gen_control->sprites_on == 0) ? moov_down_gen(gen_control->list) :
         moov_down(grid);
-    if (sfKeyboard_isKeyPressed(sfKeyQ))
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
+        (gen_control->sprites_on == 0) ? moov_right_gen(gen_control->list) :
         moov_left(grid);
-    if (sfKeyboard_isKeyPressed(sfKeyD))
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyD)) {
+        (gen_control->sprites_on == 0) ? moov_left_gen(gen_control->list) :
         moov_right(grid);
-    if (sfKeyboard_isKeyPressed(sfKeyR))
-        reset_grid(grid);
-    if (sfKeyboard_isKeyPressed(sfKeyEnter))
-        save_all(game, grid);
+    }
+    (sfKeyboard_isKeyPressed(sfKeyR)) ? reset_grid(grid) : 1;
+    (sfKeyboard_isKeyPressed(sfKeyEnter)) ? save_all(game, grid) : 1;
+    page_handle(gen_control);
 }
 
 void map_mouse_input(game_ *game, grid_cell_ *grid,

@@ -65,6 +65,7 @@ typedef struct menu {
 
 typedef struct sprite {
     int ok;
+    int page;
     int id;
     sfSprite *sprite;
     sfTexture *texture;
@@ -100,14 +101,14 @@ void create_help(menu_ *menu);
 void check_square(game_ *game, button_ *button, int who);
 void create_up(gen_control_ *gen_control);
 void create_down(gen_control_ *gen_control);
-void create_sprites(sprite_ *sprite);
+void create_sprites(sprite_ *sprite, int i);
 void create_zoom_down(gen_control_ *gen_control);
 void create_zoom_up(gen_control_ *gen_control);
 void create_selected(gen_control_ *gen_control);
-void create_first_sprite(gen_control_ *gen_control);
+void create_first_sprite(gen_control_ *gen_control, int i);
 void draw_env(game_ *game, sprite_ *sprite);
 void interact_sprite(game_ *game, sprite_ *sprite, gen_control_ *gen_control);
 void draw_sprites_gen(game_ *game, gen_control_ *gen_control);
-void create_gen(gen_control_ *gen_control);
+void create_gen(gen_control_ *gen_control, int i);
 
 #endif /* MENU_H_ */

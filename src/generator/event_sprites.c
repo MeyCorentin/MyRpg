@@ -76,15 +76,6 @@ void check_event_gen(game_ *game, gen_control_ *gen_control, paint_ *paint)
 
 void draw_sprites_gen(game_ *game, gen_control_ *gen_control)
 {
-    sfRenderWindow_drawSprite(game->window, gen_control->down->sprite,
-    sfFalse);
-    sfRenderWindow_drawSprite(game->window, gen_control->up->sprite, sfFalse);
-    sfRenderWindow_drawSprite(game->window, gen_control->zoom_down->sprite,
-    sfFalse);
-    sfRenderWindow_drawSprite(game->window, gen_control->zoom_up->sprite,
-    sfFalse);
-    sfRenderWindow_drawSprite(game->window, gen_control->selected->sprite,
-    sfFalse);
     if (gen_control->sprites_on == 0) {
         sfRenderWindow_clear(game->window, sfBlack);
         draw_env(game, gen_control->list);

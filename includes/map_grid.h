@@ -55,7 +55,7 @@ void moov_down(grid_cell_ *grid);
 void moov_left(grid_cell_ *grid);
 void moov_right(grid_cell_ *grid);
 void moov_map(game_ *game, grid_cell_ *grid);
-void map_key_input(game_ *game, grid_cell_ *grid);
+void map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control);
 void reset_grid(grid_cell_ *grid);
 void right_click_grid(game_ *game, grid_cell_ *grid,
 paint_ *paint, gen_control_ *gen_control);
@@ -68,5 +68,6 @@ void display_all(game_ *game, grid_cell_ *grid,
 gen_control_ *gen_control, paint_ *paint);
 void save_foreground(game_ *game, grid_cell_ *grid, FILE *file);
 void save_background(game_ *game, grid_cell_ *grid, FILE *file);
+void draw_ath(game_ *game, gen_control_ *gen_control);
 
 #endif /* !MAP_GRID_H_ */

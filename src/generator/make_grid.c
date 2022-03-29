@@ -42,13 +42,13 @@ void init_rect(grid_cell_ *grid, sfRectangleShape *rect, int x, int y)
 
 void create_foreground_background(struct grid_cell *new)
 {
-    new->foreground_id = 0000;
-    new->background_id = 0000;
     new->foreground = malloc(sizeof(sprite_));
+    new->foreground_id = 0000;
     new->foreground->sprite = NULL;
     new->foreground->ok = 0;
     new->background = malloc(sizeof(sprite_));
     new->background->sprite = NULL;
+    new->background_id = 0000;
     new->background->ok = 0;
 }
 
@@ -76,6 +76,19 @@ void create_map(game_ *game, struct grid_cell *grid, int x, int y)
     (grid->g_pos != (x * y) - 1) ? create_map(game, grid->next_cell, x, y) : 1;
 }
 
+void draw_ath(game_ *game, gen_control_ *gen_control)
+{
+    sfRenderWindow_drawSprite(game->window, gen_control->down->sprite,
+    sfFalse);
+    sfRenderWindow_drawSprite(game->window, gen_control->up->sprite, sfFalse);
+    sfRenderWindow_drawSprite(game->window, gen_control->zoom_down->sprite,
+    sfFalse);
+    sfRenderWindow_drawSprite(game->window, gen_control->zoom_up->sprite,
+    sfFalse);
+    sfRenderWindow_drawSprite(game->window, gen_control->selected->sprite,
+    sfFalse);
+}
+
 void launch_map_generator(game_ *game)
 {
     paint_ *paint = malloc(sizeof(paint_));
@@ -87,15 +100,14 @@ void launch_map_generator(game_ *game)
     paint->scale = 1;
     init_rect(grid, rect, 15, 15);
     create_map(game, grid, 15, 15);
-    create_gen(gen_control);
+    create_gen(gen_control, 1);
     while (sfRenderWindow_isOpen(game->window)) {
         sfRenderWindow_clear(game->window, color);
         check_event_gen(game, gen_control, paint);
-        map_key_input(game, grid);
+        map_key_input(game, grid, gen_control);
         map_mouse_input(game, grid, paint, gen_control);
         display_all(game, grid, gen_control, paint);
         interact_sprite(game, gen_control->list, gen_control);
-        draw_sprites_gen(game, gen_control);
         sfRenderWindow_display(game->window);
     }
 }
