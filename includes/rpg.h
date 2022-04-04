@@ -15,9 +15,18 @@
 #ifndef PROJECT_H_
     #define PROJECT_H_
 
+typedef struct cursor {
+    sfSprite *sprite;
+    sfTexture *basic;
+    sfTexture *clicked;
+    sfVector2f position;
+} cursor_;
+
 typedef struct game {
     sfRenderWindow *window;
     sfEvent event;
+    cursor_ *cursor;
+    int on_button;
 } game_;
 
 void check_event_game(game_ *game);

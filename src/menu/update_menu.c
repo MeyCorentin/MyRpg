@@ -7,7 +7,7 @@
 
 #include "../../includes/rpg.h"
 
-void find_button(game_ *game, int who)
+void find_button(game_ *game, int who, menu_ *menu)
 {
     if (who == 1)
         launch_game(game);
@@ -17,7 +17,7 @@ void find_button(game_ *game, int who)
         sfRenderWindow_close(game->window);
 }
 
-void check_square(game_ *game, button_ *button, int who)
+void check_square(game_ *game, button_ *button, int who, menu_ *menu)
 {
     sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
 
@@ -26,22 +26,23 @@ void check_square(game_ *game, button_ *button, int who)
     mouse.y < button->position.y + button->rect.height * button->scale.y) {
         button->rect.left = 372;
         if (game->event.type == sfEvtMouseButtonReleased)
-            find_button(game, who);
+            find_button(game, who, menu);
     } else
         button->rect.left = 350;
     sfSprite_setTextureRect(button->sprite, button->rect);
 }
 
-void check_button(game_ *game, button_ *button, int who)
+void check_button(game_ *game, button_ *button, int who, menu_ *menu)
 {
     sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
 
     if (mouse.x > button->position.x && mouse.x < button->position.x +
     button->rect.width * button->scale.x && mouse.y > button->position.y &&
     mouse.y < button->position.y + button->rect.height * button->scale.y) {
+        game->on_button = 0;
         button->rect.top = 245;
         if (game->event.type == sfEvtMouseButtonReleased)
-            find_button(game, who);
+            find_button(game, who, menu);
     } else
         button->rect.top = 187;
     sfSprite_setTextureRect(button->sprite, button->rect);

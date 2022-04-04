@@ -18,11 +18,16 @@ void draw_menu(game_ *game, menu_ *menu)
     sfRenderWindow_drawSprite(game->window, menu->exit->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window, menu->load->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window, menu->help->sprite, sfFalse);
+    sfRenderWindow_drawSprite(game->window,
+    menu->settings->button->sprite, sfFalse);
     update_animal(menu->parrot, 48, 48);
+    update_cursor(game);
 }
 
 void check_event_menu(game_ *game, menu_ *menu)
 {
+    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
+
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyE))
             sfRenderWindow_close(game->window);
@@ -32,10 +37,12 @@ void check_event_menu(game_ *game, menu_ *menu)
             launch_game(game);
         if (sfKeyboard_isKeyPressed(sfKeyG))
             launch_map_generator(game);
-        check_button(game, menu->new, 1);
-        check_button(game, menu->load, 2);
-        check_button(game, menu->exit, 3);
-        check_parrot(game, menu);
+        check_button(game, menu->new, 1, menu);
+        check_button(game, menu->load, 2, menu);
+        check_button(game, menu->exit, 3, menu);
+        check_parrot(game, menu, mouse);
+        check_settings(game, menu, 0);
+        event_cursor(game);
     }
 }
 
@@ -48,8 +55,12 @@ void launch_menu(char *pseudo)
     game->window = sfRenderWindow_create(mode, "MY_RPG", \
     sfResize | sfClose, NULL);
     sfRenderWindow_setFramerateLimit(game->window, 120);
+    sfWindow_setMouseCursorVisible((sfWindow *)game->window, sfFalse);
     malloc_menu(menu);
+    create_cursor(game);
+    create_settings(game, menu);
     while (sfRenderWindow_isOpen(game->window)) {
+        game->on_button = 1;
         sfRenderWindow_clear(game->window, sfBlue);
         check_event_menu(game, menu);
         draw_menu(game, menu);

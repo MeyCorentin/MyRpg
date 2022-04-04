@@ -62,10 +62,8 @@ void update_animal(animal_ *animal, int x, int y)
     replace_parrot(animal);
 }
 
-void check_parrot(game_ *game, menu_ *menu)
+void check_parrot(game_ *game, menu_ *menu, sfVector2i mouse)
 {
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
-
     if (sfKeyboard_isKeyPressed(sfKeyZ) || sfKeyboard_isKeyPressed(sfKeyS) ||
     sfKeyboard_isKeyPressed(sfKeyQ) || sfKeyboard_isKeyPressed(sfKeyD))
         menu->parrot->moved = 0;
@@ -74,9 +72,15 @@ void check_parrot(game_ *game, menu_ *menu)
     if (mouse.x > menu->parrot->position.x && mouse.x < menu->parrot->
     position.x + menu->parrot->rect.width * menu->parrot->scale.x && mouse.y
     > menu->parrot->position.y && mouse.y < menu->parrot->position.y + menu->
-    parrot->rect.height * menu->parrot->scale.y)
-        menu->on_parrot = 0;
-    else
+    parrot->rect.height * menu->parrot->scale.y) {
+        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) {
+            menu->parrot->moved = 0;
+            menu->parrot->position.x = mouse.x - 24;
+            menu->parrot->position.y = mouse.y - 24;
+            sfSprite_setPosition(menu->parrot->sprite, menu->parrot->position);
+        }
+        game->on_button = 0;
+    } else
         menu->on_parrot = 1;
     sfSprite_setPosition(menu->parrot->sprite, menu->parrot->position);
 }

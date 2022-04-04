@@ -22,6 +22,7 @@ void check_gen(game_ *game, button_ *button, int who, paint_ *paint)
     if (mouse.x > button->position.x && mouse.x < button->position.x +
     button->rect.width * button->scale.x && mouse.y > button->position.y &&
     mouse.y < button->position.y + button->rect.height * button->scale.y) {
+        game->on_button = 0;
         button->rect.left = 372;
         if (game->event.type == sfEvtMouseButtonReleased)
             find_button_gen(game, who, paint);
@@ -39,6 +40,7 @@ void interact_sprite(game_ *game, sprite_ *sprite, gen_control_ *gen_control)
     if (mouse.x > sprite->position.x && mouse.x < sprite->position.x +
     sprite->rect.width * sprite->scale.x && mouse.y > sprite->position.y &&
     mouse.y < sprite->position.y + sprite->rect.height * sprite->scale.y) {
+        game->on_button = 0;
         sfSprite_setColor(sprite->sprite, color);
         if (game->event.type == sfEvtMouseButtonReleased &&
         gen_control->sprites_on == 0) {
@@ -71,6 +73,7 @@ void check_event_gen(game_ *game, gen_control_ *gen_control, paint_ *paint)
         check_gen(game, gen_control->down, 2, paint);
         check_gen(game, gen_control->zoom_up, 3, paint);
         check_gen(game, gen_control->zoom_down, 4, paint);
+        event_cursor(game);
     }
 }
 
