@@ -52,7 +52,7 @@ int get_map(load_map_ *load_map)
     for (; load_map->full_file[k] != '\0'; k++) {
         (load_map->full_file[k] == '\n') ? my_putstr("\n") : 1;
         (load_map->full_file[k] == '[') ? ok = 1, k++ : 1;
-        (load_map->full_file[k] == ']') ? ok = 0 : 1;
+        (load_map->full_file[k] == ']') ? ok = 0, my_putchar('|') : 1;
         if (ok == 1 && load_map->full_file[k] != '\n')
             my_putchar(load_map->full_file[k]);
     }

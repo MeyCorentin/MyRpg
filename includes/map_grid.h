@@ -73,5 +73,7 @@ void moov_up_gen(sprite_ *sprite);
 void moov_down_gen(sprite_ *sprite);
 void moov_right_gen(sprite_ *sprite);
 void moov_left_gen(sprite_ *sprite);
+int get_size(char *files_name, load_map_ *load_map);
+int get_map(load_map_ *load_map);
 
 #endif /* !MAP_GRID_H_ */

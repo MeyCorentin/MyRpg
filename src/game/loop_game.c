@@ -41,7 +41,7 @@ void init_map_square(char ***map, int y, int x)
 
     sfRectangleShape_setSize(rect, size);
     sfRectangleShape_setPosition(rect, pos);
-    map[y][x] = rect;
+    map[y][x] = (char *)rect;
 }
 
 void init_map(char ***map, load_map_ *load_map)
@@ -55,14 +55,14 @@ void init_map(char ***map, load_map_ *load_map)
     }
 }
 
-display_load_map(char ***map, game_ *game)
+void display_load_map(char ***map, game_ *game)
 {
     int y = 0;
     int x = 0;
     for (y = 0; map[y]; y++) {
         for (x = 0; map[y][x]; x++) {
-            sfRenderWindow_drawRectangleShape
-            (game->window, map[y][x], sfFalse);
+            sfRenderWindow_drawRectangleShape(game->window,
+            (sfRectangleShape *)map[y][x], sfFalse);
         }
     }
 }

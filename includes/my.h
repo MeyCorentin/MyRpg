@@ -24,5 +24,6 @@ char *new_put_nbr(int nb);
 int puissance(int y);
 char **str_to_array(char *map, char stop);
 void my_fputstr(char const *str, char *file_name);
+char **my_split_tab(char *argv, char char_);
 
 #endif /* MY_H_ */
