@@ -33,38 +33,6 @@ void save_all(game_ *game, grid_cell_ *grid)
     fclose(background_file);
 }
 
-void moov_up_gen(sprite_ *sprite)
-{
-    sprite->position.y += 40;
-    sfSprite_setPosition(sprite->sprite, sprite->position);
-    if (sprite->next != NULL)
-        moov_up_gen(sprite->next);
-}
-
-void moov_down_gen(sprite_ *sprite)
-{
-    sprite->position.y -= 40;
-    sfSprite_setPosition(sprite->sprite, sprite->position);
-    if (sprite->next != NULL)
-        moov_down_gen(sprite->next);
-}
-
-void moov_right_gen(sprite_ *sprite)
-{
-    sprite->position.x += 40;
-    sfSprite_setPosition(sprite->sprite, sprite->position);
-    if (sprite->next != NULL)
-        moov_right_gen(sprite->next);
-}
-
-void moov_left_gen(sprite_ *sprite)
-{
-    sprite->position.x -= 40;
-    sfSprite_setPosition(sprite->sprite, sprite->position);
-    if (sprite->next != NULL)
-        moov_left_gen(sprite->next);
-}
-
 void page_handle(gen_control_ *gen_control)
 {
     if (sfKeyboard_isKeyPressed(sfKeyNum1)) {
@@ -105,6 +73,8 @@ void map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
     }
     (sfKeyboard_isKeyPressed(sfKeyR)) ? reset_grid(grid) : 1;
     (sfKeyboard_isKeyPressed(sfKeyEnter)) ? save_all(game, grid) : 1;
+    (sfKeyboard_isKeyPressed(sfKeyUp)) ? game->layer = 1 : 1;
+    (sfKeyboard_isKeyPressed(sfKeyDown)) ? game->layer = 0 : 1;
     page_handle(gen_control);
 }
 

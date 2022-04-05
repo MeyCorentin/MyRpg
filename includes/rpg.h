@@ -27,6 +27,7 @@ typedef struct game {
     sfEvent event;
     cursor_ *cursor;
     int on_button;
+    int layer;
 } game_;
 
 void check_event_game(game_ *game);

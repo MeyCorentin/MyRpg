@@ -15,7 +15,7 @@ void save_foreground(game_ *game, grid_cell_ *grid, FILE *file)
 {
     fwrite("[", 1, my_strlen("["), file);
     fwrite(new_put_nbr(grid->foreground_id), 1,
-    my_strlen(new_put_nbr(grid->foreground_id)), file);
+    my_strlen(new_put_nbr(grid->foreground_id) + 1), file);
     fwrite("]", 1, my_strlen("]"), file);
     if (grid->g_pos % grid->size_x == 0 && grid->g_pos
         != grid->size_x * grid->size_y)
@@ -30,7 +30,7 @@ void save_background(game_ *game, grid_cell_ *grid, FILE *file)
 {
     fwrite("[", 1, my_strlen("["), file);
     fwrite(new_put_nbr(grid->background_id), 1,
-    my_strlen(new_put_nbr(grid->background_id)), file);
+    my_strlen(new_put_nbr(grid->background_id) + 1), file);
     fwrite("]", 1, my_strlen("]"), file);
     if (grid->g_pos % grid->size_x == 0 && grid->g_pos
         != grid->size_x * grid->size_y)

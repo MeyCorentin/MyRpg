@@ -69,5 +69,9 @@ gen_control_ *gen_control, paint_ *paint);
 void save_foreground(game_ *game, grid_cell_ *grid, FILE *file);
 void save_background(game_ *game, grid_cell_ *grid, FILE *file);
 void draw_ath(game_ *game, gen_control_ *gen_control);
+void moov_up_gen(sprite_ *sprite);
+void moov_down_gen(sprite_ *sprite);
+void moov_right_gen(sprite_ *sprite);
+void moov_left_gen(sprite_ *sprite);
 
 #endif /* !MAP_GRID_H_ */
