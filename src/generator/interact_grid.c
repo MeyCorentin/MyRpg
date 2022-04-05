@@ -14,10 +14,10 @@
 void print_size(game_ *game, grid_cell_ *grid, FILE *file)
 {
     fwrite(new_put_nbr(grid->size_y), 1,
-    my_strlen(new_put_nbr(grid->size_y)), file);
+    my_strlen(new_put_nbr(grid->size_y)) - 1, file);
     fwrite(" ", 1, my_strlen(" "), file);
     fwrite(new_put_nbr(grid->size_x), 1,
-    my_strlen(new_put_nbr(grid->size_x)), file);
+    my_strlen(new_put_nbr(grid->size_x)) - 1, file);
     fwrite("\n", 1, my_strlen("\n"), file);
 }
 

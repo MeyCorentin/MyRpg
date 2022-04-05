@@ -38,7 +38,7 @@ int get_len_nb(int nb)
 {
     int len = 0;
 
-    while (nb > 1) {
+    while (nb >= 1) {
         nb /= 10;
         len += 1;
     }

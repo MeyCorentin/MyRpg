@@ -16,8 +16,8 @@ void launch_map_generator(game_ *game)
     sfColor color = {150, 150, 150, 150};
 
     paint->scale = 1;
-    init_rect(grid, rect, 30, 30);
-    create_map(game, grid, 30, 30);
+    init_rect(grid, rect, 21, 21);
+    create_map(game, grid, 21, 21);
     create_gen(gen_control, 1);
     game->layer = 0;
     while (sfRenderWindow_isOpen(game->window)) {
