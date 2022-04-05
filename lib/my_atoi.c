@@ -8,15 +8,11 @@
 int my_atoi(char *str)
 {
     int number = 0;
-    int cmpt = 0;
 
-    if (str[0] == '-')
-        cmpt = 1;
-    for (; str[cmpt] != '\0'; cmpt += 1) {
+    for (int cmpt = 0; str[cmpt] != '\0' &&
+    str[cmpt] >= 0 + '0' && str[cmpt] <= 9 + '0'; cmpt += 1) {
         number *= 10;
         number += (str[cmpt] - 48);
     }
-    if (str[0] == '-')
-        number *= -1;
     return (number);
 }

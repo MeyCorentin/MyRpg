@@ -22,6 +22,12 @@ typedef struct cursor {
     sfVector2f position;
 } cursor_;
 
+typedef struct load_map {
+    char *full_file;
+    int y_size;
+    int x_size;
+} load_map_;
+
 typedef struct game {
     sfRenderWindow *window;
     sfEvent event;

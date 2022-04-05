@@ -16,6 +16,7 @@ LIB	=	lib/my_strlen.c      \
 		lib/my_printf.c	\
 		lib/new_put_nbr.c	\
 		lib/str_to_array.c	\
+		lib/my_tab.c 	\
 
 SRC =	src/generator/*.c \
 		src/menu/*.c	\
