@@ -28,10 +28,23 @@ typedef struct load_map {
     int x_size;
 } load_map_;
 
+typedef struct player {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f position;
+    sfVector2f scale;
+    sfIntRect rect;
+    sfClock *clock;
+    sfTime time;
+    int secs;
+    int movement;
+} player_;
+
 typedef struct game {
     sfRenderWindow *window;
     sfEvent event;
     cursor_ *cursor;
+    player_ *player;
     int on_button;
     int layer;
 } game_;
@@ -40,5 +53,7 @@ void check_event_game(game_ *game);
 int global_gestion(int argc, char **argv);
 sfIntRect change_rect(sfIntRect rect, float x, float y);
 void launch_game(game_ *game);
+void create_player(game_ *game);
+void update_player(game_ *game, player_ *player);
 
 #endif /* PROJECT_H_ */

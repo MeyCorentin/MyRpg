@@ -55,12 +55,29 @@ void init_map(char ***map, load_map_ *load_map)
     }
 }
 
-void display_load_map(char ***map, game_ *game)
+void move_map(char ***map, int movement, int y, int x)
+{
+    sfVector2f pos = sfRectangleShape_getPosition((sfRectangleShape *)map[y][x]);
+
+    if (movement == 0)
+        pos.y -= 3;
+    if (movement == 1)
+        pos.x -= 3;
+    if (movement == 2)
+        pos.y += 3;
+    if (movement == 3)
+        pos.x += 3;
+    sfRectangleShape_setPosition((sfRectangleShape *)map[y][x], pos);
+}
+
+void display_load_map(char ***map, game_ *game, int movement)
 {
     int y = 0;
     int x = 0;
+
     for (y = 0; map[y]; y++) {
         for (x = 0; map[y][x]; x++) {
+            move_map(map, movement, y, x);
             sfRenderWindow_drawRectangleShape(game->window,
             (sfRectangleShape *)map[y][x], sfFalse);
         }
@@ -75,12 +92,14 @@ void launch_game(game_ *game)
     get_map(load_map);
     char ***map = my_malloc_map(load_map->y_size, load_map->x_size);
     init_map(map, load_map);
+    create_player(game);
     while (sfRenderWindow_isOpen(game->window)) {
         game->on_button = 1;
         sfRenderWindow_clear(game->window, grey);
-        display_load_map(map, game);
+        display_load_map(map, game, game->player->movement);
         check_event_game(game);
         update_cursor(game);
+        update_player(game, game->player);
         sfRenderWindow_display(game->window);
     }
 }
