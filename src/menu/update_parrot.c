@@ -7,22 +7,22 @@
 
 #include "../../includes/rpg.h"
 
-void move_parrot(animal_ *animal)
+void move_parrot(animal_ *animal, game_ *game)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
-        animal->position.y -= 3;
+        animal->position.y -= 3 * game->speed;
         animal->version = 1;
     }
     if (sfKeyboard_isKeyPressed(sfKeyS)) {
-        animal->position.y += 3;
+        animal->position.y += 3 * game->speed;
         animal->version = 1;
     }
     if (sfKeyboard_isKeyPressed(sfKeyQ)) {
-        animal->position.x -= 3;
+        animal->position.x -= 3 * game->speed;
         animal->version = 0;
     }
     if (sfKeyboard_isKeyPressed(sfKeyD)) {
-        animal->position.x += 3;
+        animal->position.x += 3 * game->speed;
         animal->version = 2;
     }
     sfSprite_setPosition(animal->sprite, animal->position);
@@ -40,7 +40,7 @@ void replace_parrot(animal_ *animal)
         animal->position.y = -24;
 }
 
-void update_animal(animal_ *animal, int x, int y)
+void update_animal(animal_ *animal, int x, int y, game_ *game)
 {
     animal->time = sfClock_getElapsedTime(animal->clock);
     animal->secs = animal->time.microseconds / 5000;
@@ -53,10 +53,10 @@ void update_animal(animal_ *animal, int x, int y)
         sfClock_restart(animal->clock);
     }
     if (animal->moved == 0)
-        move_parrot(animal);
+        move_parrot(animal, game);
     else {
         animal->version = 0;
-        animal->position.x -= 2;
+        animal->position.x -= 2 * game->speed;
         sfSprite_setPosition(animal->sprite, animal->position);
     }
     replace_parrot(animal);

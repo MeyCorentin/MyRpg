@@ -20,7 +20,7 @@ void draw_menu(game_ *game, menu_ *menu)
     sfRenderWindow_drawSprite(game->window, menu->help->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window,
     menu->settings->button->sprite, sfFalse);
-    update_animal(menu->parrot, 48, 48);
+    update_animal(menu->parrot, 48, 48, game);
     update_cursor(game);
 }
 
@@ -46,19 +46,8 @@ void check_event_menu(game_ *game, menu_ *menu)
     }
 }
 
-void launch_menu(char *pseudo)
+void loop_menu(game_ *game, menu_ *menu)
 {
-    sfVideoMode mode = {1920, 1080, 120};
-    game_ *game = malloc(sizeof(game_));
-    menu_ *menu = malloc(sizeof(menu_));
-
-    game->window = sfRenderWindow_create(mode, "MY_RPG", \
-    sfResize | sfClose, NULL);
-    sfRenderWindow_setFramerateLimit(game->window, 120);
-    sfWindow_setMouseCursorVisible((sfWindow *)game->window, sfFalse);
-    malloc_menu(menu);
-    create_cursor(game);
-    create_settings(game, menu);
     while (sfRenderWindow_isOpen(game->window)) {
         game->on_button = 1;
         sfRenderWindow_clear(game->window, sfBlue);
@@ -66,4 +55,22 @@ void launch_menu(char *pseudo)
         draw_menu(game, menu);
         sfRenderWindow_display(game->window);
     }
+}
+
+void launch_menu(sfVideoMode mode, sfVector2u size)
+{
+    game_ *game = malloc(sizeof(game_));
+    menu_ *menu = malloc(sizeof(menu_));
+
+    game->menu = menu;
+    game->window = sfRenderWindow_create(mode, "MY_RPG", \
+    sfResize | sfClose, NULL);
+    sfRenderWindow_setFramerateLimit(game->window, 120);
+    sfRenderWindow_setSize(game->window, size);
+    sfWindow_setMouseCursorVisible((sfWindow *)game->window, sfFalse);
+    malloc_menu(menu);
+    create_cursor(game);
+    create_settings(game, menu);
+    game->speed = 1;
+    loop_menu(game, menu);
 }

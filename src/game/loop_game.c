@@ -12,6 +12,8 @@ void check_event_game(game_ *game)
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed)
             sfRenderWindow_close(game->window);
+        if (sfKeyboard_isKeyPressed(sfKeyEscape))
+            loop_menu(game, game->menu);
         event_cursor(game);
     }
 }
