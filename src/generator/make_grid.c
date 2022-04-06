@@ -18,8 +18,8 @@ void init_rect_2(grid_cell_ *grid, sfRectangleShape *rect, int x, int y)
     grid->l_pos = 1;
     grid->g_pos = 1;
     grid->next_cell = NULL;
-    grid->background_id = 1111;
-    grid->foreground_id = 1111;
+    grid->background_id = 1721;
+    grid->foreground_id = 1721;
 }
 
 void init_rect(grid_cell_ *grid, sfRectangleShape *rect, int x, int y)
@@ -45,12 +45,12 @@ void init_rect(grid_cell_ *grid, sfRectangleShape *rect, int x, int y)
 void create_foreground_background(struct grid_cell *new)
 {
     new->foreground = malloc(sizeof(sprite_));
-    new->foreground_id = 1111;
+    new->foreground_id = 1721;
     new->foreground->sprite = NULL;
     new->foreground->ok = 0;
     new->background = malloc(sizeof(sprite_));
     new->background->sprite = NULL;
-    new->background_id = 1111;
+    new->background_id = 1721;
     new->background->ok = 0;
 }
 

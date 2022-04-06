@@ -49,7 +49,7 @@ void add_id_in_tab(char ***tab, char *id, int y, int x)
     int j = x;
     int r = 0;
 
-    for (; tab[k]; k++) {
+    for (; tab[k] ; k++) {
         for (j = x; tab[k][j]; j++) {
             for (r = 0; id[r] != '\0'; r++) {
                 tab[k][j][r] = id[r];
@@ -68,7 +68,7 @@ char ***my_malloc_big_tab(int colum, int lines)
     for (; k != colum; k++) {
         temp[k] = malloc(sizeof(char *) * lines + 1);
         for (j = 0; j != lines; j++) {
-            temp[k][j] = malloc(sizeof(char *) * 10);
+            temp[k][j] = malloc(sizeof(char *) * 100);
         }
         temp[k][j] = '\0';
     }
@@ -82,14 +82,14 @@ void display_big_tab(char ***map)
     int x = 0;
     for (y = 0; map[y]; y++) {
         for (x = 0; map[y][x]; x++) {
-            my_putstr(map[y][x]);
+            my_put_nbr(my_atoi(map[y][x]));
             my_putstr("|");
         }
         my_putstr("\n");
     }
 }
 
-int get_map(load_map_ *load_map)
+char  ***get_map(load_map_ *load_map)
 {
     int k = load_map->x_size;
     int ok = 0;
@@ -97,8 +97,8 @@ int get_map(load_map_ *load_map)
     int y = 0;
     int x = 0;
     char *temp = malloc(sizeof(char) * 1);
-    char *temp_id = malloc(sizeof(char) * 20);
-    char ***tileset_tab = my_malloc_big_tab(10, 5);
+    char *temp_id = malloc(sizeof(char) * 100);
+    char ***tileset_tab = my_malloc_big_tab(load_map->y_size, load_map->x_size);
 
     temp_id[0] = '\0';
     for (; load_map->full_file[k] != '\0'; k++) {
@@ -116,5 +116,5 @@ int get_map(load_map_ *load_map)
             temp_id = my_strcat(temp_id, temp);
         }
     }
-    display_big_tab(tileset_tab);
+    return (tileset_tab);
 }

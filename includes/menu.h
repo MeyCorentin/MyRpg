@@ -133,5 +133,6 @@ void create_settings(game_ *game, menu_ *menu);
 void launch_settings(game_ *game, menu_ *menu);
 void check_settings(game_ *game, menu_ *menu, int what);
 void create_texts(menu_ *menu);
+char *my_strcat(char *dest, char const *src);
 
 #endif /* MENU_H_ */

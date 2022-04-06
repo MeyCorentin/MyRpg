@@ -74,6 +74,13 @@ void moov_down_gen(sprite_ *sprite);
 void moov_right_gen(sprite_ *sprite);
 void moov_left_gen(sprite_ *sprite);
 int get_size(char *files_name, load_map_ *load_map);
-int get_map(load_map_ *load_map);
+char ***get_map(load_map_ *load_map);
+void display_load_map(char ***map, game_ *game, int movement);
+void display_layer_1(char ***map, game_ *game, int movement);
+char ***my_malloc_map_sprite(int colum, int lines);
+char ***my_malloc_map(int colum, int lines);
+void init_map_square(char ***map, int y, int x);
+void move_background(char ***map, int movement, int y, int x);
+void move_map(char ***map, int movement, int y, int x);
 
 #endif /* !MAP_GRID_H_ */
