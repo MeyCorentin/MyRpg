@@ -82,5 +82,14 @@ char ***my_malloc_map(int colum, int lines);
 void init_map_square(char ***map, int y, int x);
 void move_background(char ***map, int movement, int y, int x);
 void move_map(char ***map, int movement, int y, int x);
+void display_layer_2(char ***map, game_ *game, int movement, player_ *player);
+char ***get_map_2(load_map_ *load_map);
+int get_size_2(char *files_name, load_map_ *load_map);
+void save_all(game_ *game, grid_cell_ *grid);
+char ***my_malloc_big_tab(int colum, int lines);
+void add_tileset(char ***map, sprite_ *sprite, char ***id_background);
+void init_map(char ***map, load_map_ *load_map);
+void add_tileset_2(char ***map, sprite_ *sprite, char ***id_background);
+void move_rep(sfSprite *rep, int movement);
 
 #endif /* !MAP_GRID_H_ */

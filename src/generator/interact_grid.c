@@ -11,28 +11,6 @@
 #include <stdio.h>
 #include "../../includes/rpg.h"
 
-void print_size(game_ *game, grid_cell_ *grid, FILE *file)
-{
-    fwrite(new_put_nbr(grid->size_y), 1,
-    my_strlen(new_put_nbr(grid->size_y)) - 1, file);
-    fwrite(" ", 1, my_strlen(" "), file);
-    fwrite(new_put_nbr(grid->size_x), 1,
-    my_strlen(new_put_nbr(grid->size_x)) - 1, file);
-    fwrite("\n", 1, my_strlen("\n"), file);
-}
-
-void save_all(game_ *game, grid_cell_ *grid)
-{
-    FILE *foreground_file = fopen("foreground.txt", "wa");
-    print_size(game, grid, foreground_file);
-    save_foreground(game, grid, foreground_file);
-    fclose(foreground_file);
-    FILE *background_file = fopen("background.txt", "wa");
-    print_size(game, grid, background_file);
-    save_background(game, grid, background_file);
-    fclose(background_file);
-}
-
 void page_handle(gen_control_ *gen_control)
 {
     if (sfKeyboard_isKeyPressed(sfKeyNum1)) {
@@ -53,7 +31,7 @@ void page_handle(gen_control_ *gen_control)
     }
 }
 
-void map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
+void map_key_moov(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
         (gen_control->sprites_on == 0) ? moov_up_gen(gen_control->list) :
@@ -71,6 +49,11 @@ void map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
         (gen_control->sprites_on == 0) ? moov_left_gen(gen_control->list) :
         moov_right(grid);
     }
+}
+
+void map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
+{
+    map_key_moov(game, grid, gen_control);
     (sfKeyboard_isKeyPressed(sfKeyR)) ? reset_grid(grid) : 1;
     (sfKeyboard_isKeyPressed(sfKeyEnter)) ? save_all(game, grid) : 1;
     (sfKeyboard_isKeyPressed(sfKeyUp)) ? game->layer = 1 : 1;

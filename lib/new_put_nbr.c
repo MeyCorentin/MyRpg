@@ -53,11 +53,6 @@ char *new_put_nbr(int nb)
     int cmpt_str = 0;
     char *resultat = malloc(sizeof(char) * (len + 1));
 
-    if (nb < 0) {
-        nb = nb - nb * 2;
-        resultat[cmpt_str] = '-';
-        cmpt_str += 1;
-    }
     if (nb == 0)
         resultat[cmpt_str] = '0';
     while (digits != 0) {
@@ -77,11 +72,6 @@ char *new_put_nbr_1(int nb)
     int cmpt_str = 0;
     char *resultat = malloc(sizeof(char) * (len + 1));
 
-    if (nb < 0) {
-        nb = nb - nb * 2;
-        resultat[cmpt_str] = '-';
-        cmpt_str += 1;
-    }
     if (nb == 0)
         resultat[cmpt_str] = '0';
     while (digits != 0) {

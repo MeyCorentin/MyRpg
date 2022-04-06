@@ -116,7 +116,8 @@ typedef struct cursor {
 } cursor_;
 
 typedef struct load_map {
-    char *full_file;
+    char *back_full;
+    char *fore_full;
     int y_size;
     int x_size;
 } load_map_;
@@ -132,6 +133,16 @@ typedef struct player {
     int secs;
     int movement;
 } player_;
+
+typedef struct layer {
+    char ***map;
+    char ***map_2;
+    char ***map_layer_1 ;
+    char ***map_layer_2 ;
+    char ***id_background ;
+    char ***id_foreground ;
+
+} layer_;
 
 typedef struct game {
     sfRenderWindow *window;

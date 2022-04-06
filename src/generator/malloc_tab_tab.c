@@ -51,3 +51,20 @@ char ***my_malloc_map_sprite(int colum, int lines)
     temp[k] = '\0';
     return (temp);
 }
+
+char ***my_malloc_big_tab(int colum, int lines)
+{
+    char ***temp = malloc(sizeof(char *) * (colum + 1));
+    int k = 0;
+    int j = 0;
+
+    for (; k != colum; k++) {
+        temp[k] = malloc(sizeof(char *) * lines + 1);
+        for (j = 0; j != lines; j++) {
+            temp[k][j] = malloc(sizeof(char *) * 100);
+        }
+        temp[k][j] = '\0';
+    }
+    temp[k] = '\0';
+    return (temp);
+}

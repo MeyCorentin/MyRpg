@@ -91,8 +91,8 @@ void moov_right(grid_cell_ *grid)
 void reset_grid(grid_cell_ *grid)
 {
     grid->click = 0;
-    grid->background->ok = 0;
-    grid->foreground->ok = 0;
+    grid->background->ok = 1721;
+    grid->foreground->ok = 1935;
     if (grid->next_cell != NULL)
         reset_grid(grid->next_cell);
 }

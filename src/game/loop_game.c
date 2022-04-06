@@ -18,94 +18,70 @@ void check_event_game(game_ *game)
     }
 }
 
-void init_map(char ***map, load_map_ *load_map)
+void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control)
 {
-    int y = 0;
-    int x = 0;
-    for (y = 0; map[y]; y++) {
-        for (x = 0; map[y][x]; x++) {
-            init_map_square(map, y, x);
-        }
+    char ***map = my_malloc_map(load_map->y_size, load_map->x_size);
+    char ***map_2 = my_malloc_map(load_map->y_size, load_map->x_size);
+    char ***map_layer_1 =
+    my_malloc_map_sprite(load_map->y_size, load_map->x_size);
+    char ***map_layer_2 =
+    my_malloc_map_sprite(load_map->y_size, load_map->x_size);
+    char ***id_background = get_map(load_map);
+    char ***id_foreground = get_map_2(load_map);
+
+    init_map(map, load_map);
+    init_map(map_2, load_map);
+    create_gen(gen_control, 1);
+    add_tileset(map_layer_1, gen_control->list, id_background);
+    add_tileset_2(map_layer_2, gen_control->list, id_foreground);
+    layer->map = map;
+    layer->map_2 = map_2;
+    layer->map_layer_1 = map_layer_1;
+    layer->map_layer_2 = map_layer_2;
+    layer->id_background = id_background;
+    layer->id_foreground = id_foreground;
+}
+
+void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
+{
+    move_rep(rep, game->player->movement);
+    display_load_map(layer->map, game, game->player->movement);
+    display_layer_1(layer->map_layer_1, game, game->player->movement);
+    if (atoi(layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
+    [(int)((950 - pos.x) / 40)]) != 1945 ||
+    atoi(layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
+    [(int)((950 - pos.x - 80) / 40)]) != 1945) {
+        update_player(game, game->player);
+        display_layer_2(layer->map_layer_2, game,
+        game->player->movement, game->player);
+    } else {
+        display_layer_2(layer->map_layer_2, game,
+        game->player->movement, game->player);
+        update_player(game, game->player);
     }
-}
-
-void add_tileset(char ***map, sprite_ *sprite, char ***id_background)
-{
-    int i = 0;
-    int j = 0;
-    sfVector2f sprite_scale = {2.5, 2.5};
-    sfVector2f pos;
-
-    for (; map[i]; i++) {
-        for (j = 0; map[i][j] ; j++) {
-            if (sprite->id == atoi(id_background[i][j])) {
-                pos.x = 40 * j;
-                pos.y = 40 * i;
-                sfSprite_setScale(sprite->sprite, sprite_scale);
-                map[i][j] = (char *)sfSprite_copy(sprite->sprite);
-                sfSprite_setPosition((sfSprite *)map[i][j], pos);
-            }
-        }
-    }
-    if (sprite->next != NULL)
-        add_tileset(map, sprite->next, id_background);
-}
-
-void move_map(char ***map, int movement, int y, int x)
-{
-    sfVector2f pos =
-    sfRectangleShape_getPosition((sfRectangleShape *)map[y][x]);
-
-    if (movement == 0)
-        pos.y -= 3;
-    if (movement == 1)
-        pos.x -= 3;
-    if (movement == 2)
-        pos.y += 3;
-    if (movement == 3)
-        pos.x += 3;
-    sfRectangleShape_setPosition((sfRectangleShape *)map[y][x], pos);
-}
-
-void move_background(char ***map, int movement, int y, int x)
-{
-    sfVector2f pos =
-    sfSprite_getPosition((sfSprite *)map[y][x]);
-
-    if (movement == 0)
-        pos.y -= 3;
-    if (movement == 1)
-        pos.x -= 3;
-    if (movement == 2)
-        pos.y += 3;
-    if (movement == 3)
-        pos.x += 3;
-    sfSprite_setPosition((sfSprite *)map[y][x], pos);
+    update_cursor(game);
 }
 
 void launch_game(game_ *game)
 {
+    layer_ *layer = malloc(sizeof(layer_));
     gen_control_ *gen_control = malloc(sizeof(gen_control_));
-    sfColor grey = {150, 150, 150, 150};
     load_map_ *load_map = malloc(sizeof(load_map_));
-    get_size("background.txt", load_map);
-    char ***map = my_malloc_map(load_map->y_size, load_map->x_size);
-    char ***map_layer_1 = my_malloc_map_sprite(load_map->y_size, load_map->x_size);
-    char ***id_background = get_map(load_map);
+    sfVector2f pos = {0, 0};
+    sfSprite *rep = sfSprite_create();
+    sfSprite_setPosition(rep, pos);
 
-    init_map(map, load_map);
-    create_gen(gen_control, 1);
-    add_tileset(map_layer_1, gen_control->list, id_background);
+    get_size("background.txt", load_map);
+    get_size_2("test.txt", load_map);
+    init_layer(layer, load_map, gen_control);
     create_player(game);
     game->player->movement = 4;
     while (sfRenderWindow_isOpen(game->window)) {
+        sfVector2f pos = sfSprite_getPosition(rep);
         game->on_button = 1;
-        sfRenderWindow_clear(game->window, grey);
+        sfRenderWindow_clear(game->window, (sfColor){150, 150, 150, 150});
         check_event_game(game);
-        display_load_map(map, game, game->player->movement);
-        display_layer_1(map_layer_1, game, game->player->movement);
-        update_player(game, game->player);
-        update_cursor(game);
+        launch_layer(game, layer, pos, rep);
         sfRenderWindow_display(game->window);
     }
 }

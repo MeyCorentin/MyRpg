@@ -11,6 +11,32 @@
 #include <stdio.h>
 #include "../../includes/rpg.h"
 
+void print_size(game_ *game, grid_cell_ *grid, FILE *file)
+{
+    fwrite(new_put_nbr(grid->size_y), 1,
+    my_strlen(new_put_nbr(grid->size_y)) - 1, file);
+    fwrite(" ", 1, my_strlen(" "), file);
+    fwrite(new_put_nbr(grid->size_x), 1,
+    my_strlen(new_put_nbr(grid->size_x)) - 1, file);
+    fwrite("\n", 1, my_strlen("\n"), file);
+}
+
+void save_all(game_ *game, grid_cell_ *grid)
+{
+    FILE *foreground_file = fopen("foreground.txt", "wa");
+    print_size(game, grid, foreground_file);
+    save_foreground(game, grid, foreground_file);
+    fclose(foreground_file);
+    FILE *test = fopen("test.txt", "wa");
+    print_size(game, grid, test);
+    save_foreground(game, grid, test);
+    fclose(test);
+    FILE *background_file = fopen("background.txt", "wa");
+    print_size(game, grid, background_file);
+    save_background(game, grid, background_file);
+    fclose(background_file);
+}
+
 void save_foreground(game_ *game, grid_cell_ *grid, FILE *file)
 {
     fwrite("[", 1, my_strlen("["), file);

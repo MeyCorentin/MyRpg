@@ -47,5 +47,7 @@ void check_settings(game_ *game, menu_ *menu, int what);
 void create_texts(menu_ *menu);
 char *my_strcat(char *dest, char const *src);
 void loop_menu(game_ *game, menu_ *menu);
+void event_buttons(game_ *game, menu_ *menu);
+void draw_settings(game_ *game, menu_ *menu);
 
 #endif /* MENU_H_ */
