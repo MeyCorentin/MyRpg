@@ -1,0 +1,92 @@
+/*
+** EPITECH PROJECT, 2022
+** MY_RPG
+** File description:
+** It's the file that contain functions to create my settings menu
+*/
+
+#include "../../includes/rpg.h"
+
+void check_help(game_ *game, menu_ *menu, int what)
+{
+    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
+
+    if (mouse.x > menu->help->position.x && mouse.x <
+    menu->help->position.x + menu->help->rect.width *
+    menu->help->scale.x && mouse.y > menu->help->
+    position.y && mouse.y < menu->help->position.y + menu->
+    help->rect.height * menu->help->scale.y) {
+        game->on_button = 0;
+        menu->help->rect.left = 372;
+        if (game->event.type == sfEvtMouseButtonReleased && what == 0) {
+            sfSound_play(game->sounds->click);
+        }
+        if (game->event.type == sfEvtMouseButtonReleased && what == 1) {
+            sfSound_play(game->sounds->click);
+        }
+    } else
+        menu->help->rect.left = 350;
+    sfSprite_setTextureRect(menu->help->sprite,
+    menu->help->rect);
+}
+
+void event_settings(game_ *game, menu_ *menu)
+{
+    while (sfRenderWindow_pollEvent(game->window, &game->event)) {
+        if (game->event.type == sfEvtClosed)
+            sfRenderWindow_close(game->window);
+        if (sfKeyboard_isKeyPressed(sfKeyEscape))
+            menu->settings->in_settings = 1;
+        check_settings(game, menu, 1);
+        event_buttons(game, menu);
+        event_cursor(game);
+        change_volume(game, menu, menu->settings->music, 0);
+        change_volume(game, menu, menu->settings->sounds, 1);
+    }
+}
+
+void check_settings(game_ *game, menu_ *menu, int what)
+{
+    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
+
+    if (mouse.x > menu->settings->button->position.x && mouse.x <
+    menu->settings->button->position.x + menu->settings->button->rect.width *
+    menu->settings->button->scale.x && mouse.y > menu->settings->button->
+    position.y && mouse.y < menu->settings->button->position.y + menu->
+    settings->button->rect.height * menu->settings->button->scale.y) {
+        game->on_button = 0;
+        menu->settings->button->rect.left = 50;
+        if (game->event.type == sfEvtMouseButtonReleased && what == 0) {
+            sfSound_play(game->sounds->click);
+            launch_settings(game, menu);
+        } if (game->event.type == sfEvtMouseButtonReleased && what == 1) {
+            sfSound_play(game->sounds->click);
+            menu->settings->in_settings = 1;
+        }
+    } else
+        menu->settings->button->rect.left = 0;
+    sfSprite_setTextureRect(menu->settings->button->sprite,
+    menu->settings->button->rect);
+}
+
+void launch_settings(game_ *game, menu_ *menu)
+{
+    menu->settings->in_settings = 0;
+    while (sfRenderWindow_isOpen(game->window) && menu->settings->in_settings
+    == 0) {
+        menu->back->rect.top = 540;
+        game->on_button = 1;
+        sfRenderWindow_clear(game->window, sfBlack);
+        event_settings(game, menu);
+        draw_settings(game, menu);
+        sfRenderWindow_display(game->window);
+    }
+}
+
+void check_action(game_ *game, button_ *button, menu_ *menu, int action)
+{
+    if (action == 0)
+        choose_music(game, button, menu);
+    if (action == 1)
+        choose_sound(game, button, menu);
+}

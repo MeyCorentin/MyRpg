@@ -7,6 +7,36 @@
 
 #include "../../includes/rpg.h"
 
+button_ *create_button(sfVector2f pos, sfVector2f scale,
+char *filepath)
+{
+    button_ *button = malloc(sizeof(button_));
+    button->sprite = sfSprite_create();
+    button->texture = sfTexture_createFromFile(filepath, NULL);
+    button->scale = scale;
+    button->position = pos;
+    sfSprite_setTexture(button->sprite, button->texture, sfFalse);
+    sfSprite_setPosition(button->sprite, button->position);
+    sfSprite_setScale(button->sprite, button->scale);
+    return (button);
+}
+
+void create_sounds(game_ *game, menu_ *menu)
+{
+    menu->settings->bar_music = create_button((sfVector2f){menu->settings->
+    back->position.x + 270, menu->settings->back->position.y + 385},
+    (sfVector2f){0.5, 0.15}, "pictures/menu/soundbar.png");
+    menu->settings->bar_sounds = create_button((sfVector2f){menu->settings->
+    back->position.x + 280, menu->settings->back->position.y + 515},
+    (sfVector2f){0.5, 0.15}, "pictures/menu/soundbar.png");
+    menu->settings->music = create_button((sfVector2f){menu->settings->
+    back->position.x + 710, menu->settings->back->position.y + 355},
+    (sfVector2f){0.25, 0.25}, "pictures/menu/parrot_button.png");
+    menu->settings->sounds = create_button((sfVector2f){menu->settings->
+    back->position.x + 720, menu->settings->back->position.y + 485},
+    (sfVector2f){0.25, 0.25}, "pictures/menu/parrot_button.png");
+}
+
 void create_button_set(game_ *game, menu_ *menu)
 {
     menu->settings->button = malloc(sizeof(button_));
@@ -25,6 +55,7 @@ void create_button_set(game_ *game, menu_ *menu)
     (menu->settings->button->rect, 50, 57);
     sfSprite_setTextureRect
     (menu->settings->button->sprite, menu->settings->button->rect);
+    create_sounds(game, menu);
 }
 
 void create_settings(game_ *game, menu_ *menu)

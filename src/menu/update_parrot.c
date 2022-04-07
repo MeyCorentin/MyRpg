@@ -62,17 +62,26 @@ void update_animal(animal_ *animal, int x, int y, game_ *game)
     replace_parrot(animal);
 }
 
-void check_parrot(game_ *game, menu_ *menu, sfVector2i mouse)
+void check_parrot_move(menu_ *menu)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ) || sfKeyboard_isKeyPressed(sfKeyS) ||
     sfKeyboard_isKeyPressed(sfKeyQ) || sfKeyboard_isKeyPressed(sfKeyD))
         menu->parrot->moved = 0;
     else
         menu->parrot->moved = 1;
+}
+
+void check_parrot(game_ *game, menu_ *menu, sfVector2i mouse)
+{
+    check_parrot_move(menu);
     if (mouse.x > menu->parrot->position.x && mouse.x < menu->parrot->
     position.x + menu->parrot->rect.width * menu->parrot->scale.x && mouse.y
     > menu->parrot->position.y && mouse.y < menu->parrot->position.y + menu->
     parrot->rect.height * menu->parrot->scale.y) {
+        if (game->event.type == sfEvtMouseButtonPressed) {
+            sfSound_stop(game->sounds->parrot);
+            sfSound_play(game->sounds->parrot);
+        }
         if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) {
             menu->parrot->moved = 0;
             menu->parrot->position.x = mouse.x - 24;

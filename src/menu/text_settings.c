@@ -13,13 +13,11 @@ text_ *create_ligne(char *string, sfVector2f position)
     text->text = sfText_create();
     text->font = sfFont_createFromFile("font/Stardew_Valley.ttf");
     text->scale = (sfVector2f){2, 2};
-    text->string = malloc(sizeof(char) * my_strlen(string));
-    text->string = my_strncpy(text->string, string, 0);
     text->position = position;
     sfText_setFont(text->text, text->font);
     sfText_setScale(text->text, text->scale);
     sfText_setPosition(text->text, text->position);
-    sfText_setString(text->text, text->string);
+    sfText_setString(text->text, string);
     sfText_setColor(text->text, sfBlack);
     return (text);
 }

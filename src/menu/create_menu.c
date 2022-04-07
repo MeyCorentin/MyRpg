@@ -56,6 +56,7 @@ void create_menu(menu_ *menu)
     create_parrot(menu);
     create_secret(menu);
     create_help(menu);
+    create_saves(menu);
 }
 
 void malloc_menu(menu_ *menu)

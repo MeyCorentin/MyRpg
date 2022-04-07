@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <SFML/Graphics.h>
+#include <SFML/Audio.h>
 #include "menu.h"
 
 #ifndef PROJECT_H_
@@ -43,6 +44,7 @@ typedef struct button {
     sfVector2f position;
     sfVector2f scale;
     sfIntRect rect;
+    int save;
 } button_;
 
 typedef struct text {
@@ -63,7 +65,17 @@ typedef struct settings {
     text_ *min;
     text_ *big;
     text_ *little;
+    button_ *bar_music;
+    button_ *bar_sounds;
+    button_ *music;
+    button_ *sounds;
 } settings_;
+
+typedef struct saves {
+    button_ *first;
+    button_ *second;
+    button_ *third;
+} saves_;
 
 typedef struct menu {
     settings_ *settings;
@@ -82,6 +94,8 @@ typedef struct menu {
     animal_ *parrot;
     animal_ *coin;
     int on_parrot;
+    int on_load;
+    saves_ *saves;
 } menu_;
 
 typedef struct sprite {
@@ -144,12 +158,21 @@ typedef struct layer {
 
 } layer_;
 
+typedef struct sounds {
+    sfMusic *ocean;
+    sfMusic *summer_day;
+    sfSound *click;
+    sfSound *coin;
+    sfSound *parrot;
+} sounds_;
+
 typedef struct game {
     sfRenderWindow *window;
     sfEvent event;
     cursor_ *cursor;
     player_ *player;
     menu_ *menu;
+    sounds_ *sounds;
     int on_button;
     int layer;
     int speed;

@@ -10,18 +10,35 @@
 void draw_menu(game_ *game, menu_ *menu)
 {
     sfRenderWindow_drawSprite(game->window, menu->back->sprite, sfFalse);
-    sfRenderWindow_drawSprite(game->window, menu->logo->sprite, sfFalse);
-    if (menu->on_parrot == 0)
-        sfRenderWindow_drawSprite(game->window, menu->secret->sprite, sfFalse);
+    if (menu->on_load == 1) {
+        sfRenderWindow_drawSprite(game->window, menu->logo->sprite, sfFalse);
+        sfRenderWindow_drawSprite(game->window, menu->new->sprite, sfFalse);
+        sfRenderWindow_drawSprite(game->window, menu->exit->sprite, sfFalse);
+        sfRenderWindow_drawSprite(game->window, menu->load->sprite, sfFalse);
+    } else {
+        sfRenderWindow_drawSprite(game->window, menu->saves->first->sprite,
+        sfFalse);
+        sfRenderWindow_drawSprite(game->window, menu->saves->second->sprite,
+        sfFalse);
+        sfRenderWindow_drawSprite(game->window, menu->saves->third->sprite,
+        sfFalse);
+    }
     sfRenderWindow_drawSprite(game->window, menu->parrot->sprite, sfFalse);
-    sfRenderWindow_drawSprite(game->window, menu->new->sprite, sfFalse);
-    sfRenderWindow_drawSprite(game->window, menu->exit->sprite, sfFalse);
-    sfRenderWindow_drawSprite(game->window, menu->load->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window, menu->help->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window,
     menu->settings->button->sprite, sfFalse);
     update_animal(menu->parrot, 48, 48, game);
     update_cursor(game);
+}
+
+void check_all_buttons(game_ *game, menu_ *menu)
+{
+    check_button(game, menu->new, 1, menu);
+    check_button(game, menu->load, 2, menu);
+    check_button(game, menu->exit, 3, menu);
+    check_saves(game, menu->saves->first, 4, menu);
+    check_saves(game, menu->saves->second, 5, menu);
+    check_saves(game, menu->saves->third, 6, menu);
 }
 
 void check_event_menu(game_ *game, menu_ *menu)
@@ -34,21 +51,24 @@ void check_event_menu(game_ *game, menu_ *menu)
         if (sfKeyboard_isKeyPressed(sfKeyN))
             launch_game(game);
         if (sfKeyboard_isKeyPressed(sfKeyL))
-            launch_game(game);
+            menu->on_load = 0;
         if (sfKeyboard_isKeyPressed(sfKeyG))
             launch_map_generator(game);
-        check_button(game, menu->new, 1, menu);
-        check_button(game, menu->load, 2, menu);
-        check_button(game, menu->exit, 3, menu);
+        if (menu->on_load == 0 && sfKeyboard_isKeyPressed(sfKeyEscape))
+            menu->on_load = 1;
+        check_all_buttons(game, menu);
         check_parrot(game, menu, mouse);
         check_settings(game, menu, 0);
+        check_help(game, menu, 0);
         event_cursor(game);
     }
 }
 
 void loop_menu(game_ *game, menu_ *menu)
 {
+    sfMusic_play(game->sounds->ocean);
     while (sfRenderWindow_isOpen(game->window)) {
+        menu->back->rect.top = 0;
         game->on_button = 1;
         sfRenderWindow_clear(game->window, sfBlue);
         check_event_menu(game, menu);
@@ -71,6 +91,8 @@ void launch_menu(sfVideoMode mode, sfVector2u size)
     malloc_menu(menu);
     create_cursor(game);
     create_settings(game, menu);
+    create_audios(game);
     game->speed = 1;
+    menu->on_load = 1;
     loop_menu(game, menu);
 }

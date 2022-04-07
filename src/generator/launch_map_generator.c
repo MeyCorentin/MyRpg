@@ -7,6 +7,13 @@
 
 #include "../../includes/rpg.h"
 
+void set_gen(game_ *game, paint_ *paint)
+{
+    paint->scale = 1;
+    game->layer = 0;
+    sfMusic_stop(game->sounds->ocean);
+}
+
 void launch_map_generator(game_ *game)
 {
     paint_ *paint = malloc(sizeof(paint_));
@@ -15,11 +22,10 @@ void launch_map_generator(game_ *game)
     sfRectangleShape *rect = sfRectangleShape_create();
     sfColor color = {150, 150, 150, 150};
 
-    paint->scale = 1;
+    set_gen(game, paint);
     init_rect(grid, rect, 30, 99);
     create_map(game, grid, 30, 99);
     create_gen(gen_control, 1);
-    game->layer = 0;
     while (sfRenderWindow_isOpen(game->window)) {
         sfRenderWindow_clear(game->window, color);
         check_event_gen(game, gen_control, paint);

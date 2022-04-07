@@ -23,7 +23,8 @@ SRC =	src/generator/*.c \
 		src/gestion/*.c	\
 		src/main.c	\
 		src/globales_funct.c	\
-		src/game/*.c
+		src/game/*.c	\
+		src/audios/*.c
 
 OBJ = $(LIB:.c=.o)
 
@@ -35,7 +36,7 @@ $(NAME): $(OBJ)
 	@ar rc libmy.a $(OBJ)
 	@echo ">>> Library compiled."
 	@gcc -g3 -o ${NAME} $(SRC) -lcsfml-graphics -lcsfml-system -lcsfml-window \
--L. libmy.a
+-lcsfml-audio -L. libmy.a
 	@echo ">>> Executable \"${NAME}\" created."
 
 clean:

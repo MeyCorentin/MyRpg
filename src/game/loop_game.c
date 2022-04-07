@@ -12,8 +12,10 @@ void check_event_game(game_ *game)
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed)
             sfRenderWindow_close(game->window);
-        if (sfKeyboard_isKeyPressed(sfKeyEscape))
+        if (sfKeyboard_isKeyPressed(sfKeyEscape)) {
+            sfMusic_stop(game->sounds->summer_day);
             loop_menu(game, game->menu);
+        }
         event_cursor(game);
     }
 }
@@ -62,6 +64,14 @@ void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
     update_cursor(game);
 }
 
+void set_game(game_ *game)
+{
+    create_player(game);
+    game->player->movement = 4;
+    sfMusic_stop(game->sounds->ocean);
+    sfMusic_play(game->sounds->summer_day);
+}
+
 void launch_game(game_ *game)
 {
     layer_ *layer = malloc(sizeof(layer_));
@@ -70,12 +80,10 @@ void launch_game(game_ *game)
     sfVector2f pos = {0, 0};
     sfSprite *rep = sfSprite_create();
     sfSprite_setPosition(rep, pos);
-
     get_size("background.txt", load_map);
     get_size_2("test.txt", load_map);
     init_layer(layer, load_map, gen_control);
-    create_player(game);
-    game->player->movement = 4;
+    set_game(game);
     while (sfRenderWindow_isOpen(game->window)) {
         sfVector2f pos = sfSprite_getPosition(rep);
         game->on_button = 1;

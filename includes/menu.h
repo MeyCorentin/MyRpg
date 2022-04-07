@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <SFML/Graphics.h>
+#include <SFML/Graphics.h>
 
 #ifndef MENU_H_
     #define MENU_H_
@@ -49,5 +50,16 @@ char *my_strcat(char *dest, char const *src);
 void loop_menu(game_ *game, menu_ *menu);
 void event_buttons(game_ *game, menu_ *menu);
 void draw_settings(game_ *game, menu_ *menu);
+void create_audios(game_ *game);
+button_ *create_button(sfVector2f pos, sfVector2f scale,
+char *filepath);
+void create_saves(menu_ *menu);
+void check_saves(game_ *game, button_ *button, int who, menu_ *menu);
+void find_button(game_ *game, int who, menu_ *menu);
+void check_help(game_ *game, menu_ *menu, int what);
+void change_volume(game_ *game, menu_ *menu, button_ *button, int action);
+void check_action(game_ *game, button_ *button, menu_ *menu, int action);
+void choose_sound(game_ *game, button_ *button, menu_ *menu);
+void choose_music(game_ *game, button_ *button, menu_ *menu);
 
 #endif /* MENU_H_ */

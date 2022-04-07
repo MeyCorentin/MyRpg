@@ -23,8 +23,10 @@ void check_gen(game_ *game, button_ *button, int who, paint_ *paint)
     button->rect.width * button->scale.x && mouse.y > button->position.y &&
     mouse.y < button->position.y + button->rect.height * button->scale.y) {
         button->rect.left = 372;
-        if (game->event.type == sfEvtMouseButtonReleased)
+        if (game->event.type == sfEvtMouseButtonReleased) {
+            sfSound_play(game->sounds->click);
             find_button_gen(game, who, paint);
+        }
     } else
         button->rect.left = 350;
     sfSprite_setTextureRect(button->sprite, button->rect);
@@ -69,8 +71,6 @@ void check_event_gen(game_ *game, gen_control_ *gen_control, paint_ *paint)
             gen_control->sprites_on = 1;
         check_gen(game, gen_control->up, 1, paint);
         check_gen(game, gen_control->down, 2, paint);
-        check_gen(game, gen_control->zoom_up, 3, paint);
-        check_gen(game, gen_control->zoom_down, 4, paint);
     }
 }
 

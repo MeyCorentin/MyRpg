@@ -7,8 +7,21 @@
 
 #include "../../includes/rpg.h"
 
+void draw_sounds(game_ *game, menu_ *menu)
+{
+    sfRenderWindow_drawSprite
+    (game->window, menu->settings->bar_music->sprite, sfFalse);
+    sfRenderWindow_drawSprite
+    (game->window, menu->settings->bar_sounds->sprite, sfFalse);
+    sfRenderWindow_drawSprite
+    (game->window, menu->settings->music->sprite, sfFalse);
+    sfRenderWindow_drawSprite
+    (game->window, menu->settings->sounds->sprite, sfFalse);
+}
+
 void draw_settings(game_ *game, menu_ *menu)
 {
+    sfRenderWindow_drawSprite(game->window, menu->back->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window,
     menu->settings->back->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window,
@@ -21,6 +34,7 @@ void draw_settings(game_ *game, menu_ *menu)
     sfRenderWindow_drawText(game->window, menu->settings->max->text, sfFalse);
     sfRenderWindow_drawText(game->window, menu->settings->min->text, sfFalse);
     sfRenderWindow_drawText(game->window, menu->settings->mid->text, sfFalse);
+    draw_sounds(game, menu);
     update_cursor(game);
 }
 
@@ -55,8 +69,11 @@ void is_on_button(game_ *game, text_ *text, int len, int action)
     if (mouse.x > text->position.x && mouse.x < text->position.x + len &&
     mouse.y > text->position.y && mouse.y < text->position.y + 60) {
         sfText_setColor(text->text, sfRed);
-        if (game->event.type == sfEvtMouseButtonReleased)
+        game->on_button = 0;
+        if (game->event.type == sfEvtMouseButtonReleased) {
+            sfSound_play(game->sounds->click);
             do_settings(game, action);
+        }
     } else
         sfText_setColor(text->text, sfBlack);
 }
