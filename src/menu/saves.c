@@ -9,11 +9,10 @@
 
 void check_saves(game_ *game, button_ *button, int who, menu_ *menu)
 {
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
-
-    if (mouse.x > button->position.x && mouse.x < button->position.x +
-    button->rect.width * button->scale.x && mouse.y > button->position.y &&
-    mouse.y < button->position.y + button->rect.height * button->scale.y) {
+    if (game->mouse.x > button->position.x && game->mouse.x <
+    button->position.x + button->rect.width * button->scale.x &&
+    game->mouse.y > button->position.y && game->mouse.y < button->position.y +
+    button->rect.height * button->scale.y) {
         game->on_button = 0;
         button->rect.left = 50;
         if (game->event.type == sfEvtMouseButtonReleased) {

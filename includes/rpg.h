@@ -203,6 +203,7 @@ typedef struct game {
     inventory_ *inv;
     clock_ *clock;
     item_ *first_item;
+    sfVector2i mouse;
     int on_button;
     int  on_inv;
     int layer;

@@ -27,6 +27,7 @@ void launch_map_generator(game_ *game)
     create_map(game, grid, 30, 99);
     create_gen(gen_control, 1);
     while (sfRenderWindow_isOpen(game->window)) {
+        game->mouse = sfMouse_getPositionRenderWindow(game->window);
         sfRenderWindow_clear(game->window, color);
         check_event_gen(game, gen_control, paint);
         map_key_input(game, grid, gen_control);

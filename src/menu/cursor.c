@@ -19,10 +19,8 @@ void event_cursor(game_ *game)
 
 void update_cursor(game_ *game)
 {
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
-
-    game->cursor->position.x = mouse.x;
-    game->cursor->position.y = mouse.y;
+    game->cursor->position.x = game->mouse.x;
+    game->cursor->position.y = game->mouse.y;
     sfSprite_setPosition(game->cursor->sprite, game->cursor->position);
     sfRenderWindow_drawSprite(game->window, game->cursor->sprite, sfFalse);
 }

@@ -17,11 +17,10 @@ void find_button_gen(game_ *game, int who, paint_ *paint)
 
 void check_gen(game_ *game, button_ *button, int who, paint_ *paint)
 {
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
-
-    if (mouse.x > button->position.x && mouse.x < button->position.x +
-    button->rect.width * button->scale.x && mouse.y > button->position.y &&
-    mouse.y < button->position.y + button->rect.height * button->scale.y) {
+    if (game->mouse.x > button->position.x && game->mouse.x <
+        button->position.x + button->rect.width * button->scale.x &&
+        game->mouse.y > button->position.y && game->mouse.y <
+        button->position.y + button->rect.height * button->scale.y) {
         button->rect.left = 372;
         if (game->event.type == sfEvtMouseButtonReleased) {
             sfSound_play(game->sounds->click);
@@ -36,11 +35,11 @@ void interact_sprite(game_ *game, sprite_ *sprite, gen_control_ *gen_control)
 {
     sfColor color = {255, 255, 255, 255};
     sfColor clear = {255, 255, 255, 150};
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
 
-    if (mouse.x > sprite->position.x && mouse.x < sprite->position.x +
-    sprite->rect.width * sprite->scale.x && mouse.y > sprite->position.y &&
-    mouse.y < sprite->position.y + sprite->rect.height * sprite->scale.y) {
+    if (game->mouse.x > sprite->position.x && game->mouse.x <
+    sprite->position.x + sprite->rect.width * sprite->scale.x &&
+    game->mouse.y > sprite->position.y && game->mouse.y < sprite->position.y +
+    sprite->rect.height * sprite->scale.y) {
         sfSprite_setColor(sprite->sprite, color);
         if (game->event.type == sfEvtMouseButtonReleased &&
         gen_control->sprites_on == 0) {
@@ -59,6 +58,7 @@ void interact_sprite(game_ *game, sprite_ *sprite, gen_control_ *gen_control)
 void check_event_gen(game_ *game, gen_control_ *gen_control, paint_ *paint)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
+        game->mouse = sfMouse_getPositionRenderWindow(game->window);
         if (game->event.type == sfEvtClosed)
             sfRenderWindow_close(game->window);
         if (sfKeyboard_isKeyPressed(sfKeyEqual))

@@ -10,11 +10,9 @@
 void display_square(game_ *game, grid_cell_ *grid, gen_control_ *gen_control,
 paint_ *paint)
 {
-    sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(game->window);
-
-    if (pos_mouse.x > grid->pos_x && pos_mouse.x < grid->pos_x +
+    if (game->mouse.x > grid->pos_x && game->mouse.x < grid->pos_x +
         (40 * paint->scale) &&
-        pos_mouse.y > grid->pos_y && pos_mouse.y < grid->pos_y +
+        game->mouse.y > grid->pos_y && game->mouse.y < grid->pos_y +
         (40 * paint->scale)) {
         if (grid->click == 0 && gen_control->sprites_on != 0)
             sfRectangleShape_setFillColor(grid->rect, sfGreen);

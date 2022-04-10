@@ -78,15 +78,14 @@ void choose_sound(game_ *game, button_ *button, menu_ *menu)
 
 void change_volume(game_ *game, menu_ *menu, button_ *button, int action)
 {
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
-
-    if (mouse.x > button->position.x && mouse.x < button->position.x + 577 *
-    button->scale.x && mouse.y > button->position.y && mouse.y < button->
-    position.y + 433 * button->scale.y) {
-        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue && mouse.x <=
+    if (game->mouse.x > button->position.x && game->mouse.x <
+    button->position.x + 577 * button->scale.x && game->mouse.y >
+    button->position.y && game->mouse.y < button->position.y + 433 *
+    button->scale.y) {
+        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue && game->mouse.x <=
         menu->settings->back->position.x + 720 + 577 * (button->scale.x / 2)
-        && mouse.x > menu->settings->back->position.x + 280) {
-            button->position.x = mouse.x - 577 * (button->scale.x / 2);
+        && game->mouse.x > menu->settings->back->position.x + 280) {
+            button->position.x = game->mouse.x - 577 * (button->scale.x / 2);
             sfSprite_setPosition(button->sprite, button->position);
             check_action(game, button, menu, action);
         }

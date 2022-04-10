@@ -9,12 +9,10 @@
 
 void check_help(game_ *game, menu_ *menu, int what)
 {
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
-
-    if (mouse.x > menu->help->position.x && mouse.x <
+    if (game->mouse.x > menu->help->position.x && game->mouse.x <
     menu->help->position.x + menu->help->rect.width *
-    menu->help->scale.x && mouse.y > menu->help->
-    position.y && mouse.y < menu->help->position.y + menu->
+    menu->help->scale.x && game->mouse.y > menu->help->
+    position.y && game->mouse.y < menu->help->position.y + menu->
     help->rect.height * menu->help->scale.y) {
         game->on_button = 0;
         menu->help->rect.left = 372;
@@ -33,6 +31,7 @@ void check_help(game_ *game, menu_ *menu, int what)
 void event_settings(game_ *game, menu_ *menu)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
+        game->mouse = sfMouse_getPositionRenderWindow(game->window);
         if (game->event.type == sfEvtClosed)
             sfRenderWindow_close(game->window);
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
@@ -47,12 +46,10 @@ void event_settings(game_ *game, menu_ *menu)
 
 void check_settings(game_ *game, menu_ *menu, int what)
 {
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
-
-    if (mouse.x > menu->settings->button->position.x && mouse.x <
+    if (game->mouse.x > menu->settings->button->position.x && game->mouse.x <
     menu->settings->button->position.x + menu->settings->button->rect.width *
-    menu->settings->button->scale.x && mouse.y > menu->settings->button->
-    position.y && mouse.y < menu->settings->button->position.y + menu->
+    menu->settings->button->scale.x && game->mouse.y > menu->settings->button->
+    position.y && game->mouse.y < menu->settings->button->position.y + menu->
     settings->button->rect.height * menu->settings->button->scale.y) {
         game->on_button = 0;
         menu->settings->button->rect.left = 50;
@@ -74,6 +71,7 @@ void launch_settings(game_ *game, menu_ *menu)
     menu->settings->in_settings = 0;
     while (sfRenderWindow_isOpen(game->window) && menu->settings->in_settings
     == 0) {
+        game->mouse = sfMouse_getPositionRenderWindow(game->window);
         menu->back->rect.top = 540;
         game->on_button = 1;
         sfRenderWindow_clear(game->window, sfBlack);

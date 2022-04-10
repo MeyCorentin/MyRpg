@@ -64,10 +64,9 @@ void do_settings(game_ *game, int action)
 
 void is_on_button(game_ *game, text_ *text, int len, int action)
 {
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
-
-    if (mouse.x > text->position.x && mouse.x < text->position.x + len &&
-    mouse.y > text->position.y && mouse.y < text->position.y + 60) {
+    if (game->mouse.x > text->position.x && game->mouse.x < text->position.x +
+    len && game->mouse.y > text->position.y && game->mouse.y < text->position.y
+    + 60) {
         sfText_setColor(text->text, sfRed);
         game->on_button = 0;
         if (game->event.type == sfEvtMouseButtonReleased) {

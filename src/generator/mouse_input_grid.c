@@ -35,13 +35,12 @@ gen_control_ *gen_control)
 void left_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint,
 gen_control_ *gen_control)
 {
-    sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(game->window);
     sfVector2f sprite_pos = {grid->pos_x, grid->pos_y};
     grid->foreground->position = sprite_pos;
     sfVector2f sprite_scale = {2.5, 2.5};
 
-    if (pos_mouse.x > grid->pos_x && pos_mouse.x < grid->pos_x + \
-        (40 * paint->scale) && pos_mouse.y > grid->pos_y && pos_mouse.y\
+    if (game->mouse.x > grid->pos_x && game->mouse.x < grid->pos_x + \
+        (40 * paint->scale) && game->mouse.y > grid->pos_y && game->mouse.y\
         < grid->pos_y + (40 * paint->scale) && gen_control->sprites_on == 1) {
         grid->click = 1;
         if (gen_control->selected != NULL && gen_control->selected_ == 1) {
@@ -55,10 +54,8 @@ gen_control_ *gen_control)
 void right_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint,
 gen_control_ *gen_control)
 {
-    sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(game->window);
-
-    if (pos_mouse.x > grid->pos_x && pos_mouse.x < grid->pos_x + \
-        (40 * paint->scale) && pos_mouse.y > grid->pos_y && pos_mouse.y\
+    if (game->mouse.x > grid->pos_x && game->mouse.x < grid->pos_x + \
+        (40 * paint->scale) && game->mouse.y > grid->pos_y && game->mouse.y\
         < grid->pos_y + (40 * paint->scale)) {
         grid->click = 0;
         if (game->layer == 1) {
