@@ -16,7 +16,18 @@ void check_event_game(game_ *game)
             sfMusic_stop(game->sounds->summer_day);
             loop_menu(game, game->menu);
         }
+        if (game->on_inv == 1 && sfKeyboard_isKeyPressed(sfKeyI) &&
+        game->clock->secs != 0) {
+            game->clock->secs = 0;
+            game->on_inv = 0;
+        }
+        if (game->on_inv == 0 && sfKeyboard_isKeyPressed(sfKeyI) &&
+        game->clock->secs != 0) {
+            game->clock->secs = 0;
+            game->on_inv = 1;
+        }
         event_cursor(game);
+        check_on_item(game, game->first_item, game->player);
     }
 }
 
@@ -53,23 +64,29 @@ void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
     [(int)((950 - pos.x) / 40)]) != 1945 ||
     atoi(layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
     [(int)((950 - pos.x - 80) / 40)]) != 1945) {
+        if (game->on_inv == 1)
+            draw_items(game, game->first_item, game->player->movement, 1);
         update_player(game, game->player);
         display_layer_2(layer->map_layer_2, game,
         game->player->movement, game->player);
     } else {
         display_layer_2(layer->map_layer_2, game,
         game->player->movement, game->player);
+        if (game->on_inv == 1)
+            draw_items(game, game->first_item, game->player->movement, 1);
         update_player(game, game->player);
     }
-    update_cursor(game);
+    update_inv(game);
 }
 
 void set_game(game_ *game)
 {
     create_player(game);
     game->player->movement = 4;
+    game->first_item = NULL;
     sfMusic_stop(game->sounds->ocean);
     sfMusic_play(game->sounds->summer_day);
+    create_inventory(game);
 }
 
 void launch_game(game_ *game)
@@ -84,6 +101,8 @@ void launch_game(game_ *game)
     get_size_2("test.txt", load_map);
     init_layer(layer, load_map, gen_control);
     set_game(game);
+    add_items(game, game->first_item);
+    add_items(game, game->first_item);
     while (sfRenderWindow_isOpen(game->window)) {
         sfVector2f pos = sfSprite_getPosition(rep);
         game->on_button = 1;

@@ -15,7 +15,7 @@ void create_parrot(menu_ *menu)
     menu->parrot->r_texture = sfTexture_createFromFile
     ("pictures/menu/r_parrot.png", NULL);
     menu->parrot->position.x = 1920;
-    menu->parrot->position.y = 10;
+    menu->parrot->position.y = 600;
     menu->parrot->scale.x = 3;
     menu->parrot->scale.y = 3;
     menu->parrot->moved = 1;

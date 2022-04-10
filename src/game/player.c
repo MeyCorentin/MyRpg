@@ -55,3 +55,14 @@ void create_player(game_ *game)
     sfSprite_setPosition(game->player->sprite, game->player->position);
     sfSprite_setTextureRect(game->player->sprite, game->player->rect);
 }
+
+void check_on_item(game_ *game, item_ *item, player_ *player)
+{
+    if (item->position.x >= player->position.x - 32 && item->position.y >=
+    player->position.y && item->position.x <= player->position.x + 32 &&
+    item->position.y <= player->position.y + 48 && item->on_inv == 1) {
+        add_item_to_inv(game, game->inv->inv, item);
+    }
+    if (item->next != NULL)
+        check_on_item(game, item->next, player);
+}
