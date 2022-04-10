@@ -60,6 +60,8 @@ void update_animal(animal_ *animal, int x, int y, game_ *game)
         sfSprite_setPosition(animal->sprite, animal->position);
     }
     replace_parrot(animal);
+    sfRenderWindow_drawSprite(game->window, game->menu->parrot->sprite,
+    sfFalse);
 }
 
 void check_parrot_move(menu_ *menu)

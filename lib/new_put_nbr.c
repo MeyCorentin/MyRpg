@@ -60,7 +60,7 @@ char *new_put_nbr(int nb)
         count = count + 1;
     }
     resultat = calculs_str(count, nb, resultat, cmpt_str);
-    resultat[len + 1] = '\0';
+    resultat[len] = '\0';
     return (resultat);
 }
 

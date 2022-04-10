@@ -96,6 +96,7 @@ typedef struct menu {
     int on_parrot;
     int on_load;
     saves_ *saves;
+    text_ *score;
 } menu_;
 
 typedef struct sprite {
@@ -164,6 +165,7 @@ typedef struct sounds {
     sfSound *click;
     sfSound *coin;
     sfSound *parrot;
+    sfSound *item;
 } sounds_;
 
 typedef struct item {

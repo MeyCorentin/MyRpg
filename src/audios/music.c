@@ -26,8 +26,9 @@ void create_audios(game_ *game)
 {
     game->sounds = malloc(sizeof(sounds_));
     game->sounds->click = create_sound("sounds/mouseClick.wav");
-    game->sounds->coin = create_sound("sounds/Pickup_Coin15.wav");
+    game->sounds->coin = create_sound("sounds/coin.wav");
     game->sounds->parrot = create_sound("sounds/parrot.wav");
     game->sounds->ocean = create_music("sounds/ocean.wav");
     game->sounds->summer_day = create_music("sounds/summer_day.wav");
+    game->sounds->item = create_sound("sounds/pickUpItem.wav");
 }

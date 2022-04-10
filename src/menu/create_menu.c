@@ -54,6 +54,7 @@ void create_menu(menu_ *menu)
     create_exit(menu);
     create_load(menu);
     create_parrot(menu);
+    create_coin(menu);
     create_secret(menu);
     create_help(menu);
     create_saves(menu);
@@ -75,5 +76,6 @@ void malloc_menu(menu_ *menu)
     menu->sounds = malloc(sizeof(button_));
     menu->logo = malloc(sizeof(button_));
     menu->parrot = malloc(sizeof(animal_));
+    menu->coin = malloc(sizeof(animal_));
     create_menu(menu);
 }

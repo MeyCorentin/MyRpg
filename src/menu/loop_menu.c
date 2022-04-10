@@ -23,11 +23,11 @@ void draw_menu(game_ *game, menu_ *menu)
         sfRenderWindow_drawSprite(game->window, menu->saves->third->sprite,
         sfFalse);
     }
-    sfRenderWindow_drawSprite(game->window, menu->parrot->sprite, sfFalse);
+    update_coin(menu->coin, game);
+    update_animal(menu->parrot, 48, 48, game);
     sfRenderWindow_drawSprite(game->window, menu->help->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window,
     menu->settings->button->sprite, sfFalse);
-    update_animal(menu->parrot, 48, 48, game);
     update_cursor(game);
 }
 
@@ -58,6 +58,7 @@ void check_event_menu(game_ *game, menu_ *menu)
             menu->on_load = 1;
         check_all_buttons(game, menu);
         check_parrot(game, menu, mouse);
+        check_on_coin(game, menu->coin, menu->parrot);
         check_settings(game, menu, 0);
         check_help(game, menu, 0);
         event_cursor(game);

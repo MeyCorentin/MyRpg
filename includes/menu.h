@@ -61,5 +61,9 @@ void change_volume(game_ *game, menu_ *menu, button_ *button, int action);
 void check_action(game_ *game, button_ *button, menu_ *menu, int action);
 void choose_sound(game_ *game, button_ *button, menu_ *menu);
 void choose_music(game_ *game, button_ *button, menu_ *menu);
+void create_coin(menu_ *menu);
+void update_coin(animal_ *coin, game_ *game);
+void check_on_coin(game_ *game, animal_ *coin, animal_ *parrot);
+text_ *create_text(char *string, sfVector2f scale, sfVector2f pos, char *font);
 
 #endif /* MENU_H_ */
