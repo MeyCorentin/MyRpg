@@ -29,10 +29,8 @@ void display_layer(sfSprite ***map, game_ *game, int movement)
 
     for (y = 0; map[y]; y++) {
         for (x = 0; map[y][x]; x++) {
-            if (map[y][x] != NULL) {
-                move_background(map, movement, y, x);
-                sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse);
-            }
+            (map[y][x] != NULL) ? move_background(map, movement, y, x),
+            sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse) : 1;
         }
     }
 }

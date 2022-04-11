@@ -24,40 +24,6 @@ void check_event_game(game_ *game)
     }
 }
 
-void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control)
-{
-    char ***map = my_malloc_map(load_map->y_size, load_map->x_size);
-    char ***map_2 = my_malloc_map(load_map->y_size, load_map->x_size);
-    char ***map_3 = my_malloc_map(load_map->y_size, load_map->x_size);
-    sfSprite ***map_layer_1 =
-    my_malloc_map_sprite(load_map->y_size, load_map->x_size);
-    sfSprite ***map_layer_2 =
-    my_malloc_map_sprite(load_map->y_size, load_map->x_size);
-    sfSprite ***map_layer_3 =
-    my_malloc_map_sprite(load_map->y_size, load_map->x_size);
-    char ***id_background = get_map(load_map);
-    char ***id_foreground = get_map_2(load_map);
-    char ***id_hitbox = get_map_3(load_map);
-
-
-    init_map(map, load_map);
-    init_map(map_2, load_map);
-    init_map(map_3, load_map);
-    create_gen(gen_control, 1);
-    add_tileset(map_layer_1, gen_control->list, id_background);
-    add_tileset_2(map_layer_2, gen_control->list, id_foreground);
-    add_tileset_2(map_layer_3, gen_control->list, id_hitbox);
-    layer->map = map;
-    layer->map_2 = map_2;
-    layer->map_3 = map_3;
-    layer->map_layer_1 = map_layer_1;
-    layer->map_layer_2 = map_layer_2;
-    layer->map_layer_3 = map_layer_3;
-    layer->id_background = id_background;
-    layer->id_foreground = id_foreground;
-    layer->id_hitbox = id_hitbox;
-}
-
 void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
 {
     move_rep(rep, game->player->movement);
@@ -90,14 +56,11 @@ void set_game(game_ *game)
 
 void launch_game(game_ *game)
 {
-    layer_ *layer = malloc(sizeof(layer_)); // ENLEVER LES MALLOCS
+    layer_ *layer = malloc(sizeof(layer_));
     gen_control_ *gen_control = malloc(sizeof(gen_control_));
     load_map_ *load_map = malloc(sizeof(load_map_));
     sfSprite *rep = sfSprite_create();
 
-    get_size("background.txt", load_map);
-    get_size_2("test.txt", load_map);
-    get_size_3("hitbox.txt", load_map);
     init_layer(layer, load_map, gen_control);
     set_game(game);
     add_items(game, game->first_item);

@@ -95,5 +95,19 @@ void move_rep(sfSprite *rep, int movement);
 int get_size_3(char *files_name, load_map_ *load_map);
 char ***get_map_3(load_map_ *load_map);
 void save_hitbox(game_ *game, grid_cell_ *grid, FILE *file);
+void its_background(game_ *game, grid_cell_ *grid, paint_ *paint,
+gen_control_ *gen_control);
+void its_foreground(game_ *game, grid_cell_ *grid, paint_ *paint,
+gen_control_ *gen_control);
+void its_hitbox(game_ *game, grid_cell_ *grid, paint_ *paint,
+gen_control_ *gen_control);
+void display_foreground(game_ *game, grid_cell_ *grid,
+gen_control_ *gen_control, paint_ *paint);
+void display_background(game_ *game, grid_cell_ *grid,
+gen_control_ *gen_control, paint_ *paint);
+void display_hitbox(game_ *game, grid_cell_ *grid,
+gen_control_ *gen_control, paint_ *paint);
+void display_layer(sfSprite ***map, game_ *game, int movement);
+void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control);
 
 #endif /* !MAP_GRID_H_ */
