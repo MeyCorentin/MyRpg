@@ -58,9 +58,9 @@ void create_player(game_ *game)
 
 void check_on_item(game_ *game, item_ *item, player_ *player)
 {
-    if (item->position.x >= player->position.x - 32 && item->position.y >=
-    player->position.y && item->position.x <= player->position.x + 32 &&
-    item->position.y <= player->position.y + 48 && item->on_inv == 1) {
+    if (item->position.x >= player->position.x - 48 && item->position.y >=
+    player->position.y + 48 && item->position.x <= player->position.x + 48 &&
+    item->position.y <= player->position.y + 96 && item->on_inv == 1) {
         sfSound_play(game->sounds->item);
         add_item_to_inv(game, game->inv->inv, item);
     }

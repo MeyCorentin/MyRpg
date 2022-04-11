@@ -25,7 +25,11 @@ void draw_items(game_ *game, item_ *item, int movement, int status)
         move_items(item, 3, movement);
     sfSprite_setPosition(item->sprite, item->position);
     if ((status == 0 && item->on_inv == 0) || (status == 1 && item->on_inv
-    == 1))
+    == 1) || (status == 0 && item->on_inv == 1 && (item->position.x + 32 <
+    game->inv->back->position.x || item->position.x > game->inv->back->
+    position.x + 710 || item->position.y + 32 < game->inv->back->position.y ||
+    item->position.y > game->inv->back->position.y + 500)) || (status == 1 &&
+    item->line == 0))
         sfRenderWindow_drawSprite(game->window, item->sprite, sfFalse);
     if (item->next != NULL)
         draw_items(game, item->next, movement, status);
@@ -52,6 +56,9 @@ item_ *create_item(int type, int stats, char *filename, sfVector2f position)
     item->rect = change_rect(item->rect, 16, 16);
     item->next = NULL;
     item->on_inv = 1;
+    item->line = 0;
+    item->col = 0;
+    item->is_get = 1;
     sfSprite_setTextureRect(item->sprite, item->rect);
     sfSprite_setTexture(item->sprite, item->texture, sfFalse);
     sfSprite_setScale(item->sprite, item->scale);
@@ -70,6 +77,6 @@ void add_items(game_ *game, item_ *item)
     else {
         item->next = create_item(1, 3, "pictures/items/weapons.png",
         (sfVector2f){400, 400});
-        set_rect_item(item->next, 48, 96, NULL);
+        set_rect_item(item->next, 48, 96, item);
     }
 }
