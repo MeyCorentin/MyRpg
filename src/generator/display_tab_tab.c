@@ -21,7 +21,7 @@ void display_load_map(char ***map, game_ *game, int movement)
     }
 }
 
-void display_layer_1(char ***map, game_ *game, int movement)
+void display_layer(sfSprite ***map, game_ *game, int movement)
 {
     sfVector2f pos;
     int y = 0;
@@ -29,25 +29,10 @@ void display_layer_1(char ***map, game_ *game, int movement)
 
     for (y = 0; map[y]; y++) {
         for (x = 0; map[y][x]; x++) {
-            move_background(map, movement, y, x);
-            sfRenderWindow_drawSprite(game->window,
-            (sfSprite *)map[y][x], sfFalse);
-        }
-    }
-}
-
-void display_layer_2(char ***map, game_ *game, int movement, player_ *player)
-{
-    sfVector2f pos;
-    sfVector2f pos_next;
-
-    int y = 0;
-    int x = 1;
-    for (y = 0; map[y]; y++) {
-        for (x = 1; map[y][x]; x++) {
-            move_background(map, movement, y, x);
-            sfRenderWindow_drawSprite(game->window,
-            (sfSprite *)map[y][x], sfFalse);
+            if (map[y][x] != NULL) {
+                move_background(map, movement, y, x);
+                sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse);
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ void init_map(char ***map, load_map_ *load_map)
     }
 }
 
-void add_tileset(char ***map, sprite_ *sprite, char ***id_background)
+void add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background)
 {
     int i = 0;
     int j = 0;
@@ -27,10 +27,10 @@ void add_tileset(char ***map, sprite_ *sprite, char ***id_background)
 
     for (; map[i]; i++) {
         for (j = 0; map[i][j]; j++) {
-            (sprite->id == atoi(id_background[i][j])) ?
+            (sprite->id == my_atoi(id_background[i][j])) ?
                 pos.x = 40 * j, pos.y = 40 * i,
                 sfSprite_setScale(sprite->sprite, sprite_scale),
-                map[i][j] = (char *)sfSprite_copy(sprite->sprite),
+                map[i][j] = sfSprite_copy(sprite->sprite),
                 sfSprite_setPosition((sfSprite *)map[i][j], pos) : 1;
         }
     }
@@ -38,7 +38,7 @@ void add_tileset(char ***map, sprite_ *sprite, char ***id_background)
         add_tileset(map, sprite->next, id_background);
 }
 
-void add_tileset_2(char ***map, sprite_ *sprite, char ***id_background)
+void add_tileset_2(sfSprite ***map, sprite_ *sprite, char ***id_background)
 {
     int i = 0;
     int j = 0;
@@ -47,10 +47,30 @@ void add_tileset_2(char ***map, sprite_ *sprite, char ***id_background)
 
     for (; map[i]; i++) {
         for (j = 0; map[i][j]; j++) {
-            (sprite->id == atoi(id_background[i][j])) ?
+            (sprite->id == my_atoi(id_background[i][j])) ?
                 pos.x = 40 * j, pos.y = 40 * i,
                 sfSprite_setScale(sprite->sprite, sprite_scale),
-                map[i][j] = (char *)sfSprite_copy(sprite->sprite),
+                map[i][j] = sfSprite_copy(sprite->sprite),
+                sfSprite_setPosition((sfSprite *)map[i][j], pos) : 1;
+        }
+    }
+    if (sprite->next != NULL)
+        add_tileset(map, sprite->next, id_background);
+}
+
+void add_tileset_3(sfSprite ***map, sprite_ *sprite, char ***id_background)
+{
+    int i = 0;
+    int j = 0;
+    sfVector2f sprite_scale = {2.5, 2.5};
+    sfVector2f pos;
+
+    for (; map[i]; i++) {
+        for (j = 0; map[i][j]; j++) {
+            (sprite->id == my_atoi(id_background[i][j])) ?
+                pos.x = 40 * j, pos.y = 40 * i,
+                sfSprite_setScale(sprite->sprite, sprite_scale),
+                map[i][j] = sfSprite_copy(sprite->sprite),
                 sfSprite_setPosition((sfSprite *)map[i][j], pos) : 1;
         }
     }

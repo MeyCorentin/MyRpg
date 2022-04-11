@@ -39,7 +39,7 @@ void move_map(char ***map, int movement, int y, int x)
     sfRectangleShape_setPosition((sfRectangleShape *)map[y][x], pos);
 }
 
-void move_background(char ***map, int movement, int y, int x)
+void move_background(sfSprite ***map, int movement, int y, int x)
 {
     sfVector2f pos =
     sfSprite_getPosition((sfSprite *)map[y][x]);
@@ -52,5 +52,5 @@ void move_background(char ***map, int movement, int y, int x)
         pos.y += 3;
     if (movement == 3)
         pos.x += 3;
-    sfSprite_setPosition((sfSprite *)map[y][x], pos);
+    sfSprite_setPosition(map[y][x], pos);
 }

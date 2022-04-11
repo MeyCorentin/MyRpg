@@ -26,16 +26,17 @@ typedef struct grid_cell {
     int l_pos;
     int g_pos;
     int ground;
-    int hitbox;
     int click;
     int foreground_id;
     int background_id;
+    int hitbox_id;
     int is_sprite;
     sfRectangleShape *rect;
     struct grid_cell *next_cell;
     struct grid_cell *prev_cell;
     struct sprite *foreground;
     struct sprite *background;
+    struct sprite *hitbox;
 } grid_cell_;
 
 typedef struct paint {
@@ -76,20 +77,23 @@ void moov_left_gen(sprite_ *sprite);
 int get_size(char *files_name, load_map_ *load_map);
 char ***get_map(load_map_ *load_map);
 void display_load_map(char ***map, game_ *game, int movement);
-void display_layer_1(char ***map, game_ *game, int movement);
-char ***my_malloc_map_sprite(int colum, int lines);
+void display_layer_1(sfSprite ***map, game_ *game, int movement);
+sfSprite ***my_malloc_map_sprite(int colum, int lines);
 char ***my_malloc_map(int colum, int lines);
 void init_map_square(char ***map, int y, int x);
-void move_background(char ***map, int movement, int y, int x);
+void move_background(sfSprite ***map, int movement, int y, int x);
 void move_map(char ***map, int movement, int y, int x);
-void display_layer_2(char ***map, game_ *game, int movement, player_ *player);
+void display_layer_2(sfSprite ***map, game_ *game, int movement);
 char ***get_map_2(load_map_ *load_map);
 int get_size_2(char *files_name, load_map_ *load_map);
 void save_all(game_ *game, grid_cell_ *grid);
 char ***my_malloc_big_tab(int colum, int lines);
-void add_tileset(char ***map, sprite_ *sprite, char ***id_background);
+void add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background);
 void init_map(char ***map, load_map_ *load_map);
-void add_tileset_2(char ***map, sprite_ *sprite, char ***id_background);
+void add_tileset_2(sfSprite ***map, sprite_ *sprite, char ***id_background);
 void move_rep(sfSprite *rep, int movement);
+int get_size_3(char *files_name, load_map_ *load_map);
+char ***get_map_3(load_map_ *load_map);
+void save_hitbox(game_ *game, grid_cell_ *grid, FILE *file);
 
 #endif /* !MAP_GRID_H_ */

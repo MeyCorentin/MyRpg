@@ -58,6 +58,7 @@ void map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
     (sfKeyboard_isKeyPressed(sfKeyEnter)) ? save_all(game, grid) : 1;
     (sfKeyboard_isKeyPressed(sfKeyUp)) ? game->layer = 1 : 1;
     (sfKeyboard_isKeyPressed(sfKeyDown)) ? game->layer = 0 : 1;
+    (sfKeyboard_isKeyPressed(sfKeyRight)) ? game->layer = 2 : 1;
     page_handle(gen_control);
     if (sfKeyboard_isKeyPressed(sfKeyEscape))
             loop_menu(game, game->menu);

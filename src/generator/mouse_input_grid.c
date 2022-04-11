@@ -12,6 +12,7 @@ gen_control_ *gen_control)
 {
     sfVector2f sprite_pos = {grid->pos_x, grid->pos_y};
     sfVector2f sprite_scale = {2.5, 2.5};
+    sfColor hit = {255, 0, 0, 150};
     if (game->layer == 0) {
         grid->background->position = sprite_pos;
         grid->background_id = gen_control->selected->id;
@@ -29,6 +30,16 @@ gen_control_ *gen_control)
         sfSprite_copy(gen_control->selected->sprite);
         sfSprite_setPosition(grid->foreground->sprite, sprite_pos);
         sfSprite_setScale(grid->foreground->sprite, sprite_scale);
+    }
+    if (game->layer == 2) {
+        grid->hitbox->position = sprite_pos;
+        grid->hitbox_id = 6666;
+        grid->hitbox->ok = 1;
+        grid->hitbox->sprite =
+        sfSprite_copy(gen_control->selected->sprite);
+        sfSprite_setPosition(grid->hitbox->sprite, sprite_pos);
+        sfSprite_setScale(grid->hitbox->sprite, sprite_scale);
+        sfSprite_setColor(grid->hitbox->sprite, hit);
     }
 }
 

@@ -20,7 +20,7 @@ paint_ *paint)
             sfRectangleShape_setFillColor(grid->rect, sfWhite);
     }
     if (grid->click == 1 && grid->foreground->sprite == NULL &&
-    grid->background->sprite == NULL)
+    grid->background->sprite == NULL && grid->hitbox->sprite == NULL)
         sfRectangleShape_setFillColor(grid->rect, sfBlue);
     sfRenderWindow_drawRectangleShape(game->window, grid->rect, sfFalse);
     if (grid->next_cell != NULL)
@@ -47,6 +47,16 @@ gen_control_ *gen_control, paint_ *paint)
         display_background(game, grid->next_cell, gen_control, paint);
 }
 
+void display_hitbox(game_ *game, grid_cell_ *grid,
+gen_control_ *gen_control, paint_ *paint)
+{
+    if (grid->hitbox->ok == 1)
+        sfRenderWindow_drawSprite(game->window, grid->hitbox->sprite,
+        sfFalse);
+    if (grid->next_cell != NULL)
+        display_hitbox(game, grid->next_cell, gen_control, paint);
+}
+
 void draw_env(game_ *game, sprite_ *sprite)
 {
     sfRenderWindow_drawSprite(game->window, sprite->sprite, sfFalse);
@@ -60,6 +70,7 @@ gen_control_ *gen_control, paint_ *paint)
     display_square(game, grid, gen_control, paint);
     display_background(game, grid, gen_control, paint);
     display_foreground(game, grid, gen_control, paint);
+    display_hitbox(game, grid, gen_control, paint);
     draw_ath(game, gen_control);
     if (gen_control->sprites_on == 0)
         draw_sprites_gen(game, gen_control);

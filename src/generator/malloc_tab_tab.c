@@ -29,26 +29,26 @@ char ***my_malloc_map(int colum, int lines)
         for (j = 0; j != lines; j++) {
             temp[k][j] = malloc(sizeof(sfRectangleShape *));
         }
-        temp[k][j] = '\0';
+        temp[k][j] = NULL;
     }
-    temp[k] = '\0';
+    temp[k] = NULL;
     return (temp);
 }
 
-char ***my_malloc_map_sprite(int colum, int lines)
+sfSprite ***my_malloc_map_sprite(int colum, int lines)
 {
-    char ***temp = malloc(sizeof(char *) * (colum + 1));
+    sfSprite ***temp = malloc(sizeof(sfSprite ***) * (colum + 1));
     int k = 0;
     int j = 0;
 
     for (; k != colum; k++) {
-        temp[k] = malloc(sizeof(char *) * lines + 1);
+        temp[k] = malloc(sizeof(sfSprite **) * (lines + 1));
         for (j = 0; j != lines; j++) {
             temp[k][j] = malloc(sizeof(sfSprite *));
         }
-        temp[k][j] = '\0';
+        temp[k][j] = NULL;
     }
-    temp[k] = '\0';
+    temp[k] = NULL;
     return (temp);
 }
 

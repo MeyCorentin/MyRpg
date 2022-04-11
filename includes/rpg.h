@@ -133,6 +133,7 @@ typedef struct cursor {
 typedef struct load_map {
     char *back_full;
     char *fore_full;
+    char *hit_full;
     int y_size;
     int x_size;
 } load_map_;
@@ -152,10 +153,13 @@ typedef struct player {
 typedef struct layer {
     char ***map;
     char ***map_2;
-    char ***map_layer_1 ;
-    char ***map_layer_2 ;
+    char ***map_3;
+    sfSprite ***map_layer_1 ;
+    sfSprite ***map_layer_2 ;
+    sfSprite ***map_layer_3 ;
     char ***id_background ;
     char ***id_foreground ;
+    char ***id_hitbox ;
 
 } layer_;
 

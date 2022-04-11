@@ -15,11 +15,12 @@ void init_rect_2(grid_cell_ *grid, sfRectangleShape *rect, int x, int y)
     grid->background = malloc(sizeof(sprite_));
     grid->background->sprite = NULL;
     grid->background->ok = 0;
-    grid->l_pos = 1;
-    grid->g_pos = 1;
-    grid->next_cell = NULL;
-    grid->background_id = 1945;
-    grid->foreground_id = 1721;
+    grid->hitbox = malloc(sizeof(sprite_));
+    grid->hitbox->sprite = NULL;
+    grid->hitbox->ok = 0;
+    grid->background_id = 1721;
+    grid->foreground_id = 1945;
+    grid->hitbox_id = 1945;
 }
 
 void init_rect(grid_cell_ *grid, sfRectangleShape *rect, int x, int y)
@@ -33,9 +34,10 @@ void init_rect(grid_cell_ *grid, sfRectangleShape *rect, int x, int y)
     grid->pos_y = 0;
     grid->click = 0;
     grid->size_x = x;
-    grid->foreground_id = 0000;
-    grid->background_id = 0000;
+    grid->l_pos = 1;
+    grid->g_pos = 1;
     grid->size_y = y;
+    grid->next_cell = NULL;
     sfRectangleShape_setSize(grid->rect, size);
     sfRectangleShape_setFillColor(grid->rect, sfWhite);
     sfRectangleShape_setPosition(grid->rect, pos);
@@ -52,6 +54,10 @@ void create_foreground_background(struct grid_cell *new)
     new->background->sprite = NULL;
     new->background_id = 1721;
     new->background->ok = 0;
+    new->hitbox = malloc(sizeof(sprite_));
+    new->hitbox->sprite = NULL;
+    new->hitbox_id = 1945;
+    new->hitbox->ok = 0;
 }
 
 void create_map(game_ *game, struct grid_cell *grid, int x, int y)
