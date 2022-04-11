@@ -42,7 +42,7 @@ void check_button(game_ *game, button_ *button, int who, menu_ *menu)
     if (game->mouse.x > button->position.x && game->mouse.x <
     button->position.x + button->rect.width * button->scale.x && game->mouse.y
     > button->position.y && game->mouse.y < button->position.y +
-    button->rect.height * button->scale.y) {
+    button->rect.height * button->scale.y && menu->on_load == 1) {
         game->on_button = 0;
         button->rect.top = 245;
         if (game->event.type == sfEvtMouseButtonReleased) {

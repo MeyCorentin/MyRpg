@@ -26,9 +26,9 @@ text_ *create_text(char *string, sfVector2f scale, sfVector2f pos, char *font)
 
 void check_on_coin(game_ *game, animal_ *coin, animal_ *parrot)
 {
-    if (coin->position.x >= parrot->position.x - 50 && coin->position.y >=
-    parrot->position.y && coin->position.x <= parrot->position.x + 50 &&
-    coin->position.y <= parrot->position.y + 50) {
+    if (coin->position.x >= parrot->position.x - 72 && coin->position.y >=
+    parrot->position.y - 72 && coin->position.x <= parrot->position.x + 72 &&
+    coin->position.y <= parrot->position.y + 72) {
         sfSound_play(game->sounds->coin);
         coin->position.x = rand() % 1870;
         coin->position.y = rand() % 1000;

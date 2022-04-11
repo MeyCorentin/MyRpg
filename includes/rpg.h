@@ -170,6 +170,7 @@ typedef struct sounds {
     sfSound *coin;
     sfSound *parrot;
     sfSound *item;
+    sfSound *trash;
 } sounds_;
 
 typedef struct item {
@@ -183,12 +184,18 @@ typedef struct item {
     int on_inv;
     struct item *next;
     struct item *prev;
+    int line;
+    int col;
+    int is_get;
 } item_;
 
 typedef struct inventory {
     int page;
     char ***inv;
     button_ *back;
+    int on_item;
+    button_ *bar;
+    button_ *select;
 } inventory_;
 
 typedef struct clock {
@@ -227,5 +234,13 @@ void add_items(game_ *game, item_ *item);
 void add_item_to_inv(game_ *game, char ***inv, item_ *item);
 void check_on_item(game_ *game, item_ *item, player_ *player);
 void update_inv(game_ *game);
+void check_event_items(game_ *game);
+void inv_to_bar(item_ *item, game_ *game);
+void move_select(game_ *game);
+void open_close_inv(game_ *game);
+void cancel_item(item_ *item, game_ *game);
+void drop_item(item_ *item, game_ *game);
+void delete_item(item_ *item, game_ *game);
+void update_bar(game_ *game);
 
 #endif /* PROJECT_H_ */

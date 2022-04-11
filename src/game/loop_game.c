@@ -13,21 +13,14 @@ void check_event_game(game_ *game)
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
         if (game->event.type == sfEvtClosed)
             sfRenderWindow_close(game->window);
-        (sfKeyboard_isKeyPressed(sfKeyEscape)) ?
-        sfMusic_stop(game->sounds->summer_day),
-        loop_menu(game, game->menu) : 1;
-        if (game->on_inv == 1 && sfKeyboard_isKeyPressed(sfKeyI) &&
-        game->clock->secs != 0) {
-            game->clock->secs = 0;
-            game->on_inv = 0;
+        if (sfKeyboard_isKeyPressed(sfKeyEscape) && game->on_inv == 1) {
+            sfMusic_stop(game->sounds->summer_day);
+            loop_menu(game, game->menu);
         }
-        if (game->on_inv == 0 && sfKeyboard_isKeyPressed(sfKeyI) &&
-        game->clock->secs != 0) {
-            game->clock->secs = 0;
-            game->on_inv = 1;
-        }
+        open_close_inv(game);
         event_cursor(game);
-        check_on_item(game, game->first_item, game->player);
+        move_select(game);
+        check_event_items(game);
     }
 }
 
@@ -74,14 +67,12 @@ void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
     [(int)((950 - pos.x) / 40)]) != 1945 ||
     atoi(layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
     [(int)((950 - pos.x - 80) / 40)]) != 1945) {
-        if (game->on_inv == 1)
-            draw_items(game, game->first_item, game->player->movement, 1);
+        update_bar(game);
         update_player(game, game->player);
         display_layer(layer->map_layer_2, game, game->player->movement);
     } else {
         display_layer(layer->map_layer_2, game, game->player->movement);
-        if (game->on_inv == 1)
-            draw_items(game, game->first_item, game->player->movement, 1);
+        update_bar(game);
         update_player(game, game->player);
     }
     update_inv(game);
@@ -99,7 +90,7 @@ void set_game(game_ *game)
 
 void launch_game(game_ *game)
 {
-    layer_ *layer = malloc(sizeof(layer_));
+    layer_ *layer = malloc(sizeof(layer_)); // ENLEVER LES MALLOCS
     gen_control_ *gen_control = malloc(sizeof(gen_control_));
     load_map_ *load_map = malloc(sizeof(load_map_));
     sfSprite *rep = sfSprite_create();

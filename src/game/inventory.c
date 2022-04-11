@@ -15,7 +15,10 @@ int set_pos_item(game_ *game, char ***inv, item_ *item, int line)
             item->position.x = game->inv->back->position.x
             + 38 + (48 * col);
             item->position.y = game->inv->back->position.y
-            + 103 + (40 * line);
+            + 103 + (55 * line);
+            item->line = line;
+            item->col = col;
+            inv_to_bar(game->first_item, game);
             return (0);
         }
     }
@@ -64,10 +67,15 @@ void create_inventory(game_ *game)
 {
     game->inv = malloc(sizeof(inventory_));
     game->inv->page = 0;
-    game->inv->back = create_button((sfVector2f){600, 200},
+    game->inv->back = create_button((sfVector2f){660, 200},
     (sfVector2f){1, 1}, "pictures/menu/inv.png");
     game->inv->inv = malloc_inv();
     game->on_inv = 1;
+    game->inv->on_item = 1;
+    game->inv->bar = create_button((sfVector2f){660, 938}, (sfVector2f){1, 1},
+    "pictures/menu/bar.png");
+    game->inv->select = create_button((sfVector2f){690, 968},
+    (sfVector2f){1, 1}, "pictures/menu/select.png");
     game->clock = malloc(sizeof(clock_));
     game->clock->clock = sfClock_create();
 }

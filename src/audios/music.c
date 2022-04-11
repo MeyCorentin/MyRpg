@@ -31,4 +31,5 @@ void create_audios(game_ *game)
     game->sounds->ocean = create_music("sounds/ocean.wav");
     game->sounds->summer_day = create_music("sounds/summer_day.wav");
     game->sounds->item = create_sound("sounds/pickUpItem.wav");
+    game->sounds->trash = create_sound("sounds/trash.wav");
 }
