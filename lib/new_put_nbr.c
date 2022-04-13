@@ -54,7 +54,7 @@ char *new_put_nbr(int nb)
     char *resultat = malloc(sizeof(char) * (len + 1));
 
     if (nb == 0)
-        resultat[cmpt_str] = '0';
+        return ("0");
     while (digits != 0) {
         digits = digits / 10;
         count = count + 1;
