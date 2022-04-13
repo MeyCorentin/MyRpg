@@ -7,7 +7,7 @@
 
 #include "../../includes/rpg.h"
 
-void moov_up(grid_cell_ *grid)
+int moov_up(grid_cell_ *grid)
 {
     sfVector2f pos = {grid->pos_x, grid->pos_y + 40};
 
@@ -28,10 +28,10 @@ void moov_up(grid_cell_ *grid)
         sfSprite_setPosition(grid->hitbox->sprite,
         grid->hitbox->position);
     }
-    (grid->next_cell != NULL) ? moov_up(grid->next_cell) : 1;
+    return ((grid->next_cell != NULL) ? moov_up(grid->next_cell) : 1);
 }
 
-void moov_down(grid_cell_ *grid)
+int moov_down(grid_cell_ *grid)
 {
     sfVector2f pos = {grid->pos_x, grid->pos_y - 40};
 
@@ -52,10 +52,10 @@ void moov_down(grid_cell_ *grid)
         sfSprite_setPosition(grid->hitbox->sprite,
         grid->hitbox->position);
     }
-    (grid->next_cell != NULL) ? moov_down(grid->next_cell) : 1;
+    return ((grid->next_cell != NULL) ? moov_down(grid->next_cell) : 1);
 }
 
-void moov_left(grid_cell_ *grid)
+int moov_left(grid_cell_ *grid)
 {
     sfVector2f pos = {grid->pos_x + 40, grid->pos_y};
 
@@ -76,10 +76,10 @@ void moov_left(grid_cell_ *grid)
         sfSprite_setPosition(grid->hitbox->sprite,
         grid->hitbox->position);
     }
-    (grid->next_cell != NULL) ? moov_left(grid->next_cell) : 1;
+    return ((grid->next_cell != NULL) ? moov_left(grid->next_cell) : 1);
 }
 
-void moov_right(grid_cell_ *grid)
+int moov_right(grid_cell_ *grid)
 {
     sfVector2f pos = {grid->pos_x - 40, grid->pos_y};
 
@@ -100,10 +100,10 @@ void moov_right(grid_cell_ *grid)
         sfSprite_setPosition(grid->hitbox->sprite,
         grid->hitbox->position);
     }
-    (grid->next_cell != NULL) ? moov_right(grid->next_cell) : 1;
+    return ((grid->next_cell != NULL) ? (moov_right(grid->next_cell)) : 1);
 }
 
-void reset_grid(grid_cell_ *grid)
+int reset_grid(grid_cell_ *grid)
 {
     grid->click = 0;
     grid->background->ok = 1721;
@@ -111,4 +111,5 @@ void reset_grid(grid_cell_ *grid)
     grid->hitbox->ok = 1935;
     if (grid->next_cell != NULL)
         reset_grid(grid->next_cell);
+    return (0);
 }

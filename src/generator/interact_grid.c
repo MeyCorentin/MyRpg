@@ -31,37 +31,39 @@ void page_handle(gen_control_ *gen_control)
     }
 }
 
-void map_key_moov(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
+int map_key_moov(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
-        (gen_control->sprites_on == 0) ? moov_up_gen(gen_control->list) :
-        moov_up(grid);
+        (gen_control->sprites_on == 0) ? (moov_up_gen(gen_control->list)) :
+        (moov_up(grid));
     }
     if (sfKeyboard_isKeyPressed(sfKeyS)) {
-        (gen_control->sprites_on == 0) ? moov_down_gen(gen_control->list) :
-        moov_down(grid);
+        (gen_control->sprites_on == 0) ? (moov_down_gen(gen_control->list)) :
+        (moov_down(grid));
     }
     if (sfKeyboard_isKeyPressed(sfKeyQ)) {
-        (gen_control->sprites_on == 0) ? moov_right_gen(gen_control->list) :
-        moov_left(grid);
+        (gen_control->sprites_on == 0) ? (moov_right_gen(gen_control->list)) :
+        (moov_left(grid));
     }
     if (sfKeyboard_isKeyPressed(sfKeyD)) {
-        (gen_control->sprites_on == 0) ? moov_left_gen(gen_control->list) :
-        moov_right(grid);
+        (gen_control->sprites_on == 0) ? (moov_left_gen(gen_control->list)) :
+        (moov_right(grid));
     }
+    return (0);
 }
 
-void map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
+int map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
 {
     map_key_moov(game, grid, gen_control);
-    (sfKeyboard_isKeyPressed(sfKeyR)) ? reset_grid(grid) : 1;
-    (sfKeyboard_isKeyPressed(sfKeyEnter)) ? save_all(game, grid) : 1;
-    (sfKeyboard_isKeyPressed(sfKeyUp)) ? game->layer = 1 : 1;
-    (sfKeyboard_isKeyPressed(sfKeyDown)) ? game->layer = 0 : 1;
-    (sfKeyboard_isKeyPressed(sfKeyRight)) ? game->layer = 2 : 1;
+    (sfKeyboard_isKeyPressed(sfKeyR)) ? (reset_grid(grid)) : 1;
+    (sfKeyboard_isKeyPressed(sfKeyEnter)) ? (save_all(game, grid)) : 1;
+    (sfKeyboard_isKeyPressed(sfKeyUp)) ? (game->layer = 1) : 1;
+    (sfKeyboard_isKeyPressed(sfKeyDown)) ? (game->layer = 0) : 1;
+    (sfKeyboard_isKeyPressed(sfKeyRight)) ? (game->layer = 2) : 1;
     page_handle(gen_control);
     if (sfKeyboard_isKeyPressed(sfKeyEscape))
-            loop_menu(game, game->menu);
+        loop_menu(game, game->menu);
+    return (0);
 }
 
 void map_mouse_input(game_ *game, grid_cell_ *grid,

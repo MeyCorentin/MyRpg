@@ -34,8 +34,6 @@ char **str_to_array(char *map, char stop)
 {
     int line = 0;
     int column;
-    int temp;
-    int len = 0;
     char **new_map = malloc(sizeof(char *) * (get_line(map, stop) + 1));
 
     for (int cmpt = 0; map[cmpt] != '\0'; cmpt += 1) {

@@ -26,7 +26,7 @@ int get_file_len(char *files_name)
     return (len);
 }
 
-int get_size(char *files_name, load_map_ *load_map)
+void get_size(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
     char *temp = malloc(sizeof(char) * len);
@@ -50,7 +50,7 @@ int get_size(char *files_name, load_map_ *load_map)
     load_map->x_size = my_atoi(temp);
 }
 
-int get_size_2(char *files_name, load_map_ *load_map)
+void get_size_2(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
     char *temp = malloc(sizeof(char) * len);
@@ -74,7 +74,7 @@ int get_size_2(char *files_name, load_map_ *load_map)
     load_map->x_size = my_atoi(temp);
 }
 
-int get_size_3(char *files_name, load_map_ *load_map)
+void get_size_3(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
     char *temp = malloc(sizeof(char) * len);

@@ -21,18 +21,26 @@ void display_load_map(char ***map, game_ *game, int movement)
     }
 }
 
-void display_layer(sfSprite ***map, game_ *game, int movement)
+void display_layer_(sfSprite ***map, game_ *game, int movement, int y)
 {
-    sfVector2f pos;
-    int y = 0;
     int x = 0;
 
-    for (y = 0; map[y]; y++) {
-        for (x = 0; map[y][x]; x++) {
-            (map[y][x] != NULL) ? move_background(map, movement, y, x),
-            sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse) : 1;
+    for (x = 0; map[y][x]; x++) {
+        if (map[y][x] != NULL) {
+            move_background(map, movement, y, x);
+            sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse);
         }
     }
+}
+
+int display_layer(sfSprite ***map, game_ *game, int movement)
+{
+    int y = 0;
+
+    for (y = 0; map[y]; y++) {
+        display_layer_(map, game, movement, y);
+    }
+    return (0);
 }
 
 void display_big_tab(char ***map)
