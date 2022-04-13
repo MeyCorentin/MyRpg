@@ -25,7 +25,7 @@ char ***my_malloc_map(int colum, int lines)
     int j = 0;
 
     for (; k != colum; k++) {
-        temp[k] = malloc(sizeof(char *) * lines + 1);
+        temp[k] = malloc(sizeof(char *) * (lines + 1));
         for (j = 0; j != lines; j++) {
             temp[k][j] = malloc(sizeof(sfRectangleShape *));
         }
@@ -59,12 +59,12 @@ char ***my_malloc_big_tab(int colum, int lines)
     int j = 0;
 
     for (; k != colum; k++) {
-        temp[k] = malloc(sizeof(char *) * lines + 1);
+        temp[k] = malloc(sizeof(char *) * (lines + 1));
         for (j = 0; j != lines; j++) {
             temp[k][j] = malloc(sizeof(char *) * 100);
         }
-        temp[k][j] = '\0';
+        temp[k][j] = NULL;
     }
-    temp[k] = '\0';
+    temp[k] = NULL;
     return (temp);
 }

@@ -51,8 +51,10 @@ void save_hitbox(game_ *game, grid_cell_ *grid, FILE *file)
     if (grid->g_pos % grid->size_x == 0 && grid->g_pos
         != grid->size_x * grid->size_y)
         fwrite("\n", 1, my_strlen("\n"), file);
-    if (grid->g_pos == grid->size_x * grid->size_y)
+    if (grid->g_pos == grid->size_x * grid->size_y) {
+        fwrite("\n", 1, my_strlen("\n"), file);
         fwrite("\0", 1, my_strlen("\0"), file);
+    }
     if (grid->next_cell != NULL)
         save_hitbox(game, grid->next_cell, file);
 }
@@ -66,8 +68,10 @@ void save_foreground(game_ *game, grid_cell_ *grid, FILE *file)
     if (grid->g_pos % grid->size_x == 0 && grid->g_pos
         != grid->size_x * grid->size_y)
         fwrite("\n", 1, my_strlen("\n"), file);
-    if (grid->g_pos == grid->size_x * grid->size_y)
+    if (grid->g_pos == grid->size_x * grid->size_y) {
+        fwrite("\n", 1, my_strlen("\n"), file);
         fwrite("\0", 1, my_strlen("\0"), file);
+    }
     if (grid->next_cell != NULL)
         save_foreground(game, grid->next_cell, file);
 }
@@ -81,8 +85,10 @@ void save_background(game_ *game, grid_cell_ *grid, FILE *file)
     if (grid->g_pos % grid->size_x == 0 && grid->g_pos
         != grid->size_x * grid->size_y)
         fwrite("\n", 1, my_strlen("\n"), file);
-    if (grid->g_pos == grid->size_x * grid->size_y)
+    if (grid->g_pos == grid->size_x * grid->size_y) {
+        fwrite("\n", 1, my_strlen("\n"), file);
         fwrite("\0", 1, my_strlen("\0"), file);
+    }
     if (grid->next_cell != NULL)
         save_background(game, grid->next_cell, file);
 }

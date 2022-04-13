@@ -36,7 +36,7 @@ void get_size(char *files_name, load_map_ *load_map)
     int test;
 
     read(fd, temp, len);
-    temp[len + 1] = '\0';
+    temp[len] = '\0';
     close(fd);
     load_map->back_full = temp;
     tab = my_split_tab(temp, '\n');
@@ -45,7 +45,7 @@ void get_size(char *files_name, load_map_ *load_map)
         (check == 1) ? temp[test] = tab[0][len], test++ : 1;
         (tab[0][len] == ' ') ? check = 1 : 1;
     }
-    temp[test + 1] = '\0';
+    temp[test] = '\0';
     load_map->y_size = my_atoi(tab[0]);
     load_map->x_size = my_atoi(temp);
 }
@@ -60,7 +60,7 @@ void get_size_2(char *files_name, load_map_ *load_map)
     int test;
 
     read(fd, temp, len);
-    temp[len + 1] = '\0';
+    temp[len] = '\0';
     close(fd);
     load_map->fore_full = temp;
     tab = my_split_tab(temp, '\n');
@@ -84,7 +84,7 @@ void get_size_3(char *files_name, load_map_ *load_map)
     int test;
 
     read(fd, temp, len);
-    temp[len + 1] = '\0';
+    temp[len] = '\0';
     close(fd);
     load_map->hit_full = temp;
     tab = my_split_tab(temp, '\n');

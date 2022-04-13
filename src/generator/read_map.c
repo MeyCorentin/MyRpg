@@ -46,7 +46,7 @@ char ***get_map(load_map_ *load_map)
     char ***tile_tab = my_malloc_big_tab(load_map->y_size, load_map->x_size);
 
     temp_id[0] = '\0';
-    for (; load_map->back_full[k] != '\0'; k++) {
+    for (; load_map->back_full[k]; k++) {
         (load_map->back_full[k] == '\n') ? y++, x = 0 : 1;
         (load_map->back_full[k] == '[') ? ok = 1, k++ : 1;
         (load_map->back_full[k] == ']') ? ok = 0,
@@ -70,7 +70,7 @@ char ***get_map_2(load_map_ *load_map)
     char ***tile_tab = my_malloc_big_tab(load_map->y_size, load_map->x_size);
 
     temp_id[0] = '\0';
-    for (; load_map->fore_full[k] != '\0'; k++) {
+    for (; load_map->fore_full[k]; k++) {
         (load_map->fore_full[k] == '\n') ? y++, x = 0 : 1;
         (load_map->fore_full[k] == '[') ? ok = 1, k++ : 1;
         (load_map->fore_full[k] == ']') ? ok = 0,
@@ -94,7 +94,7 @@ char ***get_map_3(load_map_ *load_map)
     char ***tile_tab = my_malloc_big_tab(load_map->y_size, load_map->x_size);
 
     temp_id[0] = '\0';
-    for (; load_map->hit_full[k] != '\0'; k++) {
+    for (; load_map->hit_full[k]; k++) {
         (load_map->hit_full[k] == '\n') ? y++, x = 0 : 1;
         (load_map->hit_full[k] == '[') ? ok = 1, k++ : 1;
         (load_map->hit_full[k] == ']') ? ok = 0,
