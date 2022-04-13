@@ -29,6 +29,10 @@ SRC =	src/generator/*.c \
 
 OBJ = $(LIB:.c=.o)
 
+CFLAGS	=	-Werror -Wall -pedantic -g3
+
+CSFMLFLAG = -lcsfml-graphics -lcsfml-system  -lcsfml-window -lcsfml-audio
+
 NAME = my_rpg
 
 all: $(NAME)
@@ -36,8 +40,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rc libmy.a $(OBJ)
 	@echo ">>> Library compiled."
-	@gcc -g3 -o ${NAME} $(SRC) -lcsfml-graphics -lcsfml-system -lcsfml-window \
--lcsfml-audio -L. libmy.a
+	@gcc -g3 -o ${NAME} $(SRC) $(CFLAGS) $(CSFMLFLAG) -L. libmy.a
 	@echo ">>> Executable \"${NAME}\" created."
 
 clean:
@@ -45,6 +48,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@find -name "vgcore.*" -delete
 	@rm -f libmy.a
 	@echo ">>> All files was clean."
 

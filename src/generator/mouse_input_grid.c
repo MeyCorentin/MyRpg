@@ -26,7 +26,6 @@ gen_control_ *gen_control)
 {
     sfVector2f sprite_pos = {grid->pos_x, grid->pos_y};
     grid->foreground->position = sprite_pos;
-    sfVector2f sprite_scale = {2.5, 2.5};
 
     if (game->mouse.x > grid->pos_x && game->mouse.x < grid->pos_x + \
         (40 * paint->scale) && game->mouse.y > grid->pos_y && game->mouse.y\

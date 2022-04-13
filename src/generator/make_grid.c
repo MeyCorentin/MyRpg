@@ -44,8 +44,11 @@ void init_rect(grid_cell_ *grid, sfRectangleShape *rect, int x, int y)
     init_rect_2(grid, rect, x, y);
 }
 
-void create_foreground_background(struct grid_cell *new)
+void create_foreground_background(struct grid_cell *new,
+struct grid_cell *grid)
 {
+    new->next_cell = NULL;
+    new->prev_cell = grid;
     new->foreground = malloc(sizeof(sprite_));
     new->foreground_id = 1945;
     new->foreground->sprite = NULL;
@@ -60,7 +63,7 @@ void create_foreground_background(struct grid_cell *new)
     new->hitbox->ok = 0;
 }
 
-void create_map(game_ *game, struct grid_cell *grid, int x, int y)
+int create_map(game_ *game, struct grid_cell *grid, int x, int y)
 {
     grid_cell_ *new = malloc(sizeof(grid_cell_));
     sfVector2f size = {40, 40};
@@ -77,11 +80,10 @@ void create_map(game_ *game, struct grid_cell *grid, int x, int y)
     new->l_pos = grid->l_pos + 1;
     (new->l_pos > x - 1) ? new->l_pos = 0 : 1;
     new->g_pos = grid->g_pos + 1;
-    new->next_cell = NULL;
-    new->prev_cell = grid;
-    create_foreground_background(new);
+    create_foreground_background(new, grid);
     grid->next_cell = new;
-    (grid->g_pos != (x * y) - 1) ? create_map(game, grid->next_cell, x, y) : 1;
+    return ((grid->g_pos != (x * y) - 1) ?
+    (create_map(game, grid->next_cell, x, y)) : 1);
 }
 
 void draw_ath(game_ *game, gen_control_ *gen_control)

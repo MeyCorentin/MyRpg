@@ -21,7 +21,7 @@ void print_size(game_ *game, grid_cell_ *grid, FILE *file)
     fwrite("\n", 1, my_strlen("\n"), file);
 }
 
-void save_all(game_ *game, grid_cell_ *grid)
+int save_all(game_ *game, grid_cell_ *grid)
 {
     FILE *foreground_file = fopen("foreground.txt", "wa");
     print_size(game, grid, foreground_file);
@@ -36,9 +36,10 @@ void save_all(game_ *game, grid_cell_ *grid)
     save_background(game, grid, background_file);
     fclose(background_file);
     FILE *hitbox_file = fopen("hitbox.txt", "wa");
-    print_size(game, grid, background_file);
-    save_hitbox(game, grid, background_file);
-    fclose(background_file);
+    print_size(game, grid, hitbox_file);
+    save_hitbox(game, grid, hitbox_file);
+    fclose(hitbox_file);
+    return (0);
 }
 
 void save_hitbox(game_ *game, grid_cell_ *grid, FILE *file)

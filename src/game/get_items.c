@@ -48,7 +48,7 @@ void get_item(game_ *game, item_ *item)
             item->position.y = game->mouse.y - 16;
             sfSprite_setPosition(item->sprite, item->position);
         }
-        if (game->event.type == sfEvtMouseButtonReleased == sfTrue) {
+        if (game->event.type == sfEvtMouseButtonReleased) {
             game->inv->on_item = 1;
             item->is_get = 1;
             check_cible(game, item);

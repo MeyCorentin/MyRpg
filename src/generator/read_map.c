@@ -29,7 +29,6 @@ void add_id_in_tab(char ***tab, char *id, int y, int x)
 {
     int k = y;
     int j = x;
-    int r = 0;
 
     for (; tab[k]; k++) {
         add_id_int_tab_2(tab, id, k, j);

@@ -44,20 +44,20 @@ typedef struct paint {
 } paint_;
 
 void init_rect(grid_cell_ *grid, sfRectangleShape *rect, int x, int y);
-void create_map(game_ *game, struct grid_cell *grid, int x, int y);
+int create_map(game_ *game, struct grid_cell *grid, int x, int y);
 void display_square(game_ *game, grid_cell_ *grid,
 gen_control_ *gen_control, paint_ *paint);
 void display_foreground(game_ *game, grid_cell_ *grid,
 gen_control_ *gen_control, paint_ *paint);
 
 void launch_map_generator(game_ *game);
-void moov_up(grid_cell_ *grid);
-void moov_down(grid_cell_ *grid);
-void moov_left(grid_cell_ *grid);
-void moov_right(grid_cell_ *grid);
+int moov_up(grid_cell_ *grid);
+int moov_down(grid_cell_ *grid);
+int moov_left(grid_cell_ *grid);
+int moov_right(grid_cell_ *grid);
 void moov_map(game_ *game, grid_cell_ *grid);
-void map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control);
-void reset_grid(grid_cell_ *grid);
+int map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control);
+int reset_grid(grid_cell_ *grid);
 void right_click_grid(game_ *game, grid_cell_ *grid,
 paint_ *paint, gen_control_ *gen_control);
 void left_click_grid(game_ *game, grid_cell_ *grid,
@@ -70,11 +70,11 @@ gen_control_ *gen_control, paint_ *paint);
 void save_foreground(game_ *game, grid_cell_ *grid, FILE *file);
 void save_background(game_ *game, grid_cell_ *grid, FILE *file);
 void draw_ath(game_ *game, gen_control_ *gen_control);
-void moov_up_gen(sprite_ *sprite);
-void moov_down_gen(sprite_ *sprite);
-void moov_right_gen(sprite_ *sprite);
-void moov_left_gen(sprite_ *sprite);
-int get_size(char *files_name, load_map_ *load_map);
+int moov_up_gen(sprite_ *sprite);
+int moov_down_gen(sprite_ *sprite);
+int moov_right_gen(sprite_ *sprite);
+int moov_left_gen(sprite_ *sprite);
+void get_size(char *files_name, load_map_ *load_map);
 char ***get_map(load_map_ *load_map);
 void display_load_map(char ***map, game_ *game, int movement);
 void display_layer_1(sfSprite ***map, game_ *game, int movement);
@@ -85,14 +85,14 @@ void move_background(sfSprite ***map, int movement, int y, int x);
 void move_map(char ***map, int movement, int y, int x);
 void display_layer_2(sfSprite ***map, game_ *game, int movement);
 char ***get_map_2(load_map_ *load_map);
-int get_size_2(char *files_name, load_map_ *load_map);
-void save_all(game_ *game, grid_cell_ *grid);
+void get_size_2(char *files_name, load_map_ *load_map);
+int save_all(game_ *game, grid_cell_ *grid);
 char ***my_malloc_big_tab(int colum, int lines);
-void add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background);
+int add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background);
 void init_map(char ***map, load_map_ *load_map);
-void add_tileset_2(sfSprite ***map, sprite_ *sprite, char ***id_background);
+int add_tileset_2(sfSprite ***map, sprite_ *sprite, char ***id_background);
 void move_rep(sfSprite *rep, int movement);
-int get_size_3(char *files_name, load_map_ *load_map);
+void get_size_3(char *files_name, load_map_ *load_map);
 char ***get_map_3(load_map_ *load_map);
 void save_hitbox(game_ *game, grid_cell_ *grid, FILE *file);
 void its_background(game_ *game, grid_cell_ *grid, paint_ *paint,
@@ -107,7 +107,7 @@ void display_background(game_ *game, grid_cell_ *grid,
 gen_control_ *gen_control, paint_ *paint);
 void display_hitbox(game_ *game, grid_cell_ *grid,
 gen_control_ *gen_control, paint_ *paint);
-void display_layer(sfSprite ***map, game_ *game, int movement);
+int display_layer(sfSprite ***map, game_ *game, int movement);
 void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control);
 
 #endif /* !MAP_GRID_H_ */

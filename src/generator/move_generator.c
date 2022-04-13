@@ -11,34 +11,38 @@
 #include <stdio.h>
 #include "../../includes/rpg.h"
 
-void moov_up_gen(sprite_ *sprite)
+int moov_up_gen(sprite_ *sprite)
 {
     sprite->position.y += 40;
     sfSprite_setPosition(sprite->sprite, sprite->position);
     if (sprite->next != NULL)
         moov_up_gen(sprite->next);
+    return (0);
 }
 
-void moov_down_gen(sprite_ *sprite)
+int moov_down_gen(sprite_ *sprite)
 {
     sprite->position.y -= 40;
     sfSprite_setPosition(sprite->sprite, sprite->position);
     if (sprite->next != NULL)
         moov_down_gen(sprite->next);
+    return (0);
 }
 
-void moov_right_gen(sprite_ *sprite)
+int moov_right_gen(sprite_ *sprite)
 {
     sprite->position.x += 40;
     sfSprite_setPosition(sprite->sprite, sprite->position);
     if (sprite->next != NULL)
         moov_right_gen(sprite->next);
+    return (0);
 }
 
-void moov_left_gen(sprite_ *sprite)
+int moov_left_gen(sprite_ *sprite)
 {
     sprite->position.x -= 40;
     sfSprite_setPosition(sprite->sprite, sprite->position);
     if (sprite->next != NULL)
         moov_left_gen(sprite->next);
+    return (0);
 }
