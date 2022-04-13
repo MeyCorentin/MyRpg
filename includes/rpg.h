@@ -205,12 +205,16 @@ typedef struct clock {
     sfClock *clock;
     sfTime time;
     int secs;
+    int ancien_sec;
+    int hours;
     int days;
     int saison;
     int check_secs;
     button_ *infos;
     sfSprite *light;
     button_ *arrow;
+    text_ *day;
+    text_ *hour;
     sfColor color;
 } clock_;
 
