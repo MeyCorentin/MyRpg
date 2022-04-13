@@ -52,6 +52,7 @@ void set_game(game_ *game)
     sfMusic_stop(game->sounds->ocean);
     sfMusic_play(game->sounds->summer_day);
     create_inventory(game);
+    create_ath(game);
 }
 
 void launch_game(game_ *game)
@@ -72,6 +73,7 @@ void launch_game(game_ *game)
         sfRenderWindow_clear(game->window, (sfColor){150, 150, 150, 150});
         check_event_game(game);
         launch_layer(game, layer, pos, rep);
+        sfRenderWindow_drawSprite(game->window, game->clock->light, sfFalse);
         sfRenderWindow_display(game->window);
     }
 }

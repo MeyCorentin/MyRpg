@@ -148,6 +148,8 @@ typedef struct player {
     sfTime time;
     int secs;
     int movement;
+    int gold;
+    int life;
 } player_;
 
 typedef struct layer {
@@ -196,12 +198,20 @@ typedef struct inventory {
     int on_item;
     button_ *bar;
     button_ *select;
+    text_ *gold;
 } inventory_;
 
 typedef struct clock {
     sfClock *clock;
     sfTime time;
     int secs;
+    int days;
+    int saison;
+    int check_secs;
+    button_ *infos;
+    sfSprite *light;
+    button_ *arrow;
+    sfColor color;
 } clock_;
 
 typedef struct game {
@@ -242,5 +252,7 @@ void cancel_item(item_ *item, game_ *game);
 void drop_item(item_ *item, game_ *game);
 void delete_item(item_ *item, game_ *game);
 void update_bar(game_ *game);
+void create_ath(game_ *game);
+void update_time(game_ *game);
 
 #endif /* PROJECT_H_ */

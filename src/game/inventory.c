@@ -55,8 +55,7 @@ char ***malloc_inv(void)
 
 void update_inventory(game_ *game)
 {
-    game->clock->time = sfClock_getElapsedTime(game->clock->clock);
-    game->clock->secs = game->clock->time.microseconds / 5000;
+    game->clock->check_secs = game->clock->time.microseconds / 5000;
     if (game->on_inv == 0) {
         sfRenderWindow_drawSprite
         (game->window, game->inv->back->sprite, sfFalse);
