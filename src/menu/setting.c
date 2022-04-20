@@ -14,7 +14,7 @@ void check_help(game_ *game, menu_ *menu, int what)
     menu->help->scale.x && game->mouse.y > menu->help->
     position.y && game->mouse.y < menu->help->position.y + menu->
     help->rect.height * menu->help->scale.y) {
-        game->on_button = 0;
+        game->boole->on_button = 0;
         menu->help->rect.left = 372;
         if (game->event.type == sfEvtMouseButtonReleased && what == 0) {
             sfSound_play(game->sounds->click);
@@ -32,8 +32,10 @@ void event_settings(game_ *game, menu_ *menu)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
-        if (game->event.type == sfEvtClosed)
+        if (game->event.type == sfEvtClosed) {
+            sfMusic_stop(game->sounds->summer_day);
             sfRenderWindow_close(game->window);
+        }
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
             menu->settings->in_settings = 1;
         check_settings(game, menu, 1);
@@ -51,7 +53,7 @@ void check_settings(game_ *game, menu_ *menu, int what)
     menu->settings->button->scale.x && game->mouse.y > menu->settings->button->
     position.y && game->mouse.y < menu->settings->button->position.y + menu->
     settings->button->rect.height * menu->settings->button->scale.y) {
-        game->on_button = 0;
+        game->boole->on_button = 0;
         menu->settings->button->rect.left = 50;
         if (game->event.type == sfEvtMouseButtonReleased && what == 0) {
             sfSound_play(game->sounds->click);
@@ -73,7 +75,7 @@ void launch_settings(game_ *game, menu_ *menu)
     == 0) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
         menu->back->rect.top = 540;
-        game->on_button = 1;
+        game->boole->on_button = 1;
         sfRenderWindow_clear(game->window, sfBlack);
         event_settings(game, menu);
         draw_settings(game, menu);

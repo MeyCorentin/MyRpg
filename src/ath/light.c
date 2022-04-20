@@ -39,6 +39,8 @@ void create_light(clock_ *clock)
 
 void create_ath(game_ *game)
 {
+    game->clock->days = 0;
+    game->clock->secs = 0;
     game->clock->infos = create_sprite((sfVector2f){1700, 10},
     (sfVector2f){3, 3}, (sfIntRect){0, 0, 72, 59}, "pictures/ath/clock.png");
     create_light(game->clock);
@@ -48,10 +50,9 @@ void create_ath(game_ *game)
     game->inv->gold = create_text(new_put_nbr(game->player->gold),
     (sfVector2f){1, 1}, (sfVector2f){1755, 145}, "font/Stardew_Valley.ttf");
     game->clock->day = create_text(new_put_nbr(game->clock->days),
-    (sfVector2f){1, 1}, (sfVector2f){1790, 15}, "font/Stardew_Valley.ttf");
+    (sfVector2f){1, 1}, (sfVector2f){1845, 15}, "font/Stardew_Valley.ttf");
     game->clock->hour = create_text(new_put_nbr(game->clock->secs / 60),
-    (sfVector2f){1, 1}, (sfVector2f){1790, 85}, "font/Stardew_Valley.ttf");
-    game->clock->days = 0;
+    (sfVector2f){1, 1}, (sfVector2f){1855, 85}, "font/Stardew_Valley.ttf");
     game->clock->ancien_sec = 0;
     game->clock->saison = 0;
     game->clock->hours = 12;

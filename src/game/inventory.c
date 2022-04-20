@@ -56,7 +56,7 @@ char ***malloc_inv(void)
 void update_inventory(game_ *game)
 {
     game->clock->check_secs = game->clock->time.microseconds / 5000;
-    if (game->on_inv == 0) {
+    if (game->boole->on_inv == 0) {
         sfRenderWindow_drawSprite
         (game->window, game->inv->back->sprite, sfFalse);
     }
@@ -69,7 +69,7 @@ void create_inventory(game_ *game)
     game->inv->back = create_button((sfVector2f){660, 200},
     (sfVector2f){1, 1}, "pictures/menu/inv.png");
     game->inv->inv = malloc_inv();
-    game->on_inv = 1;
+    game->boole->on_inv = 1;
     game->inv->on_item = 1;
     game->inv->bar = create_button((sfVector2f){660, 938}, (sfVector2f){1, 1},
     "pictures/menu/bar.png");

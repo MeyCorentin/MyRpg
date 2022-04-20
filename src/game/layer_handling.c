@@ -15,9 +15,9 @@ void move_layer_(layer_ *layer, game_ *game, int y)
         if (layer->map_layer_1[y][x] != NULL &&
             layer->map_layer_2[y][x] != NULL &&
             layer->map_layer_3[y][x] != NULL) {
-            move_tiles(layer->map_layer_1, game->player->movement, y, x);
-            move_tiles(layer->map_layer_2, game->player->movement, y, x);
-            move_tiles(layer->map_layer_3, game->player->movement, y, x);
+            move_tiles(layer->map_layer_1, game, y, x);
+            move_tiles(layer->map_layer_2, game, y, x);
+            move_tiles(layer->map_layer_3, game, y, x);
         }
     }
 }
@@ -55,13 +55,14 @@ void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
     display_layer_h(layer->map_layer_3, game, pos);
     if (launch_layer_if(game, layer, pos, rep) == 1) {
         update_bar(game);
-        update_player(game, game->player, layer->map_layer_3);
+        update_player(game, game->player);
         display_layer(layer->map_layer_2, game, game->player->movement);
     } else if (launch_layer_if(game, layer, pos, rep) == 0) {
         display_layer(layer->map_layer_2, game, game->player->movement);
         update_bar(game);
-        update_player(game, game->player, layer->map_layer_3);
+        update_player(game, game->player);
     }
+    sfRenderWindow_drawSprite(game->window, game->clock->light, sfFalse);
     update_inv(game);
-    move_rep(rep, game->player->movement);
+    move_rep(rep, game->player->movement, game);
 }

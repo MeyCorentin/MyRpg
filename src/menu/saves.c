@@ -13,7 +13,7 @@ void check_saves(game_ *game, button_ *button, int who, menu_ *menu)
     button->position.x + button->rect.width * button->scale.x &&
     game->mouse.y > button->position.y && game->mouse.y < button->position.y +
     button->rect.height * button->scale.y && menu->on_load == 0) {
-        game->on_button = 0;
+        game->boole->on_button = 0;
         button->rect.left = 50;
         if (game->event.type == sfEvtMouseButtonReleased) {
             sfSound_play(game->sounds->click);

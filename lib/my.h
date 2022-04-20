@@ -8,6 +8,8 @@
 #ifndef MY_H_
     #define MY_H_
 
+    #include <stdlib.h>
+
 int my_atoi(char *str);
 void my_putchar(char c);
 int my_getnbr(char const *str);

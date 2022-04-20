@@ -7,48 +7,32 @@
 
 #include "../../includes/rpg.h"
 
-void move_rep(sfSprite *rep, int movement)
+void move_rep(sfSprite *rep, int movement, game_ *game)
 {
     sfVector2f pos = sfSprite_getPosition(rep);
 
     if (movement == 0)
-        pos.y -= 3;
+        pos.y -= 3 + game->player->stats->speed;
     if (movement == 1)
-        pos.x -= 3;
+        pos.x -= 3 + game->player->stats->speed;
     if (movement == 2)
-        pos.y += 3;
+        pos.y += 3 + game->player->stats->speed;
     if (movement == 3)
-        pos.x += 3;
+        pos.x += 3 + game->player->stats->speed;
     sfSprite_setPosition(rep, pos);
 }
 
-void move_map(char ***map, int movement, int y, int x)
+void move_tiles(sfSprite ***map, game_ *game, int y, int x)
 {
-    sfVector2f pos =
-    sfRectangleShape_getPosition((sfRectangleShape *)map[y][x]);
+    sfVector2f pos = sfSprite_getPosition(map[y][x]);
 
-    if (movement == 0)
-        pos.y -= 3;
-    if (movement == 1)
-        pos.x -= 3;
-    if (movement == 2)
-        pos.y += 3;
-    if (movement == 3)
-        pos.x += 3;
-    sfRectangleShape_setPosition((sfRectangleShape *)map[y][x], pos);
-}
-
-void move_tiles(sfSprite ***map, int movement, int y, int x)
-{
-    sfVector2f pos = sfSprite_getPosition((sfSprite *)map[y][x]);
-
-    if (movement == 0)
-        pos.y -= 3;
-    if (movement == 1)
-        pos.x -= 3;
-    if (movement == 2)
-        pos.y += 3;
-    if (movement == 3)
-        pos.x += 3;
+    if (game->player->movement == 0)
+        pos.y -= 3 + game->player->stats->speed;
+    if (game->player->movement == 1)
+        pos.x -= 3 + game->player->stats->speed;
+    if (game->player->movement == 2)
+        pos.y += 3 + game->player->stats->speed;
+    if (game->player->movement == 3)
+        pos.x += 3 + game->player->stats->speed;
     sfSprite_setPosition(map[y][x], pos);
 }

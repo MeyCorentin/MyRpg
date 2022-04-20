@@ -7,22 +7,22 @@
 
 #include "../../includes/rpg.h"
 
-void move_items(item_ *item, int value, int movement)
+void move_items(item_ *item, int value, int movement, game_ *game)
 {
     if (movement == 0)
-        item->position.y -= value;
+        item->position.y -= value + game->player->stats->speed;
     if (movement == 1)
-        item->position.x -= value;
+        item->position.x -= value + game->player->stats->speed;
     if (movement == 2)
-        item->position.y += value;
+        item->position.y += value + game->player->stats->speed;
     if (movement == 3)
-        item->position.x += value;
+        item->position.x += value + game->player->stats->speed;
 }
 
 void draw_items(game_ *game, item_ *item, int movement, int status)
 {
     if (item->on_inv == 1)
-        move_items(item, 3, movement);
+        move_items(item, 3, movement, game);
     sfSprite_setPosition(item->sprite, item->position);
     if ((status == 0 && item->on_inv == 0) || (status == 1 && item->on_inv
     == 1) || (status == 0 && item->on_inv == 1 && (item->position.x + 32 <

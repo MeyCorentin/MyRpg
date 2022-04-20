@@ -14,7 +14,6 @@ void display_load_map(char ***map, game_ *game, int movement)
 
     for (y = 0; map[y]; y++) {
         for (x = 0; map[y][x]; x++) {
-            move_map(map, movement, y, x);
             sfRenderWindow_drawRectangleShape(game->window,
             (sfRectangleShape *)map[y][x], sfFalse);
         }

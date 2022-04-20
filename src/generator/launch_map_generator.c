@@ -22,8 +22,8 @@ void launch_map_generator(game_ *game)
     sfRectangleShape *rect = sfRectangleShape_create();
 
     set_gen(game, paint);
-    init_rect(grid, rect, 15, 15);
-    create_map(game, grid, 15, 15);
+    init_rect(grid, rect, 30, 50);
+    create_map(game, grid, 30, 50);
     create_gen(gen_control, 1);
     while (sfRenderWindow_isOpen(game->window)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);

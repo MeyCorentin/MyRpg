@@ -53,8 +53,7 @@ void display_layer_1(sfSprite ***map, game_ *game, int movement);
 sfSprite ***my_malloc_map_sprite(int colum, int lines);
 char ***my_malloc_map(int colum, int lines);
 void init_map_square(char ***map, int y, int x);
-void move_tiles(sfSprite ***map, int movement, int y, int x);
-void move_map(char ***map, int movement, int y, int x);
+void move_tiles(sfSprite ***map, game_ *, int y, int x);
 void display_layer_2(sfSprite ***map, game_ *game, int movement);
 char ***get_map_2(load_map_ *load_map);
 void get_size_2(char *files_name, load_map_ *load_map);
@@ -63,7 +62,7 @@ char ***my_malloc_big_tab(int colum, int lines);
 int add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background);
 void init_map(char ***map, load_map_ *load_map);
 int add_tileset_2(sfSprite ***map, sprite_ *sprite, char ***id_background);
-void move_rep(sfSprite *rep, int movement);
+void move_rep(sfSprite *rep, int movement, game_ *game);
 void get_size_3(char *files_name, load_map_ *load_map);
 char ***get_map_3(load_map_ *load_map);
 void save_hitbox(game_ *game, grid_cell_ *grid, FILE *file);
@@ -80,7 +79,6 @@ gen_control_ *gen_control, paint_ *paint);
 void display_hitbox(game_ *game, grid_cell_ *grid,
 gen_control_ *gen_control, paint_ *paint);
 int display_layer(sfSprite ***map, game_ *game, int movement);
-void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control);
 int wall_moov(game_ *game, grid_cell_ *wall_1, grid_cell_ *wall_2);
 int moov_up_(grid_cell_ *grid);
 int moov_down_(grid_cell_ *grid);
@@ -91,5 +89,7 @@ void move_player(player_ *player);
 void display_layer_hit(sfSprite ***map, game_ *game, int y,
 sfVector2f pos);
 void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep);
+void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control,
+game_ *game);
 
 #endif /* !MAP_GRID_H_ */
