@@ -42,7 +42,7 @@ gen_control_ *gen_control, paint_ *paint)
     display_foreground(game, grid, gen_control, paint);
     display_hitbox(game, grid, gen_control, paint);
     draw_ath(game, gen_control);
+    update_cursor(game);
     if (gen_control->sprites_on == 0)
         draw_sprites_gen(game, gen_control);
-    update_cursor(game);
 }

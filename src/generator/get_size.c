@@ -41,7 +41,7 @@ void get_size(char *files_name, load_map_ *load_map)
     load_map->back_full = temp;
     tab = my_split_tab(temp, '\n');
     temp = malloc(sizeof(char) * my_strlen(tab[0]));
-    for (test = 0, len = 0; tab[0][len] != 0; len++) {
+    for (test = 0, len = 0; tab[0][len]; len++) {
         (check == 1) ? temp[test] = tab[0][len], test++ : 1;
         (tab[0][len] == ' ') ? check = 1 : 1;
     }
@@ -65,7 +65,7 @@ void get_size_2(char *files_name, load_map_ *load_map)
     load_map->fore_full = temp;
     tab = my_split_tab(temp, '\n');
     temp = malloc(sizeof(char) * my_strlen(tab[0]));
-    for (test = 0, len = 0; tab[0][len] != 0; len++) {
+    for (test = 0, len = 0; tab[0][len]; len++) {
         (check == 1) ? temp[test] = tab[0][len], test++ : 1;
         (tab[0][len] == ' ') ? check = 1 : 1;
     }
@@ -89,7 +89,7 @@ void get_size_3(char *files_name, load_map_ *load_map)
     load_map->hit_full = temp;
     tab = my_split_tab(temp, '\n');
     temp = malloc(sizeof(char) * my_strlen(tab[0]));
-    for (test = 0, len = 0; tab[0][len] != 0; len++) {
+    for (test = 0, len = 0; tab[0][len]; len++) {
         (check == 1) ? temp[test] = tab[0][len], test++ : 1;
         (tab[0][len] == ' ') ? check = 1 : 1;
     }

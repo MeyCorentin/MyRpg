@@ -27,10 +27,27 @@ void display_layer_(sfSprite ***map, game_ *game, int movement, int y)
 
     for (x = 0; map[y][x]; x++) {
         if (map[y][x] != NULL) {
-            move_background(map, movement, y, x);
             sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse);
         }
     }
+}
+
+int display_layer_h(sfSprite ***map, game_ *game, sfVector2f pos)
+{
+    int y = 0;
+    if (game->player->m_left != 0)
+        game->player->m_left = 1;
+    if (game->player->m_right != 0)
+        game->player->m_right = 1;
+    if (game->player->m_down != 0)
+        game->player->m_down = 1;
+    if (game->player->m_up != 0)
+        game->player->m_up = 1;
+
+    for (y = 0; map[y]; y++) {
+        display_layer_hit(map, game, y, pos);
+    }
+    return (0);
 }
 
 int display_layer(sfSprite ***map, game_ *game, int movement)

@@ -15,34 +15,6 @@
     #include "rpg.h"
     #include "menu.h"
 
-typedef struct grid_cell {
-    int x;
-    int y;
-    int pos_x;
-    int pos_y;
-    int size_x;
-    int size_y;
-    int size;
-    int l_pos;
-    int g_pos;
-    int ground;
-    int click;
-    int foreground_id;
-    int background_id;
-    int hitbox_id;
-    int is_sprite;
-    sfRectangleShape *rect;
-    struct grid_cell *next_cell;
-    struct grid_cell *prev_cell;
-    struct sprite *foreground;
-    struct sprite *background;
-    struct sprite *hitbox;
-} grid_cell_;
-
-typedef struct paint {
-    int scale;
-} paint_;
-
 void init_rect(grid_cell_ *grid, sfRectangleShape *rect, int x, int y);
 int create_map(game_ *game, struct grid_cell *grid, int x, int y);
 void display_square(game_ *game, grid_cell_ *grid,
@@ -81,7 +53,7 @@ void display_layer_1(sfSprite ***map, game_ *game, int movement);
 sfSprite ***my_malloc_map_sprite(int colum, int lines);
 char ***my_malloc_map(int colum, int lines);
 void init_map_square(char ***map, int y, int x);
-void move_background(sfSprite ***map, int movement, int y, int x);
+void move_tiles(sfSprite ***map, int movement, int y, int x);
 void move_map(char ***map, int movement, int y, int x);
 void display_layer_2(sfSprite ***map, game_ *game, int movement);
 char ***get_map_2(load_map_ *load_map);
@@ -109,5 +81,15 @@ void display_hitbox(game_ *game, grid_cell_ *grid,
 gen_control_ *gen_control, paint_ *paint);
 int display_layer(sfSprite ***map, game_ *game, int movement);
 void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control);
+int wall_moov(game_ *game, grid_cell_ *wall_1, grid_cell_ *wall_2);
+int moov_up_(grid_cell_ *grid);
+int moov_down_(grid_cell_ *grid);
+int moov_left_(grid_cell_ *grid);
+int moov_right_(grid_cell_ *grid);
+int display_layer_h(sfSprite ***map, game_ *game, sfVector2f pos);
+void move_player(player_ *player);
+void display_layer_hit(sfSprite ***map, game_ *game, int y,
+sfVector2f pos);
+void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep);
 
 #endif /* !MAP_GRID_H_ */

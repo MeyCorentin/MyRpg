@@ -9,18 +9,18 @@
 
 void move_player(player_ *player)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
+    if (sfKeyboard_isKeyPressed(sfKeyZ) && player->m_up == 1)
         player->movement = 2;
-    if (sfKeyboard_isKeyPressed(sfKeyS))
+    if (sfKeyboard_isKeyPressed(sfKeyS) && player->m_down == 1)
         player->movement = 0;
-    if (sfKeyboard_isKeyPressed(sfKeyQ))
+    if (sfKeyboard_isKeyPressed(sfKeyQ) && player->m_left == 1)
         player->movement = 3;
-    if (sfKeyboard_isKeyPressed(sfKeyD))
+    if (sfKeyboard_isKeyPressed(sfKeyD) && player->m_right == 1)
         player->movement = 1;
     sfSprite_setPosition(player->sprite, player->position);
 }
 
-void update_player(game_ *game, player_ *player)
+void update_player(game_ *game, player_ *player, sfSprite ***hitbox)
 {
     player->movement = 4;
     player->time = sfClock_getElapsedTime(player->clock);

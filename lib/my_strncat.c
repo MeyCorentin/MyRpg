@@ -19,6 +19,15 @@ char *my_strcat(char *dest, char const *src)
     return (dest);
 }
 
+char *my_strcat_(char *dest, char src)
+{
+    int size = my_strlen(dest);
+
+    dest[size] = src;
+    dest[size + 1] = '\0';
+    return (dest);
+}
+
 char *my_strncat(char *dest, char const *src, int nb)
 {
     int size = my_strlen(dest);

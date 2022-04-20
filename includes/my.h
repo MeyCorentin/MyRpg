@@ -25,5 +25,6 @@ int puissance(int y);
 char **str_to_array(char *map, char stop);
 void my_fputstr(char const *str, char *file_name);
 char **my_split_tab(char *argv, char char_);
+char *my_strcat_(char *dest, char src);
 
 #endif /* MY_H_ */

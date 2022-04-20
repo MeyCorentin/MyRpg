@@ -45,7 +45,7 @@ gen_control_ *gen_control)
     sfColor hit = {255, 0, 0, 150};
 
     grid->hitbox->position = sprite_pos;
-    grid->hitbox_id = 6666;
+    grid->hitbox_id = gen_control->selected->id;
     grid->hitbox->ok = 1;
     grid->hitbox->sprite =
     sfSprite_copy(gen_control->selected->sprite);

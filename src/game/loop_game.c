@@ -24,26 +24,6 @@ void check_event_game(game_ *game)
     }
 }
 
-void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
-{
-    move_rep(rep, game->player->movement);
-    display_load_map(layer->map, game, game->player->movement);
-    display_layer(layer->map_layer_1, game, game->player->movement);
-    if (atoi(layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
-    [(int)((950 - pos.x) / 40)]) != 1945 ||
-    atoi(layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
-    [(int)((950 - pos.x - 80) / 40)]) != 1945) {
-        update_bar(game);
-        update_player(game, game->player);
-        display_layer(layer->map_layer_2, game, game->player->movement);
-    } else {
-        display_layer(layer->map_layer_2, game, game->player->movement);
-        update_bar(game);
-        update_player(game, game->player);
-    }
-    update_inv(game);
-}
-
 void set_game(game_ *game)
 {
     create_player(game);
@@ -61,7 +41,7 @@ void launch_game(game_ *game)
     gen_control_ *gen_control = malloc(sizeof(gen_control_));
     load_map_ *load_map = malloc(sizeof(load_map_));
     sfSprite *rep = sfSprite_create();
-
+    game->layer_ = layer;
     init_layer(layer, load_map, gen_control);
     set_game(game);
     add_items(game, game->first_item);

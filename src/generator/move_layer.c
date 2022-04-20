@@ -9,8 +9,7 @@
 
 void move_rep(sfSprite *rep, int movement)
 {
-    sfVector2f pos =
-    sfSprite_getPosition(rep);
+    sfVector2f pos = sfSprite_getPosition(rep);
 
     if (movement == 0)
         pos.y -= 3;
@@ -39,10 +38,9 @@ void move_map(char ***map, int movement, int y, int x)
     sfRectangleShape_setPosition((sfRectangleShape *)map[y][x], pos);
 }
 
-void move_background(sfSprite ***map, int movement, int y, int x)
+void move_tiles(sfSprite ***map, int movement, int y, int x)
 {
-    sfVector2f pos =
-    sfSprite_getPosition((sfSprite *)map[y][x]);
+    sfVector2f pos = sfSprite_getPosition((sfSprite *)map[y][x]);
 
     if (movement == 0)
         pos.y -= 3;

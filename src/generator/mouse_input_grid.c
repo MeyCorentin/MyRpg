@@ -48,11 +48,15 @@ gen_control_ *gen_control)
         grid->click = 0;
         if (game->layer == 1) {
             (grid->foreground->ok == 1) ? grid->foreground->sprite = NULL,
-            grid->foreground->ok = 0 : 1;
+            grid->foreground->ok = 0, grid->foreground_id = 1945 : 1;
         }
         if (game->layer == 0) {
             (grid->background->ok == 1) ? grid->background->sprite = NULL,
-            grid->background->ok = 0 : 1;
+            grid->background->ok = 0, grid->background_id = 1721 : 1;
+        }
+        if (game->layer == 2) {
+            (grid->hitbox->ok == 1) ? grid->hitbox->sprite = NULL,
+            grid->hitbox->ok = 0, grid->hitbox_id = 1945 : 1;
         }
     }
     if (grid->next_cell != NULL)

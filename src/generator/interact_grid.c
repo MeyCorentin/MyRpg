@@ -52,6 +52,27 @@ int map_key_moov(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
     return (0);
 }
 
+int wall_moov(game_ *game, grid_cell_ *wall_1, grid_cell_ *wall_2)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyZ)) {
+        moov_up_(wall_1);
+        moov_up_(wall_2);
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyS)) {
+        moov_down_(wall_1);
+        moov_down_(wall_2);
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
+        moov_left_(wall_1);
+        moov_left_(wall_2);
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyD)) {
+        moov_right_(wall_1);
+        moov_right_(wall_2);
+    }
+    return (0);
+}
+
 int map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
 {
     map_key_moov(game, grid, gen_control);
@@ -60,6 +81,7 @@ int map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
     (sfKeyboard_isKeyPressed(sfKeyUp)) ? (game->layer = 1) : 1;
     (sfKeyboard_isKeyPressed(sfKeyDown)) ? (game->layer = 0) : 1;
     (sfKeyboard_isKeyPressed(sfKeyRight)) ? (game->layer = 2) : 1;
+    (sfKeyboard_isKeyPressed(sfKeyLeft)) ? (game->layer = 3) : 1;
     page_handle(gen_control);
     if (sfKeyboard_isKeyPressed(sfKeyEscape))
         loop_menu(game, game->menu);

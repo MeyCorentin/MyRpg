@@ -16,6 +16,34 @@
 #ifndef PROJECT_H_
     #define PROJECT_H_
 
+typedef struct grid_cell {
+    int x;
+    int y;
+    int pos_x;
+    int pos_y;
+    int size_x;
+    int size_y;
+    int size;
+    int l_pos;
+    int g_pos;
+    int ground;
+    int click;
+    int foreground_id;
+    int background_id;
+    int hitbox_id;
+    int is_sprite;
+    sfRectangleShape *rect;
+    struct grid_cell *next_cell;
+    struct grid_cell *prev_cell;
+    struct sprite *foreground;
+    struct sprite *background;
+    struct sprite *hitbox;
+} grid_cell_;
+
+typedef struct paint {
+    int scale;
+} paint_;
+
 typedef struct animal {
     sfSprite *sprite;
     sfTexture *texture;
@@ -138,20 +166,6 @@ typedef struct load_map {
     int x_size;
 } load_map_;
 
-typedef struct player {
-    sfSprite *sprite;
-    sfTexture *texture;
-    sfVector2f position;
-    sfVector2f scale;
-    sfIntRect rect;
-    sfClock *clock;
-    sfTime time;
-    int secs;
-    int movement;
-    int gold;
-    int life;
-} player_;
-
 typedef struct layer {
     char ***map;
     char ***map_2;
@@ -162,8 +176,27 @@ typedef struct layer {
     char ***id_background ;
     char ***id_foreground ;
     char ***id_hitbox ;
-
 } layer_;
+
+typedef struct player {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f position;
+    sfVector2f scale;
+    sfIntRect rect;
+    sfClock *clock;
+    sfTime time;
+    sfSprite *rep;
+    int secs;
+    int movement;
+    int gold;
+    int life;
+    int m_up;
+    int m_down;
+    int m_left;
+    int m_right;
+    layer_ *layer;
+} player_;
 
 typedef struct sounds {
     sfMusic *ocean;
@@ -219,6 +252,7 @@ typedef struct clock {
 } clock_;
 
 typedef struct game {
+    char *map;
     sfRenderWindow *window;
     sfEvent event;
     cursor_ *cursor;
@@ -233,6 +267,12 @@ typedef struct game {
     int  on_inv;
     int layer;
     int speed;
+    grid_cell_ *wall_1;
+    grid_cell_ *wall_2;
+    layer_ *layer_;
+    sfSprite ***background;
+    sfSprite ***foreground;
+    sfSprite ***hitbox;
 } game_;
 
 void check_event_game(game_ *game);
@@ -240,7 +280,7 @@ int global_gestion(int argc, char **argv);
 sfIntRect change_rect(sfIntRect rect, float x, float y);
 void launch_game(game_ *game);
 void create_player(game_ *game);
-void update_player(game_ *game, player_ *player);
+void update_player(game_ *game, player_ *player, sfSprite ***hitbox);
 void create_inventory(game_ *game);
 void update_inventory(game_ *game);
 void draw_items(game_ *game, item_ *item, int movement, int status);
