@@ -329,6 +329,7 @@ typedef struct game {
     sfSprite ***hitbox;
     bonus_ *bonus;
     boole_ *boole;
+    text_ *who;
 } game_;
 
 void check_event_game(game_ *game);
