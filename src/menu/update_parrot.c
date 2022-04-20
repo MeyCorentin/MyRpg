@@ -90,7 +90,7 @@ void check_parrot(game_ *game, menu_ *menu, sfVector2i mouse)
             menu->parrot->position.y = mouse.y - 24;
             sfSprite_setPosition(menu->parrot->sprite, menu->parrot->position);
         }
-        game->on_button = 0;
+        game->boole->on_button = 0;
     } else
         menu->on_parrot = 1;
     sfSprite_setPosition(menu->parrot->sprite, menu->parrot->position);

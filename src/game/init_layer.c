@@ -8,7 +8,7 @@
 #include "../../includes/rpg.h"
 
 void init_layer_1(layer_ *layer, load_map_ *load_map,
-gen_control_ *gen_control)
+gen_control_ *gen_control, int season)
 {
     get_size("background.txt", load_map);
     get_size_2("test.txt", load_map);
@@ -26,7 +26,7 @@ gen_control_ *gen_control)
 }
 
 void init_layer_2(layer_ *layer, load_map_ *load_map,
-gen_control_ *gen_control)
+gen_control_ *gen_control, int season)
 {
     get_size("background.txt", load_map);
     get_size_2("test.txt", load_map);
@@ -44,7 +44,7 @@ gen_control_ *gen_control)
 }
 
 void init_layer_3(layer_ *layer, load_map_ *load_map,
-gen_control_ *gen_control)
+gen_control_ *gen_control, int season)
 {
     get_size("background.txt", load_map);
     get_size_2("test.txt", load_map);
@@ -62,9 +62,10 @@ gen_control_ *gen_control)
     layer->id_hitbox = id_hitbox;
 }
 
-void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control)
+void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control,
+int season)
 {
-    init_layer_1(layer, load_map, gen_control);
-    init_layer_2(layer, load_map, gen_control);
-    init_layer_3(layer, load_map, gen_control);
+    init_layer_1(layer, load_map, gen_control, season);
+    init_layer_2(layer, load_map, gen_control, season);
+    init_layer_3(layer, load_map, gen_control, season);
 }

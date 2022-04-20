@@ -14,7 +14,7 @@ void display_load_map(char ***map, game_ *game, int movement)
 
     for (y = 0; map[y]; y++) {
         for (x = 0; map[y][x]; x++) {
-            move_map(map, movement, y, x);
+            move_map((sfRectangleShape *)map[y][x], movement, game);
             sfRenderWindow_drawRectangleShape(game->window,
             (sfRectangleShape *)map[y][x], sfFalse);
         }
@@ -27,7 +27,7 @@ void display_layer_(sfSprite ***map, game_ *game, int movement, int y)
 
     for (x = 0; map[y][x]; x++) {
         if (map[y][x] != NULL) {
-            move_background(map, movement, y, x);
+            move_background((sfSprite *)map[y][x], movement, game);
             sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse);
         }
     }

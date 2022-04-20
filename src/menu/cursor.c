@@ -9,7 +9,7 @@
 
 void event_cursor(game_ *game)
 {
-    if (game->on_button == 0)
+    if (game->boole->on_button == 0)
         sfSprite_setTexture
         (game->cursor->sprite, game->cursor->clicked, sfFalse);
     else

@@ -138,6 +138,12 @@ typedef struct load_map {
     int x_size;
 } load_map_;
 
+typedef struct stats {
+    int life;
+    int attack;
+    float speed;
+} stats_;
+
 typedef struct player {
     sfSprite *sprite;
     sfTexture *texture;
@@ -149,7 +155,7 @@ typedef struct player {
     int secs;
     int movement;
     int gold;
-    int life;
+    stats_ *stats;
 } player_;
 
 typedef struct layer {
@@ -175,6 +181,41 @@ typedef struct sounds {
     sfSound *trash;
 } sounds_;
 
+typedef struct bonus {
+    int all;
+    int life;
+    int attack;
+    int gold;
+    int speed;
+} bonus_;
+
+typedef struct chained_skill {
+    struct chained_skill *first;
+    struct chained_skill *prev;
+    sfSprite *skill;
+    sfVector2f pos_skill;
+    sfVector2f pos_skill2;
+    int type;
+    int value;
+    int active;
+    struct chained_skill *next;
+    int price;
+    sfText *infos;
+    sfText *cost;
+    sfVector2f pos_infos;
+    sfVector2f scale;
+    sfVector2f pos_cost;
+} chained_skill_;
+
+typedef struct skill_tree {
+    sfSprite *back;
+    sfTexture *t_back;
+    sfTexture *tree;
+    chained_skill_ *first_skill;
+    int x;
+    int y;
+} skill_tree_;
+
 typedef struct item {
     sfSprite *sprite;
     sfTexture *texture;
@@ -191,6 +232,11 @@ typedef struct item {
     int is_get;
 } item_;
 
+typedef struct life {
+    button_ *hearth;
+    struct life *next;
+} life_;
+
 typedef struct inventory {
     int page;
     char ***inv;
@@ -199,6 +245,9 @@ typedef struct inventory {
     button_ *bar;
     button_ *select;
     text_ *gold;
+    skill_tree_ *tree;
+    life_ *life;
+    int x_hearth;
 } inventory_;
 
 typedef struct clock {
@@ -218,6 +267,12 @@ typedef struct clock {
     sfColor color;
 } clock_;
 
+typedef struct boole {
+    int on_button;
+    int on_inv;
+    int on_tree;
+} boole_;
+
 typedef struct game {
     sfRenderWindow *window;
     sfEvent event;
@@ -229,10 +284,10 @@ typedef struct game {
     clock_ *clock;
     item_ *first_item;
     sfVector2i mouse;
-    int on_button;
-    int  on_inv;
     int layer;
     int speed;
+    bonus_ *bonus;
+    boole_ *boole;
 } game_;
 
 void check_event_game(game_ *game);
@@ -258,5 +313,17 @@ void delete_item(item_ *item, game_ *game);
 void update_bar(game_ *game);
 void create_ath(game_ *game);
 void update_time(game_ *game);
+void loop_tree(game_ *game);
+chained_skill_ *get_last_skill(game_ *game, int cmpt, int level);
+chained_skill_ *check_prev(game_ *game, int cmpt);
+void draw_skill_tree(game_ *game, chained_skill_ *skill);
+void create_tree(game_ *game);
+void set_string_skills(game_ *game, chained_skill_ *skill);
+chained_skill_ *create_skill(game_ *game, int cmpt, int level);
+void active_bonus(game_ *game, chained_skill_ *skill);
+void create_bonus(game_ *game);
+void draw_hearth(game_ *game, life_ *hearth, int nb);
+void create_life(game_ *game);
+void add_hearth(life_ *hearth, int x, game_ *game);
 
 #endif /* PROJECT_H_ */

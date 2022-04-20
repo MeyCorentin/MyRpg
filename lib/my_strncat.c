@@ -9,14 +9,18 @@
 
 char *my_strcat(char *dest, char const *src)
 {
-    int size = my_strlen(dest);
     int cmpt;
+    char *result = malloc(sizeof(char) *
+    (my_strlen(src) + my_strlen(dest) + 1));
 
-    for (cmpt = 0; src[cmpt] != '\0'; cmpt += 1) {
-        dest[size + cmpt] = src[cmpt];
+    for (cmpt = 0; dest[cmpt] != '\0'; cmpt += 1)
+        result[cmpt] = dest[cmpt];
+    for (int i = 0; src[i] != '\0'; cmpt += 1, i += 1) {
+        result[cmpt] = src[i];
     }
-    dest[size + cmpt] = '\0';
-    return (dest);
+    result[cmpt] = '\0';
+    my_printf("RESULT : %s\n", result);
+    return (result);
 }
 
 char *my_strncat(char *dest, char const *src, int nb)

@@ -43,20 +43,18 @@ void do_settings(game_ *game, int action)
     if (action == 0) {
         sfRenderWindow_setFramerateLimit(game->window, 120);
         game->speed = 1;
-    }
-    if (action == 1) {
+    } if (action == 1) {
         sfRenderWindow_setFramerateLimit(game->window, 60);
         game->speed = 2;
-    }
-    if (action == 2) {
+    } if (action == 2) {
         sfRenderWindow_setFramerateLimit(game->window, 30);
         game->speed = 4;
-    }
-    if (action == 3) {
+    } if (action == 3) {
+        sfMusic_stop(game->sounds->ocean);
         sfRenderWindow_close(game->window);
         launch_menu((sfVideoMode){1920, 1080, 120}, (sfVector2u){1920, 1080});
-    }
-    if (action == 4) {
+    } if (action == 4) {
+        sfMusic_stop(game->sounds->ocean);
         sfRenderWindow_close(game->window);
         launch_menu((sfVideoMode){800, 600, 120}, (sfVector2u){800, 600});
     }
@@ -68,7 +66,7 @@ void is_on_button(game_ *game, text_ *text, int len, int action)
     len && game->mouse.y > text->position.y && game->mouse.y < text->position.y
     + 60) {
         sfText_setColor(text->text, sfRed);
-        game->on_button = 0;
+        game->boole->on_button = 0;
         if (game->event.type == sfEvtMouseButtonReleased) {
             sfSound_play(game->sounds->click);
             do_settings(game, action);

@@ -39,14 +39,22 @@ void check_all_buttons(game_ *game, menu_ *menu)
     check_saves(game, menu->saves->first, 4, menu);
     check_saves(game, menu->saves->second, 5, menu);
     check_saves(game, menu->saves->third, 6, menu);
+    check_parrot(game, menu, game->mouse);
+    check_on_coin(game, menu->coin, menu->parrot);
+    check_settings(game, menu, 0);
+    check_help(game, menu, 0);
+    event_cursor(game);
 }
 
 void check_event_menu(game_ *game, menu_ *menu)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
-        if (game->event.type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyE))
+        if (game->event.type == sfEvtClosed ||
+        sfKeyboard_isKeyPressed(sfKeyE)) {
+            sfMusic_stop(game->sounds->ocean);
             sfRenderWindow_close(game->window);
+        }
         if (sfKeyboard_isKeyPressed(sfKeyN))
             launch_game(game);
         if (sfKeyboard_isKeyPressed(sfKeyL))
@@ -56,11 +64,6 @@ void check_event_menu(game_ *game, menu_ *menu)
         if (menu->on_load == 0 && sfKeyboard_isKeyPressed(sfKeyEscape))
             menu->on_load = 1;
         check_all_buttons(game, menu);
-        check_parrot(game, menu, game->mouse);
-        check_on_coin(game, menu->coin, menu->parrot);
-        check_settings(game, menu, 0);
-        check_help(game, menu, 0);
-        event_cursor(game);
     }
 }
 
@@ -70,7 +73,7 @@ void loop_menu(game_ *game, menu_ *menu)
     while (sfRenderWindow_isOpen(game->window)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
         menu->back->rect.top = 0;
-        game->on_button = 1;
+        game->boole->on_button = 1;
         sfRenderWindow_clear(game->window, sfBlue);
         check_event_menu(game, menu);
         draw_menu(game, menu);
@@ -95,5 +98,6 @@ void launch_menu(sfVideoMode mode, sfVector2u size)
     create_audios(game);
     game->speed = 1;
     menu->on_load = 1;
+    game->boole = malloc(sizeof(boole_));
     loop_menu(game, menu);
 }
