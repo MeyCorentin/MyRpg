@@ -11,9 +11,9 @@ void update_inv(game_ *game)
 {
     update_inventory(game);
     update_bestiary(game);
-    if (game->boole->on_inv == 0)
+    if (game->boole->on_inv == 0) {
         draw_items(game, game->first_item, game->player->movement, 0);
-    if (game->boole->on_tree == 0)
+    } if (game->boole->on_tree == 0)
         loop_tree(game);
     update_time(game);
     draw_hearth(game, game->inv->life, game->player->stats->life);
@@ -43,15 +43,9 @@ void clear_all(game_ *game)
     game->boole->on_girl = 1;
 }
 
-void open_close_inv(game_ *game)
+void check_cross(game_ *game)
 {
-    if (game->boole->on_inv == 1 && sfKeyboard_isKeyPressed(sfKeyI) &&
-    game->clock->check_secs != 0) {
-        game->clock->check_secs = 0;
-        game->boole->on_best = 1;
-        game->boole->on_inv = 0;
-        inv_to_bar(game->first_item, game);
-    } if ((game->boole->on_inv == 0 || game->boole->on_quit == 0 ||
+    if ((game->boole->on_inv == 0 || game->boole->on_quit == 0 ||
     game->boole->on_map == 0 || game->boole->on_girl == 0 ||
     game->boole->on_stats == 0 || game->boole->on_craft == 0 ||
     game->boole->on_potion == 0 || game->boole->on_pad == 0) &&
@@ -64,6 +58,18 @@ void open_close_inv(game_ *game)
         clear_all(game);
         inv_to_bar(game->first_item, game);
     }
+}
+
+void open_close_inv(game_ *game)
+{
+    if (game->boole->on_inv == 1 && sfKeyboard_isKeyPressed(sfKeyI) &&
+    game->clock->check_secs != 0) {
+        game->clock->check_secs = 0;
+        game->boole->on_best = 1;
+        game->boole->on_inv = 0;
+        inv_to_bar(game->first_item, game);
+    }
+    check_cross(game);
     open_other_pages(game);
     if (game->boole->on_tree == 1 && game->mouse.x > 1310 && game->mouse.x <
     1350 && game->mouse.y > 280 &&

@@ -40,6 +40,19 @@ sfIntRect rect, int max)
     }
 }
 
+void move_enemy(enemy_ *enemy, int movement, game_ *game)
+{
+    if (movement == 0)
+        enemy->position.y -= 3 + game->player->stats->speed;
+    if (movement == 1)
+        enemy->position.x -= 3 + game->player->stats->speed;
+    if (movement == 2)
+        enemy->position.y += 3 + game->player->stats->speed;
+    if (movement == 3)
+        enemy->position.x += 3 + game->player->stats->speed;
+    sfSprite_setPosition(enemy->sprite, enemy->position);
+}
+
 void update_enemy(enemy_ *enemy, game_ *game)
 {
     enemy->time = sfClock_getElapsedTime(enemy->clock);
@@ -51,6 +64,7 @@ void update_enemy(enemy_ *enemy, game_ *game)
     if (enemy->rect.left > enemy->max - enemy->rect.width)
         enemy->rect.left = enemy->start;
     sfSprite_setTextureRect(enemy->sprite, enemy->rect);
+    move_enemy(enemy, game->player->movement, game);
     sfRenderWindow_drawSprite(game->window, enemy->sprite, sfFalse);
     if (enemy->next != NULL)
         update_enemy(enemy->next, game);

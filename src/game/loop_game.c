@@ -7,14 +7,9 @@
 
 #include "../../includes/rpg.h"
 
-void check_event_game(game_ *game)
+void check_if_quit(game_ *game)
 {
-    while (sfRenderWindow_pollEvent(game->window, &game->event)) {
-        game->mouse = sfMouse_getPositionRenderWindow(game->window);
-        if (game->event.type == sfEvtClosed) {
-            sfMusic_stop(game->sounds->summer_day);
-            sfRenderWindow_close(game->window);
-        } if (sfKeyboard_isKeyPressed(sfKeyEscape) && game->boole->on_quit == 1
+    if (sfKeyboard_isKeyPressed(sfKeyEscape) && game->boole->on_quit == 1
         && game->boole->on_inv == 1 && game->boole->on_girl == 1 &&
         game->boole->on_stats == 1 && game->boole->on_map == 1 &&
         game->boole->on_potion == 1 && game->boole->on_craft == 1 &&
@@ -22,7 +17,18 @@ void check_event_game(game_ *game)
         && game->clock->check_secs != 0) {
             game->boole->on_quit = 0;
             game->clock->check_secs = 0;
+    }
+}
+
+void check_event_game(game_ *game)
+{
+    while (sfRenderWindow_pollEvent(game->window, &game->event)) {
+        game->mouse = sfMouse_getPositionRenderWindow(game->window);
+        if (game->event.type == sfEvtClosed) {
+            sfMusic_stop(game->sounds->summer_day);
+            sfRenderWindow_close(game->window);
         }
+        check_if_quit(game);
         open_close_hint(game);
         event_cursor(game);
         move_select(game);
@@ -54,7 +60,6 @@ void set_game(game_ *game)
     game->boole->on_stats = 1;
     game->boole->on_potion = 1;
     game->boole->on_craft = 1;
-    game->first = NULL;
     game->boole->on_hint = 0;
 }
 
@@ -78,7 +83,6 @@ void launch_game(game_ *game)
         sfRenderWindow_clear(game->window, (sfColor){150, 150, 150, 150});
         check_event_game(game);
         launch_layer(game, layer, pos, rep);
-        update_enemy(game->first, game);
         sfRenderWindow_display(game->window);
     }
 }

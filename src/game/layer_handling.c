@@ -65,6 +65,7 @@ void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
     move_page_best_right(game);
     move_page_best_left(game);
     sfRenderWindow_drawSprite(game->window, game->clock->light, sfFalse);
+    update_enemy(game->first, game);
     update_inv(game);
     move_rep(rep, game->player->movement, game);
 }
