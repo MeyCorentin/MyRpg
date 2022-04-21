@@ -12,7 +12,7 @@ enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max)
     enemy_ *new = malloc(sizeof(enemy_));
 
     new->sprite = sfSprite_create();
-    new->texture = sfTexture_createFromFile("pictures/enemys.png", NULL);
+    new->texture = sfTexture_createFromFile("pictures/env/all_mob.png", NULL);
     new->scale = (sfVector2f){3, 3};
     new->position = position;
     new->rect = rect;
@@ -31,12 +31,13 @@ enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max)
 void get_last_enemy(enemy_ *enemy, sfVector2f position,
 sfIntRect rect, int max)
 {
-    if (enemy->next != NULL)
+    if (enemy->next != NULL) {
+        printf("In elseif\n");
         get_last_enemy(enemy->next, position, rect, max);
-    else if (!enemy)
-        enemy = create_enemy(position, rect, max);
-    else
+    } else {
+        printf("In else\n");
         enemy->next = create_enemy(position, rect, max);
+    }
 }
 
 void update_enemy(enemy_ *enemy, game_ *game)

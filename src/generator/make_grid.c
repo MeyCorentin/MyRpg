@@ -18,6 +18,9 @@ void init_rect_2(grid_cell_ *grid, sfRectangleShape *rect, int x, int y)
     grid->hitbox = malloc(sizeof(sprite_));
     grid->hitbox->sprite = NULL;
     grid->hitbox->ok = 0;
+    grid->mob = malloc(sizeof(sprite_));
+    grid->mob->sprite = NULL;
+    grid->mob->ok = 0;
     grid->background_id = 1721;
     grid->foreground_id = 1945;
     grid->hitbox_id = 1945;
@@ -61,6 +64,10 @@ struct grid_cell *grid)
     new->hitbox->sprite = NULL;
     new->hitbox_id = 1945;
     new->hitbox->ok = 0;
+    new->mob = malloc(sizeof(sprite_));
+    new->mob->sprite = NULL;
+    new->mob_id = 1945;
+    new->mob->ok = 0;
 }
 
 int create_map(game_ *game, struct grid_cell *grid, int x, int y)
@@ -86,15 +93,20 @@ int create_map(game_ *game, struct grid_cell *grid, int x, int y)
     (create_map(game, grid->next_cell, x, y)) : 1);
 }
 
-void draw_ath(game_ *game, gen_control_ *gen_control)
+void draw_ath(game_ *game)
 {
-    sfRenderWindow_drawSprite(game->window, gen_control->down->sprite,
+    sfRenderWindow_drawSprite(game->window, game->gen_control->down->sprite,
     sfFalse);
-    sfRenderWindow_drawSprite(game->window, gen_control->up->sprite, sfFalse);
-    sfRenderWindow_drawSprite(game->window, gen_control->zoom_down->sprite,
+    sfRenderWindow_drawSprite(game->window, game->gen_control->up->sprite,
     sfFalse);
-    sfRenderWindow_drawSprite(game->window, gen_control->zoom_up->sprite,
+    sfRenderWindow_drawSprite(game->window,
+    game->gen_control->zoom_down->sprite, sfFalse);
+    sfRenderWindow_drawSprite(game->window, game->gen_control->zoom_up->sprite,
     sfFalse);
-    sfRenderWindow_drawSprite(game->window, gen_control->selected->sprite,
-    sfFalse);
+    if (game->layer == 3)
+        sfRenderWindow_drawSprite(game->window,
+        game->gen_control_mob->selected->sprite, sfFalse);
+    else
+        sfRenderWindow_drawSprite(game->window,
+        game->gen_control->selected->sprite, sfFalse);
 }

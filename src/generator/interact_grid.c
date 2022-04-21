@@ -11,26 +11,6 @@
 #include <stdio.h>
 #include "../../includes/rpg.h"
 
-void page_handle(gen_control_ *gen_control)
-{
-    if (sfKeyboard_isKeyPressed(sfKeyNum1)) {
-        create_gen(gen_control, 1);
-        gen_control->sprites_on = 0;
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyNum2)) {
-        create_gen(gen_control, 2);
-        gen_control->sprites_on = 0;
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyNum3)) {
-        create_gen(gen_control, 3);
-        gen_control->sprites_on = 0;
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyNum4)) {
-        create_gen(gen_control, 4);
-        gen_control->sprites_on = 0;
-    }
-}
-
 int map_key_moov(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
@@ -73,26 +53,25 @@ int wall_moov(game_ *game, grid_cell_ *wall_1, grid_cell_ *wall_2)
     return (0);
 }
 
-int map_key_input(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
+int map_key_input(game_ *game, grid_cell_ *grid)
 {
-    map_key_moov(game, grid, gen_control);
+    map_key_moov(game, grid, game->gen_control);
+    map_key_moov(game, grid, game->gen_control_mob);
     (sfKeyboard_isKeyPressed(sfKeyR)) ? (reset_grid(grid)) : 1;
     (sfKeyboard_isKeyPressed(sfKeyEnter)) ? (save_all(game, grid)) : 1;
     (sfKeyboard_isKeyPressed(sfKeyUp)) ? (game->layer = 1) : 1;
     (sfKeyboard_isKeyPressed(sfKeyDown)) ? (game->layer = 0) : 1;
     (sfKeyboard_isKeyPressed(sfKeyRight)) ? (game->layer = 2) : 1;
     (sfKeyboard_isKeyPressed(sfKeyLeft)) ? (game->layer = 3) : 1;
-    page_handle(gen_control);
     if (sfKeyboard_isKeyPressed(sfKeyEscape))
         loop_menu(game, game->menu);
     return (0);
 }
 
-void map_mouse_input(game_ *game, grid_cell_ *grid,
-paint_ *paint, gen_control_ *gen_control)
+void map_mouse_input(game_ *game, grid_cell_ *grid, paint_ *paint)
 {
     if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue)
-        left_click_grid(game, grid, paint, gen_control);
+        left_click_grid(game, grid, paint);
     if (sfMouse_isButtonPressed(sfMouseRight) == sfTrue)
-        right_click_grid(game, grid, paint, gen_control);
+        right_click_grid(game, grid, paint, game->gen_control);
 }

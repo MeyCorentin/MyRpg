@@ -20,11 +20,24 @@ paint_ *paint)
             sfRectangleShape_setFillColor(grid->rect, sfWhite);
     }
     if (grid->click == 1 && grid->foreground->sprite == NULL &&
-    grid->background->sprite == NULL && grid->hitbox->sprite == NULL)
+    grid->background->sprite == NULL && grid->hitbox->sprite == NULL
+    && grid->mob->sprite == NULL)
         sfRectangleShape_setFillColor(grid->rect, sfBlue);
     sfRenderWindow_drawRectangleShape(game->window, grid->rect, sfFalse);
     if (grid->next_cell != NULL)
         display_square(game, grid->next_cell, gen_control, paint);
+}
+
+void gen_control_disp(game_ *game)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyO)) {
+        game->gen_control->sprites_on = 0;
+        game->gen_control_mob->sprites_on = 0;
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyEscape)) {
+        game->gen_control->sprites_on = 1;
+        game->gen_control_mob->sprites_on = 1;
+    }
 }
 
 void draw_env(game_ *game, sprite_ *sprite)
@@ -34,15 +47,17 @@ void draw_env(game_ *game, sprite_ *sprite)
         draw_env(game, sprite->next);
 }
 
-void display_all(game_ *game, grid_cell_ *grid,
-gen_control_ *gen_control, paint_ *paint)
+void display_all(game_ *game, grid_cell_ *grid, paint_ *paint)
 {
-    display_square(game, grid, gen_control, paint);
-    display_background(game, grid, gen_control, paint);
-    display_foreground(game, grid, gen_control, paint);
-    display_hitbox(game, grid, gen_control, paint);
-    draw_ath(game, gen_control);
+    display_square(game, grid, game->gen_control, paint);
+    display_background(game, grid, paint);
+    display_foreground(game, grid, paint);
+    display_hitbox(game, grid, paint);
+    display_mob(game, grid, paint);
+    draw_ath(game);
+    if (game->gen_control->sprites_on == 0 && game->layer == 3)
+        draw_sprites_gen(game, game->gen_control_mob);
+    else
+        draw_sprites_gen(game, game->gen_control);
     update_cursor(game);
-    if (gen_control->sprites_on == 0)
-        draw_sprites_gen(game, gen_control);
 }

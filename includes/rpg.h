@@ -31,6 +31,7 @@ typedef struct grid_cell {
     int foreground_id;
     int background_id;
     int hitbox_id;
+    int mob_id;
     int is_sprite;
     sfRectangleShape *rect;
     struct grid_cell *next_cell;
@@ -38,6 +39,7 @@ typedef struct grid_cell {
     struct sprite *foreground;
     struct sprite *background;
     struct sprite *hitbox;
+    struct sprite *mob;
 } grid_cell_;
 
 typedef struct paint {
@@ -162,6 +164,7 @@ typedef struct load_map {
     char *back_full;
     char *fore_full;
     char *hit_full;
+    char *mob_full;
     int y_size;
     int x_size;
 } load_map_;
@@ -176,12 +179,15 @@ typedef struct layer {
     char ***map;
     char ***map_2;
     char ***map_3;
-    sfSprite ***map_layer_1 ;
-    sfSprite ***map_layer_2 ;
-    sfSprite ***map_layer_3 ;
-    char ***id_background ;
-    char ***id_foreground ;
-    char ***id_hitbox ;
+    char ***map_4;
+    sfSprite ***map_layer_1;
+    sfSprite ***map_layer_2;
+    sfSprite ***map_layer_3;
+    sfSprite ***map_layer_4;
+    char ***id_background;
+    char ***id_foreground;
+    char ***id_hitbox;
+    char ***id_mob;
 } layer_;
 
 typedef struct player {
@@ -291,6 +297,16 @@ typedef struct inventory {
     int x_hearth;
 } inventory_;
 
+typedef struct bestiary {
+    button_ *back;
+    int on_best;
+    int page;
+    text_ *page_l;
+    text_ *page_r;
+    button_ *arrow_l;
+    button_ *arrow_r;
+} bestiary_;
+
 typedef struct clock {
     sfClock *clock;
     sfTime time;
@@ -319,6 +335,8 @@ typedef struct boole {
     int on_potion;
     int on_pad;
     int on_tree;
+    int on_best;
+    int on_hint;
 } boole_;
 
 typedef struct enemy {
@@ -337,6 +355,8 @@ typedef struct enemy {
 
 typedef struct game {
     char *map;
+    gen_control_ *gen_control;
+    gen_control_ *gen_control_mob;
     sfRenderWindow *window;
     sfEvent event;
     cursor_ *cursor;
@@ -344,6 +364,7 @@ typedef struct game {
     menu_ *menu;
     sounds_ *sounds;
     inventory_ *inv;
+    bestiary_ *best;
     clock_ *clock;
     item_ *first_item;
     sfVector2i mouse;
@@ -357,6 +378,7 @@ typedef struct game {
     sfSprite ***hitbox;
     bonus_ *bonus;
     boole_ *boole;
+    int hint;
     text_ *who;
     enemy_ *first;
 } game_;
@@ -400,7 +422,13 @@ void change_window(game_ *game);
 void open_other_pages(game_ *game);
 void clear_all(game_ *game);
 void update_enemy(enemy_ *enemy, game_ *game);
-void get_last_enemy(enemy_ *enemy, char *filepath, sfVector2f position,
-sfIntRect rect);
+void get_last_enemy(enemy_ *enemy, sfVector2f position,
+sfIntRect rect, int max);
+void create_bestiary(game_ *game);
+void update_bestiary(game_ *game);
+void open_close_best(game_ *game);
+int move_page_best_left(game_ *game);
+int move_page_best_right(game_ *game);
+enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max);
 
 #endif /* PROJECT_H_ */

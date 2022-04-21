@@ -55,7 +55,7 @@ void interact_sprite(game_ *game, sprite_ *sprite, gen_control_ *gen_control)
         interact_sprite(game, sprite->next, gen_control);
 }
 
-void check_event_gen(game_ *game, gen_control_ *gen_control, paint_ *paint)
+void check_event_gen(game_ *game, paint_ *paint)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
@@ -65,12 +65,11 @@ void check_event_gen(game_ *game, gen_control_ *gen_control, paint_ *paint)
             paint->scale += 1;
         if (sfKeyboard_isKeyPressed(sfKeyHyphen) && paint->scale > 1)
             paint->scale -= 1;
-        if (sfKeyboard_isKeyPressed(sfKeyO))
-            gen_control->sprites_on = 0;
-        if (sfKeyboard_isKeyPressed(sfKeyEscape))
-            gen_control->sprites_on = 1;
-        check_gen(game, gen_control->up, 1, paint);
-        check_gen(game, gen_control->down, 2, paint);
+        gen_control_disp(game);
+        check_gen(game, game->gen_control->up, 1, paint);
+        check_gen(game, game->gen_control->down, 2, paint);
+        check_gen(game, game->gen_control_mob->up, 1, paint);
+        check_gen(game, game->gen_control_mob->down, 2, paint);
     }
 }
 
