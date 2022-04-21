@@ -53,21 +53,31 @@ char ***malloc_inv(void)
     return (temp);
 }
 
-void update_inventory(game_ *game)
+void create_backs(game_ *game)
 {
-    game->clock->check_secs = game->clock->time.microseconds / 5000;
-    if (game->boole->on_inv == 0) {
-        sfRenderWindow_drawSprite
-        (game->window, game->inv->back->sprite, sfFalse);
-    }
+    game->inv->back = create_button((sfVector2f){660, 200},
+    (sfVector2f){1, 1}, "pictures/menu/inv.png");
+    game->inv->back_quit = create_button((sfVector2f){660, 200},
+    (sfVector2f){1, 1}, "pictures/menu/quit.png");
+    game->inv->back_map = create_button((sfVector2f){660, 200},
+    (sfVector2f){1, 1}, "pictures/menu/map.png");
+    game->inv->back_girl = create_button((sfVector2f){660, 200},
+    (sfVector2f){1, 1}, "pictures/menu/girl.png");
+    game->inv->back_stats = create_button((sfVector2f){660, 200},
+    (sfVector2f){1, 1}, "pictures/menu/stats.png");
+    game->inv->back_potion = create_button((sfVector2f){660, 200},
+    (sfVector2f){1, 1}, "pictures/menu/potion.png");
+    game->inv->back_craft = create_button((sfVector2f){660, 200},
+    (sfVector2f){1, 1}, "pictures/menu/crafts.png");
+    game->inv->back_pad = create_button((sfVector2f){660, 200},
+    (sfVector2f){1, 1}, "pictures/menu/pad.png");
 }
 
 void create_inventory(game_ *game)
 {
     game->inv = malloc(sizeof(inventory_));
     game->inv->page = 0;
-    game->inv->back = create_button((sfVector2f){660, 200},
-    (sfVector2f){1, 1}, "pictures/menu/inv.png");
+    create_backs(game);
     game->inv->inv = malloc_inv();
     game->boole->on_inv = 1;
     game->inv->on_item = 1;

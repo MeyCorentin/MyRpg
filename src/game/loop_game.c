@@ -7,6 +7,19 @@
 
 #include "../../includes/rpg.h"
 
+void check_if_quit(game_ *game)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyEscape) && game->boole->on_quit == 1
+        && game->boole->on_inv == 1 && game->boole->on_girl == 1 &&
+        game->boole->on_stats == 1 && game->boole->on_map == 1 &&
+        game->boole->on_potion == 1 && game->boole->on_craft == 1 &&
+        game->boole->on_pad == 1 && game->boole->on_quit == 1
+        && game->clock->check_secs != 0) {
+            game->boole->on_quit = 0;
+            game->clock->check_secs = 0;
+    }
+}
+
 void check_event_game(game_ *game)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
@@ -15,16 +28,13 @@ void check_event_game(game_ *game)
             sfMusic_stop(game->sounds->summer_day);
             sfRenderWindow_close(game->window);
         }
-        if (sfKeyboard_isKeyPressed(sfKeyEscape) && game->boole->on_inv == 1
-        && game->clock->check_secs != 0) {
-            sfMusic_stop(game->sounds->summer_day);
-            loop_menu(game, game->menu);
-        }
+        check_if_quit(game);
         open_close_hint(game);
         event_cursor(game);
         move_select(game);
         check_event_items(game);
         open_close_inv(game);
+        change_window(game);
         open_close_best(game);
         open_close_fight(game);
 
@@ -60,6 +70,13 @@ void set_game(game_ *game)
     get_mob("bestiary.txt", game);
     init_bestiary(game);
     game->boole->on_tree = 1;
+    game->boole->on_quit = 1;
+    game->boole->on_map = 1;
+    game->boole->on_pad = 1;
+    game->boole->on_girl = 1;
+    game->boole->on_stats = 1;
+    game->boole->on_potion = 1;
+    game->boole->on_craft = 1;
     game->boole->on_hint = 0;
 }
 
@@ -74,6 +91,8 @@ void launch_game(game_ *game)
     set_game(game);
     add_items(game, game->first_item);
     add_items(game, game->first_item);
+    game->first = create_enemy((sfVector2f){100, 100}, (sfIntRect){25, 480, 15, 30}, 90);
+    get_last_enemy(game->first, (sfVector2f){300, 100}, (sfIntRect){25, 480, 15, 30}, 90);
     while (sfRenderWindow_isOpen(game->window)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
         sfVector2f pos = sfSprite_getPosition(rep);

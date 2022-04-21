@@ -288,6 +288,13 @@ typedef struct inventory {
     int page;
     char ***inv;
     button_ *back;
+    button_ *back_quit;
+    button_ *back_map;
+    button_ *back_girl;
+    button_ *back_stats;
+    button_ *back_potion;
+    button_ *back_craft;
+    button_ *back_pad;
     int on_item;
     button_ *bar;
     button_ *select;
@@ -346,12 +353,33 @@ typedef struct clock {
 typedef struct boole {
     int on_button;
     int on_inv;
+    int on_quit;
+    int on_map;
+    int on_girl;
+    int on_stats;
+    int on_craft;
+    int on_potion;
+    int on_pad;
     int on_tree;
     int on_best;
     int on_hint;
     int on_fight;
     int on_attack;
 } boole_;
+
+typedef struct enemy {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f scale;
+    sfVector2f position;
+    sfIntRect rect;
+    sfClock *clock;
+    int start;
+    int max;
+    sfTime time;
+    int secs;
+    struct enemy *next;
+} enemy_;
 
 typedef struct game {
     char *map;
@@ -381,6 +409,7 @@ typedef struct game {
     boole_ *boole;
     int hint;
     text_ *who;
+    enemy_ *first;
 } game_;
 
 void check_event_game(game_ *game);
@@ -418,6 +447,12 @@ void create_bonus(game_ *game);
 void draw_hearth(game_ *game, life_ *hearth, int nb);
 void create_life(game_ *game);
 void add_hearth(life_ *hearth, int x, game_ *game);
+void change_window(game_ *game);
+void open_other_pages(game_ *game);
+void clear_all(game_ *game);
+void update_enemy(enemy_ *enemy, game_ *game);
+void get_last_enemy(enemy_ *enemy, sfVector2f position,
+sfIntRect rect, int max);
 void create_bestiary(game_ *game);
 void update_bestiary(game_ *game);
 void open_close_best(game_ *game);
@@ -428,5 +463,6 @@ void init_bestiary(game_ *game);
 void open_close_fight(game_ *game);
 void create_fight(game_ *game);
 void update_fight(game_ *game);
+enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max);
 
 #endif /* PROJECT_H_ */
