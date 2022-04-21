@@ -7,38 +7,22 @@
 
 #include "../../includes/rpg.h"
 
-int move_page_best_left(game_ *game)
+void init_bestiary(game_ *game)
 {
-    if (game->mouse.x > 670 && game->mouse.x < 670 + 22
-        && game->mouse.y > 560 && game->mouse.y < 560 + 22) {
-        if (game->event.type == sfEvtMouseButtonReleased) {
-            game->event.type = sfEvtCount;
-            (game->best->page >= 2) ? (game->best->page -= 2) : 1;
-            update_bestiary(game);
-            game->boole->on_best = 1;
-            open_close_best(game);
-            game->boole->on_best = 0;
-            open_close_best(game);
-        }
-    }
-    return (0);
-}
-
-int move_page_best_right(game_ *game)
-{
-    if (game->mouse.x > 1240 && game->mouse.x < 1240 + 22
-        && game->mouse.y > 560 && game->mouse.y < 560 + 22) {
-        if (game->event.type == sfEvtMouseButtonReleased) {
-            game->event.type = sfEvtCount;
-            (game->best->page <= 5) ? (game->best->page += 2) : 1;
-            update_bestiary(game);
-            game->boole->on_best = 1;
-            open_close_best(game);
-            game->boole->on_best = 0;
-            open_close_best(game);
-        }
-    }
-    return (0);
+    char **tab = my_split_tab(game->best->mob_stats[1], '/');
+    game->best->name_l = create_text(tab[1], (sfVector2f){1, 1},
+    (sfVector2f){750, 270}, "font/Stardew_Valley.ttf");
+    game->best->pv_l = create_text(tab[2], (sfVector2f){1, 1},
+    (sfVector2f){750, 470}, "font/Stardew_Valley.ttf");
+    game->best->dmg_l = create_text(tab[3], (sfVector2f){1, 1},
+    (sfVector2f){750, 520}, "font/Stardew_Valley.ttf");
+    char **tab_2 = my_split_tab(game->best->mob_stats[2], '/');
+    game->best->name_r = create_text(tab_2[1], (sfVector2f){1, 1},
+    (sfVector2f){1070, 270}, "font/Stardew_Valley.ttf");
+    game->best->pv_r = create_text(tab_2[2], (sfVector2f){1, 1},
+    (sfVector2f){1070, 470}, "font/Stardew_Valley.ttf");
+    game->best->dmg_r = create_text(tab_2[3], (sfVector2f){1, 1},
+    (sfVector2f){1070, 520}, "font/Stardew_Valley.ttf");
 }
 
 void create_bestiary(game_ *game)
@@ -59,24 +43,51 @@ void create_bestiary(game_ *game)
     (sfVector2f){1, 1}, (sfVector2f){1120, 550}, "font/Stardew_Valley.ttf");
 }
 
+void draw_bestiary(game_ *game)
+{
+    sfRenderWindow_drawText(game->window, game->best->page_l->text,
+    sfFalse);
+    sfRenderWindow_drawText(game->window, game->best->page_r->text,
+    sfFalse);
+    sfRenderWindow_drawText(game->window, game->best->name_l->text,
+    sfFalse);
+    sfRenderWindow_drawText(game->window, game->best->name_r->text,
+    sfFalse);
+    sfRenderWindow_drawText(game->window, game->best->pv_l->text,
+    sfFalse);
+    sfRenderWindow_drawText(game->window, game->best->pv_r->text,
+    sfFalse);
+    sfRenderWindow_drawText(game->window, game->best->dmg_l->text,
+    sfFalse);
+    sfRenderWindow_drawText(game->window, game->best->dmg_r->text,
+    sfFalse);
+    sfRenderWindow_drawSprite
+    (game->window, game->best->arrow_l->sprite, sfFalse);
+    sfRenderWindow_drawSprite
+    (game->window, game->best->arrow_r->sprite, sfFalse);
+}
+
 void update_bestiary(game_ *game)
 {
+    char **tab = my_split_tab(game->best->mob_stats[game->best->page], '/');
+    char **tab_2 = my_split_tab(game->best->mob_stats[game->best->page + 1],
+    '/');
+
     game->clock->check_secs = game->clock->time.microseconds / 5000;
     if (game->boole->on_best == 0) {
+        sfText_setString(game->best->name_l->text, tab[1]);
+        sfText_setString(game->best->name_r->text, tab_2[1]);
+        sfText_setString(game->best->dmg_l->text, tab_2[3]);
+        sfText_setString(game->best->dmg_r->text, tab_2[3]);
+        sfText_setString(game->best->pv_l->text, tab[2]);
+        sfText_setString(game->best->pv_r->text, tab_2[2]);
         sfText_setString(game->best->page_l->text,
         new_put_nbr(game->best->page));
         sfText_setString(game->best->page_r->text,
         new_put_nbr(game->best->page + 1));
         sfRenderWindow_drawSprite
         (game->window, game->best->back->sprite, sfFalse);
-        sfRenderWindow_drawText(game->window, game->best->page_l->text,
-        sfFalse);
-        sfRenderWindow_drawText(game->window, game->best->page_r->text,
-        sfFalse);
-        sfRenderWindow_drawSprite
-        (game->window, game->best->arrow_l->sprite, sfFalse);
-        sfRenderWindow_drawSprite
-        (game->window, game->best->arrow_r->sprite, sfFalse);
+        draw_bestiary(game);
     }
 }
 

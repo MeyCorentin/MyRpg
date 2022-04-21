@@ -6,12 +6,6 @@
 */
 
 #include "../../includes/rpg.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 int get_file_len(char *files_name)
 {
@@ -97,3 +91,4 @@ void get_size_3(char *files_name, load_map_ *load_map)
     load_map->y_size = my_atoi(tab[0]);
     load_map->x_size = my_atoi(temp);
 }
+

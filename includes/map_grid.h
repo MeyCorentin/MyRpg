@@ -74,7 +74,7 @@ int moov_down_(grid_cell_ *grid);
 int moov_left_(grid_cell_ *grid);
 int moov_right_(grid_cell_ *grid);
 int display_layer_h(sfSprite ***map, game_ *game, sfVector2f pos);
-void move_player(player_ *player);
+void move_player(player_ *player, game_ *game);
 void display_layer_hit(sfSprite ***map, game_ *game, int y,
 sfVector2f pos);
 void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep);

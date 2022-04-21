@@ -26,7 +26,21 @@ void check_event_game(game_ *game)
         check_event_items(game);
         open_close_inv(game);
         open_close_best(game);
+        open_close_fight(game);
+
     }
+}
+
+void get_mob(char *files_name, game_ *game)
+{
+    int len = get_file_len(files_name);
+    char *temp = malloc(sizeof(char) * len);
+    int fd = open(files_name, O_RDONLY);
+
+    read(fd, temp, len);
+    temp[len - 1] = '\0';
+    close(fd);
+    game->best->mob_stats = my_split_tab(temp, '\n');
 }
 
 void set_game(game_ *game)
@@ -38,10 +52,13 @@ void set_game(game_ *game)
     sfMusic_stop(game->sounds->ocean);
     sfMusic_play(game->sounds->summer_day);
     create_inventory(game);
-    create_bestiary(game);
     create_ath(game);
     create_tree(game);
     create_life(game);
+    create_bestiary(game);
+    create_fight(game);
+    get_mob("bestiary.txt", game);
+    init_bestiary(game);
     game->boole->on_tree = 1;
     game->boole->on_hint = 0;
 }

@@ -12,6 +12,13 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 #include "menu.h"
+#include <sys/types.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #ifndef PROJECT_H_
     #define PROJECT_H_
@@ -298,7 +305,26 @@ typedef struct bestiary {
     text_ *page_r;
     button_ *arrow_l;
     button_ *arrow_r;
+    text_ *name_l;
+    text_ *name_r;
+    text_ *pv_l;
+    text_ *pv_r;
+    text_ *dmg_l;
+    text_ *dmg_r;
+    char **mob_stats;
 } bestiary_;
+
+typedef struct fight {
+    int mob_id;
+    button_ *back;
+    button_ *leave;
+    button_ *attack;
+    button_ *heal;
+    text_ *t_leave;
+    text_ *t_heal;
+    text_ *t_attack;
+} fight_;
+
 
 typedef struct clock {
     sfClock *clock;
@@ -323,6 +349,8 @@ typedef struct boole {
     int on_tree;
     int on_best;
     int on_hint;
+    int on_fight;
+    int on_attack;
 } boole_;
 
 typedef struct game {
@@ -337,6 +365,7 @@ typedef struct game {
     sounds_ *sounds;
     inventory_ *inv;
     bestiary_ *best;
+    fight_ *fight;
     clock_ *clock;
     item_ *first_item;
     sfVector2i mouse;
@@ -394,5 +423,10 @@ void update_bestiary(game_ *game);
 void open_close_best(game_ *game);
 int move_page_best_left(game_ *game);
 int move_page_best_right(game_ *game);
+int get_file_len(char *files_name);
+void init_bestiary(game_ *game);
+void open_close_fight(game_ *game);
+void create_fight(game_ *game);
+void update_fight(game_ *game);
 
 #endif /* PROJECT_H_ */

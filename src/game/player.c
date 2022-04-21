@@ -7,8 +7,9 @@
 
 #include "../../includes/rpg.h"
 
-void move_player(player_ *player)
+void move_player(player_ *player, game_ *game)
 {
+    if (game->boole->on_fight != 0) {
         if (sfKeyboard_isKeyPressed(sfKeyZ) && player->m_up == 1)
             player->movement = 2;
         if (sfKeyboard_isKeyPressed(sfKeyS) && player->m_down == 1)
@@ -18,6 +19,7 @@ void move_player(player_ *player)
         if (sfKeyboard_isKeyPressed(sfKeyD) && player->m_right == 1)
             player->movement = 1;
         sfSprite_setPosition(player->sprite, player->position);
+    }
 }
 
 void update_player(game_ *game, player_ *player)
@@ -25,7 +27,7 @@ void update_player(game_ *game, player_ *player)
     player->movement = 4;
     player->time = sfClock_getElapsedTime(player->clock);
     player->secs = player->time.microseconds / 5000;
-    move_player(player);
+    move_player(player, game);
     if (player->secs > 30) {
         if (player->rect.left < 20 + 48)
             player->rect.left += 16;

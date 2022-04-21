@@ -10,13 +10,14 @@
 void update_inv(game_ *game)
 {
     update_inventory(game);
-    update_bestiary(game);
     if (game->boole->on_inv == 0)
         draw_items(game, game->first_item, game->player->movement, 0);
     if (game->boole->on_tree == 0)
         loop_tree(game);
     update_time(game);
     draw_hearth(game, game->inv->life, game->player->stats->life);
+    update_bestiary(game);
+    update_fight(game);
     update_cursor(game);
 }
 
