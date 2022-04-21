@@ -10,17 +10,17 @@
 void its_wall(sfSprite ***map, int y, int x, game_ *game)
 {
     sfVector2f pos_ = sfSprite_getPosition(map[y][x]);
-    if (pos_.y > 560 - 40 && pos_.y < 560 && pos_.x > 970 - 20 &&
-    pos_.x < 970 + 20)
+    if (pos_.y >= 560 - 40 && pos_.y <= 560 && pos_.x >= 970 - 20 &&
+    pos_.x <= 970 + 20)
         game->player->m_up = 0;
-    if (pos_.y > 560 + 20 && pos_.y < 560 + 40 && pos_.x > 970 - 20 &&
-    pos_.x < 970 + 20)
+    if (pos_.y >= 560 + 20 && pos_.y <= 560 + 40 && pos_.x >= 970 - 20 &&
+    pos_.x <= 970 + 20)
         game->player->m_down = 0;
-    if (pos_.y > 560 - 20 && pos_.y < 560 + 20 && pos_.x > 970 - 60 &&
-    pos_.x < 970 - 40)
+    if (pos_.y >= 560 - 20 && pos_.y <= 560 + 20 && pos_.x >= 970 - 60 &&
+    pos_.x <= 970 - 40)
         game->player->m_left = 0;
-    if (pos_.y > 560 - 20 && pos_.y < 560 + 20 && pos_.x > 970 + 20 &&
-    pos_.x < 970 + 40)
+    if (pos_.y >= 560 - 20 && pos_.y <= 560 + 20 && pos_.x >= 970 + 20 &&
+    pos_.x <= 970 + 40)
         game->player->m_right = 0;
 }
 
@@ -43,23 +43,30 @@ void its_not_wall(sfSprite ***map, int y, int x, game_ *game)
 
 void check_hitbox(sfSprite ***map, int y, int x, game_ *game)
 {
-    if (my_atoi(game->layer_->id_hitbox[y][x]) != 1945) {
-        its_wall(map, y, x, game);
-    } else {
-        its_not_wall(map, y, x, game);
+    if (game->layer_->id_hitbox[y][x] != NULL) {
+        if (my_atoi(game->layer_->id_hitbox[y][x]) != 1945) {
+            its_wall(map, y, x, game);
+        } else {
+            its_not_wall(map, y, x, game);
+        }
     }
 }
 
 void render_hitbox(sfSprite ***map, int y, int x, game_ *game)
 {
     sfVector2f pos_ = sfSprite_getPosition(map[y][x]);
-    if ((pos_.y > 560 - 40 && pos_.y < 560 && pos_.x > 970 - 20 &&
-        pos_.x < 970 + 20) || (pos_.y > 560 + 20 && pos_.y < 560 + 40
-        && pos_.x > 970 - 20 && pos_.x < 970 + 20) || (pos_.y >
-        560 - 20 && pos_.y < 560 + 20 && pos_.x > 970 - 60 && pos_.x <
-        970 - 40) || (pos_.y > 560 - 20 && pos_.y < 560 + 20 && pos_.x >
-        970 + 20 && pos_.x < 970 + 40))
-            sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse);
+    if (game->boole->on_hint == 0) {
+        if ((pos_.y > 560 - 40 && pos_.y < 560 && pos_.x > 970 - 20 &&
+            pos_.x < 970 + 20) || (pos_.y > 560 + 20 && pos_.y < 560 + 40
+            && pos_.x > 970 - 20 && pos_.x < 970 + 20) || (pos_.y >
+            560 - 20 && pos_.y < 560 + 20 && pos_.x > 970 - 60 && pos_.x <
+            970 - 40) || (pos_.y > 560 - 20 && pos_.y < 560 + 20 && pos_.x >
+            970 + 20 && pos_.x < 970 + 40))
+                sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse);
+    }
+    if (game->boole->on_hint == 1) {
+        sfRenderWindow_drawSprite(game->window, map[y][x], sfFalse);
+    }
 }
 
 void display_layer_hit(sfSprite ***map, game_ *game, int y,

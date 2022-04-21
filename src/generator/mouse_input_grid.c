@@ -11,32 +11,38 @@ void background_or_foreground(game_ *game, grid_cell_ *grid, paint_ *paint,
 gen_control_ *gen_control)
 {
     if (game->layer == 0) {
-        its_background(game, grid, paint, gen_control);
+        its_background(game, grid, paint);
     }
     if (game->layer == 1) {
-        its_foreground(game, grid, paint, gen_control);
+        its_foreground(game, grid, paint);
     }
     if (game->layer == 2) {
-        its_hitbox(game, grid, paint, gen_control);
+        its_hitbox(game, grid, paint);
+    }
+    if (game->layer == 3) {
+        its_mob(game, grid, paint);
     }
 }
 
-void left_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint,
-gen_control_ *gen_control)
+void left_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint)
 {
     sfVector2f sprite_pos = {grid->pos_x, grid->pos_y};
     grid->foreground->position = sprite_pos;
 
     if (game->mouse.x > grid->pos_x && game->mouse.x < grid->pos_x + \
         (40 * paint->scale) && game->mouse.y > grid->pos_y && game->mouse.y\
-        < grid->pos_y + (40 * paint->scale) && gen_control->sprites_on == 1) {
+        < grid->pos_y + (40 * paint->scale) && (game->gen_control->sprites_on
+        == 1 || game->gen_control_mob->sprites_on == 1)) {
         grid->click = 1;
-        if (gen_control->selected != NULL && gen_control->selected_ == 1) {
-            background_or_foreground(game, grid, paint, gen_control);
+        if ((game->gen_control->selected != NULL ||
+        game->gen_control_mob->selected != NULL) &&
+        (game->gen_control->selected_ == 1 ||
+        game->gen_control_mob->selected_ == 1)) {
+            background_or_foreground(game, grid, paint, game->gen_control);
         }
     }
     if (grid->next_cell != NULL)
-        left_click_grid(game, grid->next_cell, paint, gen_control);
+        left_click_grid(game, grid->next_cell, paint);
 }
 
 void right_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint,
@@ -46,18 +52,10 @@ gen_control_ *gen_control)
         (40 * paint->scale) && game->mouse.y > grid->pos_y && game->mouse.y\
         < grid->pos_y + (40 * paint->scale)) {
         grid->click = 0;
-        if (game->layer == 1) {
-            (grid->foreground->ok == 1) ? grid->foreground->sprite = NULL,
-            grid->foreground->ok = 0, grid->foreground_id = 1945 : 1;
-        }
-        if (game->layer == 0) {
-            (grid->background->ok == 1) ? grid->background->sprite = NULL,
-            grid->background->ok = 0, grid->background_id = 1721 : 1;
-        }
-        if (game->layer == 2) {
-            (grid->hitbox->ok == 1) ? grid->hitbox->sprite = NULL,
-            grid->hitbox->ok = 0, grid->hitbox_id = 1945 : 1;
-        }
+        delete_foreground(game, grid);
+        delete_background(game, grid);
+        delete_hitbox(game, grid);
+        delete_mob(game, grid);
     }
     if (grid->next_cell != NULL)
         right_click_grid(game, grid->next_cell, paint, gen_control);

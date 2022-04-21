@@ -20,10 +20,12 @@ void check_event_game(game_ *game)
             sfMusic_stop(game->sounds->summer_day);
             loop_menu(game, game->menu);
         }
+        open_close_hint(game);
         event_cursor(game);
         move_select(game);
         check_event_items(game);
         open_close_inv(game);
+        open_close_best(game);
     }
 }
 
@@ -36,10 +38,12 @@ void set_game(game_ *game)
     sfMusic_stop(game->sounds->ocean);
     sfMusic_play(game->sounds->summer_day);
     create_inventory(game);
+    create_bestiary(game);
     create_ath(game);
     create_tree(game);
     create_life(game);
     game->boole->on_tree = 1;
+    game->boole->on_hint = 0;
 }
 
 void launch_game(game_ *game)
