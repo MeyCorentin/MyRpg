@@ -14,16 +14,20 @@ void check_event_game(game_ *game)
         if (game->event.type == sfEvtClosed) {
             sfMusic_stop(game->sounds->summer_day);
             sfRenderWindow_close(game->window);
-        }
-        if (sfKeyboard_isKeyPressed(sfKeyEscape) && game->boole->on_inv == 1
+        } if (sfKeyboard_isKeyPressed(sfKeyEscape) && game->boole->on_quit == 1
+        && game->boole->on_inv == 1 && game->boole->on_girl == 1 &&
+        game->boole->on_stats == 1 && game->boole->on_map == 1 &&
+        game->boole->on_potion == 1 && game->boole->on_craft == 1 &&
+        game->boole->on_pad == 1 && game->boole->on_quit == 1
         && game->clock->check_secs != 0) {
-            sfMusic_stop(game->sounds->summer_day);
-            loop_menu(game, game->menu);
+            game->boole->on_quit = 0;
+            game->clock->check_secs = 0;
         }
         event_cursor(game);
         move_select(game);
         check_event_items(game);
         open_close_inv(game);
+        change_window(game);
     }
 }
 
@@ -40,6 +44,14 @@ void set_game(game_ *game)
     create_tree(game);
     create_life(game);
     game->boole->on_tree = 1;
+    game->boole->on_quit = 1;
+    game->boole->on_map = 1;
+    game->boole->on_pad = 1;
+    game->boole->on_girl = 1;
+    game->boole->on_stats = 1;
+    game->boole->on_potion = 1;
+    game->boole->on_craft = 1;
+    game->first = NULL;
 }
 
 void launch_game(game_ *game)
@@ -60,6 +72,7 @@ void launch_game(game_ *game)
         sfRenderWindow_clear(game->window, (sfColor){150, 150, 150, 150});
         check_event_game(game);
         launch_layer(game, layer, pos, rep);
+        update_enemy(game->first, game);
         sfRenderWindow_display(game->window);
     }
 }
