@@ -351,6 +351,7 @@ typedef struct game {
     bonus_ *bonus;
     boole_ *boole;
     int hint;
+    text_ *who;
 } game_;
 
 void check_event_game(game_ *game);

@@ -14,6 +14,19 @@ void set_gen(game_ *game, paint_ *paint)
     sfMusic_stop(game->sounds->ocean);
 }
 
+void update_type_layer(game_ *game)
+{
+    if (game->layer == 0)
+        sfText_setString(game->who->text, "BACKGROUND");
+    if (game->layer == 1)
+        sfText_setString(game->who->text, "FOREGROUND");
+    if (game->layer == 2)
+        sfText_setString(game->who->text, "HITBOX");
+    if (game->layer == 3)
+        sfText_setString(game->who->text, "ENNEMYS");
+    sfRenderWindow_drawText(game->window, game->who->text, sfFalse);
+}
+
 void launch_map_gen(game_ *game, grid_cell_ *grid, paint_ *paint)
 {
     map_key_input(game, grid);
@@ -22,6 +35,9 @@ void launch_map_gen(game_ *game, grid_cell_ *grid, paint_ *paint)
     (game->layer == 3) ?
     interact_sprite(game, game->gen_control_mob->list, game->gen_control_mob) :
     interact_sprite(game, game->gen_control->list, game->gen_control);
+    game->who = create_text("BACKGROUND",
+    (sfVector2f){2, 2}, (sfVector2f){10, 5}, "font/Stardew_Valley.ttf");
+    update_type_layer(game);
 }
 
 void launch_map_generator(game_ *game)
