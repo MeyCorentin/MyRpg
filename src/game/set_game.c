@@ -38,8 +38,8 @@ void set_game(game_ *game)
     game->first_item = NULL;
     sfMusic_stop(game->sounds->ocean);
     sfMusic_play(game->sounds->summer_day);
-    get_mob("bestiary.txt", game);
     create_all(game);
+    get_mob("bestiary.txt", game);
     init_bestiary(game);
     init_game_boole(game);
 }
