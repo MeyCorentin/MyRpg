@@ -311,35 +311,6 @@ typedef struct inventory {
     slots_ *slots;
 } inventory_;
 
-typedef struct bestiary {
-    button_ *back;
-    int on_best;
-    int page;
-    text_ *page_l;
-    text_ *page_r;
-    button_ *arrow_l;
-    button_ *arrow_r;
-    text_ *name_l;
-    text_ *name_r;
-    text_ *pv_l;
-    text_ *pv_r;
-    text_ *dmg_l;
-    text_ *dmg_r;
-    char **mob_stats;
-} bestiary_;
-
-typedef struct fight {
-    int mob_id;
-    button_ *back;
-    button_ *leave;
-    button_ *attack;
-    button_ *heal;
-    text_ *t_leave;
-    text_ *t_heal;
-    text_ *t_attack;
-} fight_;
-
-
 typedef struct clock {
     sfClock *clock;
     sfTime time;
@@ -381,12 +352,43 @@ typedef struct enemy {
     sfVector2f position;
     sfIntRect rect;
     sfClock *clock;
+    int y;
+    int x;
     int start;
     int max;
     sfTime time;
     int secs;
     struct enemy *next;
 } enemy_;
+
+typedef struct fight {
+    enemy_ *enemy;
+    int mob_id;
+    button_ *back;
+    button_ *leave;
+    button_ *attack;
+    button_ *heal;
+    text_ *t_leave;
+    text_ *t_heal;
+    text_ *t_attack;
+} fight_;
+
+typedef struct bestiary {
+    button_ *back;
+    int on_best;
+    int page;
+    text_ *page_l;
+    text_ *page_r;
+    button_ *arrow_l;
+    button_ *arrow_r;
+    text_ *name_l;
+    text_ *name_r;
+    text_ *pv_l;
+    text_ *pv_r;
+    text_ *dmg_l;
+    text_ *dmg_r;
+    char **mob_stats;
+} bestiary_;
 
 typedef struct game {
     char *map;
@@ -475,5 +477,11 @@ enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max);
 void draw_slots(game_ *game, slots_ *slot);
 void create_slots(game_ *game);
 void set_boole(game_ *game);
+enemy_ *init_fight_mob(int k);
+void move_enemy(enemy_ *enemy, int movement, game_ *game);
+void update_enemy_f(enemy_ *enemy, game_ *game);
+void init_game_boole(game_ *game);
+void get_mob(char *files_name, game_ *game);
+void set_game(game_ *game, char *pseudo);
 
 #endif /* PROJECT_H_ */

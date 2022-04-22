@@ -53,10 +53,23 @@ gen_control_ *gen_control, game_ *game)
     add_tileset_2(layer->map_layer_3, gen_control->list, layer->id_hitbox);
 }
 
+void init_layer_4(layer_ *layer, load_map_ *load_map,
+gen_control_ *gen_control, game_ *game)
+{
+    get_size_4("mob.txt", load_map);
+    create_gen(gen_control, 1);
+    layer->map_4 = my_malloc_map(load_map->y_size, load_map->x_size);
+    layer->map_layer_4 =
+    my_malloc_map_sprite(load_map->y_size, load_map->x_size);
+    layer->id_mob = get_map_4(load_map);
+    init_mob(load_map, game, layer);
+}
+
 void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control
 , game_ *game)
 {
     init_layer_1(layer, load_map, gen_control, game);
     init_layer_2(layer, load_map, gen_control, game);
     init_layer_3(layer, load_map, gen_control, game);
+    init_layer_4(layer, load_map, gen_control, game);
 }

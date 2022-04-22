@@ -18,6 +18,17 @@ void init_map(char ***map, load_map_ *load_map)
     }
 }
 
+void init_mob(load_map_ *load_map, game_ *game, layer_ *layer)
+{
+    int y = 0;
+    int x = 0;
+    for (y = 0; layer->id_mob[y]; y++) {
+        for (x = 0; layer->id_mob[y][x]; x++) {
+            init_map_mob(y, x, layer, game);
+        }
+    }
+}
+
 void add_copy_sprite(sfSprite ***map, char ***id_background,
 int i, sprite_ *sprite)
 {
@@ -33,37 +44,4 @@ int i, sprite_ *sprite)
             sfSprite_setPosition((sfSprite *)map[i][j], pos);
         }
     }
-}
-
-int add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background)
-{
-    int i = 0;
-
-    for (; map[i]; i++)
-        add_copy_sprite(map, id_background, i, sprite);
-    if (sprite->next != NULL)
-        add_tileset(map, sprite->next, id_background);
-    return (0);
-}
-
-int add_tileset_2(sfSprite ***map, sprite_ *sprite, char ***id_background)
-{
-    int i = 0;
-
-    for (; map[i]; i++)
-        add_copy_sprite(map, id_background, i, sprite);
-    if (sprite->next != NULL)
-        add_tileset(map, sprite->next, id_background);
-    return (0);
-}
-
-int add_tileset_3(sfSprite ***map, sprite_ *sprite, char ***id_background)
-{
-    int i = 0;
-
-    for (; map[i]; i++)
-        add_copy_sprite(map, id_background, i, sprite);
-    if (sprite->next != NULL)
-        add_tileset(map, sprite->next, id_background);
-    return (0);
 }

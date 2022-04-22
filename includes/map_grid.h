@@ -90,5 +90,13 @@ void delete_background(game_ *game, grid_cell_ *grid);
 void delete_hitbox(game_ *game, grid_cell_ *grid);
 void delete_mob(game_ *game, grid_cell_ *grid);
 void save_mob(game_ *game, grid_cell_ *grid, FILE *file);
+char ***get_map_4(load_map_ *load_map);
+void get_size_4(char *files_name, load_map_ *load_map);
+void display_big_tab(char ***map);
+void init_map_mob(int y, int x, layer_ *layer, game_ *game);
+void init_mob(load_map_ *load_map, game_ *game, layer_ *layer);
+void add_id_in_tab(char ***tab, char *id, int y, int x);
+void add_copy_sprite(sfSprite ***map, char ***id_background,
+int i, sprite_ *sprite);
 
 #endif /* !MAP_GRID_H_ */

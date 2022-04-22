@@ -10,6 +10,8 @@
 void create_fight(game_ *game)
 {
     game->fight = malloc(sizeof(fight_));
+    game->fight->enemy = malloc(sizeof(enemy_));
+    game->fight->enemy = init_fight_mob(7);
     game->fight->leave = create_button((sfVector2f){380, 650},
     (sfVector2f){1, 1}, "pictures/menu/f_button.png");
     game->fight->attack = create_button((sfVector2f){780, 650},
@@ -57,6 +59,7 @@ void update_fight(game_ *game)
         sfFalse);
         sfRenderWindow_drawText(game->window, game->fight->t_leave->text,
         sfFalse);
+        update_enemy_f(game->fight->enemy, game);
     }
 }
 
