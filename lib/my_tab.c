@@ -28,7 +28,7 @@ void my_print_tab(char **tab)
 {
     int k = 0;
 
-    for (; tab[k + 1]; k++) {
+    for (; tab[k]; k++) {
         my_putstr(tab[k]);
     }
     my_putstr(tab[k]);

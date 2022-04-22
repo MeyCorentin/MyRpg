@@ -37,7 +37,6 @@ void check_event_game(game_ *game)
         change_window(game);
         open_close_best(game);
         open_close_fight(game);
-
     }
 }
 
@@ -53,46 +52,20 @@ void get_mob(char *files_name, game_ *game)
     game->best->mob_stats = my_split_tab(temp, '\n');
 }
 
-void set_game(game_ *game)
-{
-    create_player(game);
-    create_bonus(game);
-    game->player->movement = 4;
-    game->first_item = NULL;
-    sfMusic_stop(game->sounds->ocean);
-    sfMusic_play(game->sounds->summer_day);
-    create_inventory(game);
-    create_ath(game);
-    create_tree(game);
-    create_life(game);
-    create_bestiary(game);
-    create_fight(game);
-    get_mob("bestiary.txt", game);
-    init_bestiary(game);
-    game->boole->on_tree = 1;
-    game->boole->on_quit = 1;
-    game->boole->on_map = 1;
-    game->boole->on_pad = 1;
-    game->boole->on_girl = 1;
-    game->boole->on_stats = 1;
-    game->boole->on_potion = 1;
-    game->boole->on_craft = 1;
-    game->boole->on_hint = 0;
-}
-
 void launch_game(game_ *game)
 {
     layer_ *layer = malloc(sizeof(layer_));
     gen_control_ *gen_control = malloc(sizeof(gen_control_));
     load_map_ *load_map = malloc(sizeof(load_map_));
     sfSprite *rep = sfSprite_create();
+
     game->layer_ = layer;
+    game->first = create_enemy((sfVector2f){-1000, 1000},
+    (sfIntRect){25, 480, 15, 30}, 90);
     init_layer(layer, load_map, gen_control, game);
     set_game(game);
     add_items(game, game->first_item);
     add_items(game, game->first_item);
-    game->first = create_enemy((sfVector2f){100, 100}, (sfIntRect){25, 480, 15, 30}, 90);
-    get_last_enemy(game->first, (sfVector2f){300, 100}, (sfIntRect){25, 480, 15, 30}, 90);
     while (sfRenderWindow_isOpen(game->window)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
         sfVector2f pos = sfSprite_getPosition(rep);
