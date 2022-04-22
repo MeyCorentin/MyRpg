@@ -483,5 +483,8 @@ void update_enemy_f(enemy_ *enemy, game_ *game);
 void init_game_boole(game_ *game);
 void get_mob(char *files_name, game_ *game);
 void set_game(game_ *game, char *pseudo);
+int save_game(game_ *game);
+void save_skills(game_ *game, int fd);
+void save_clock(game_ *game, int fd);
 
 #endif /* PROJECT_H_ */

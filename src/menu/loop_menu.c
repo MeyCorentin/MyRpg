@@ -53,6 +53,7 @@ void check_event_menu(game_ *game, menu_ *menu)
         if (game->event.type == sfEvtClosed ||
         sfKeyboard_isKeyPressed(sfKeyE)) {
             sfMusic_stop(game->sounds->ocean);
+            save_game(game);
             sfRenderWindow_close(game->window);
         }
         if (sfKeyboard_isKeyPressed(sfKeyN))
