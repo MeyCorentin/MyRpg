@@ -87,6 +87,10 @@ void create_inventory(game_ *game)
     "pictures/menu/bar.png");
     game->inv->select = create_button((sfVector2f){690, 968},
     (sfVector2f){1, 1}, "pictures/menu/select.png");
+    game->inv->text_quit = create_text("MENU", (sfVector2f){3, 3}, (sfVector2f){880, 520}, "font/Stardew_Valley.ttf");
+    game->inv->text_settings = create_text("SETTINGS", (sfVector2f){3, 3}, (sfVector2f){805, 310}, "font/Stardew_Valley.ttf");
+    game->inv->settings = create_button((sfVector2f){780, 300}, (sfVector2f){1, 1}, "pictures/menu/f_button.png");
+    game->inv->quit = create_button((sfVector2f){780, 510}, (sfVector2f){1, 1}, "pictures/menu/f_button.png");
     game->clock = malloc(sizeof(clock_));
     game->clock->clock = sfClock_create();
 }

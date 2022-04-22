@@ -21,20 +21,23 @@ void save_stats(game_ *game, int fd)
     my_strlen(new_put_nbr(game->player->stats->speed)) + 1);
 }
 
-void save_inv(game_ *game, int fd)
+void save_inv(game_ *game, int fd, char ***inv)
 {
     write(fd, "#INVENTORY\n", 11);
+    for (int line = 0; inv[line]; line += 1) {
+        for (int col = 0; inv[line][col]; col += 1) {
+            my_printf("");
+        }
+    }
 }
 
 void save_map(game_ *game, int fd)
 {
-    sfVector2f pos_map = sfSprite_getPosition((sfSprite *)game->layer_->map_layer_1[0][0]);
-
     write(fd, "#MAP\n", 5);
-    write(fd, my_strncat(new_put_nbr(pos_map.x), "\n", 0),
-    my_strlen(new_put_nbr(pos_map.x)) + 1);
-    write(fd, my_strncat(new_put_nbr(pos_map.y), "\n", 0),
-    my_strlen(new_put_nbr(pos_map.y)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->x_start), "\n", 0),
+    my_strlen(new_put_nbr(game->x_start)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->y_start), "\n", 0),
+    my_strlen(new_put_nbr(game->x_start)) + 1);
 }
 
 int save_game(game_ *game)
@@ -45,7 +48,7 @@ int save_game(game_ *game)
         return (84);
     }
     save_stats(game, fd);
-    save_inv(game, fd);
+    save_inv(game, fd, game->inv->inv);
     save_map(game, fd);
     save_skills(game, fd);
     save_clock(game, fd);

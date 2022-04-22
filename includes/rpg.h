@@ -311,6 +311,10 @@ typedef struct inventory {
     life_ *life;
     int x_hearth;
     slots_ *slots;
+    button_ *quit;
+    text_ *text_quit;
+    text_ *text_settings;
+    button_ *settings;
 } inventory_;
 
 typedef struct clock {
@@ -494,5 +498,6 @@ void save_clock(game_ *game, int fd);
 int destroy_mob(int y, int x, enemy_ *enemy);
 int detect_fight(game_ *game);
 void tp_all(game_ *game);
+void event_pause(game_ *game);
 
 #endif /* PROJECT_H_ */

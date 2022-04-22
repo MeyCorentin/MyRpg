@@ -10,10 +10,16 @@
 void update_inv(game_ *game)
 {
     update_inventory(game);
-    if (game->boole->on_inv == 0) {
+    if (game->boole->on_quit == 0) {
+        sfRenderWindow_drawSprite(game->window, game->inv->settings->sprite, sfFalse);
+        sfRenderWindow_drawSprite(game->window, game->inv->quit->sprite, sfFalse);
+        sfRenderWindow_drawText(game->window, game->inv->text_settings->text, sfFalse);
+        sfRenderWindow_drawText(game->window, game->inv->text_quit->text, sfFalse);
+    } if (game->boole->on_inv == 0) {
         draw_items(game, game->first_item, game->player->movement, 0);
     } if (game->boole->on_tree == 0)
         loop_tree(game);
+    event_pause(game);
     update_time(game);
     draw_hearth(game, game->inv->life, game->player->stats->life);
     update_bestiary(game);
