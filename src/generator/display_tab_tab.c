@@ -24,9 +24,11 @@ void display_layer_(sfSprite ***map, game_ *game, int movement, int y)
 {
     int x = 0;
     sfVector2f pos_;
+    sfVector2f pos_rep;
     for (x = 0; map[y][x]; x++) {
         if (map[y][x] != NULL) {
-            pos_ = sfSprite_getPosition(map[y][x]);
+            pos_rep = sfSprite_getPosition(game->player->rep);
+            pos_ = (sfVector2f){x * 40 + pos_rep.x, y * 40 + pos_rep.y};
             (game->boole->on_hint == 1) ?
             (pos_.y > 560 - 70 && pos_.y < 560 + 50 && pos_.x > 970 - 80
             && pos_.x < 970 + 40) ? sfSprite_setColor(map[y][x],

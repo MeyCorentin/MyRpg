@@ -385,6 +385,7 @@ typedef struct bestiary {
 
 typedef struct game {
     char *map;
+    sfSprite *rep;
     gen_control_ *gen_control;
     gen_control_ *gen_control_mob;
     sfRenderWindow *window;
@@ -472,5 +473,7 @@ void update_enemy_f(enemy_ *enemy, game_ *game);
 void init_game_boole(game_ *game);
 void get_mob(char *files_name, game_ *game);
 void set_game(game_ *game);
+int detect_fight(game_ *game);
+int destroy_mob(int y, int x, enemy_ *enemy);
 
 #endif /* PROJECT_H_ */
