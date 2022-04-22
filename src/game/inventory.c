@@ -76,8 +76,10 @@ void create_backs(game_ *game)
 void create_inventory(game_ *game)
 {
     game->inv = malloc(sizeof(inventory_));
+    game->inv->slots = malloc(sizeof(slots_));
     game->inv->page = 0;
     create_backs(game);
+    create_slots(game);
     game->inv->inv = malloc_inv();
     game->boole->on_inv = 1;
     game->inv->on_item = 1;

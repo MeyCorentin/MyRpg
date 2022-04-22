@@ -30,9 +30,9 @@ void create_all(game_ *game)
     create_fight(game);
 }
 
-void set_game(game_ *game)
+void set_game(game_ *game, char *pseudo)
 {
-    create_player(game);
+    create_player(game, game->pseudo);
     create_bonus(game);
     game->player->movement = 4;
     game->first_item = NULL;

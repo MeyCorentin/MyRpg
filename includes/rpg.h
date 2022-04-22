@@ -216,6 +216,7 @@ typedef struct player {
     int m_right;
     layer_ *layer;
     stats_ *stats;
+    char *pseudo;
 } player_;
 
 typedef struct sounds {
@@ -284,6 +285,11 @@ typedef struct life {
     struct life *next;
 } life_;
 
+typedef struct slots {
+    button_ *slot;
+    struct slots *next;
+} slots_;
+
 typedef struct inventory {
     int page;
     char ***inv;
@@ -302,6 +308,7 @@ typedef struct inventory {
     skill_tree_ *tree;
     life_ *life;
     int x_hearth;
+    slots_ *slots;
 } inventory_;
 
 typedef struct clock {
@@ -413,13 +420,14 @@ typedef struct game {
     int hint;
     text_ *who;
     enemy_ *first;
+    char *pseudo;
 } game_;
 
 void check_event_game(game_ *game);
 int global_gestion(int argc, char **argv);
 sfIntRect change_rect(sfIntRect rect, float x, float y);
-void launch_game(game_ *game);
-void create_player(game_ *game);
+void launch_game(game_ *game, char *pseudo);
+void create_player(game_ *game, char *pseudo);
 void update_player(game_ *game, player_ *player);
 void create_inventory(game_ *game);
 void update_inventory(game_ *game);
@@ -467,13 +475,16 @@ void open_close_fight(game_ *game);
 void create_fight(game_ *game);
 void update_fight(game_ *game);
 enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max);
+void draw_slots(game_ *game, slots_ *slot);
+void create_slots(game_ *game);
+void set_boole(game_ *game);
 enemy_ *init_fight_mob(int k);
 void move_enemy(enemy_ *enemy, int movement, game_ *game);
 void update_enemy_f(enemy_ *enemy, game_ *game);
 void init_game_boole(game_ *game);
 void get_mob(char *files_name, game_ *game);
-void set_game(game_ *game);
-int detect_fight(game_ *game);
+void set_game(game_ *game, char *pseudo);
 int destroy_mob(int y, int x, enemy_ *enemy);
+int detect_fight(game_ *game);
 
 #endif /* PROJECT_H_ */

@@ -10,7 +10,7 @@
 void find_button(game_ *game, int who, menu_ *menu)
 {
     if (who == 1)
-        launch_game(game);
+        launch_game(game, game->pseudo);
     if (who == 2)
         menu->on_load = 0;
     if (who == 3) {
@@ -18,11 +18,11 @@ void find_button(game_ *game, int who, menu_ *menu)
         sfRenderWindow_close(game->window);
     }
     if (who == 4 && menu->on_load == 0)
-        launch_game(game);
+        launch_game(game, game->pseudo);
     if (who == 5 && menu->on_load == 0)
-        launch_game(game);
+        launch_game(game, game->pseudo);
     if (who == 6 && menu->on_load == 0)
-        launch_game(game);
+        launch_game(game, game->pseudo);
 }
 
 void check_square(game_ *game, button_ *button, int who, menu_ *menu)
