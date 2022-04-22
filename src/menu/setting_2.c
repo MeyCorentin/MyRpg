@@ -52,11 +52,13 @@ void do_settings(game_ *game, int action)
     } if (action == 3) {
         sfMusic_stop(game->sounds->ocean);
         sfRenderWindow_close(game->window);
-        launch_menu((sfVideoMode){1920, 1080, 120}, (sfVector2u){1920, 1080});
+        launch_menu((sfVideoMode){1920, 1080, 120}, (sfVector2u){1920, 1080},
+        game->pseudo);
     } if (action == 4) {
         sfMusic_stop(game->sounds->ocean);
         sfRenderWindow_close(game->window);
-        launch_menu((sfVideoMode){800, 600, 120}, (sfVector2u){800, 600});
+        launch_menu((sfVideoMode){800, 600, 120}, (sfVector2u){800, 600},
+        game->pseudo);
     }
 }
 

@@ -91,4 +91,3 @@ void get_size_3(char *files_name, load_map_ *load_map)
     load_map->y_size = my_atoi(tab[0]);
     load_map->x_size = my_atoi(temp);
 }
-

@@ -32,10 +32,8 @@ void get_last_enemy(enemy_ *enemy, sfVector2f position,
 sfIntRect rect, int max)
 {
     if (enemy->next != NULL) {
-        printf("In elseif\n");
         get_last_enemy(enemy->next, position, rect, max);
     } else {
-        printf("In else\n");
         enemy->next = create_enemy(position, rect, max);
     }
 }

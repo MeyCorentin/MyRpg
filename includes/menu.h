@@ -17,7 +17,7 @@
     #include "map_grid.h"
 
 void malloc_menu(menu_ *menu);
-void launch_menu(sfVideoMode mode, sfVector2u size);
+void launch_menu(sfVideoMode mode, sfVector2u size, char *pseudo);
 void create_new(menu_ *menu);
 void create_exit(menu_ *menu);
 void create_load(menu_ *menu);

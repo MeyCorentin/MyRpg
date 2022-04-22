@@ -56,7 +56,7 @@ void check_event_menu(game_ *game, menu_ *menu)
             sfRenderWindow_close(game->window);
         }
         if (sfKeyboard_isKeyPressed(sfKeyN))
-            launch_game(game);
+            launch_game(game, game->pseudo);
         if (sfKeyboard_isKeyPressed(sfKeyL))
             menu->on_load = 0;
         if (sfKeyboard_isKeyPressed(sfKeyG))
@@ -81,7 +81,7 @@ void loop_menu(game_ *game, menu_ *menu)
     }
 }
 
-void launch_menu(sfVideoMode mode, sfVector2u size)
+void launch_menu(sfVideoMode mode, sfVector2u size, char *pseudo)
 {
     game_ *game = malloc(sizeof(game_));
     menu_ *menu = malloc(sizeof(menu_));
@@ -89,6 +89,7 @@ void launch_menu(sfVideoMode mode, sfVector2u size)
     game->menu = menu;
     game->window = sfRenderWindow_create(mode, "MY_RPG", \
     sfResize | sfClose, NULL);
+    game->pseudo = pseudo;
     sfRenderWindow_setFramerateLimit(game->window, 120);
     sfRenderWindow_setSize(game->window, size);
     sfWindow_setMouseCursorVisible((sfWindow *)game->window, sfFalse);
