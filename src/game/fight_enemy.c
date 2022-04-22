@@ -41,7 +41,8 @@ void update_enemy_f(enemy_ *enemy, game_ *game)
     sfSprite_setTextureRect(enemy->sprite, enemy->rect);
     sfSprite_setScale(enemy->sprite, (sfVector2f){7, 7});
     move_enemy(enemy, game->player->movement, game);
-    sfRenderWindow_drawSprite(game->window, enemy->sprite, sfFalse);
+    if (game->clock->secs < 480 || game->clock->secs > 1100)
+        sfRenderWindow_drawSprite(game->window, enemy->sprite, sfFalse);
     if (enemy->next != NULL)
         update_enemy_f(enemy->next, game);
 }

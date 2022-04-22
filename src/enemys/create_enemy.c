@@ -41,6 +41,8 @@ sfIntRect rect, int max)
 void init_map_mob(int y, int x, layer_ *layer, game_ *game)
 {
     sfVector2f pos = {40 * x, 40 * y};
+    pos.x += game->x_start;
+    pos.y += game->y_start;
 
     if (my_atoi(layer->id_mob[y][x]) == 1)
         get_last_enemy(game->first, pos, (sfIntRect){22, 50, 16, 16}, 100);
@@ -83,7 +85,8 @@ void update_enemy(enemy_ *enemy, game_ *game)
         enemy->rect.left = enemy->start;
     sfSprite_setTextureRect(enemy->sprite, enemy->rect);
     move_enemy(enemy, game->player->movement, game);
-    sfRenderWindow_drawSprite(game->window, enemy->sprite, sfFalse);
+    if (game->clock->secs < 450 || game->clock->secs > 1100)
+        sfRenderWindow_drawSprite(game->window, enemy->sprite, sfFalse);
     if (enemy->next != NULL)
         update_enemy(enemy->next, game);
 }
