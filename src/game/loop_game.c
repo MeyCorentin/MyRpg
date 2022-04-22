@@ -53,27 +53,35 @@ void get_mob(char *files_name, game_ *game)
     game->best->mob_stats = my_split_tab(temp, '\n');
 }
 
+void init_game(game_ *game, layer_ *layer)
+{
+    game->y_start = 500;
+    game->x_start = 500;
+    game->layer_ = layer;
+    game->first = create_enemy((sfVector2f){-1000, 1000},
+    (sfIntRect){25, 480, 15, 30}, 90);
+}
+
 void launch_game(game_ *game, char *pseudo)
 {
     layer_ *layer = malloc(sizeof(layer_));
     gen_control_ *gen_control = malloc(sizeof(gen_control_));
     load_map_ *load_map = malloc(sizeof(load_map_));
-    sfSprite *rep = sfSprite_create();
 
-    game->layer_ = layer;
-    game->first = create_enemy((sfVector2f){-1000, 1000},
-    (sfIntRect){25, 480, 15, 30}, 90);
+    init_game(game, layer);
     init_layer(layer, load_map, gen_control, game);
     set_game(game, pseudo);
     add_items(game, game->first_item);
     add_items(game, game->first_item);
+    tp_all(game);
     while (sfRenderWindow_isOpen(game->window)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
-        sfVector2f pos = sfSprite_getPosition(rep);
+        sfVector2f pos = sfSprite_getPosition(game->player->rep);
         game->boole->on_button = 1;
         sfRenderWindow_clear(game->window, (sfColor){150, 150, 150, 150});
         check_event_game(game);
-        launch_layer(game, layer, pos, rep);
+        launch_layer(game, layer, pos, game->player->rep);
+        detect_fight(game);
         sfRenderWindow_display(game->window);
     }
 }

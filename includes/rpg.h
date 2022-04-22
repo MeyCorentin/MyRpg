@@ -217,6 +217,8 @@ typedef struct player {
     layer_ *layer;
     stats_ *stats;
     char *pseudo;
+    int y_start;
+    int x_start;
 } player_;
 
 typedef struct sounds {
@@ -392,6 +394,9 @@ typedef struct bestiary {
 
 typedef struct game {
     char *map;
+    int y_start;
+    int x_start;
+    sfSprite *rep;
     gen_control_ *gen_control;
     gen_control_ *gen_control_mob;
     sfRenderWindow *window;
@@ -486,5 +491,8 @@ void set_game(game_ *game, char *pseudo);
 int save_game(game_ *game);
 void save_skills(game_ *game, int fd);
 void save_clock(game_ *game, int fd);
+int destroy_mob(int y, int x, enemy_ *enemy);
+int detect_fight(game_ *game);
+void tp_all(game_ *game);
 
 #endif /* PROJECT_H_ */

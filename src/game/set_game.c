@@ -33,6 +33,7 @@ void create_all(game_ *game)
 void set_game(game_ *game, char *pseudo)
 {
     create_player(game, game->pseudo);
+    game->player->rep = sfSprite_create();
     create_bonus(game);
     game->player->movement = 4;
     game->first_item = NULL;
@@ -42,4 +43,5 @@ void set_game(game_ *game, char *pseudo)
     get_mob("bestiary.txt", game);
     init_bestiary(game);
     init_game_boole(game);
+    game->player->rep = sfSprite_create();
 }
