@@ -28,7 +28,11 @@ void init_bestiary(game_ *game)
 void create_bestiary(game_ *game)
 {
     game->best = malloc(sizeof(bestiary_));
+    game->best->enemy_1 = malloc(sizeof(enemy_));
+    game->best->enemy_2 = malloc(sizeof(enemy_));
     game->best->page = 1;
+    init_mob_best_1_1(1, (sfVector2f){1100, 380}, game);
+    init_mob_best_2_1(2, (sfVector2f){740, 380}, game);
     game->best->back = create_button((sfVector2f){630, 230},
     (sfVector2f){1, 1}, "pictures/menu/book.png");
     game->best->arrow_l = create_button((sfVector2f){670, 560},
@@ -41,54 +45,8 @@ void create_bestiary(game_ *game)
     (sfVector2f){1, 1}, (sfVector2f){800, 550}, "font/Stardew_Valley.ttf");
     game->best->page_r = create_text(new_put_nbr(game->best->page + 1),
     (sfVector2f){1, 1}, (sfVector2f){1120, 550}, "font/Stardew_Valley.ttf");
-}
-
-void draw_bestiary(game_ *game)
-{
-    sfRenderWindow_drawText(game->window, game->best->page_l->text,
-    sfFalse);
-    sfRenderWindow_drawText(game->window, game->best->page_r->text,
-    sfFalse);
-    sfRenderWindow_drawText(game->window, game->best->name_l->text,
-    sfFalse);
-    sfRenderWindow_drawText(game->window, game->best->name_r->text,
-    sfFalse);
-    sfRenderWindow_drawText(game->window, game->best->pv_l->text,
-    sfFalse);
-    sfRenderWindow_drawText(game->window, game->best->pv_r->text,
-    sfFalse);
-    sfRenderWindow_drawText(game->window, game->best->dmg_l->text,
-    sfFalse);
-    sfRenderWindow_drawText(game->window, game->best->dmg_r->text,
-    sfFalse);
-    sfRenderWindow_drawSprite
-    (game->window, game->best->arrow_l->sprite, sfFalse);
-    sfRenderWindow_drawSprite
-    (game->window, game->best->arrow_r->sprite, sfFalse);
-}
-
-void update_bestiary(game_ *game)
-{
-    char **tab = my_split_tab(game->best->mob_stats[game->best->page], '/');
-    char **tab_2 = my_split_tab(game->best->mob_stats[game->best->page + 1],
-    '/');
-
-    game->clock->check_secs = game->clock->time.microseconds / 5000;
-    if (game->boole->on_best == 0) {
-        sfText_setString(game->best->name_l->text, tab[1]);
-        sfText_setString(game->best->name_r->text, tab_2[1]);
-        sfText_setString(game->best->dmg_l->text, tab_2[3]);
-        sfText_setString(game->best->dmg_r->text, tab_2[3]);
-        sfText_setString(game->best->pv_l->text, tab[2]);
-        sfText_setString(game->best->pv_r->text, tab_2[2]);
-        sfText_setString(game->best->page_l->text,
-        new_put_nbr(game->best->page));
-        sfText_setString(game->best->page_r->text,
-        new_put_nbr(game->best->page + 1));
-        sfRenderWindow_drawSprite
-        (game->window, game->best->back->sprite, sfFalse);
-        draw_bestiary(game);
-    }
+    get_mob("bestiary.txt", game);
+    init_bestiary(game);
 }
 
 void open_close_best(game_ *game)

@@ -76,7 +76,7 @@ void check_event_gen(game_ *game, paint_ *paint)
 void draw_sprites_gen(game_ *game, gen_control_ *gen_control)
 {
     if (gen_control->sprites_on == 0) {
-        sfRenderWindow_clear(game->window, sfBlack);
+        sfRenderWindow_clear(game->window, sfWhite);
         draw_env(game, gen_control->list);
     }
 }

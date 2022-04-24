@@ -43,7 +43,7 @@ void create_sprites(sprite_ *sprite, int i)
     }
     if ((sprite->next->rect.left < ((1920 / 2) - 16) ||
     sprite->next->rect.left != 0) && sprite->next->rect.top
-    < 3000)
+    < 10000)
         create_sprites(sprite->next, i);
 }
 

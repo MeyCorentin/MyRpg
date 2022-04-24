@@ -50,10 +50,10 @@ char **my_split_tab(char *argv, char char_)
     int k = 0;
     int l = 0;
     int i = 0;
-    char **tab = my_malloc_tab(my_count_split(argv, char_), strlen(argv));
+    char **tab = my_malloc_tab(my_count_split(argv, char_), my_strlen(argv));
 
     for (; argv[k] != '\0'; k++, l++) {
-        if (argv[k] == char_ || argv[k] == '\0') {
+        if (argv[k] == char_) {
             k++;
             tab[i][l] = '\0';
             l = 0;

@@ -49,14 +49,13 @@ void check_all_buttons(game_ *game, menu_ *menu)
 void check_event_menu(game_ *game, menu_ *menu)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
-        game->mouse = sfMouse_getPositionRenderWindow(game->window);
         if (game->event.type == sfEvtClosed ||
         sfKeyboard_isKeyPressed(sfKeyE)) {
             sfMusic_stop(game->sounds->ocean);
             sfRenderWindow_close(game->window);
         }
         if (sfKeyboard_isKeyPressed(sfKeyN))
-            launch_game(game, game->pseudo);
+            launch_game(game, game->pseudo, 0, 1);
         if (sfKeyboard_isKeyPressed(sfKeyL))
             menu->on_load = 0;
         if (sfKeyboard_isKeyPressed(sfKeyG))

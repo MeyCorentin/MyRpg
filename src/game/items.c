@@ -9,14 +9,20 @@
 
 void move_items(item_ *item, int value, int movement, game_ *game)
 {
-    if (movement == 0)
-        item->position.y -= value + game->player->stats->speed;
-    if (movement == 1)
-        item->position.x -= value + game->player->stats->speed;
-    if (movement == 2)
-        item->position.y += value + game->player->stats->speed;
-    if (movement == 3)
-        item->position.x += value + game->player->stats->speed;
+    switch (movement) {
+        case (0):
+            item->position.y -= value + game->player->stats->speed;
+            break;
+        case (1):
+            item->position.x -= value + game->player->stats->speed;
+            break;
+        case (2):
+            item->position.y += value + game->player->stats->speed;
+            break;
+        case (3):
+            item->position.x += value + game->player->stats->speed;
+            break;
+    }
 }
 
 void draw_items(game_ *game, item_ *item, int movement, int status)

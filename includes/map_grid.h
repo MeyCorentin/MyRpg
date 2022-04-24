@@ -98,5 +98,6 @@ void init_mob(load_map_ *load_map, game_ *game, layer_ *layer);
 void add_id_in_tab(char ***tab, char *id, int y, int x);
 void add_copy_sprite(sfSprite ***map, char ***id_background,
 int i, sprite_ *sprite);
+void update_bestiary(game_ *game);
 
 #endif /* !MAP_GRID_H_ */

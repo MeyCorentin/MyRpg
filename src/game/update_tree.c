@@ -25,11 +25,9 @@ void set_string_skills(game_ *game, chained_skill_ *skill)
 
 void draw_skill_tree(game_ *game, chained_skill_ *skill)
 {
-    sfVector2i mouse = sfMouse_getPosition((sfWindow *)game->window);
-
-    if (mouse.x > skill->pos_skill.x && mouse.x < skill->pos_skill.x + 100 \
-    && mouse.y > skill->pos_skill.y && mouse.y < skill->pos_skill.y + 100 && \
-    skill->active == 1) {
+    if (game->mouse.x > skill->pos_skill.x && game->mouse.x <
+    skill->pos_skill.x + 100 && game->mouse.y > skill->pos_skill.y
+    && game->mouse.y < skill->pos_skill.y + 100 && skill->active == 1) {
         set_string_skills(game, skill);
         sfRenderWindow_drawText(game->window, skill->infos, sfFalse);
         sfRenderWindow_drawText(game->window, skill->cost, sfFalse);

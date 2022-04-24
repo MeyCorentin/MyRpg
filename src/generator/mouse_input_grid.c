@@ -10,17 +10,15 @@
 void background_or_foreground(game_ *game, grid_cell_ *grid, paint_ *paint,
 gen_control_ *gen_control)
 {
-    if (game->layer == 0) {
-        its_background(game, grid, paint);
-    }
-    if (game->layer == 1) {
-        its_foreground(game, grid, paint);
-    }
-    if (game->layer == 2) {
-        its_hitbox(game, grid, paint);
-    }
-    if (game->layer == 3) {
-        its_mob(game, grid, paint);
+    switch (game->layer) {
+        case (0): its_background(game, grid, paint);
+            break;
+        case (1): its_foreground(game, grid, paint);
+            break;
+        case (2): its_hitbox(game, grid, paint);
+            break;
+        case (3): its_mob(game, grid, paint);
+            break;
     }
 }
 

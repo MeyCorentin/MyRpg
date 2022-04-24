@@ -23,6 +23,7 @@
 #ifndef PROJECT_H_
     #define PROJECT_H_
 
+
 typedef struct grid_cell {
     int x;
     int y;
@@ -219,6 +220,7 @@ typedef struct player {
     char *pseudo;
     int y_start;
     int x_start;
+    sfVector2f pos_r;
 } player_;
 
 typedef struct sounds {
@@ -376,6 +378,8 @@ typedef struct fight {
 } fight_;
 
 typedef struct bestiary {
+    enemy_ *enemy_1;
+    enemy_ *enemy_2;
     button_ *back;
     int on_best;
     int page;
@@ -393,6 +397,8 @@ typedef struct bestiary {
 } bestiary_;
 
 typedef struct game {
+    int number;
+    load_map_ *load_map;
     char *map;
     int y_start;
     int x_start;
@@ -425,12 +431,13 @@ typedef struct game {
     text_ *who;
     enemy_ *first;
     char *pseudo;
+    int map_number;
 } game_;
 
 void check_event_game(game_ *game);
 int global_gestion(int argc, char **argv);
 sfIntRect change_rect(sfIntRect rect, float x, float y);
-void launch_game(game_ *game, char *pseudo);
+void launch_game(game_ *game, char *pseudo, int spawn_point, int map_number);
 void create_player(game_ *game, char *pseudo);
 void update_player(game_ *game, player_ *player);
 void create_inventory(game_ *game);
@@ -466,7 +473,7 @@ void change_window(game_ *game);
 void open_other_pages(game_ *game);
 void clear_all(game_ *game);
 void update_enemy(enemy_ *enemy, game_ *game);
-void get_last_enemy(enemy_ *enemy, sfVector2f position,
+void get_last_e(enemy_ *enemy, sfVector2f position,
 sfIntRect rect, int max);
 void create_bestiary(game_ *game);
 void update_bestiary(game_ *game);
@@ -491,5 +498,17 @@ void set_game(game_ *game, char *pseudo);
 int destroy_mob(int y, int x, enemy_ *enemy);
 int detect_fight(game_ *game);
 void tp_all(game_ *game);
+void go_mid(game_ *game);
+void go_top(game_ *game);
+void go_bottom(game_ *game);
+void go_left(game_ *game);
+void go_right(game_ *game);
+void init_mob_best_2_1(int k, sfVector2f pos, game_ *game);
+void init_mob_best_1_1(int k, sfVector2f pos, game_ *game);
+void update_enemy_best(enemy_ *enemy, game_ *game);
+void tp_top(game_ *game);
+void check_pos(int k, game_ *game, int map_number);
+void tp_pos(game_ *game, char *pseudo);
+void create_all(game_ *game);
 
 #endif /* PROJECT_H_ */

@@ -27,5 +27,6 @@ void my_fputstr(char const *str, char *file_name);
 char **my_split_tab(char *argv, char char_);
 char *my_strcat_(char *dest, char src);
 void my_print_tab(char **tab);
+char *my_itoa(int nb);
 
 #endif /* MY_H_ */

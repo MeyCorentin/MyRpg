@@ -49,8 +49,8 @@ void launch_map_generator(game_ *game)
     sfRectangleShape *rect = sfRectangleShape_create();
 
     set_gen(game, paint);
-    init_rect(grid, rect, 30, 50);
-    create_map(game, grid, 30, 50);
+    init_rect(grid, rect, 60, 40);
+    create_map(game, grid, 60, 40);
     create_gen(gen_control, 1);
     create_gen_mob(gen_control_mob, 1);
     game->gen_control = gen_control;

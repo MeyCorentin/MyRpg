@@ -19,6 +19,9 @@ int move_page_best_left(game_ *game)
             open_close_best(game);
             game->boole->on_best = 0;
             open_close_best(game);
+            init_mob_best_1_1(game->best->page, (sfVector2f){740, 380}, game);
+            init_mob_best_2_1(game->best->page + 1, (sfVector2f){1100, 380},
+            game);
         }
     }
     return (0);
@@ -36,6 +39,9 @@ int move_page_best_right(game_ *game)
             open_close_best(game);
             game->boole->on_best = 0;
             open_close_best(game);
+            init_mob_best_1_1(game->best->page, (sfVector2f){740, 380}, game);
+            init_mob_best_2_1(game->best->page + 1, (sfVector2f){1100, 380},
+            game);
         }
     }
     return (0);

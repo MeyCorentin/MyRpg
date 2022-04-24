@@ -28,11 +28,11 @@ enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max)
     return (new);
 }
 
-void get_last_enemy(enemy_ *enemy, sfVector2f position,
+void get_last_e(enemy_ *enemy, sfVector2f position,
 sfIntRect rect, int max)
 {
     if (enemy->next != NULL) {
-        get_last_enemy(enemy->next, position, rect, max);
+        get_last_e(enemy->next, position, rect, max);
     } else {
         enemy->next = create_enemy(position, rect, max);
     }
@@ -44,20 +44,22 @@ void init_map_mob(int y, int x, layer_ *layer, game_ *game)
     pos.x += game->x_start;
     pos.y += game->y_start;
 
-    if (my_atoi(layer->id_mob[y][x]) == 1)
-        get_last_enemy(game->first, pos, (sfIntRect){22, 50, 16, 16}, 100);
-    if (my_atoi(layer->id_mob[y][x]) == 2)
-        get_last_enemy(game->first, pos, (sfIntRect){22, 145, 16, 16}, 100);
-    if (my_atoi(layer->id_mob[y][x]) == 3)
-        get_last_enemy(game->first, pos, (sfIntRect){22, 334, 16, 32}, 100);
-    if (my_atoi(layer->id_mob[y][x]) == 4)
-        get_last_enemy(game->first, pos, (sfIntRect){22, 480, 16, 32}, 100);
-    if (my_atoi(layer->id_mob[y][x]) == 5)
-        get_last_enemy(game->first, pos, (sfIntRect){27, 695, 16, 16}, 105);
-    if (my_atoi(layer->id_mob[y][x]) == 6)
-        get_last_enemy(game->first, pos, (sfIntRect){27, 775, 16, 16}, 105);
-    if (my_atoi(layer->id_mob[y][x]) == 7)
-        get_last_enemy(game->first, pos, (sfIntRect){22, 871, 16, 32}, 100);
+    switch (my_atoi(layer->id_mob[y][x])) {
+        case (1): get_last_e(game->first, pos, (sfIntRect)
+            {22, 50, 16, 16}, 100); break;
+        case (2): get_last_e(game->first, pos, (sfIntRect)
+            {22, 145, 16, 16}, 100); break;
+        case (3): get_last_e(game->first, pos, (sfIntRect)
+            {22, 334, 16, 32}, 100); break;
+        case (4): get_last_e(game->first, pos, (sfIntRect)
+            {22, 480, 16, 32}, 100); break;
+        case (5): get_last_e(game->first, pos, (sfIntRect)
+            {27, 695, 16, 16}, 105); break;
+        case (6): get_last_e(game->first, pos, (sfIntRect)
+            {27, 775, 16, 16}, 105); break;
+        case (7): get_last_e(game->first, pos, (sfIntRect)
+            {22, 871, 16, 32}, 100); break;
+    }
 }
 
 void move_enemy(enemy_ *enemy, int movement, game_ *game)
