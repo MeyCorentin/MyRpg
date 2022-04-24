@@ -59,9 +59,10 @@ void check_event_gen(game_ *game, paint_ *paint)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
-        if (game->event.type == sfEvtClosed)
+        if (game->event.type == sfEvtClosed) {
+            save_game(game);
             sfRenderWindow_close(game->window);
-        if (sfKeyboard_isKeyPressed(sfKeyEqual))
+        } if (sfKeyboard_isKeyPressed(sfKeyEqual))
             paint->scale += 1;
         if (sfKeyboard_isKeyPressed(sfKeyHyphen) && paint->scale > 1)
             paint->scale -= 1;

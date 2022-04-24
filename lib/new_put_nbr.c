@@ -38,6 +38,8 @@ int get_len_nb(int nb)
 {
     int len = 0;
 
+    if (nb < 0)
+        nb *= -1;
     while (nb >= 1) {
         nb /= 10;
         len += 1;
@@ -51,8 +53,16 @@ char *new_put_nbr(int nb)
     int count = -1;
     int digits = nb;
     int cmpt_str = 0;
+    int is_neg = 1;
     char *resultat = malloc(sizeof(char) * (len + 1));
 
+    if (nb < 0) {
+        resultat[0] = '-';
+        nb *= -1;
+        digits *= -1;
+        cmpt_str = 1;
+        is_neg = 0;
+    }
     if (nb == 0)
         return ("0");
     while (digits != 0) {
@@ -60,25 +70,9 @@ char *new_put_nbr(int nb)
         count = count + 1;
     }
     resultat = calculs_str(count, nb, resultat, cmpt_str);
-    resultat[len] = '\0';
-    return (resultat);
-}
-
-char *new_put_nbr_1(int nb)
-{
-    int len = get_len_nb(nb);
-    int count = -1;
-    int digits = nb;
-    int cmpt_str = 0;
-    char *resultat = malloc(sizeof(char) * (len + 1));
-
-    if (nb == 0)
-        resultat[cmpt_str] = '0';
-    while (digits != 0) {
-        digits = digits / 10;
-        count = count + 1;
-    }
-    resultat = calculs_str(count, nb, resultat, cmpt_str);
-    resultat[len] = '\0';
+    if (is_neg == 0)
+        resultat[len + 1] = '\0';
+    else
+        resultat[len] = '\0';
     return (resultat);
 }

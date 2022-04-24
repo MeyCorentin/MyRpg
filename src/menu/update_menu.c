@@ -15,6 +15,7 @@ void find_button(game_ *game, int who, menu_ *menu)
         menu->on_load = 0;
     if (who == 3) {
         sfMusic_stop(game->sounds->ocean);
+        save_game(game);
         sfRenderWindow_close(game->window);
     }
     if (who == 4 && menu->on_load == 0)

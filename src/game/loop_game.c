@@ -25,6 +25,7 @@ void check_event_game(game_ *game)
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
             sfMusic_stop(game->sounds->summer_day);
+            save_game(game);
             sfRenderWindow_close(game->window);
         }
         check_if_quit(game);
