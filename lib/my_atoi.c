@@ -7,6 +7,18 @@
 
 #include <stdlib.h>
 
+int puissance(int y)
+{
+    int compteur = 0;
+    int resultat = 1;
+
+    while (compteur <= y) {
+        resultat = resultat * 10;
+        compteur = compteur + 1;
+    }
+    return resultat;
+}
+
 int my_atoi(char *str)
 {
     int number = 0;

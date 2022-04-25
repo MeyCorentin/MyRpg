@@ -34,7 +34,6 @@ void event_settings(game_ *game, menu_ *menu)
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
         if (game->event.type == sfEvtClosed) {
             sfMusic_stop(game->sounds->summer_day);
-            save_game(game);
             sfRenderWindow_close(game->window);
         }
         if (sfKeyboard_isKeyPressed(sfKeyEscape))

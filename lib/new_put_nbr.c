@@ -22,18 +22,6 @@ char *calculs_str(int count, int nb, char *resultat, int cmpt_str)
     return (resultat);
 }
 
-int puissance(int y)
-{
-    int compteur = 0;
-    int resultat = 1;
-
-    while (compteur <= y) {
-        resultat = resultat * 10;
-        compteur = compteur + 1;
-    }
-    return resultat;
-}
-
 int get_len_nb(int nb)
 {
     int len = 0;
@@ -47,6 +35,24 @@ int get_len_nb(int nb)
     return (len);
 }
 
+int check_count(int digits, int count)
+{
+    while (digits != 0) {
+        digits = digits / 10;
+        count = count + 1;
+    }
+    return (count);
+}
+
+char *set_end(char *result, int len, int is_neg)
+{
+    if (is_neg == 0)
+        result[len + 1] = '\0';
+    else
+        result[len] = '\0';
+    return (result);
+}
+
 char *new_put_nbr(int nb)
 {
     int len = get_len_nb(nb);
@@ -54,25 +60,18 @@ char *new_put_nbr(int nb)
     int digits = nb;
     int cmpt_str = 0;
     int is_neg = 1;
-    char *resultat = malloc(sizeof(char) * (len + 1));
+    char *result = malloc(sizeof(char) * (len + 1));
 
+    if (nb == 0)
+        return ("0");
     if (nb < 0) {
-        resultat[0] = '-';
+        result[0] = '-';
         nb *= -1;
         digits *= -1;
         cmpt_str = 1;
         is_neg = 0;
     }
-    if (nb == 0)
-        return ("0");
-    while (digits != 0) {
-        digits = digits / 10;
-        count = count + 1;
-    }
-    resultat = calculs_str(count, nb, resultat, cmpt_str);
-    if (is_neg == 0)
-        resultat[len + 1] = '\0';
-    else
-        resultat[len] = '\0';
-    return (resultat);
+    result = calculs_str(check_count(digits, count), nb, result, cmpt_str);
+    result = set_end(result, len, is_neg);
+    return (result);
 }

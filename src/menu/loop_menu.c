@@ -7,30 +7,6 @@
 
 #include "../../includes/rpg.h"
 
-void draw_menu(game_ *game, menu_ *menu)
-{
-    sfRenderWindow_drawSprite(game->window, menu->back->sprite, sfFalse);
-    if (menu->on_load == 1) {
-        sfRenderWindow_drawSprite(game->window, menu->logo->sprite, sfFalse);
-        sfRenderWindow_drawSprite(game->window, menu->new->sprite, sfFalse);
-        sfRenderWindow_drawSprite(game->window, menu->exit->sprite, sfFalse);
-        sfRenderWindow_drawSprite(game->window, menu->load->sprite, sfFalse);
-    } else {
-        sfRenderWindow_drawSprite(game->window, menu->saves->first->sprite,
-        sfFalse);
-        sfRenderWindow_drawSprite(game->window, menu->saves->second->sprite,
-        sfFalse);
-        sfRenderWindow_drawSprite(game->window, menu->saves->third->sprite,
-        sfFalse);
-    }
-    update_coin(menu->coin, game);
-    update_animal(menu->parrot, 48, 48, game);
-    sfRenderWindow_drawSprite(game->window, menu->help->sprite, sfFalse);
-    sfRenderWindow_drawSprite(game->window,
-    menu->settings->button->sprite, sfFalse);
-    update_cursor(game);
-}
-
 void check_all_buttons(game_ *game, menu_ *menu)
 {
     check_button(game, menu->new, 1, menu);
@@ -52,7 +28,6 @@ void check_event_menu(game_ *game, menu_ *menu)
         if (game->event.type == sfEvtClosed ||
         sfKeyboard_isKeyPressed(sfKeyE)) {
             sfMusic_stop(game->sounds->ocean);
-            save_game(game);
             sfRenderWindow_close(game->window);
         }
         if (sfKeyboard_isKeyPressed(sfKeyN))
@@ -81,6 +56,15 @@ void loop_menu(game_ *game, menu_ *menu)
     }
 }
 
+void create_loading(game_ *game)
+{
+    game->loading = create_button((sfVector2f){0, 0}, (sfVector2f){1.6, 1.55},
+    "pictures/menu/loading.png");
+    game->loading->rect = change_rect(game->loading->rect, 1200, 675);
+    game->loading->rect.left = 1200;
+    sfSprite_setTextureRect(game->loading->sprite, game->loading->rect);
+}
+
 void launch_menu(sfVideoMode mode, sfVector2u size, char *pseudo)
 {
     game_ *game = malloc(sizeof(game_));
@@ -100,5 +84,7 @@ void launch_menu(sfVideoMode mode, sfVector2u size, char *pseudo)
     game->speed = 1;
     menu->on_load = 1;
     game->boole = malloc(sizeof(boole_));
+    game->boole->on_quit = 1;
+    create_loading(game);
     loop_menu(game, menu);
 }

@@ -59,6 +59,7 @@ void open_other_pages(game_ *game)
         game->boole->on_tree = 0;
     } if (game->boole->on_map == 1 && sfKeyboard_isKeyPressed(sfKeyM) &&
     game->clock->check_secs != 0) {
+        clear_all(game);
         game->clock->check_secs = 0;
         game->boole->on_map = 0;
     }

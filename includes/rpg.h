@@ -76,15 +76,6 @@ typedef struct load {
     int is_load;
 } load_;
 
-typedef struct button {
-    sfSprite *sprite;
-    sfTexture *texture;
-    sfVector2f position;
-    sfVector2f scale;
-    sfIntRect rect;
-    int save;
-} button_;
-
 typedef struct text {
     sfText *text;
     sfVector2f position;
@@ -92,6 +83,16 @@ typedef struct text {
     sfFont *font;
     char *string;
 } text_;
+
+typedef struct button {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f position;
+    sfVector2f scale;
+    sfIntRect rect;
+    text_ *text;
+    int save;
+} button_;
 
 typedef struct settings {
     button_ *back;
@@ -334,6 +335,8 @@ typedef struct clock {
     text_ *day;
     text_ *hour;
     sfColor color;
+    int x;
+    int y;
 } clock_;
 
 typedef struct boole {
@@ -436,6 +439,7 @@ typedef struct game {
     enemy_ *first;
     char *pseudo;
     int map_number;
+    button_ *loading;
 } game_;
 
 void check_event_game(game_ *game);
@@ -518,5 +522,8 @@ void check_pos(int k, game_ *game, int map_number);
 void tp_pos(game_ *game, char *pseudo);
 void create_all(game_ *game);
 void event_pause(game_ *game);
+void update_clock(clock_ *clock);
+void update_loading(game_ *game);
+void draw_menu(game_ *game, menu_ *menu);
 
 #endif /* PROJECT_H_ */

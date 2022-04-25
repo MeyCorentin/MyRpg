@@ -71,6 +71,8 @@ void create_backs(game_ *game)
     (sfVector2f){1, 1}, "pictures/menu/crafts.png");
     game->inv->back_pad = create_button((sfVector2f){660, 200},
     (sfVector2f){1, 1}, "pictures/menu/pad.png");
+    game->inv->bar = create_button((sfVector2f){660, 938}, (sfVector2f){1, 1},
+    "pictures/menu/bar.png");
 }
 
 void create_inventory(game_ *game)
@@ -80,17 +82,19 @@ void create_inventory(game_ *game)
     game->inv->page = 0;
     create_backs(game);
     create_slots(game);
+    game->clock = malloc(sizeof(clock_));
+    game->clock->clock = sfClock_create();
     game->inv->inv = malloc_inv();
     game->boole->on_inv = 1;
     game->inv->on_item = 1;
-    game->inv->bar = create_button((sfVector2f){660, 938}, (sfVector2f){1, 1},
-    "pictures/menu/bar.png");
     game->inv->select = create_button((sfVector2f){690, 968},
     (sfVector2f){1, 1}, "pictures/menu/select.png");
-    game->inv->text_quit = create_text("MENU", (sfVector2f){3, 3}, (sfVector2f){880, 520}, "font/Stardew_Valley.ttf");
-    game->inv->text_settings = create_text("SETTINGS", (sfVector2f){3, 3}, (sfVector2f){805, 310}, "font/Stardew_Valley.ttf");
-    game->inv->settings = create_button((sfVector2f){780, 300}, (sfVector2f){1, 1}, "pictures/menu/f_button.png");
-    game->inv->quit = create_button((sfVector2f){780, 510}, (sfVector2f){1, 1}, "pictures/menu/f_button.png");
-    game->clock = malloc(sizeof(clock_));
-    game->clock->clock = sfClock_create();
+    game->inv->text_quit = create_text("MENU", (sfVector2f){3, 3},
+    (sfVector2f){880, 520}, "font/Stardew_Valley.ttf");
+    game->inv->text_settings = create_text("SETTINGS", (sfVector2f){3, 3},
+    (sfVector2f){805, 310}, "font/Stardew_Valley.ttf");
+    game->inv->settings = create_button((sfVector2f){780, 300},
+    (sfVector2f){1, 1}, "pictures/menu/f_button.png");
+    game->inv->quit = create_button((sfVector2f){780, 510},
+    (sfVector2f){1, 1}, "pictures/menu/f_button.png");
 }

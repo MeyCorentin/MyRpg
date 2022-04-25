@@ -11,7 +11,7 @@ void save_stats(game_ *game, int fd)
 {
     write(fd, "#STATS\n", 8);
     write(fd, my_strncat(new_put_nbr(game->player->gold), "\n", 0),
-    my_strlen(new_put_nbr(game->player->gold))+ 1);
+    my_strlen(new_put_nbr(game->player->gold)) + 1);
     write(fd, my_strncat(game->pseudo, "\n", 0), my_strlen(game->pseudo) + 1);
     write(fd, my_strncat(new_put_nbr(game->player->stats->attack), "\n", 0),
     my_strlen(new_put_nbr(game->player->stats->attack)) + 1);

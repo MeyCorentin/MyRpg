@@ -69,12 +69,12 @@ void launch_game(game_ *game, char *pseudo, int k, int map_number)
     layer_ *layer = malloc(sizeof(layer_));
     gen_control_ *gen_control = malloc(sizeof(gen_control_));
     load_map_ *load_map = malloc(sizeof(load_map_));
+    update_loading(game);
     check_pos(k, game, map_number);
     init_game(game, layer, load_map, gen_control);
     set_game(game, pseudo);
-    add_items(game, game->first_item);
-    add_items(game, game->first_item);
     tp_all(game);
+    game->menu->on_load = 1;
     while (sfRenderWindow_isOpen(game->window)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
         game->player->pos_r = sfSprite_getPosition(game->player->rep);

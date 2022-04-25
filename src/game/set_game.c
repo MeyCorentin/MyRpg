@@ -44,4 +44,6 @@ void set_game(game_ *game, char *pseudo)
     init_bestiary(game);
     init_game_boole(game);
     game->player->rep = sfSprite_create();
+    add_items(game, game->first_item);
+    add_items(game, game->first_item);
 }

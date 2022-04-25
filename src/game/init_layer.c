@@ -71,8 +71,12 @@ gen_control_ *gen_control, game_ *game)
 void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control
 , game_ *game)
 {
+    update_loading(game);
     init_layer_1(layer, load_map, gen_control, game);
+    update_loading(game);
     init_layer_2(layer, load_map, gen_control, game);
+    update_loading(game);
     init_layer_3(layer, load_map, gen_control, game);
+    update_loading(game);
     init_layer_4(layer, load_map, gen_control, game);
 }
