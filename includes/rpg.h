@@ -355,6 +355,7 @@ typedef struct boole {
     int on_fight;
     int on_attack;
     int is_friend;
+    int is_quit;
 } boole_;
 
 typedef struct enemy {
@@ -532,5 +533,6 @@ void choose_save(game_ *game, int type);
 void set_save(game_ *game, char **saves);
 void set_new_game(game_ *game);
 void spawn_parrot(game_ *game);
+void init_map_nbr(game_ *game, int map_number, int k);
 
 #endif /* PROJECT_H_ */

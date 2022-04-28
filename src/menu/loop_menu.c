@@ -30,9 +30,10 @@ void check_event_menu(game_ *game, menu_ *menu)
             sfMusic_stop(game->sounds->ocean);
             sfRenderWindow_close(game->window);
         }
-        if (sfKeyboard_isKeyPressed(sfKeyN))
+        if (sfKeyboard_isKeyPressed(sfKeyN)) {
+            game->boole->is_quit = 0;
             launch_game(game, 0, 1, 0);
-        if (sfKeyboard_isKeyPressed(sfKeyL))
+        } if (sfKeyboard_isKeyPressed(sfKeyL))
             menu->on_load = 0;
         if (sfKeyboard_isKeyPressed(sfKeyG))
             launch_map_generator(game);

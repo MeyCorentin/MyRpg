@@ -38,6 +38,10 @@ void save_map(game_ *game, int fd)
     my_strlen(new_put_nbr(game->x_start)) + 1);
     write(fd, my_strncat(new_put_nbr(game->y_start), "\n", 0),
     my_strlen(new_put_nbr(game->y_start)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->map_number), "\n", 0),
+    my_strlen(new_put_nbr(game->map_number)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->number), "\n", 0),
+    my_strlen(new_put_nbr(game->number)) + 1);
 }
 
 int save_game(game_ *game)

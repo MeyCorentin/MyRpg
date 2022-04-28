@@ -6,8 +6,10 @@ Jessica
 0
 #INVENTORY
 #MAP
--502
--184
+-577
+262
+1
+1
 #SKILLS
 0
 0
@@ -15,8 +17,8 @@ Jessica
 0
 0
 #CLOCK
-13
+14
 0
 0
-
+0
 

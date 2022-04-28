@@ -24,8 +24,10 @@ void set_new_game(game_ *game)
     game->player->stats->life = 3;
     game->player->stats->attack = 1;
     game->player->stats->speed = 0;
-    game->x_start = -250;
-    game->y_start = -445;
+    if (game->boole->is_quit == 0) {
+        game->x_start = -250;
+        game->y_start = -445;
+    }
 }
 
 void set_save_map(game_ *game, char **saves)
@@ -44,14 +46,14 @@ void set_save_map(game_ *game, char **saves)
 
 void set_save(game_ *game, char **saves)
 {
-    game->clock->saison = my_atoi(saves[19]);
-    game->clock->days = my_atoi(saves[18]);
-    game->clock->hours = my_atoi(saves[17]);
-    game->bonus->all = my_atoi(saves[11]);
-    game->bonus->attack = my_atoi(saves[12]);
-    game->bonus->gold = my_atoi(saves[13]);
-    game->bonus->life = my_atoi(saves[14]);
-    game->bonus->speed = my_atoi(saves[15]);
+    game->clock->saison = my_atoi(saves[21]);
+    game->clock->days = my_atoi(saves[20]);
+    game->clock->hours = my_atoi(saves[19]);
+    game->bonus->all = my_atoi(saves[13]);
+    game->bonus->attack = my_atoi(saves[14]);
+    game->bonus->gold = my_atoi(saves[15]);
+    game->bonus->life = my_atoi(saves[16]);
+    game->bonus->speed = my_atoi(saves[17]);
     game->player->gold = my_atoi(saves[1]);
     game->player->stats->attack = my_atoi(saves[3]);
     game->player->stats->life = my_atoi(saves[4]);
@@ -60,5 +62,8 @@ void set_save(game_ *game, char **saves)
         game->clock->color.a = 0;
     else
         game->clock->color.a = 100;
-    set_save_map(game, saves);
+    if (game->boole->is_quit == 0) {
+        set_save_map(game, saves);
+        init_map_nbr(game, my_atoi(saves[10]), my_atoi(saves[11]));
+    }
 }
