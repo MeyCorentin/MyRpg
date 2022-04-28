@@ -31,7 +31,7 @@ void check_event_menu(game_ *game, menu_ *menu)
             sfRenderWindow_close(game->window);
         }
         if (sfKeyboard_isKeyPressed(sfKeyN))
-            launch_game(game, game->pseudo, 0, 1);
+            launch_game(game, 0, 1, 0);
         if (sfKeyboard_isKeyPressed(sfKeyL))
             menu->on_load = 0;
         if (sfKeyboard_isKeyPressed(sfKeyG))
@@ -44,6 +44,7 @@ void check_event_menu(game_ *game, menu_ *menu)
 
 void loop_menu(game_ *game, menu_ *menu)
 {
+    game->boole->is_friend = 2;
     sfMusic_play(game->sounds->ocean);
     while (sfRenderWindow_isOpen(game->window)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);

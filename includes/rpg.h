@@ -354,6 +354,7 @@ typedef struct boole {
     int on_hint;
     int on_fight;
     int on_attack;
+    int is_friend;
 } boole_;
 
 typedef struct enemy {
@@ -445,7 +446,7 @@ typedef struct game {
 void check_event_game(game_ *game);
 int global_gestion(int argc, char **argv);
 sfIntRect change_rect(sfIntRect rect, float x, float y);
-void launch_game(game_ *game, char *pseudo, int spawn_point, int map_number);
+void launch_game(game_ *game, int spawn_point, int map_number, int type);
 void create_player(game_ *game, char *pseudo);
 void update_player(game_ *game, player_ *player);
 void create_inventory(game_ *game);
@@ -502,7 +503,7 @@ void move_enemy(enemy_ *enemy, int movement, game_ *game);
 void update_enemy_f(enemy_ *enemy, game_ *game);
 void init_game_boole(game_ *game);
 void get_mob(char *files_name, game_ *game);
-void set_game(game_ *game, char *pseudo);
+void set_game(game_ *game);
 int save_game(game_ *game);
 void save_skills(game_ *game, int fd);
 void save_clock(game_ *game, int fd);
@@ -519,11 +520,17 @@ void init_mob_best_1_1(int k, sfVector2f pos, game_ *game);
 void update_enemy_best(enemy_ *enemy, game_ *game);
 void tp_top(game_ *game);
 void check_pos(int k, game_ *game, int map_number);
-void tp_pos(game_ *game, char *pseudo);
+void tp_pos(game_ *game, int type);
 void create_all(game_ *game);
 void event_pause(game_ *game);
 void update_clock(clock_ *clock);
 void update_loading(game_ *game);
 void draw_menu(game_ *game, menu_ *menu);
+void draw_parrot_ingame(game_ *game);
+void check_parrot_move(menu_ *menu);
+void choose_save(game_ *game, int type);
+void set_save(game_ *game, char **saves);
+void set_new_game(game_ *game);
+void spawn_parrot(game_ *game);
 
 #endif /* PROJECT_H_ */

@@ -76,7 +76,7 @@ void add_items(game_ *game, item_ *item)
 {
     if (item == NULL) {
         game->first_item = create_item(1, 3, "pictures/items/weapons.png",
-        (sfVector2f){200, 200});
+        (sfVector2f){960, 580});
         set_rect_item(game->first_item, 0, 0, NULL);
     } else if (item->next != NULL)
         add_items(game, item->next);

@@ -37,6 +37,7 @@ void check_event_game(game_ *game)
         change_window(game);
         open_close_best(game);
         open_close_fight(game);
+        spawn_parrot(game);
     }
 }
 
@@ -55,6 +56,7 @@ void get_mob(char *files_name, game_ *game)
 void init_game(game_ *game, layer_ *layer, load_map_ *load_map
 , gen_control_ *gen_control)
 {
+    create_life(game);
     game->load_map = load_map;
     char *map = my_strcat(game->map, "background.txt");
     get_size(map, game->load_map);
@@ -62,18 +64,19 @@ void init_game(game_ *game, layer_ *layer, load_map_ *load_map
     game->first = create_enemy((sfVector2f){-1000, 1000},
     (sfIntRect){25, 480, 15, 30}, 90);
     init_layer(layer, load_map, gen_control, game);
+    tp_all(game);
 }
 
-void launch_game(game_ *game, char *pseudo, int k, int map_number)
+void launch_game(game_ *game, int k, int map_number, int type)
 {
     layer_ *layer = malloc(sizeof(layer_));
     gen_control_ *gen_control = malloc(sizeof(gen_control_));
     load_map_ *load_map = malloc(sizeof(load_map_));
     update_loading(game);
     check_pos(k, game, map_number);
+    set_game(game);
+    choose_save(game, type);
     init_game(game, layer, load_map, gen_control);
-    set_game(game, pseudo);
-    tp_all(game);
     game->menu->on_load = 1;
     while (sfRenderWindow_isOpen(game->window)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
@@ -84,6 +87,6 @@ void launch_game(game_ *game, char *pseudo, int k, int map_number)
         launch_layer(game, layer, game->player->pos_r, game->player->rep);
         detect_fight(game);
         sfRenderWindow_display(game->window);
-        tp_pos(game, pseudo);
+        tp_pos(game, type);
     }
 }

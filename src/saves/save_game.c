@@ -9,7 +9,7 @@
 
 void save_stats(game_ *game, int fd)
 {
-    write(fd, "#STATS\n", 8);
+    write(fd, "#STATS\n", 7);
     write(fd, my_strncat(new_put_nbr(game->player->gold), "\n", 0),
     my_strlen(new_put_nbr(game->player->gold)) + 1);
     write(fd, my_strncat(game->pseudo, "\n", 0), my_strlen(game->pseudo) + 1);
@@ -37,12 +37,12 @@ void save_map(game_ *game, int fd)
     write(fd, my_strncat(new_put_nbr(game->x_start), "\n", 0),
     my_strlen(new_put_nbr(game->x_start)) + 1);
     write(fd, my_strncat(new_put_nbr(game->y_start), "\n", 0),
-    my_strlen(new_put_nbr(game->x_start)) + 1);
+    my_strlen(new_put_nbr(game->y_start)) + 1);
 }
 
 int save_game(game_ *game)
 {
-    int fd = open("save.txt", O_WRONLY);
+    int fd = open("save1.txt", O_WRONLY);
     if (fd == -1) {
         write(2, "invalid file\n", 13);
         return (84);

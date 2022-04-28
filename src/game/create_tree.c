@@ -16,11 +16,6 @@ void set_texture_tree(game_ *game)
 void create_bonus(game_ *game)
 {
     game->bonus = malloc(sizeof(bonus_));
-    game->bonus->all = 0;
-    game->bonus->gold = 0;
-    game->bonus->life = 0;
-    game->bonus->speed = 0;
-    game->bonus->attack = 0;
 }
 
 void set_all_skills(game_ *game)

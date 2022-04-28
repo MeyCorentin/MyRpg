@@ -29,7 +29,7 @@ void change_date(game_ *game)
 
 void check_hour2(game_ *game)
 {
-    if (game->clock->secs > 1080 && game->clock->secs < 1180 &&
+    if (game->clock->hours >= 6 && game->clock->hours < 7 &&
     game->clock->color.a > 0) {
         sfSprite_setRotation(game->clock->arrow->sprite, 190);
         sfSprite_setPosition(game->clock->arrow->sprite,
@@ -46,19 +46,19 @@ void check_hour2(game_ *game)
 
 void check_hour(game_ *game)
 {
-    if (game->clock->secs > 450 && game->clock->secs < 600 &&
+    if (game->clock->hours >= 20 && game->clock->hours < 21 &&
     game->clock->color.a < 100) {
         sfSprite_setPosition(game->clock->arrow->sprite,
         (sfVector2f){1712, 55});
         sfSprite_setRotation(game->clock->arrow->sprite, 295);
         game->clock->color.a += 1;
     }
-    if (game->clock->secs > 600 && game->clock->secs < 900) {
+    if (game->clock->hours > 21 || game->clock->hours < 6) {
         sfSprite_setRotation(game->clock->arrow->sprite, 350);
         sfSprite_setPosition(game->clock->arrow->sprite,
         (sfVector2f){1750, 20});
     }
-    if (game->clock->secs > 1180 || game->clock->secs < 450) {
+    if (game->clock->hours > 7 && game->clock->hours < 20) {
         sfSprite_setRotation(game->clock->arrow->sprite, 245);
         sfSprite_setPosition(game->clock->arrow->sprite,
         (sfVector2f){1724, 102});

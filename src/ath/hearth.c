@@ -41,6 +41,7 @@ void create_life(game_ *game)
     (sfVector2f){0.15, 0.15}, "pictures/ath/hearth.png");
     game->inv->x_hearth += 45;
     game->inv->life->next = NULL;
-    add_hearth(game->inv->life, game->inv->x_hearth, game);
-    add_hearth(game->inv->life, game->inv->x_hearth, game);
+    for (int cmpt = 1; cmpt < (game->bonus->life + 3);
+    cmpt += 1)
+        add_hearth(game->inv->life, game->inv->x_hearth, game);
 }

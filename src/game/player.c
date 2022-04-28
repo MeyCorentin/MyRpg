@@ -9,22 +9,28 @@
 
 void move_player(player_ *player, game_ *game)
 {
+    player->movement = 4;
+    game->menu->parrot->version = 1;
     if (game->boole->on_fight != 0) {
-        if (sfKeyboard_isKeyPressed(sfKeyZ) && player->m_up == 1)
+        if (sfKeyboard_isKeyPressed(sfKeyZ) && player->m_up == 1) {
             player->movement = 2;
-        if (sfKeyboard_isKeyPressed(sfKeyS) && player->m_down == 1)
+            game->menu->parrot->version = 2;
+        } if (sfKeyboard_isKeyPressed(sfKeyS) && player->m_down == 1) {
             player->movement = 0;
-        if (sfKeyboard_isKeyPressed(sfKeyQ) && player->m_left == 1)
+            game->menu->parrot->version = 1;
+        } if (sfKeyboard_isKeyPressed(sfKeyQ) && player->m_left == 1) {
             player->movement = 3;
-        if (sfKeyboard_isKeyPressed(sfKeyD) && player->m_right == 1)
+            game->menu->parrot->version = 0;
+        } if (sfKeyboard_isKeyPressed(sfKeyD) && player->m_right == 1) {
             player->movement = 1;
+            game->menu->parrot->version = 2;
+        }
         sfSprite_setPosition(player->sprite, player->position);
     }
 }
 
 void update_player(game_ *game, player_ *player)
 {
-    player->movement = 4;
     player->time = sfClock_getElapsedTime(player->clock);
     player->secs = player->time.microseconds / 5000;
     move_player(player, game);
@@ -38,14 +44,12 @@ void update_player(game_ *game, player_ *player)
         sfClock_restart(player->clock);
     }
     sfRenderWindow_drawSprite(game->window, player->sprite, sfFalse);
+    if (game->boole->is_friend == 0)
+        update_animal(game->menu->parrot, 48, 48, game);
 }
 
 void set_gold_player(game_ *game, char *pseudo)
 {
-    if (my_strcmp(pseudo, "Jessica") == 0)
-        game->player->gold = 10000;
-    else
-        game->player->gold = 10;
     game->player->m_down = 1;
     game->player->m_up = 1;
     game->player->m_left = 1;
@@ -70,9 +74,6 @@ void create_player(game_ *game, char *pseudo)
     sfSprite_setTextureRect(game->player->sprite, game->player->rect);
     set_gold_player(game, pseudo);
     game->player->stats = malloc(sizeof(stats_));
-    game->player->stats->life = 3;
-    game->player->stats->attack = 1;
-    game->player->stats->speed = 0;
 }
 
 void check_on_item(game_ *game, item_ *item, player_ *player)

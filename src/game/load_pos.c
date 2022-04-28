@@ -37,14 +37,19 @@ void check_pos(int k, game_ *game, int map_number)
     }
 }
 
-void tp_pos(game_ *game, char *pseudo)
+void tp_pos(game_ *game, int type)
 {
-    if (game->y_start < -860)
-        launch_game(game, pseudo, 1, game->map_number - 10);
-    if (game->y_start > 440)
-        launch_game(game, pseudo, 2, game->map_number + 10);
-    if (game->x_start < -1280)
-        launch_game(game, pseudo, 3, game->map_number + 2);
-    if (game->x_start > 840)
-        launch_game(game, pseudo, 4, game->map_number - 2);
+    if (game->y_start < -860) {
+        save_game(game);
+        launch_game(game, 1, game->map_number - 10, type);
+    } if (game->y_start > 440) {
+        save_game(game);
+        launch_game(game, 2, game->map_number + 10, type);
+    } if (game->x_start < -1280) {
+        save_game(game);
+        launch_game(game, 3, game->map_number + 2, type);
+    } if (game->x_start > 840) {
+        save_game(game);
+        launch_game(game, 4, game->map_number - 2, type);
+    }
 }

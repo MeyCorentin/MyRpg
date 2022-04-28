@@ -9,19 +9,19 @@
 
 void move_parrot(animal_ *animal, game_ *game)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyZ)) {
+    if (sfKeyboard_isKeyPressed(sfKeyUp)) {
         animal->position.y -= 3 * game->speed;
         animal->version = 1;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyS)) {
+    if (sfKeyboard_isKeyPressed(sfKeyDown)) {
         animal->position.y += 3 * game->speed;
         animal->version = 1;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
+    if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
         animal->position.x -= 3 * game->speed;
         animal->version = 0;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyD)) {
+    if (sfKeyboard_isKeyPressed(sfKeyRight)) {
         animal->position.x += 3 * game->speed;
         animal->version = 2;
     }
@@ -54,7 +54,7 @@ void update_animal(animal_ *animal, int x, int y, game_ *game)
     }
     if (animal->moved == 0)
         move_parrot(animal, game);
-    else {
+    else if (game->boole->is_friend == 2) {
         animal->version = 0;
         animal->position.x -= 2 * game->speed;
         sfSprite_setPosition(animal->sprite, animal->position);
@@ -66,8 +66,9 @@ void update_animal(animal_ *animal, int x, int y, game_ *game)
 
 void check_parrot_move(menu_ *menu)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyZ) || sfKeyboard_isKeyPressed(sfKeyS) ||
-    sfKeyboard_isKeyPressed(sfKeyQ) || sfKeyboard_isKeyPressed(sfKeyD))
+    if (sfKeyboard_isKeyPressed(sfKeyUp) || sfKeyboard_isKeyPressed(sfKeyDown)
+    || sfKeyboard_isKeyPressed(sfKeyLeft) ||
+    sfKeyboard_isKeyPressed(sfKeyRight))
         menu->parrot->moved = 0;
     else
         menu->parrot->moved = 1;

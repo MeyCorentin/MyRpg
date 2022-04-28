@@ -25,12 +25,11 @@ void create_all(game_ *game)
     create_inventory(game);
     create_ath(game);
     create_tree(game);
-    create_life(game);
     create_bestiary(game);
     create_fight(game);
 }
 
-void set_game(game_ *game, char *pseudo)
+void set_game(game_ *game)
 {
     create_player(game, game->pseudo);
     game->player->rep = sfSprite_create();
@@ -45,5 +44,5 @@ void set_game(game_ *game, char *pseudo)
     init_game_boole(game);
     game->player->rep = sfSprite_create();
     add_items(game, game->first_item);
-    add_items(game, game->first_item);
+    game->boole->is_friend = 1;
 }
