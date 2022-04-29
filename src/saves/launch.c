@@ -15,8 +15,12 @@ void read_file(game_ *game, int fd, char *filepath)
 
     read(fd, file, len);
     file[len] = '\0';
-    saves = str_to_array(file, '\n');
-    set_save(game, saves);
+    if (my_strlen(file) == 1) {
+        set_new_game(game);
+    } else {
+        saves = str_to_array(file, '\n');
+        set_save(game, saves);
+    }
 }
 
 void get_save(game_ *game, char *filepath)
@@ -32,6 +36,7 @@ void get_save(game_ *game, char *filepath)
 
 void choose_save(game_ *game, int type)
 {
+    printf("SET : %d\n", type);
     if (type == 0)
         set_new_game(game);
     else {

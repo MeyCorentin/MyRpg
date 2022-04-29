@@ -44,9 +44,18 @@ void save_map(game_ *game, int fd)
     my_strlen(new_put_nbr(game->number)) + 1);
 }
 
-int save_game(game_ *game)
+int save_game(game_ *game, int type)
 {
-    int fd = open("save1.txt", O_WRONLY);
+    char *filepath;
+
+    printf("SAVE : %d\n", type);
+    if (type == 1)
+        filepath = "save1.txt";
+    else if (type == 2)
+        filepath = "save2.txt";
+    else
+        filepath = "save3.txt";
+    int fd = open(filepath, O_WRONLY);
     if (fd == -1) {
         write(2, "invalid file\n", 13);
         return (84);

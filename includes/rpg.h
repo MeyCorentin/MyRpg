@@ -356,6 +356,7 @@ typedef struct boole {
     int on_attack;
     int is_friend;
     int is_quit;
+    int is_dead;
 } boole_;
 
 typedef struct enemy {
@@ -405,9 +406,18 @@ typedef struct bestiary {
     char **mob_stats;
 } bestiary_;
 
+typedef struct death {
+    button_ *quit;
+    text_ *t_quit;
+    button_ *respwan;
+    text_ *t_respawn;
+    button_ *back;
+} death_;
+
 typedef struct game {
     int number;
     load_map_ *load_map;
+    death_ *death;
     char *map;
     int y_start;
     int x_start;
@@ -442,6 +452,7 @@ typedef struct game {
     char *pseudo;
     int map_number;
     button_ *loading;
+    int type;
 } game_;
 
 void check_event_game(game_ *game);
@@ -504,8 +515,8 @@ void move_enemy(enemy_ *enemy, int movement, game_ *game);
 void update_enemy_f(enemy_ *enemy, game_ *game);
 void init_game_boole(game_ *game);
 void get_mob(char *files_name, game_ *game);
-void set_game(game_ *game);
-int save_game(game_ *game);
+void set_game(game_ *game, int type);
+int save_game(game_ *game, int type);
 void save_skills(game_ *game, int fd);
 void save_clock(game_ *game, int fd);
 int destroy_mob(int y, int x, enemy_ *enemy);

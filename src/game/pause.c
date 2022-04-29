@@ -10,7 +10,7 @@
 void quit_game(game_ *game)
 {
     game->boole->on_quit = 1;
-    save_game(game);
+    save_game(game, game->type);
     loop_menu(game, game->menu);
 }
 

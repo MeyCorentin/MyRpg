@@ -35,5 +35,7 @@ int detect_fight(game_ *game)
     for (y = 0; game->layer_->id_mob[y]; y++) {
         detect_fight_(game, y);
     }
+    if (game->player->stats->life < 1)
+        death_loop(game);
     return (0);
 }

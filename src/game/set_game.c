@@ -29,7 +29,7 @@ void create_all(game_ *game)
     create_fight(game);
 }
 
-void set_game(game_ *game)
+void set_game(game_ *game, int type)
 {
     create_player(game, game->pseudo);
     game->player->rep = sfSprite_create();
@@ -45,4 +45,6 @@ void set_game(game_ *game)
     game->player->rep = sfSprite_create();
     add_items(game, game->first_item);
     game->boole->is_friend = 1;
+    game->type = type;
+    create_death_menu(game);
 }

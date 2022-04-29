@@ -25,7 +25,7 @@ void check_event_game(game_ *game)
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
             sfMusic_stop(game->sounds->summer_day);
-            save_game(game);
+            save_game(game, game->type);
             sfRenderWindow_close(game->window);
         }
         check_if_quit(game);
@@ -74,7 +74,7 @@ void launch_game(game_ *game, int k, int map_number, int type)
     load_map_ *load_map = malloc(sizeof(load_map_));
     update_loading(game);
     check_pos(k, game, map_number);
-    set_game(game);
+    set_game(game, type);
     choose_save(game, type);
     init_game(game, layer, load_map, gen_control);
     game->menu->on_load = 1;

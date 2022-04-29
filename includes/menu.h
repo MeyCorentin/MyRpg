@@ -65,5 +65,9 @@ void create_coin(menu_ *menu);
 void update_coin(animal_ *coin, game_ *game);
 void check_on_coin(game_ *game, animal_ *coin, animal_ *parrot);
 text_ *create_text(char *string, sfVector2f scale, sfVector2f pos, char *font);
+void quit_game(game_ *game);
+void create_death_menu(game_ *game);
+void death_loop(game_ *game);
+void check_respawn(game_ *game);
 
 #endif /* MENU_H_ */
