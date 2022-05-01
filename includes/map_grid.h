@@ -94,6 +94,8 @@ char ***get_map_4(load_map_ *load_map);
 void get_size_4(char *files_name, load_map_ *load_map);
 void display_big_tab(char ***map);
 void init_map_mob(int y, int x, layer_ *layer, game_ *game);
+void init_map_mob_2(int y, int x, layer_ *layer, game_ *game);
+void init_map_mob_3(int y, int x, layer_ *layer, game_ *game);
 void init_mob(load_map_ *load_map, game_ *game, layer_ *layer);
 void add_id_in_tab(char ***tab, char *id, int y, int x);
 void add_copy_sprite(sfSprite ***map, char ***id_background,
