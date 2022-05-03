@@ -23,7 +23,6 @@
 #ifndef PROJECT_H_
     #define PROJECT_H_
 
-
 typedef struct grid_cell {
     int x;
     int y;
@@ -81,7 +80,7 @@ typedef struct text {
     sfVector2f position;
     sfVector2f scale;
     sfFont *font;
-    char *string;
+    const char *string;
 } text_;
 
 typedef struct button {

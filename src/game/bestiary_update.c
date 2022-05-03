@@ -47,8 +47,8 @@ void update_bestiary_text(game_ *game, char **tab, char **tab_2)
 
 void update_bestiary(game_ *game)
 {
-    char **tab = my_split_tab(game->best->mob_stats[game->best->page], '/');
-    char **tab_2 = my_split_tab(game->best->mob_stats[game->best->page + 1],
+    char **tab = my_split_tabn(game->best->mob_stats[game->best->page], '/');
+    char **tab_2 = my_split_tabn(game->best->mob_stats[game->best->page + 1],
     '/');
 
     game->clock->check_secs = game->clock->time.microseconds / 5000;

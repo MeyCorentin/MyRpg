@@ -56,7 +56,8 @@ void open_close_best(game_ *game)
         game->clock->check_secs = 0;
         game->boole->on_best = 0;
         game->boole->on_inv = 1;
-    } if (game->boole->on_best == 0 && game->clock->check_secs != 0 &&
+    }
+    if (game->boole->on_best == 0 && game->clock->check_secs != 0 &&
     (sfKeyboard_isKeyPressed(sfKeyB) || sfKeyboard_isKeyPressed(sfKeyEscape))
     && game->clock->check_secs != 0) {
         game->clock->check_secs = 0;

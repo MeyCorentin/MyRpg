@@ -44,6 +44,7 @@ $(NAME): $(OBJ)
 	@echo ">>> Library compiled."
 	@gcc -g3 -o ${NAME} $(SRC) $(CFLAGS) $(CSFMLFLAG) -L. libmy.a
 	@echo ">>> Executable \"${NAME}\" created."
+	@rm -f $(OBJ)
 
 clean:
 	@rm -f $(OBJ)

@@ -1,13 +1,13 @@
 #STATS
 10000
-Donat
+Coco
 1
 1
 0
 #INVENTORY
 #MAP
--217
-175
+-91
+-104
 1
 1
 #SKILLS
@@ -20,4 +20,4 @@ Donat
 4
 1
 0
-#END
+#ENDD

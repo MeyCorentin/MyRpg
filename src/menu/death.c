@@ -13,7 +13,7 @@ void respawn(game_ *game)
     game->boole->is_dead = 1;
 }
 
-void check_respawn(game_ *game)
+int check_respawn(game_ *game)
 {
     sfVector2f p_respawn = sfSprite_getPosition(game->death->respwan->sprite);
     sfVector2f p_quit = sfSprite_getPosition(game->death->quit->sprite);
@@ -26,12 +26,12 @@ void check_respawn(game_ *game)
     } else if (game->mouse.x > p_quit.x && game->mouse.x < p_quit.x + 380 &&
     game->mouse.y > p_quit.y && game->mouse.y < p_quit.y + 150) {
         sfText_setColor(game->death->t_quit->text, sfWhite);
-        if (game->event.type == sfEvtMouseButtonReleased)
-            quit_game(game);
+        (game->event.type == sfEvtMouseButtonReleased) ? (quit_game(game)) : 1;
     } else {
         sfText_setColor(game->death->t_quit->text, sfBlack);
         sfText_setColor(game->death->t_respawn->text, sfBlack);
     }
+    return (0);
 }
 
 void create_death_menu(game_ *game)

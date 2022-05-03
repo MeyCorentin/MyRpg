@@ -49,7 +49,7 @@ void get_mob(char *files_name, game_ *game)
     int fd = open(files_name, O_RDONLY);
 
     read(fd, temp, len);
-    temp[len - 1] = '\0';
+    temp[len] = '\0';
     close(fd);
     game->best->mob_stats = my_split_tab(temp, '\n');
 }

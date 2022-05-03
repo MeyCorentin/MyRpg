@@ -24,16 +24,6 @@ int my_count_split(char *argv, char char_)
     return (j + 1);
 }
 
-void my_print_tab(char **tab)
-{
-    int k = 0;
-
-    for (; tab[k]; k++) {
-        my_putstr(tab[k]);
-    }
-    my_putstr(tab[k]);
-}
-
 char **my_malloc_tab(int colum, int lines)
 {
     char **temp = malloc(sizeof(char *) * (colum + 1));
@@ -53,6 +43,27 @@ char **my_split_tab(char *argv, char char_)
     char **tab = my_malloc_tab(my_count_split(argv, char_), my_strlen(argv));
 
     for (; argv[k] != '\0'; k++, l++) {
+        if (argv[k] == char_) {
+            k++;
+            tab[i][l] = '\0';
+            l = 0;
+            i++;
+        } else {
+            tab[i][l + 1] = '\0';
+        }
+        tab[i][l] = argv[k];
+    }
+    return (tab);
+}
+
+char **my_split_tabn(char *argv, char char_)
+{
+    int k = 0;
+    int l = 0;
+    int i = 0;
+    char **tab = my_malloc_tab(my_count_split(argv, char_), my_strlen(argv));
+
+    for (; argv[k] != '\n' && argv[k] != '\0'; k++, l++) {
         if (argv[k] == char_) {
             k++;
             tab[i][l] = '\0';

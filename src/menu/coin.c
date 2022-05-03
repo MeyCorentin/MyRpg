@@ -7,7 +7,8 @@
 
 #include "../../includes/rpg.h"
 
-text_ *create_text(char *string, sfVector2f scale, sfVector2f pos, char *font)
+text_ *create_text(const char *string, sfVector2f scale, sfVector2f pos,
+char *font)
 {
     text_ *text = malloc(sizeof(text_));
     text->text = sfText_create();
