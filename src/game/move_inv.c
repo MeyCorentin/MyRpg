@@ -83,6 +83,8 @@ void update_inventory2(game_ *game)
 
 void update_inventory(game_ *game)
 {
+    if (game->boole->on_dialogue == 0)
+        draw_dialogues(game);
     game->clock->check_secs = game->clock->time.microseconds / 5000;
     if (game->boole->on_inv == 0)
         sfRenderWindow_drawSprite

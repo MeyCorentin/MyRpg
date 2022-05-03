@@ -563,5 +563,6 @@ void dialogues_event(game_ *game);
 void draw_dialogues(game_ *game);
 char *insert_return2(char *line);
 char *insert_return(char *line);
+void update_dialogue(game_ *game);
 
 #endif /* PROJECT_H_ */
