@@ -43,13 +43,14 @@ Thank you again for your work, you acquired the respect of other villager
 
 #lewis_help
 Hello newbie, I am Lewis, i saw that Alex redirected you to me. I need you to find some special wood
-It is a really speacial type of wood, you will find it at the east of the plain
+It is a really special type of wood, you will find it at the east of the plain
 You can't miss the tree you are looking for, it is the only blue one around green
 Be careful there is many monster this is why I can't go there alone
 
 #lewis_end
 Thank you very much for your help, I couldn't achieved it alone
 I will now be able to make some furniture
+
 
 #clint_help
 Hey bro, I saw that you helped Lewis so I ask Alex to tells you about me
