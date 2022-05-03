@@ -36,7 +36,6 @@ void get_save(game_ *game, char *filepath)
 
 void choose_save(game_ *game, int type)
 {
-    printf("SET : %d\n", type);
     if (type == 0)
         set_new_game(game);
     else {

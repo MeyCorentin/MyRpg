@@ -11,16 +11,20 @@ void move_items(item_ *item, int value, int movement, game_ *game)
 {
     switch (movement) {
         case (0):
-            item->position.y -= value + game->player->stats->speed;
+            item->position.y -= value * game->speed +
+            game->player->stats->speed;
             break;
         case (1):
-            item->position.x -= value + game->player->stats->speed;
+            item->position.x -= value * game->speed +
+            game->player->stats->speed;
             break;
         case (2):
-            item->position.y += value + game->player->stats->speed;
+            item->position.y += value * game->speed +
+            game->player->stats->speed;
             break;
         case (3):
-            item->position.x += value + game->player->stats->speed;
+            item->position.x += value * game->speed +
+            game->player->stats->speed;
             break;
     }
 }

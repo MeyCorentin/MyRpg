@@ -48,7 +48,6 @@ int save_game(game_ *game, int type)
 {
     char *filepath;
 
-    printf("SAVE : %d\n", type);
     if (type == 1)
         filepath = "save1.txt";
     else if (type == 2)

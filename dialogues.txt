@@ -1,0 +1,27 @@
+#START
+Welcome in the Island
+I'm Donat, the best captain ever !
+#QUEST1
+Go to the ship
+#CODE
+As recorded by Captain Charles Johnson regarding the articles of Bartholomew Roberts.
+Every man shall have an equal vote in affairs of moment.
+He shall have an equal title to the fresh provisions or strong liquors at any time seized, and shall use them at pleasure unless a scarcity may make it necessary for the common good that a retrenchment may be voted.
+Every man shall be called fairly in turn by the list on board of prizes, because over and above their proper share, they are allowed a shift of clothes.
+But if they defraud the company to the value of even one dollar in plate, jewels or money, they shall be marooned.
+If any man rob another he shall have his nose and ears slit, and be put ashore where he shall be sure to encounter hardships.
+None shall game for money either with dice or cards.
+The lights and candles should be put out at eight at night, and if any of the crew desire to drink after that hour they shall sit upon the open deck without lights.
+Each man shall keep his piece, cutlass and pistols at all times clean and ready for action.
+No boy or woman to be allowed amongst them. If any man shall be found seducing any of the latter sex and carrying her to sea in disguise he shall suffer death.
+He that shall desert the ship or his quarters in time of battle shall be punished by death or marooning.
+None shall strike another on board the ship, but every man's quarrel shall be ended on shore by sword or pistol in this manner.
+At the word of command from the quartermaster, each man being previously placed back to back, shall turn and fire immediately.
+If any man do not, the quartermaster shall knock the piece out of his hand.
+If both miss their aim they shall take to their cutlasses, and he that draw the first blood shall be declared the victor.
+No man shall talk of breaking up their way of living till each has a share of 1,000.
+Every man who shall become a cripple or lose a limb in the service shall have 800 pieces of eight from the common stock and for lesser hurts proportionately.
+The captain and the quartermaster shall each receive two shares of a prize, the master gunner and boatswain, one and one half shares, all other officers one and one quarter, and private gentlemen of fortune one share each.
+The musicians shall have rest on the Sabbath Day only by right. On all other days by favor only.
+#END
+You are now the pirate king !

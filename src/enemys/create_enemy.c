@@ -65,13 +65,13 @@ void init_map_mob(int y, int x, layer_ *layer, game_ *game)
 void move_enemy(enemy_ *enemy, int movement, game_ *game)
 {
     if (movement == 0)
-        enemy->position.y -= 3 + game->player->stats->speed;
+        enemy->position.y -= 3 * game->speed + game->player->stats->speed;
     if (movement == 1)
-        enemy->position.x -= 3 + game->player->stats->speed;
+        enemy->position.x -= 3 * game->speed + game->player->stats->speed;
     if (movement == 2)
-        enemy->position.y += 3 + game->player->stats->speed;
+        enemy->position.y += 3 * game->speed + game->player->stats->speed;
     if (movement == 3)
-        enemy->position.x += 3 + game->player->stats->speed;
+        enemy->position.x += 3 * game->speed + game->player->stats->speed;
     sfSprite_setPosition(enemy->sprite, enemy->position);
 }
 

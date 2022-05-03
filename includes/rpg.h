@@ -357,6 +357,7 @@ typedef struct boole {
     int is_friend;
     int is_quit;
     int is_dead;
+    int on_dialogue;
 } boole_;
 
 typedef struct enemy {
@@ -414,8 +415,20 @@ typedef struct death {
     button_ *back;
 } death_;
 
+typedef struct dialogues {
+    button_ *box;
+    text_ *text;
+    button_ *speaker;
+    button_ *name;
+    char **data_base;
+    int pnj;
+    char *quest;
+    int line;
+} dialogues_;
+
 typedef struct game {
     int number;
+    dialogues_ *dialogues;
     load_map_ *load_map;
     death_ *death;
     char *map;
@@ -545,5 +558,10 @@ void set_save(game_ *game, char **saves);
 void set_new_game(game_ *game);
 void spawn_parrot(game_ *game);
 void init_map_nbr(game_ *game, int map_number, int k);
+void create_dialogues(game_ *game);
+void dialogues_event(game_ *game);
+void draw_dialogues(game_ *game);
+char *insert_return2(char *line);
+char *insert_return(char *line);
 
 #endif /* PROJECT_H_ */
