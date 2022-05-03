@@ -63,7 +63,7 @@ void update_enemy(enemy_ *enemy, game_ *game)
         enemy->rect.left = enemy->start;
     sfSprite_setTextureRect(enemy->sprite, enemy->rect);
     move_enemy(enemy, game->player->movement, game);
-    if (game->clock->secs < 450 || game->clock->secs > 1100)
+    if (game->clock->hours > 5 && game->clock->hours < 20)
         sfRenderWindow_drawSprite(game->window, enemy->sprite, sfFalse);
     if (enemy->next != NULL)
         update_enemy(enemy->next, game);

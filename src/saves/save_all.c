@@ -31,4 +31,5 @@ void save_clock(game_ *game, int fd)
     my_strlen(new_put_nbr(game->clock->days)) + 1);
     write(fd, my_strncat(new_put_nbr(game->clock->saison), "\n", 0),
     my_strlen(new_put_nbr(game->clock->saison)) + 1);
+    write(fd, "#END", 4);
 }

@@ -6,7 +6,7 @@ Donat
 0
 #INVENTORY
 #MAP
--313
+-250
 -445
 1
 0
@@ -17,6 +17,7 @@ Donat
 0
 0
 #CLOCK
-14
+12
 0
 0
+#END
