@@ -23,95 +23,47 @@ int get_file_len(char *files_name)
 void get_size(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
-    char *temp = malloc(sizeof(char) * len);
-    char **tab;
-    int check = 0;
+    char *temp = malloc(sizeof(char) * len + 1);
     int fd = open(files_name, O_RDONLY);
-    int test;
 
     read(fd, temp, len);
-    temp[len] = '\0';
     close(fd);
+    temp[len] = '\0';
     load_map->back_full = temp;
-    tab = my_split_tab(temp, '\n');
-    temp = malloc(sizeof(char) * my_strlen(tab[0]));
-    for (test = 0, len = 0; tab[0][len]; len++) {
-        (check == 1) ? temp[test] = tab[0][len], test++ : 1;
-        (tab[0][len] == ' ') ? check = 1 : 1;
-    }
-    temp[test] = '\0';
-    load_map->y_size = my_atoi(tab[0]);
-    load_map->x_size = my_atoi(temp);
 }
 
 void get_size_2(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
-    char *temp = malloc(sizeof(char) * len);
-    char **tab;
-    int check = 0;
+    char *temp = malloc(sizeof(char) * len + 1);
     int fd = open(files_name, O_RDONLY);
-    int test;
 
     read(fd, temp, len);
-    temp[len] = '\0';
     close(fd);
+    temp[len] = '\0';
     load_map->fore_full = temp;
-    tab = my_split_tab(temp, '\n');
-    temp = malloc(sizeof(char) * my_strlen(tab[0]));
-    for (test = 0, len = 0; tab[0][len]; len++) {
-        (check == 1) ? temp[test] = tab[0][len], test++ : 1;
-        (tab[0][len] == ' ') ? check = 1 : 1;
-    }
-    temp[test + 1] = '\0';
-    load_map->y_size = my_atoi(tab[0]);
-    load_map->x_size = my_atoi(temp);
 }
 
 void get_size_3(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
-    char *temp = malloc(sizeof(char) * len);
-    char **tab;
-    int check = 0;
+    char *temp = malloc(sizeof(char) * len + 1);
     int fd = open(files_name, O_RDONLY);
-    int test;
 
     read(fd, temp, len);
-    temp[len] = '\0';
     close(fd);
+    temp[len] = '\0';
     load_map->hit_full = temp;
-    tab = my_split_tab(temp, '\n');
-    temp = malloc(sizeof(char) * my_strlen(tab[0]));
-    for (test = 0, len = 0; tab[0][len]; len++) {
-        (check == 1) ? temp[test] = tab[0][len], test++ : 1;
-        (tab[0][len] == ' ') ? check = 1 : 1;
-    }
-    temp[test + 1] = '\0';
-    load_map->y_size = my_atoi(tab[0]);
-    load_map->x_size = my_atoi(temp);
 }
 
 void get_size_4(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
-    char *temp = malloc(sizeof(char) * len);
-    char **tab;
-    int check = 0;
+    char *temp = malloc(sizeof(char) * len + 1);
     int fd = open(files_name, O_RDONLY);
-    int test;
 
     read(fd, temp, len);
-    temp[len] = '\0';
     close(fd);
+    temp[len] = '\0';
     load_map->mob_full = temp;
-    tab = my_split_tab(temp, '\n');
-    temp = malloc(sizeof(char) * my_strlen(tab[0]));
-    for (test = 0, len = 0; tab[0][len]; len++) {
-        (check == 1) ? temp[test] = tab[0][len], test++ : 1;
-        (tab[0][len] == ' ') ? check = 1 : 1;
-    }
-    temp[test + 1] = '\0';
-    load_map->y_size = my_atoi(tab[0]);
-    load_map->x_size = my_atoi(temp);
 }

@@ -11,7 +11,8 @@ void update_dialogue(game_ *game)
 {
     if (game->dialogues->line == 0) {
         for (; my_strcmp(game->dialogues->data_base[game->dialogues->line],
-        game->dialogues->quest) != 0; game->dialogues->line += 1);
+        game->dialogues->quest) != 0 && game->dialogues->data_base
+        [game->dialogues->line] != NULL; game->dialogues->line += 1);
     }
     sfText_setString(game->dialogues->text->text,
     insert_return(game->dialogues->data_base[game->dialogues->line + 1]));

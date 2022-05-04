@@ -7,11 +7,12 @@
 
 #include "../../includes/rpg.h"
 
-void quit_game(game_ *game)
+int quit_game(game_ *game)
 {
     game->boole->on_quit = 1;
     save_game(game, game->type);
     loop_menu(game, game->menu);
+    return (0);
 }
 
 void event_pause(game_ *game)

@@ -7,35 +7,31 @@
 
 #include "../../includes/rpg.h"
 
-int add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background)
+int find_highest(char ***id_ground)
 {
-    int i = 0;
+    int y = 0;
+    int x = 0;
+    int max = 0;
 
-    for (; map[i]; i++)
-        add_copy_sprite(map, id_background, i, sprite);
-    if (sprite->next != NULL)
-        add_tileset(map, sprite->next, id_background);
-    return (0);
+    for (; id_ground[y]; y++) {
+        for (x = 0; id_ground[y][x]; x++) {
+            (my_atoi(id_ground[y][x]) > max) ? (max = my_atoi(id_ground[y][x]))
+            : 1;
+        }
+    }
+    return (max);
 }
 
-int add_tileset_2(sfSprite ***map, sprite_ *sprite, char ***id_background)
+int add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background,
+int highest)
 {
     int i = 0;
 
     for (; map[i]; i++)
         add_copy_sprite(map, id_background, i, sprite);
+    if (sprite->id > highest)
+        return (0);
     if (sprite->next != NULL)
-        add_tileset(map, sprite->next, id_background);
-    return (0);
-}
-
-int add_tileset_3(sfSprite ***map, sprite_ *sprite, char ***id_background)
-{
-    int i = 0;
-
-    for (; map[i]; i++)
-        add_copy_sprite(map, id_background, i, sprite);
-    if (sprite->next != NULL)
-        add_tileset(map, sprite->next, id_background);
+        add_tileset(map, sprite->next, id_background, highest);
     return (0);
 }

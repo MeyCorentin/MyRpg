@@ -7,7 +7,11 @@
 
 #ifndef MY_H_
     #define MY_H_
-
+    #include <stddef.h>
+    #include <stdlib.h>
+    #include <unistd.h>
+    #include <stdio.h>
+    #include <string.h>
     #include <stdio.h>
 
 int my_atoi(char *str);
@@ -24,9 +28,12 @@ char *new_put_nbr(int nb);
 int puissance(int y);
 char **str_to_array(char *map, char stop);
 void my_fputstr(char const *str, char *file_name);
+int my_count_split(char *argv, char char_);
+char **my_malloc_tab(int colum, int lines);
 char **my_split_tab(char *argv, char char_);
 char *my_strcat_(char *dest, char src);
 void my_print_tab(char **tab);
 char *my_itoa(int nb);
+char **my_split_tabn(char *argv, char char_);
 
 #endif /* MY_H_ */

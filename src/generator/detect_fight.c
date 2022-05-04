@@ -16,7 +16,8 @@ void check_human(game_ *game, sfVector2f pos_, int x, int y)
         init_fight_mob(my_atoi(game->layer_->id_mob[y][x]));
         update_fight(game);
         game->layer_->id_mob[y][x][0] = '0';
-    } else if (sfKeyboard_isKeyPressed(sfKeyE))
+    } else if (sfKeyboard_isKeyPressed(sfKeyE) &&
+    game->boole->on_dialogue == 1)
         active_quest(game, my_atoi(game->layer_->id_mob[y][x]), game->quests);
 }
 

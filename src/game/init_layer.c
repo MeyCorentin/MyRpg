@@ -10,8 +10,10 @@
 void init_layer_1(layer_ *layer, load_map_ *load_map,
 gen_control_ *gen_control, game_ *game)
 {
-    my_putstr("\n|LOAD|");
+    int highest;
     char *map = my_strcat(game->map, "test.txt");
+
+    my_putstr("\n|LOAD|");
     my_putstr(map);
     get_size_2(map, load_map);
     create_gen(gen_control, 1);
@@ -20,14 +22,18 @@ gen_control_ *gen_control, game_ *game)
     my_malloc_map_sprite(load_map->y_size, load_map->x_size);
     layer->id_background = get_map(load_map);
     init_map(layer->map, load_map);
-    add_tileset(layer->map_layer_1, gen_control->list, layer->id_background);
+    highest = find_highest(layer->id_background);
+    add_tileset(layer->map_layer_1, gen_control->list, layer->id_background,
+    highest);
 }
 
 void init_layer_2(layer_ *layer, load_map_ *load_map,
 gen_control_ *gen_control, game_ *game)
 {
+    int highest;
+    char *map = my_strcat(game->map, "foreground.txt");
+
     my_putstr("\n|LOAD|");
-    char *map = my_strcat(game->map, "background.txt");
     my_putstr(map);
     get_size(map, load_map);
     layer->map_2 = my_malloc_map(load_map->y_size, load_map->x_size);
@@ -35,14 +41,18 @@ gen_control_ *gen_control, game_ *game)
     my_malloc_map_sprite(load_map->y_size, load_map->x_size);
     layer->id_foreground = get_map_2(load_map);
     init_map(layer->map_2, load_map);
-    add_tileset_2(layer->map_layer_2, gen_control->list, layer->id_foreground);
+    highest = find_highest(layer->id_foreground);
+    add_tileset(layer->map_layer_2, gen_control->list, layer->id_foreground,
+    highest);
 }
 
 void init_layer_3(layer_ *layer, load_map_ *load_map,
 gen_control_ *gen_control, game_ *game)
 {
-    my_putstr("\n|LOAD|");
+    int highest;
     char *map = my_strcat(game->map, "hitbox.txt");
+
+    my_putstr("\n|LOAD|");
     my_putstr(map);
     get_size_3(map, load_map);
     create_gen(gen_control, 1);
@@ -51,7 +61,9 @@ gen_control_ *gen_control, game_ *game)
     my_malloc_map_sprite(load_map->y_size, load_map->x_size);
     layer->id_hitbox = get_map_3(load_map);
     init_map(layer->map_3, load_map);
-    add_tileset_2(layer->map_layer_3, gen_control->list, layer->id_hitbox);
+    highest = find_highest(layer->id_hitbox);
+    add_tileset(layer->map_layer_3, gen_control->list, layer->id_hitbox,
+    highest);
 }
 
 void init_layer_4(layer_ *layer, load_map_ *load_map,
@@ -71,6 +83,8 @@ gen_control_ *gen_control, game_ *game)
 void init_layer(layer_ *layer, load_map_ *load_map, gen_control_ *gen_control
 , game_ *game)
 {
+    load_map->y_size = 40;
+    load_map->x_size = 60;
     update_loading(game);
     init_layer_1(layer, load_map, gen_control, game);
     update_loading(game);

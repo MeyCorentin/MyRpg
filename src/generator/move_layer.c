@@ -11,6 +11,7 @@ void move_rep(sfSprite *rep, int movement, game_ *game)
 {
     sfVector2f pos = sfSprite_getPosition(rep);
 
+    update_cursor(game);
     if (movement == 0) {
         pos.y -= 3 * game->speed + game->player->stats->speed;
         game->y_start -= 3 * game->speed + game->player->stats->speed;

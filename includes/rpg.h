@@ -23,7 +23,6 @@
 #ifndef PROJECT_H_
     #define PROJECT_H_
 
-
 typedef struct grid_cell {
     int x;
     int y;
@@ -81,7 +80,7 @@ typedef struct text {
     sfVector2f position;
     sfVector2f scale;
     sfFont *font;
-    char *string;
+    const char *string;
 } text_;
 
 typedef struct button {
@@ -582,5 +581,6 @@ void create_quests(game_ *game);
 void draw_quests(game_ *game, quests_ *quest);
 void event_quests(game_ *game);
 void active_quest(game_ *game, int id, quests_ *quest);
+void update_quests(game_ *game);
 
 #endif /* PROJECT_H_ */

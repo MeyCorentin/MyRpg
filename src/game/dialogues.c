@@ -9,8 +9,8 @@
 
 void get_dialogues(game_ *game)
 {
-    int fd = open("dialogues.txt", O_RDONLY);
-    int len = get_file_len("dialogues.txt");
+    int fd = open("dialogue.txt", O_RDONLY);
+    int len = get_file_len("dialogue.txt");
     char *file = malloc(sizeof(char) * len + 1);
 
     if (fd == -1) {
@@ -19,7 +19,7 @@ void get_dialogues(game_ *game)
     }
     read(fd, file, len);
     file[len] = '\0';
-    game->dialogues->data_base = str_to_array(file, '\n');
+    game->dialogues->data_base = my_split_tab(file, '\n');
 }
 
 void draw_dialogues(game_ *game)
@@ -62,7 +62,6 @@ void create_dialogues(game_ *game)
     game->dialogues = malloc(sizeof(dialogues_));
     game->boole->on_dialogue = 1;
     game->dialogues->pnj = 7;
-    game->dialogues->line = 0;
     get_dialogues(game);
     set_button_dialogues(game);
 }

@@ -53,9 +53,9 @@ char ***get_map_2(load_map_ *load_map);
 void get_size_2(char *files_name, load_map_ *load_map);
 int save_all(game_ *game, grid_cell_ *grid);
 char ***my_malloc_big_tab(int colum, int lines);
-int add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background);
+int add_tileset(sfSprite ***map, sprite_ *sprite, char ***id_background,
+int highest);
 void init_map(char ***map, load_map_ *load_map);
-int add_tileset_2(sfSprite ***map, sprite_ *sprite, char ***id_background);
 void move_rep(sfSprite *rep, int movement, game_ *game);
 void get_size_3(char *files_name, load_map_ *load_map);
 char ***get_map_3(load_map_ *load_map);
@@ -101,5 +101,6 @@ void add_id_in_tab(char ***tab, char *id, int y, int x);
 void add_copy_sprite(sfSprite ***map, char ***id_background,
 int i, sprite_ *sprite);
 void update_bestiary(game_ *game);
+int find_highest(char ***id_ground);
 
 #endif /* !MAP_GRID_H_ */
