@@ -7,10 +7,10 @@
 
 #include "../../includes/rpg.h"
 
-enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max)
+enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max, int id)
 {
     enemy_ *new = malloc(sizeof(enemy_));
-
+    new->id = id;
     new->sprite = sfSprite_create();
     new->texture = sfTexture_createFromFile("pictures/env/all_mob.png", NULL);
     new->scale = (sfVector2f){3, 3};
@@ -32,9 +32,10 @@ void get_last_e(enemy_ *enemy, sfVector2f position,
 sfIntRect rect, int max)
 {
     if (enemy->next != NULL) {
+        enemy->next->temp_id = enemy->temp_id;
         get_last_e(enemy->next, position, rect, max);
     } else {
-        enemy->next = create_enemy(position, rect, max);
+        enemy->next = create_enemy(position, rect, max, enemy->temp_id);
     }
 }
 
@@ -63,7 +64,7 @@ void update_enemy(enemy_ *enemy, game_ *game)
         enemy->rect.left = enemy->start;
     sfSprite_setTextureRect(enemy->sprite, enemy->rect);
     move_enemy(enemy, game->player->movement, game);
-    if (game->clock->hours > 5 && game->clock->hours < 20)
+    if ((game->clock->hours > 5 && game->clock->hours < 20) || (enemy->id > 7))
         sfRenderWindow_drawSprite(game->window, enemy->sprite, sfFalse);
     if (enemy->next != NULL)
         update_enemy(enemy->next, game);

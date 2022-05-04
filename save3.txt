@@ -6,10 +6,10 @@ Donat
 0
 #INVENTORY
 #MAP
-23
--10
-1
-0
+-136
+-532
+11
+2
 #SKILLS
 0
 0
@@ -17,7 +17,7 @@ Donat
 0
 0
 #CLOCK
-1
-1
+17
 0
-#ENDNDDD
+0
+#END

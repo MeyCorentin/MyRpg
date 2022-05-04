@@ -199,6 +199,8 @@ typedef struct layer {
 } layer_;
 
 typedef struct player {
+    int log;
+    int rock;
     sfSprite *sprite;
     sfTexture *texture;
     sfVector2f position;
@@ -367,6 +369,8 @@ typedef struct enemy {
     sfVector2f position;
     sfIntRect rect;
     sfClock *clock;
+    int temp_id;
+    int id;
     int y;
     int x;
     int start;
@@ -532,7 +536,7 @@ void init_bestiary(game_ *game);
 void open_close_fight(game_ *game);
 void create_fight(game_ *game);
 void update_fight(game_ *game);
-enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max);
+enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max, int id);
 void draw_slots(game_ *game, slots_ *slot);
 void create_slots(game_ *game);
 void set_boole(game_ *game);
@@ -582,5 +586,9 @@ void draw_quests(game_ *game, quests_ *quest);
 void event_quests(game_ *game);
 void active_quest(game_ *game, int id, quests_ *quest);
 void update_quests(game_ *game);
+void quests_abigail(quests_ *quest, game_ *game);
+void quests_alex(quests_ *quest, game_ *game);
+void quests_levis(quests_ *quest, game_ *game);
+void quests_clint(quests_ *quest, game_ *game);
 
 #endif /* PROJECT_H_ */

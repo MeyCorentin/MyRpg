@@ -12,19 +12,19 @@ void init_mob_best_2_2(int k, sfVector2f pos, game_ *game)
     switch (k) {
         case (4):
             game->best->enemy_2 =
-            create_enemy(pos, (sfIntRect){22, 480, 16, 32}, 100);
+            create_enemy(pos, (sfIntRect){22, 480, 16, 32}, 100, 4);
             break;
         case (5):
             game->best->enemy_2 =
-            create_enemy(pos, (sfIntRect){27, 695, 16, 16}, 105);
+            create_enemy(pos, (sfIntRect){27, 695, 16, 16}, 105, 5);
             break;
         case (6):
             game->best->enemy_2 =
-            create_enemy(pos, (sfIntRect){27, 775, 16, 16}, 105);
+            create_enemy(pos, (sfIntRect){27, 775, 16, 16}, 105, 6);
             break;
         case (7):
             game->best->enemy_2 =
-            create_enemy(pos, (sfIntRect){22, 871, 16, 32}, 100);
+            create_enemy(pos, (sfIntRect){22, 871, 16, 32}, 100, 7);
             break;
     }
 }
@@ -34,15 +34,15 @@ void init_mob_best_2_1(int k, sfVector2f pos, game_ *game)
     switch (k) {
         case (1):
             game->best->enemy_2 =
-            create_enemy(pos, (sfIntRect){22, 50, 16, 16}, 100);
+            create_enemy(pos, (sfIntRect){22, 50, 16, 16}, 100, 1);
             break;
         case (2):
             game->best->enemy_2 =
-            create_enemy(pos, (sfIntRect){22, 145, 16, 16}, 100);
+            create_enemy(pos, (sfIntRect){22, 145, 16, 16}, 100, 2);
             break;
         case (3):
             game->best->enemy_2 =
-            create_enemy(pos, (sfIntRect){22, 334, 16, 32}, 100);
+            create_enemy(pos, (sfIntRect){22, 334, 16, 32}, 100, 3);
             break;
         default:
             init_mob_best_2_2(k, pos, game);
@@ -54,19 +54,19 @@ void init_mob_best_1_2(int k, sfVector2f pos, game_ *game)
     switch (k) {
         case (4):
             game->best->enemy_1 =
-            create_enemy(pos, (sfIntRect){22, 480, 16, 32}, 100);
+            create_enemy(pos, (sfIntRect){22, 480, 16, 32}, 100, 4);
             break;
         case (5):
             game->best->enemy_1 =
-            create_enemy(pos, (sfIntRect){27, 695, 16, 16}, 105);
+            create_enemy(pos, (sfIntRect){27, 695, 16, 16}, 105, 5);
             break;
         case (6):
             game->best->enemy_1 =
-            create_enemy(pos, (sfIntRect){27, 775, 16, 16}, 105);
+            create_enemy(pos, (sfIntRect){27, 775, 16, 16}, 105, 6);
             break;
         case (7):
             game->best->enemy_1 =
-            create_enemy(pos, (sfIntRect){22, 871, 16, 32}, 100);
+            create_enemy(pos, (sfIntRect){22, 871, 16, 32}, 100, 7);
             break;
     }
 }
@@ -76,15 +76,15 @@ void init_mob_best_1_1(int k, sfVector2f pos, game_ *game)
     switch (k) {
         case (1):
             game->best->enemy_1 =
-            create_enemy(pos, (sfIntRect){22, 50, 16, 16}, 100);
+            create_enemy(pos, (sfIntRect){22, 50, 16, 16}, 100, 1);
             break;
         case (2):
             game->best->enemy_1 =
-            create_enemy(pos, (sfIntRect){22, 145, 16, 16}, 100);
+            create_enemy(pos, (sfIntRect){22, 145, 16, 16}, 100, 2);
             break;
         case (3):
             game->best->enemy_1 =
-            create_enemy(pos, (sfIntRect){22, 334, 16, 32}, 100);
+            create_enemy(pos, (sfIntRect){22, 334, 16, 32}, 100, 3);
             break;
         default:
             init_mob_best_1_2(k, pos, game);

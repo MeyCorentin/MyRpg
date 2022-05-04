@@ -12,20 +12,20 @@ enemy_ *init_fight_mob(int k)
     enemy_ *temp = malloc(sizeof(enemy_));
     sfVector2f pos = {1150, 350};
     switch (k) {
-        case (1): temp = create_enemy(pos, (sfIntRect){22, 50, 16, 16}, 100);
-            return (temp);
-        case (2): temp = create_enemy(pos, (sfIntRect){22, 145, 16, 16}, 100);
-            return (temp);
-        case (3): temp = create_enemy(pos, (sfIntRect){22, 334, 16, 32}, 100);
-            return (temp);
-        case (4): temp = create_enemy(pos, (sfIntRect){22, 480, 16, 32}, 100);
-            return (temp);
-        case (5): temp = create_enemy(pos, (sfIntRect){27, 695, 16, 16}, 105);
-            return (temp);
-        case (6): temp = create_enemy(pos, (sfIntRect){27, 775, 16, 16}, 105);
-            return (temp);
-        case (7): temp = create_enemy(pos, (sfIntRect){22, 871, 16, 32}, 100);
-            return (temp);
+        case (1): temp = create_enemy(pos, (sfIntRect){22, 50, 16, 16}, 100,
+            1); return (temp);
+        case (2): temp = create_enemy(pos, (sfIntRect){22, 145, 16, 16}, 100,
+            2); return (temp);
+        case (3): temp = create_enemy(pos, (sfIntRect){22, 334, 16, 32}, 100,
+            3); return (temp);
+        case (4): temp = create_enemy(pos, (sfIntRect){22, 480, 16, 32}, 100,
+            4); return (temp);
+        case (5): temp = create_enemy(pos, (sfIntRect){27, 695, 16, 16}, 105,
+            5); return (temp);
+        case (6): temp = create_enemy(pos, (sfIntRect){27, 775, 16, 16}, 105,
+            6); return (temp);
+        case (7): temp = create_enemy(pos, (sfIntRect){22, 871, 16, 32}, 100,
+            7); return (temp);
         default:
             return (temp);
     }

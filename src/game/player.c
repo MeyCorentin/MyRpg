@@ -59,6 +59,8 @@ void set_gold_player(game_ *game, char *pseudo)
 void create_player(game_ *game, char *pseudo)
 {
     game->player = malloc(sizeof(player_));
+    game->player->rock = 0;
+    game->player->log = 0;
     game->player->sprite = sfSprite_create();
     game->player->texture = sfTexture_createFromFile
     ("pictures/player/elliot.png", NULL);

@@ -64,7 +64,7 @@ void init_game(game_ *game, layer_ *layer, load_map_ *load_map
     get_size(map, game->load_map);
     game->layer_ = layer;
     game->first = create_enemy((sfVector2f){-1000, 1000},
-    (sfIntRect){25, 480, 15, 30}, 90);
+    (sfIntRect){25, 480, 15, 30}, 90, -1);
     init_layer(layer, load_map, gen_control, game);
     tp_all(game);
 }

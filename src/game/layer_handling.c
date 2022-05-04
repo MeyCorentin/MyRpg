@@ -55,6 +55,7 @@ void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
     move_layer(layer, game);
     display_layer(layer->map_layer_1, game, game->player->movement);
     display_layer_h(layer->map_layer_3, game, pos);
+    update_enemy(game->first, game);
     if (launch_layer_if(game, layer, pos, rep) == 1) {
         update_bar(game);
         update_player(game, game->player);
@@ -67,7 +68,6 @@ void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
     move_page_best_right(game);
     move_page_best_left(game);
     sfRenderWindow_drawSprite(game->window, game->clock->light, sfFalse);
-    update_enemy(game->first, game);
     update_inv(game);
     move_rep(rep, game->player->movement, game);
 }

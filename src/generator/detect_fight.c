@@ -7,8 +7,29 @@
 
 #include "../../includes/rpg.h"
 
-void check_human(game_ *game, sfVector2f pos_, int x, int y)
+int detect_item(game_ *game, int x, int y, sfVector2f pos_)
 {
+    if (my_atoi(game->layer_->id_mob[y][x]) == 100) {
+        game->player->log += 1;
+        my_put_nbr(game->player->log);
+        destroy_mob(pos_.y / 40, pos_.x / 40, game->first);
+        game->layer_->id_mob[y][x][0] = '0';
+        return (1);
+    }
+    if (my_atoi(game->layer_->id_mob[y][x]) == 200) {
+        game->player->rock += 1;
+        my_put_nbr(game->player->rock);
+        destroy_mob(pos_.y / 40, pos_.x / 40, game->first);
+        game->layer_->id_mob[y][x][0] = '0';
+        return (1);
+    }
+    return (0);
+}
+
+int check_human(game_ *game, sfVector2f pos_, int x, int y)
+{
+    if (detect_item(game, x, y, pos_) == 1)
+        return (1);
     if (my_atoi(game->layer_->id_mob[y][x]) < 8) {
         destroy_mob(pos_.y / 40, pos_.x / 40, game->first);
         game->boole->on_fight = 0;
@@ -17,8 +38,9 @@ void check_human(game_ *game, sfVector2f pos_, int x, int y)
         update_fight(game);
         game->layer_->id_mob[y][x][0] = '0';
     } else if (sfKeyboard_isKeyPressed(sfKeyE) &&
-    game->boole->on_dialogue == 1)
+    game->boole->on_dialogue == 1 && my_atoi(game->layer_->id_mob[y][x]) < 100)
         active_quest(game, my_atoi(game->layer_->id_mob[y][x]), game->quests);
+    return (0);
 }
 
 void detect_fight_(game_ *game, int y)
