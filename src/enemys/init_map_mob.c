@@ -22,6 +22,11 @@ void init_map_mob_3(int y, int x, layer_ *layer, game_ *game)
             {364, 4204, 16, 32}, 436); break;
         case (15): get_last_e(game->first, pos, (sfIntRect)
             {364, 4690, 16, 32}, 436); break;
+        case (100): get_last_e(game->first, pos, (sfIntRect)
+            {30, 0, 16, 16}, 30); break;
+        case (200): get_last_e(game->first, pos, (sfIntRect)
+            {46, 0, 16, 16}, 46); break;
+        default: break;
     }
 }
 

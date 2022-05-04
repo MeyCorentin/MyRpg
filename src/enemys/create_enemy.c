@@ -10,7 +10,6 @@
 enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max)
 {
     enemy_ *new = malloc(sizeof(enemy_));
-
     new->sprite = sfSprite_create();
     new->texture = sfTexture_createFromFile("pictures/env/all_mob.png", NULL);
     new->scale = (sfVector2f){3, 3};

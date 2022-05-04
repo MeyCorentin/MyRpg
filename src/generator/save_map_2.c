@@ -31,6 +31,13 @@ void save_mob_id(game_ *game, grid_cell_ *grid, FILE *file)
 {
     if ((grid->mob_id) == 1945)
         fwrite("0", 1, my_strlen("0"), file);
+    if ((grid->mob_id) != 1945 && (grid->mob_id) == 3)
+        fwrite("100", 1, my_strlen("100"), file);
+    if ((grid->mob_id) != 1945 && (grid->mob_id) == 4)
+        fwrite("200", 1, my_strlen("200"), file);
+    if ((grid->mob_id) != 1945 && (grid->mob_id) >= 123 &&
+    (grid->mob_id) <= 608)
+        fwrite("1", 1, my_strlen("1"), file);
     if ((grid->mob_id) != 1945 && (grid->mob_id) >= 123 &&
     (grid->mob_id) <= 608)
         fwrite("1", 1, my_strlen("1"), file);

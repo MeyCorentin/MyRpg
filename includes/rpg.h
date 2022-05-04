@@ -199,6 +199,8 @@ typedef struct layer {
 } layer_;
 
 typedef struct player {
+    int log;
+    int rock;
     sfSprite *sprite;
     sfTexture *texture;
     sfVector2f position;
@@ -367,6 +369,7 @@ typedef struct enemy {
     sfVector2f position;
     sfIntRect rect;
     sfClock *clock;
+    int id;
     int y;
     int x;
     int start;
