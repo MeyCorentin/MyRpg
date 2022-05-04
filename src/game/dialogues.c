@@ -63,16 +63,12 @@ void create_dialogues(game_ *game)
     game->boole->on_dialogue = 1;
     game->dialogues->pnj = 7;
     game->dialogues->line = 0;
-    game->dialogues->quest = "#CODE\n";
     get_dialogues(game);
     set_button_dialogues(game);
 }
 
 void dialogues_event(game_ *game)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyK)) {
-        game->boole->on_dialogue = 0;
-    }
     if (game->mouse.x > 1035 && game->mouse.x < 1065 && game->mouse.y > 975 &&
     game->mouse.y < 1010 && game->event.type == sfEvtMouseButtonReleased) {
         if (game->dialogues->data_base[game->dialogues->line + 2][0] == '#') {

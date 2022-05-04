@@ -14,7 +14,7 @@ void open_close_hint(game_ *game)
         game->clock->check_secs = 0;
         game->boole->on_hint = 0;
     } if (game->boole->on_hint == 0 && game->clock->check_secs != 0 &&
-    (sfKeyboard_isKeyPressed(sfKeyP) || sfKeyboard_isKeyPressed(sfKeyEscape))
+    (sfKeyboard_isKeyPressed(sfKeyP))
     && game->clock->check_secs != 0) {
         game->clock->check_secs = 0;
         game->boole->on_hint = 1;

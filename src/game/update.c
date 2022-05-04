@@ -28,7 +28,11 @@ void update_inv(game_ *game)
     draw_hearth(game, game->inv->life, game->player->stats->life);
     update_bestiary(game);
     update_fight(game);
-    update_cursor(game);
+    if (game->boole->on_quests == 0) {
+        sfRenderWindow_drawSprite(game->window, game->quests->back->sprite,
+        sfFalse);
+        draw_quests(game, game->quests);
+    }
 }
 
 void update_bar(game_ *game)

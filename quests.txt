@@ -1,0 +1,19 @@
+10
+MAIN
+Go speak to your friend
+16 xp
+
+8
+MINER
+Get 5 cobble
+3 gold
+
+9
+START
+Go find AD
+5 crédits
+
+12
+END
+Follow your Dream now
+1000000000 gold

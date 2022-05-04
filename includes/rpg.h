@@ -358,6 +358,7 @@ typedef struct boole {
     int is_quit;
     int is_dead;
     int on_dialogue;
+    int on_quests;
 } boole_;
 
 typedef struct enemy {
@@ -415,6 +416,18 @@ typedef struct death {
     button_ *back;
 } death_;
 
+typedef struct quests {
+    int id_mob;
+    int state;
+    char *name;
+    char *description;
+    int stape;
+    struct quests *next;
+    char *loot;
+    text_ *quest;
+    button_ *back;
+} quests_;
+
 typedef struct dialogues {
     button_ *box;
     text_ *text;
@@ -427,6 +440,7 @@ typedef struct dialogues {
 } dialogues_;
 
 typedef struct game {
+    quests_ *quests;
     int number;
     dialogues_ *dialogues;
     load_map_ *load_map;
@@ -564,5 +578,9 @@ void draw_dialogues(game_ *game);
 char *insert_return2(char *line);
 char *insert_return(char *line);
 void update_dialogue(game_ *game);
+void create_quests(game_ *game);
+void draw_quests(game_ *game, quests_ *quest);
+void event_quests(game_ *game);
+void active_quest(game_ *game, int id, quests_ *quest);
 
 #endif /* PROJECT_H_ */

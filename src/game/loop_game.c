@@ -39,6 +39,7 @@ void check_event_game(game_ *game)
         open_close_fight(game);
         spawn_parrot(game);
         dialogues_event(game);
+        event_quests(game);
     }
 }
 
