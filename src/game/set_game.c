@@ -43,7 +43,7 @@ void set_game(game_ *game, int type)
     init_bestiary(game);
     init_game_boole(game);
     game->player->rep = sfSprite_create();
-    add_items(game, game->first_item);
+    add_items(game, game->first_item, 0);
     game->boole->is_friend = 1;
     game->type = type;
     create_death_menu(game);

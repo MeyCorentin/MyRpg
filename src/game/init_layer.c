@@ -72,6 +72,7 @@ gen_control_ *gen_control, game_ *game)
     my_putstr("\n|LOAD|");
     char *map = my_strcat(game->map, "mob.txt");
     my_putstr(map);
+    my_putstr("\n");
     get_size_4(map, load_map);
     layer->map_4 = my_malloc_map(load_map->y_size, load_map->x_size);
     layer->map_layer_4 =

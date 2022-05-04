@@ -1,14 +1,14 @@
-8
+10
 Welcome to Greed Island #1
-Get 3 chop from a tree
+Get 3 log from a tree
 10exp 10or
 
-8
+10
 Welcome to Greed Island #2
 Get 3 stone from a rock
 10exp 10or
 
-8
+10
 Welcome to Greed Island #3
 Kill the monster
 10exp 10or
@@ -28,12 +28,12 @@ Go help Clint
 Find Clint in the village and help him
 10exp 10or
 
-10
+11
 The special tree
 Find the special tree on the plain and chop 15 wood
 50exp 50or Or axe
 
-11
+15
 The special rock from the ancient book
 Find a purple rock on the stone-pit on the really north of the village
 50exp 50or amethyst pickaxe

@@ -76,17 +76,17 @@ item_ *create_item(int type, int stats, char *filename, sfVector2f position)
     return (item);
 }
 
-void add_items(game_ *game, item_ *item)
+void add_items(game_ *game, item_ *item, int top)
 {
     if (item == NULL) {
         game->first_item = create_item(1, 3, "pictures/items/weapons.png",
         (sfVector2f){960, 580});
-        set_rect_item(game->first_item, 0, 0, NULL);
+        set_rect_item(game->first_item, top, 0, NULL);
     } else if (item->next != NULL)
-        add_items(game, item->next);
+        add_items(game, item->next, top);
     else {
         item->next = create_item(1, 3, "pictures/items/weapons.png",
-        (sfVector2f){400, 400});
-        set_rect_item(item->next, 48, 96, item);
+        (sfVector2f){game->player->position.x, game->player->position.y + 30});
+        set_rect_item(item->next, top, 0, item);
     }
 }

@@ -490,7 +490,7 @@ void update_player(game_ *game, player_ *player);
 void create_inventory(game_ *game);
 void update_inventory(game_ *game);
 void draw_items(game_ *game, item_ *item, int movement, int status);
-void add_items(game_ *game, item_ *item);
+void add_items(game_ *game, item_ *item, int top);
 void add_item_to_inv(game_ *game, char ***inv, item_ *item);
 void check_on_item(game_ *game, item_ *item, player_ *player);
 void update_inv(game_ *game);
