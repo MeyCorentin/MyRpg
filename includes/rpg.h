@@ -369,6 +369,7 @@ typedef struct enemy {
     sfVector2f position;
     sfIntRect rect;
     sfClock *clock;
+    int temp_id;
     int id;
     int y;
     int x;
@@ -535,7 +536,7 @@ void init_bestiary(game_ *game);
 void open_close_fight(game_ *game);
 void create_fight(game_ *game);
 void update_fight(game_ *game);
-enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max);
+enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max, int id);
 void draw_slots(game_ *game, slots_ *slot);
 void create_slots(game_ *game);
 void set_boole(game_ *game);
