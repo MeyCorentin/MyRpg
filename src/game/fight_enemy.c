@@ -7,27 +7,41 @@
 
 #include "../../includes/rpg.h"
 
-enemy_ *init_fight_mob(int k)
+enemy_ *init_fight_mob(game_ *game, int k)
 {
     enemy_ *temp = malloc(sizeof(enemy_));
     sfVector2f pos = {1150, 350};
     switch (k) {
         case (1): temp = create_enemy(pos, (sfIntRect){22, 50, 16, 16}, 100,
-            1); return (temp);
+            1); game->fight->enemy->pv = 250; return (temp);
         case (2): temp = create_enemy(pos, (sfIntRect){22, 145, 16, 16}, 100,
-            2); return (temp);
+            2); game->fight->enemy->pv = 40; return (temp);
         case (3): temp = create_enemy(pos, (sfIntRect){22, 334, 16, 32}, 100,
-            3); return (temp);
+            3); game->fight->enemy->pv = 10; return (temp);
         case (4): temp = create_enemy(pos, (sfIntRect){22, 480, 16, 32}, 100,
-            4); return (temp);
+            4); game->fight->enemy->pv = 140; return (temp);
         case (5): temp = create_enemy(pos, (sfIntRect){27, 695, 16, 16}, 105,
-            5); return (temp);
+            5); game->fight->enemy->pv = 40;; return (temp);
         case (6): temp = create_enemy(pos, (sfIntRect){27, 775, 16, 16}, 105,
-            6); return (temp);
+            6); game->fight->enemy->pv = 500; return (temp);
         case (7): temp = create_enemy(pos, (sfIntRect){22, 871, 16, 32}, 100,
-            7); return (temp);
+            7); game->fight->enemy->pv = 280; return (temp);
         default:
             return (temp);
+    }
+}
+
+int init_fight_pv(game_ *game, int k)
+{
+    switch (k) {
+        case (1): return (250);
+        case (2): return (40);
+        case (3): return (10);
+        case (4): return (140);
+        case (5): return (40);
+        case (6): return (500);
+        case (7): return (280);
+        default: return (1000);
     }
 }
 

@@ -32,7 +32,9 @@ int check_human(game_ *game, sfVector2f pos_, int x, int y)
         destroy_mob(pos_.y / 40, pos_.x / 40, game->first);
         game->boole->on_fight = 0;
         game->fight->enemy =
-        init_fight_mob(my_atoi(game->layer_->id_mob[y][x]));
+        init_fight_mob(game, my_atoi(game->layer_->id_mob[y][x]));
+        game->fight->enemy->pv =
+        init_fight_pv(game, my_atoi(game->layer_->id_mob[y][x]));
         update_fight(game);
         game->layer_->id_mob[y][x][0] = '0';
     } else if (sfKeyboard_isKeyPressed(sfKeyE) &&

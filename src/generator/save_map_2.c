@@ -25,6 +25,8 @@ void save_mob_id_2(game_ *game, grid_cell_ *grid, FILE *file)
     if ((grid->mob_id) != 1945 && (grid->mob_id) >= 6536 &&
     (grid->mob_id) <= 8355)
         fwrite("7", 1, my_strlen("7"), file);
+    if ((grid->mob_id) != 1945 && (grid->mob_id) >= 8356)
+        fwrite("15", 1, my_strlen("15"), file);
 }
 
 void save_mob_id(game_ *game, grid_cell_ *grid, FILE *file)

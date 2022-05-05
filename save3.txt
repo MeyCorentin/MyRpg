@@ -1,13 +1,13 @@
 #STATS
 10
-Donat
+Coco
 1
-3
+4
 0
 #INVENTORY
 #MAP
-293
-203
+473
+-862
 1
 0
 #SKILLS
@@ -17,7 +17,7 @@ Donat
 0
 0
 #CLOCK
-0
+10
 1
 0
-#ENDNDDD
+#ENDDDD

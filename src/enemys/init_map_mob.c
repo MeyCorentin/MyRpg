@@ -12,7 +12,6 @@ void init_map_mob_3(int y, int x, layer_ *layer, game_ *game)
     sfVector2f pos = {40 * x, 40 * y};
     pos.x += game->x_start;
     pos.y += game->y_start;
-
     switch (my_atoi(layer->id_mob[y][x])) {
         case (12): game->first->temp_id = 12; get_last_e(game->first, pos,
             (sfIntRect){364, 3252, 16, 32}, 436); break;
@@ -22,6 +21,8 @@ void init_map_mob_3(int y, int x, layer_ *layer, game_ *game)
             (sfIntRect){364, 4204, 16, 32}, 436); break;
         case (15): game->first->temp_id = 15; get_last_e(game->first, pos,
             (sfIntRect){364, 4690, 16, 32}, 436); break;
+        case (16): game->first->temp_id = 15; get_last_e(game->first, pos,
+            (sfIntRect){364, 4920, 16, 32}, 436); break;
         case (100): game->first->temp_id = 100; get_last_e(game->first, pos,
             (sfIntRect){30, 0, 16, 16}, 30); break;
         case (200): game->first->temp_id = 200; get_last_e(game->first, pos,

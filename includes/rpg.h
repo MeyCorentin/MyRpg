@@ -367,6 +367,7 @@ typedef struct boole {
 
 typedef struct enemy {
     sfSprite *sprite;
+    int pv;
     sfTexture *texture;
     sfVector2f scale;
     sfVector2f position;
@@ -545,7 +546,7 @@ enemy_ *create_enemy(sfVector2f position, sfIntRect rect, int max, int id);
 void draw_slots(game_ *game, slots_ *slot);
 void create_slots(game_ *game);
 void set_boole(game_ *game);
-enemy_ *init_fight_mob(int k);
+enemy_ *init_fight_mob(game_ *game, int k);
 void move_enemy(enemy_ *enemy, int movement, game_ *game);
 void update_enemy_f(enemy_ *enemy, game_ *game);
 void init_game_boole(game_ *game);
@@ -600,5 +601,6 @@ void launch_quest(quests_ *quest, game_ *game, int action);
 void change_step(quests_ *quest);
 int check_state_quests(quests_ *quest, int id, int is_done);
 int check_step_quests(quests_ *quest, int id, int is_done, int step);
+int init_fight_pv(game_ *game, int k);
 
 #endif /* PROJECT_H_ */

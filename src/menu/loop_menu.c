@@ -71,7 +71,6 @@ void launch_menu(sfVideoMode mode, sfVector2u size, char *pseudo)
 {
     game_ *game = malloc(sizeof(game_));
     menu_ *menu = malloc(sizeof(menu_));
-
     game->menu = menu;
     game->window = sfRenderWindow_create(mode, "MY_RPG", \
     sfResize | sfClose, NULL);
@@ -79,6 +78,7 @@ void launch_menu(sfVideoMode mode, sfVector2u size, char *pseudo)
     sfRenderWindow_setFramerateLimit(game->window, 120);
     sfRenderWindow_setSize(game->window, size);
     sfWindow_setMouseCursorVisible((sfWindow *)game->window, sfFalse);
+    sfWindow_setKeyRepeatEnabled((sfWindow *)game->window, sfFalse);
     malloc_menu(menu);
     create_cursor(game);
     create_settings(game, menu);

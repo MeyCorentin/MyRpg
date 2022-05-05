@@ -11,7 +11,6 @@ void create_fight(game_ *game)
 {
     game->fight = malloc(sizeof(fight_));
     game->fight->enemy = malloc(sizeof(enemy_));
-    game->fight->enemy = init_fight_mob(7);
     game->fight->leave = create_button((sfVector2f){380, 650},
     (sfVector2f){1, 1}, "pictures/menu/f_button.png");
     game->fight->attack = create_button((sfVector2f){780, 650},
@@ -40,11 +39,33 @@ void update_button_leave(game_ *game)
     }
 }
 
+void update_button_fight(game_ *game)
+{
+    int boole = 0;
+    if (game->mouse.x > 780 && game->mouse.x < 780 + 383 &&
+        game->mouse.y > 650 && game->mouse.y < 650 + 143 &&
+        game->boole->on_fight == 0 &&
+        sfMouse_isButtonPressed(sfMouseLeft) && boole == 0) {
+            while (sfMouse_isButtonPressed(sfMouseLeft))
+                boole = 1;
+    }
+    if (boole > 0) {
+        boole = 0;
+        game->fight->enemy->pv -= game->player->stats->attack;
+        my_put_nbr(game->fight->enemy->pv);
+    }
+    if (game->fight->enemy->pv <= 0) {
+        game->boole->on_fight = 1;
+        game->player->stats->life += 1;
+    }
+}
+
 void update_fight(game_ *game)
 {
     game->clock->check_secs = game->clock->time.microseconds / 5000;
     if (game->boole->on_fight == 0) {
         update_button_leave(game);
+        update_button_fight(game);
         sfRenderWindow_drawSprite
         (game->window, game->fight->back->sprite, sfFalse);
         sfRenderWindow_drawSprite
