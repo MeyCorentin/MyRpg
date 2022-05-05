@@ -22,7 +22,7 @@ void set_new_game(game_ *game)
     else
         game->player->gold = 10;
     game->player->stats->life = 3;
-    game->player->stats->attack = 1;
+    game->player->stats->attack = 10;
     game->player->stats->speed = 0;
     if (game->boole->is_quit == 0) {
         game->x_start = -250;

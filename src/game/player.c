@@ -81,7 +81,6 @@ void create_player(game_ *game, char *pseudo)
     sfSprite_setTextureRect(game->player->sprite, game->player->rect);
     set_gold_player(game, pseudo);
     game->player->stats = malloc(sizeof(stats_));
-    game->player->stats->attack = 10;
 }
 
 void check_on_item(game_ *game, item_ *item, player_ *player)
