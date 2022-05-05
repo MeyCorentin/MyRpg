@@ -29,7 +29,6 @@ void get_save(game_ *game, char *filepath)
 
     if (fd == -1) {
         write(2, "readding save failed\n", 21);
-        exit(84);
     } else
         read_file(game, fd, filepath);
 }

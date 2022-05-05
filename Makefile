@@ -27,7 +27,8 @@ SRC =	src/generator/*.c \
 		src/audios/*.c	\
 		src/ath/*.c	\
 		src/enemys/*.c	\
-		src/saves/*.c
+		src/saves/*.c	\
+		src/quests/*.c
 
 OBJ = $(LIB:.c=.o)
 

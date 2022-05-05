@@ -19,10 +19,10 @@ void update_inv(game_ *game)
         sfFalse);
         sfRenderWindow_drawText(game->window, game->inv->text_quit->text,
         sfFalse);
-    } if (game->boole->on_inv == 0) {
-        draw_items(game, game->first_item, game->player->movement, 0);
     } if (game->boole->on_tree == 0)
         loop_tree(game);
+    if (game->boole->on_potion == 0)
+        update_materials(game);
     event_pause(game);
     update_time(game);
     draw_hearth(game, game->inv->life, game->player->stats->life);

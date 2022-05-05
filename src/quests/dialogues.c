@@ -15,7 +15,6 @@ void get_dialogues(game_ *game)
 
     if (fd == -1) {
         write(2, "invalid file\n", 13);
-        exit(84);
     }
     read(fd, file, len);
     file[len] = '\0';
@@ -61,7 +60,6 @@ void create_dialogues(game_ *game)
 {
     game->dialogues = malloc(sizeof(dialogues_));
     game->boole->on_dialogue = 1;
-    game->dialogues->pnj = 7;
     get_dialogues(game);
     set_button_dialogues(game);
 }

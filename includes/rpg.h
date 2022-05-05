@@ -201,6 +201,8 @@ typedef struct layer {
 typedef struct player {
     int log;
     int rock;
+    text_ *nb_log;
+    text_ *nb_rock;
     sfSprite *sprite;
     sfTexture *texture;
     sfVector2f position;
@@ -223,6 +225,7 @@ typedef struct player {
     int y_start;
     int x_start;
     sfVector2f pos_r;
+    int kills;
 } player_;
 
 typedef struct sounds {
@@ -424,11 +427,13 @@ typedef struct quests {
     int state;
     char *name;
     char *description;
-    int stape;
+    int step;
+    int read;
     struct quests *next;
     char *loot;
     text_ *quest;
     button_ *back;
+    char **array;
 } quests_;
 
 typedef struct dialogues {
@@ -590,5 +595,10 @@ void quests_abigail(quests_ *quest, game_ *game);
 void quests_alex(quests_ *quest, game_ *game);
 void quests_levis(quests_ *quest, game_ *game);
 void quests_clint(quests_ *quest, game_ *game);
+void update_materials(game_ *game);
+void launch_quest(quests_ *quest, game_ *game, int action);
+void change_step(quests_ *quest);
+int check_state_quests(quests_ *quest, int id, int is_done);
+int check_step_quests(quests_ *quest, int id, int is_done, int step);
 
 #endif /* PROJECT_H_ */

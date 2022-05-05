@@ -99,4 +99,6 @@ void update_inventory(game_ *game)
         sfRenderWindow_drawSprite
         (game->window, game->inv->back_girl->sprite, sfFalse);
     update_inventory2(game);
+    if (game->boole->on_inv == 0)
+        draw_items(game, game->first_item, game->player->movement, 0);
 }

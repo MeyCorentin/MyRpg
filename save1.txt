@@ -6,31 +6,18 @@ Donat
 6
 #INVENTORY
 #MAP
-<<<<<<< HEAD
-845
--584
+467
+184
 1
 1
 #SKILLS
-100
-4
-0
-7
-6
-=======
--91
--862
-11
-2
-#SKILLS
 0
 0
 0
 0
 0
->>>>>>> 433e04e7ad9cb2ae156a3ab33a8001d463891c8e
 #CLOCK
-14
+22
 1
 0
-#END
+#ENDND

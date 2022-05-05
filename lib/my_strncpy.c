@@ -10,7 +10,9 @@
 char *my_strcpy(char *dest, char *src)
 {
     int cmpt = 0;
+    dest = malloc(sizeof(char) * (my_strlen(src) + 1));
 
+    dest[my_strlen(src)] = '\0';
     while (src[cmpt] != '\0') {
         dest[cmpt] = src[cmpt];
         cmpt += 1;
@@ -32,10 +34,10 @@ char *my_strncpy(char *dest, char *src, int n)
         for (cmpt = 0; cmpt < n; cmpt += 1) {
             dest[cmpt] = src[cmpt];
         }
-    }
-    while (cmpt < my_strlen(dest)) {
-        dest[cmpt] = '\0';
-        cmpt += 1;
+        while (cmpt < my_strlen(dest)) {
+            dest[cmpt] = '\0';
+            cmpt += 1;
+        }
     }
     return (dest);
 }

@@ -36,11 +36,12 @@ void check_event_game(game_ *game)
         open_close_inv(game);
         change_window(game);
         open_close_best(game);
-        open_close_fight(game);
         spawn_parrot(game);
         dialogues_event(game);
         event_quests(game);
     }
+    if (sfKeyboard_isKeyPressed(sfKeyK))
+        game->player->kills += 1;
 }
 
 void get_mob(char *files_name, game_ *game)

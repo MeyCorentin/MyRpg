@@ -34,6 +34,10 @@ void draw_death(game_ *game)
 
 void death_loop(game_ *game)
 {
+    if (game->player->gold < 10)
+        game->player->gold = 0;
+    else
+        game->player->gold -= 10;
     game->boole->is_dead = 0;
     while (sfRenderWindow_isOpen(game->window) && game->boole->is_dead == 0) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);

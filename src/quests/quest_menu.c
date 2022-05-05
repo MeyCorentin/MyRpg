@@ -18,6 +18,7 @@ void update_quests(game_ *game)
 
 void check_quest(game_ *game, int id, quests_ *quest)
 {
+    game->dialogues->quest = "#not_now";
     if (quest->id_mob == 10)
         quests_abigail(quest, game);
     if (quest->id_mob == 9)
@@ -26,12 +27,12 @@ void check_quest(game_ *game, int id, quests_ *quest)
         quests_levis(quest, game);
     if (quest->id_mob == 15)
         quests_clint(quest, game);
+    game->dialogues->pnj = quest->id_mob - 8;
 }
 
 void active_quest(game_ *game, int id, quests_ *quest)
 {
     if (quest->id_mob == id) {
-        quest->state = 1;
         check_quest(game, id, quest);
         game->boole->on_dialogue = 0;
         game->dialogues->line = 0;

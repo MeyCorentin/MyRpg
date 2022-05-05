@@ -11,14 +11,12 @@ int detect_item(game_ *game, int x, int y, sfVector2f pos_)
 {
     if (my_atoi(game->layer_->id_mob[y][x]) == 100) {
         game->player->log += 1;
-        my_put_nbr(game->player->log);
         destroy_mob(pos_.y / 40, pos_.x / 40, game->first);
         game->layer_->id_mob[y][x][0] = '0';
         return (1);
     }
     if (my_atoi(game->layer_->id_mob[y][x]) == 200) {
         game->player->rock += 1;
-        my_put_nbr(game->player->rock);
         destroy_mob(pos_.y / 40, pos_.x / 40, game->first);
         game->layer_->id_mob[y][x][0] = '0';
         return (1);

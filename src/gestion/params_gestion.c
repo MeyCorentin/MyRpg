@@ -7,6 +7,20 @@
 
 #include "../../includes/rpg.h"
 
+void display_command(void)
+{
+    my_printf("-h : Display the menu \"Help\" (if you read that, you know how \
+to do this ^^)\n");
+    my_printf("-p <username> : Launch the game with your pseudo\n");
+    my_printf("    Use the pseudo \"Jessica\" to have a bonus\n\n");
+    my_printf("=> How to play ingame ?\n\n");
+    my_printf("Movements : ZQSD (Top, Left, Bottom, Right)\n");
+    my_printf("Escape : Open/Close pause menu\n");
+    my_printf("I : Open/Close Inventory\nM : Open/Close Map\n");
+    my_printf("P : Show/Hidden collisions\nC : Open/Close quests menu\n");
+    my_printf("E : Interact with PNJ\n\n");
+}
+
 void display_help(void)
 {
     my_printf("########## WELCOME IN OUR RPG ##########\n\n");
@@ -15,14 +29,7 @@ void display_help(void)
 find a way to survive and get out of here.\nBut you notice while exploring \
 the island that it is not that deserted...\n\n");
     my_printf("=> How to launch game ?\n\n");
-    my_printf("-h : Display the menu \"Help\" (if you read that, you know how \
-to do this ^^)\n");
-    my_printf("-p <username> : Launch the game with your pseudo\n");
-    my_printf("    Use the pseudo \"Jessica\" to have a bonus\n\n");
-    my_printf("=> How to play ingame ?\n\n");
-    my_printf("Movements : ZQSD (Top, Left, Bottom, Right)\n");
-    my_printf("Escape : Open/Close pause menu\n");
-    my_printf("I : Open/Close Inventory\nM : Open/Close Map\n\n");
+    display_command();
     my_printf("Good luck pirate !\n\n");
     my_printf("  ______________________________________\n");
     my_printf(" /                                      \\\n");
