@@ -11,6 +11,7 @@ void respawn(game_ *game)
 {
     game->player->stats->life = (game->bonus->life + 3) / 2;
     game->boole->is_dead = 1;
+    tp_pos(game, game->type, 1);
 }
 
 int check_respawn(game_ *game)
@@ -21,8 +22,9 @@ int check_respawn(game_ *game)
     if (game->mouse.x > p_respawn.x && game->mouse.x < p_respawn.x + 380 &&
     game->mouse.y > p_respawn.y && game->mouse.y < p_respawn.y + 150) {
         sfText_setColor(game->death->t_respawn->text, sfWhite);
-        if (game->event.type == sfEvtMouseButtonReleased)
+        if (game->event.type == sfEvtMouseButtonReleased) {
             respawn(game);
+        }
     } else if (game->mouse.x > p_quit.x && game->mouse.x < p_quit.x + 380 &&
     game->mouse.y > p_quit.y && game->mouse.y < p_quit.y + 150) {
         sfText_setColor(game->death->t_quit->text, sfWhite);

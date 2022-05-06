@@ -90,6 +90,6 @@ void launch_game(game_ *game, int k, int map_number, int type)
         launch_layer(game, layer, game->player->pos_r, game->player->rep);
         detect_fight(game);
         sfRenderWindow_display(game->window);
-        tp_pos(game, type);
+        tp_pos(game, type, 0);
     }
 }

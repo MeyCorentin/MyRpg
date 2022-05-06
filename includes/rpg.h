@@ -568,7 +568,7 @@ void init_mob_best_1_1(int k, sfVector2f pos, game_ *game);
 void update_enemy_best(enemy_ *enemy, game_ *game);
 void tp_top(game_ *game);
 void check_pos(int k, game_ *game, int map_number);
-void tp_pos(game_ *game, int type);
+void tp_pos(game_ *game, int type, int death);
 void create_all(game_ *game);
 void event_pause(game_ *game);
 void update_clock(clock_ *clock);
