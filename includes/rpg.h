@@ -363,6 +363,7 @@ typedef struct boole {
     int is_dead;
     int on_dialogue;
     int on_quests;
+    int on_htp;
 } boole_;
 
 typedef struct enemy {
@@ -423,6 +424,20 @@ typedef struct death {
     button_ *back;
 } death_;
 
+typedef struct how_to_play {
+    sfSprite *htp;
+    sfTexture *htp_1;
+    sfTexture *htp_2;
+    sfTexture *htp_3;
+    sfTexture *htp_4;
+    sfTexture *htp_5;
+    sfTexture *htp_6;
+    sfTexture *htp_7;
+    sfVector2f scale;
+    sfVector2f position;
+    int page;
+} how_to_play_t;
+
 typedef struct quests {
     int id_mob;
     int state;
@@ -449,6 +464,7 @@ typedef struct dialogues {
 } dialogues_;
 
 typedef struct game {
+    how_to_play_t *hwtp;
     quests_ *quests;
     int number;
     dialogues_ *dialogues;
@@ -605,5 +621,9 @@ int init_fight_pv(game_ *game, int k);
 void update_button_fight(game_ *game);
 void update_button_leave(game_ *game);
 void update_button_heal(game_ *game);
+void create_htp(game_ *game);
+void creatre_textures_htp(game_ *game);
+int update_htp(game_ *game);
+void change_page(game_ *game);
 
 #endif /* PROJECT_H_ */

@@ -22,7 +22,7 @@ void check_all_buttons(game_ *game, menu_ *menu)
     event_cursor(game);
 }
 
-void check_event_menu(game_ *game, menu_ *menu)
+int check_event_menu(game_ *game, menu_ *menu)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed ||
@@ -30,17 +30,17 @@ void check_event_menu(game_ *game, menu_ *menu)
             sfMusic_stop(game->sounds->ocean);
             sfRenderWindow_close(game->window);
         }
-        if (sfKeyboard_isKeyPressed(sfKeyN)) {
-            game->boole->is_quit = 0;
-            launch_game(game, 0, 1, 0);
-        } if (sfKeyboard_isKeyPressed(sfKeyL))
-            menu->on_load = 0;
-        if (sfKeyboard_isKeyPressed(sfKeyG))
-            launch_map_generator(game);
+        (sfKeyboard_isKeyPressed(sfKeyN)) ? (game->boole->is_quit = 0),
+        launch_game(game, 0, 1, 0), 0 : 1;
+        (sfKeyboard_isKeyPressed(sfKeyL)) ? menu->on_load = 0, 0 : 1;
+        (sfKeyboard_isKeyPressed(sfKeyG)) ? launch_map_generator(game), 0 : 1;
         if (menu->on_load == 0 && sfKeyboard_isKeyPressed(sfKeyEscape))
             menu->on_load = 1;
+        if (game->boole->on_htp == 1 && sfKeyboard_isKeyPressed(sfKeyEscape))
+            game->boole->on_htp = 0;
         check_all_buttons(game, menu);
     }
+    return (0);
 }
 
 void loop_menu(game_ *game, menu_ *menu)
@@ -56,37 +56,4 @@ void loop_menu(game_ *game, menu_ *menu)
         draw_menu(game, menu);
         sfRenderWindow_display(game->window);
     }
-}
-
-void create_loading(game_ *game)
-{
-    game->loading = create_button((sfVector2f){0, 0}, (sfVector2f){1.6, 1.55},
-    "pictures/menu/loading.png");
-    game->loading->rect = change_rect(game->loading->rect, 1200, 675);
-    game->loading->rect.left = 1200;
-    sfSprite_setTextureRect(game->loading->sprite, game->loading->rect);
-}
-
-void launch_menu(sfVideoMode mode, sfVector2u size, char *pseudo)
-{
-    game_ *game = malloc(sizeof(game_));
-    menu_ *menu = malloc(sizeof(menu_));
-    game->menu = menu;
-    game->window = sfRenderWindow_create(mode, "MY_RPG", \
-    sfResize | sfClose, NULL);
-    game->pseudo = pseudo;
-    sfRenderWindow_setFramerateLimit(game->window, 120);
-    sfRenderWindow_setSize(game->window, size);
-    sfWindow_setMouseCursorVisible((sfWindow *)game->window, sfFalse);
-    sfWindow_setKeyRepeatEnabled((sfWindow *)game->window, sfFalse);
-    malloc_menu(menu);
-    create_cursor(game);
-    create_settings(game, menu);
-    create_audios(game);
-    game->speed = 1;
-    menu->on_load = 1;
-    game->boole = malloc(sizeof(boole_));
-    game->boole->on_quit = 1;
-    create_loading(game);
-    loop_menu(game, menu);
 }

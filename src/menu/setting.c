@@ -13,8 +13,10 @@ void check_help(game_ *game, menu_ *menu, int what)
     menu->help->position.x + menu->help->rect.width *
     menu->help->scale.x && game->mouse.y > menu->help->
     position.y && game->mouse.y < menu->help->position.y + menu->
-    help->rect.height * menu->help->scale.y) {
-        game->boole->on_button = 0;
+    help->rect.height * menu->help->scale.y &&
+    sfMouse_isButtonPressed(sfMouseLeft)) {
+        my_putstr("ok");
+        game->boole->on_htp = 1;
         menu->help->rect.left = 372;
         if (game->event.type == sfEvtMouseButtonReleased && what == 0) {
             sfSound_play(game->sounds->click);
@@ -26,6 +28,7 @@ void check_help(game_ *game, menu_ *menu, int what)
         menu->help->rect.left = 350;
     sfSprite_setTextureRect(menu->help->sprite,
     menu->help->rect);
+    change_page(game);
 }
 
 void event_settings(game_ *game, menu_ *menu)
