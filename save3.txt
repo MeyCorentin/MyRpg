@@ -6,8 +6,8 @@ Coco
 0
 #INVENTORY
 #MAP
-653
--187
+704
+-193
 1
 0
 #SKILLS
@@ -17,7 +17,7 @@ Coco
 0
 0
 #CLOCK
-13
+19
 0
 0
 #ENDDDD

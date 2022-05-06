@@ -59,27 +59,3 @@ void update_button_fight(game_ *game)
         game->player->stats->life += 1;
     }
 }
-
-void update_fight(game_ *game)
-{
-    game->clock->check_secs = game->clock->time.microseconds / 5000;
-    if (game->boole->on_fight == 0) {
-        update_button_leave(game);
-        update_button_fight(game);
-        sfRenderWindow_drawSprite
-        (game->window, game->fight->back->sprite, sfFalse);
-        sfRenderWindow_drawSprite
-        (game->window, game->fight->leave->sprite, sfFalse);
-        sfRenderWindow_drawSprite
-        (game->window, game->fight->attack->sprite, sfFalse);
-        sfRenderWindow_drawSprite
-        (game->window, game->fight->heal->sprite, sfFalse);
-        sfRenderWindow_drawText(game->window, game->fight->t_attack->text,
-        sfFalse);
-        sfRenderWindow_drawText(game->window, game->fight->t_heal->text,
-        sfFalse);
-        sfRenderWindow_drawText(game->window, game->fight->t_leave->text,
-        sfFalse);
-        update_enemy_f(game->fight->enemy, game);
-    }
-}
