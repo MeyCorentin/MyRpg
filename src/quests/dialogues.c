@@ -19,6 +19,7 @@ void get_dialogues(game_ *game)
     read(fd, file, len);
     file[len] = '\0';
     game->dialogues->data_base = my_split_tab(file, '\n');
+    free(file);
 }
 
 void draw_dialogues(game_ *game)

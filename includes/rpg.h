@@ -604,5 +604,6 @@ int check_step_quests(quests_ *quest, int id, int is_done, int step);
 int init_fight_pv(game_ *game, int k);
 void update_button_fight(game_ *game);
 void update_button_leave(game_ *game);
+void update_button_heal(game_ *game);
 
 #endif /* PROJECT_H_ */

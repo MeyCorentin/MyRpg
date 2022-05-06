@@ -59,3 +59,27 @@ void update_button_fight(game_ *game)
         game->player->stats->life += 1;
     }
 }
+
+void update_button_heal(game_ *game)
+{
+    int boole = 0;
+    int k = 0;
+    if (game->mouse.x > 1180 && game->mouse.x < 1180 + 383 &&
+        game->mouse.y > 650 && game->mouse.y < 650 + 143 &&
+        game->boole->on_fight == 0 &&
+        sfMouse_isButtonPressed(sfMouseLeft) && boole == 0) {
+            while (sfMouse_isButtonPressed(sfMouseLeft))
+                boole = 1;
+    }
+    if (boole > 0) {
+        boole = 0;
+        k = rand() % 100;
+        if (k > 70 && k < 90)
+            game->player->stats->life += 1;
+        if (k > 90 && k < 100) {
+            (game->player->stats->life < 2) ?
+            (game->player->stats->life += 2) :
+            (game->player->stats->life += 1);
+        }
+    }
+}

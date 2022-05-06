@@ -56,9 +56,9 @@ int display_layer_h(sfSprite ***map, game_ *game, sfVector2f pos)
 
 int display_layer(sfSprite ***map, game_ *game, int movement)
 {
-    int y = 0;
+    int y = 1;
 
-    for (y = 0; map[y]; y++) {
+    for (y = 1; map[y]; y++) {
         display_layer_(map, game, movement, y);
     }
     return (0);

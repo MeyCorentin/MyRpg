@@ -58,7 +58,6 @@ void interact_sprite(game_ *game, sprite_ *sprite, gen_control_ *gen_control)
 void check_event_gen(game_ *game, paint_ *paint)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
-        game->mouse = sfMouse_getPositionRenderWindow(game->window);
         if (game->event.type == sfEvtClosed)
             sfRenderWindow_close(game->window);
         if (sfKeyboard_isKeyPressed(sfKeyEqual))

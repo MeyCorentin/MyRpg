@@ -34,10 +34,12 @@ void move_layer(layer_ *layer, game_ *game)
 int launch_layer_if(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
 {
     if (layer->id_foreground[(int)((500 - pos.y + 120) / 40)] != NULL &&
+    (layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
+    [(int)((950 - pos.x) / 40)] != NULL ||
     layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
-    [(int)((950 - pos.x) / 40)] != NULL && layer->id_foreground
-    [(int)((500 - pos.y + 120) / 40)]
-    [(int)((950 - pos.x - 80) / 40)] != NULL) {
+    [(int)((950 - pos.x - 10) / 40)] != NULL ||
+    layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
+    [(int)((950 - pos.x + 10) / 40)] != NULL)) {
         if ((my_atoi(layer->id_foreground[(int)((500 - pos.y + 120) / 40)]
         [(int)((950 - pos.x) / 40)]) != 1945 ||
         my_atoi(layer->id_foreground[(int)((500 - pos.y + 120) / 40)]

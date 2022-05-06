@@ -34,6 +34,7 @@ char **read_quests(game_ *game, int fd, char *filepath)
     read(fd, file, len);
     file[len] = '\0';
     saves = str_to_array(file, '\n');
+    free(file);
     return (saves);
 }
 

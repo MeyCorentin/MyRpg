@@ -17,6 +17,7 @@ void update_button(game_ *game)
 {
     update_button_leave(game);
     update_button_fight(game);
+    update_button_heal(game);
 }
 
 void update_fight(game_ *game)

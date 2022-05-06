@@ -17,9 +17,11 @@ void read_file(game_ *game, int fd, char *filepath)
     file[len] = '\0';
     if (my_strlen(file) == 1) {
         set_new_game(game);
+        free(file);
     } else {
         saves = my_split_tab(file, '\n');
         set_save(game, saves);
+        free(file);
     }
 }
 
