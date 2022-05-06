@@ -62,22 +62,18 @@ void create_htp(game_ *game)
 
 void change_page(game_ *game)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyLeft) && game->boole->on_htp == 0 &&
-    game->clock->check_secs > 30) {
+    if (sfKeyboard_isKeyPressed(sfKeyLeft) && game->boole->on_htp == 1) {
         sfSound_play(game->sounds->click);
         if (game->hwtp->page > 1)
             game->hwtp->page -= 1;
         else
             game->hwtp->page = 7;
-        game->clock->check_secs = 0;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyRight) && game->boole->on_htp == 0 &&
-    game->clock->check_secs > 30) {
+    if (sfKeyboard_isKeyPressed(sfKeyRight) && game->boole->on_htp == 1) {
         sfSound_play(game->sounds->click);
         if (game->hwtp->page < 7)
             game->hwtp->page += 1;
         else
             game->hwtp->page = 1;
-        game->clock->check_secs = 0;
     }
 }

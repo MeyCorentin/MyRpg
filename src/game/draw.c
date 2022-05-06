@@ -31,11 +31,11 @@ void draw_menu(game_ *game, menu_ *menu)
         sfRenderWindow_drawSprite(game->window, menu->new->sprite, sfFalse);
         sfRenderWindow_drawSprite(game->window, menu->exit->sprite, sfFalse);
         sfRenderWindow_drawSprite(game->window, menu->load->sprite, sfFalse);
-    update_htp(game);
     } else
         draw_saves(game, game->menu);
     update_coin(menu->coin, game);
     update_animal(menu->parrot, 48, 48, game);
+    update_htp(game);
     sfRenderWindow_drawSprite(game->window, menu->help->sprite, sfFalse);
     sfRenderWindow_drawSprite(game->window,
     menu->settings->button->sprite, sfFalse);
