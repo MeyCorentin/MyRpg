@@ -42,5 +42,26 @@ void save_materials(game_ *game, int fd)
     my_strlen(new_put_nbr(game->player->log)) + 1);
     write(fd, my_strncat(new_put_nbr(game->player->rock), "\n", 0),
     my_strlen(new_put_nbr(game->player->rock)) + 1);
+}
+
+void save_quests(game_ *game, int fd)
+{
+    write(fd, "#QUESTS\n", 8);
+    write(fd, my_strncat(new_put_nbr(game->quests->state), "\n", 0),
+    my_strlen(new_put_nbr(game->quests->state)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->quests->next->state), "\n", 0),
+    my_strlen(new_put_nbr(game->quests->next->state)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->quests->next->next->state), "\n", 0),
+    my_strlen(new_put_nbr(game->quests->next->next->state)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->quests->next->next->next->state), "\n", 0),
+    my_strlen(new_put_nbr(game->quests->next->next->next->state)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->quests->step), "\n", 0),
+    my_strlen(new_put_nbr(game->quests->step)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->quests->next->step), "\n", 0),
+    my_strlen(new_put_nbr(game->quests->next->step)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->quests->next->next->step), "\n", 0),
+    my_strlen(new_put_nbr(game->quests->next->next->step)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->quests->next->next->next->step), "\n", 0),
+    my_strlen(new_put_nbr(game->quests->next->next->next->step)) + 1);
     write(fd, "#END", 4);
 }

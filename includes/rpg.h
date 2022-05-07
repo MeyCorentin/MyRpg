@@ -365,6 +365,7 @@ typedef struct boole {
     int on_dialogue;
     int on_quests;
     int on_htp;
+    int new_quests;
 } boole_;
 
 typedef struct enemy {
@@ -506,6 +507,7 @@ typedef struct game {
     int map_number;
     button_ *loading;
     int type;
+    char **saves;
 } game_;
 
 void check_event_game(game_ *game);
@@ -627,5 +629,6 @@ void creatre_textures_htp(game_ *game);
 int update_htp(game_ *game);
 void change_page(game_ *game);
 void save_materials(game_ *game, int fd);
+void save_quests(game_ *game, int fd);
 
 #endif /* PROJECT_H_ */

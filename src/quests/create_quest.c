@@ -7,16 +7,28 @@
 
 #include "../../includes/rpg.h"
 
+void set_step_state(game_ *game, quests_ *new, int nb)
+{
+    if (game->boole->new_quests == 0) {
+        new->step = 1;
+        new->state = 0;
+    } else {
+        // new->step = my_atoi(game->saves[30 + nb]);
+        // new->state = my_atoi(game->saves[27 + nb]);
+        new->step = 1;
+        new->state = 0;
+    }
+}
+
 quests_ *set_quest(game_ *game, char **array, int nb)
 {
     quests_ *new = malloc(sizeof(quests_));
 
     new->next = NULL;
     new->id_mob = my_atoi(array[0 + 5 * nb]);
-    new->state = 0;
     new->name = array[1 + 5 * nb];
     new->description = array[2 + 5 * nb];
-    new->step = 1;
+    set_step_state(game, new, nb);
     new->read = 1;
     new->loot = array[3 + 5 * nb];
     new->quest = create_text(my_strncat(array[1 + 5 * nb], array[2 + 5 * nb],
@@ -54,9 +66,8 @@ void create_quests(game_ *game)
     game->quests->description = quests[2];
     game->quests->name = quests[1];
     game->quests->id_mob = my_atoi(quests[0]);
-    game->quests->step = 1;
+    set_step_state(game, game->quests, 0);
     game->quests->array = quests;
-    game->quests->state = 0;
     game->quests->loot = quests[3];
     game->quests->next = NULL;
     game->quests->read = 1;

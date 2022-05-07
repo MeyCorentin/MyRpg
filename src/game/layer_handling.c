@@ -52,7 +52,7 @@ int launch_layer_if(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
 
 void launch_layer(game_ *game, layer_ *layer, sfVector2f pos, sfSprite *rep)
 {
-    sfRenderWindow_clear(game->window, (sfColor){150, 150, 150, 150});
+    sfRenderWindow_clear(game->window, sfBlack);
     check_event_game(game);
     move_layer(layer, game);
     display_layer(layer->map_layer_1, game, game->player->movement);

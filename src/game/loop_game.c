@@ -77,13 +77,13 @@ void launch_game(game_ *game, int k, int map_number, int type)
     check_pos(k, game, map_number);
     set_game(game, type);
     choose_save(game, type);
+    create_quests(game);
     init_game(game, layer, load_map, gen_control);
     game->menu->on_load = 1;
     while (sfRenderWindow_isOpen(game->window)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
         game->player->pos_r = sfSprite_getPosition(game->player->rep);
         game->boole->on_button = 1;
-        sfRenderWindow_clear(game->window, (sfColor){150, 150, 150, 150});
         check_event_game(game);
         launch_layer(game, layer, game->player->pos_r, game->player->rep);
         detect_fight(game);

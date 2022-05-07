@@ -12,6 +12,7 @@ void set_new_game2(game_ *game)
     game->player->log = 0;
     game->player->rock = 0;
     game->player->kills = 0;
+    game->boole->new_quests = 0;
 }
 
 void set_new_game(game_ *game)
@@ -54,6 +55,8 @@ void set_save_map(game_ *game, char **saves)
 
 void set_save(game_ *game, char **saves)
 {
+    game->saves = saves;
+    game->boole->new_quests = 1;
     game->clock->saison = my_atoi(saves[21]);
     game->clock->days = my_atoi(saves[20]);
     game->clock->hours = my_atoi(saves[19]);

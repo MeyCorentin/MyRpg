@@ -48,5 +48,4 @@ void set_game(game_ *game, int type)
     game->type = type;
     create_death_menu(game);
     create_dialogues(game);
-    create_quests(game);
 }
