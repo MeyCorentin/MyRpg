@@ -64,6 +64,7 @@ int save_game(game_ *game, int type)
     save_map(game, fd);
     save_skills(game, fd);
     save_clock(game, fd);
+    save_materials(game, fd);
     close(fd);
     return (0);
 }

@@ -25,7 +25,7 @@ void check_quest(game_ *game, int id, quests_ *quest)
         quests_alex(quest, game);
     if (quest->id_mob == 11)
         quests_levis(quest, game);
-    if (quest->id_mob == 15)
+    if (quest->id_mob == 16)
         quests_clint(quest, game);
     game->dialogues->pnj = quest->id_mob - 8;
 }

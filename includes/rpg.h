@@ -626,5 +626,6 @@ void create_htp(game_ *game);
 void creatre_textures_htp(game_ *game);
 int update_htp(game_ *game);
 void change_page(game_ *game);
+void save_materials(game_ *game, int fd);
 
 #endif /* PROJECT_H_ */

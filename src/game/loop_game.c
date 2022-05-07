@@ -40,8 +40,6 @@ void check_event_game(game_ *game)
         dialogues_event(game);
         event_quests(game);
     }
-    if (sfKeyboard_isKeyPressed(sfKeyK))
-        game->player->kills += 1;
 }
 
 void get_mob(char *files_name, game_ *game)

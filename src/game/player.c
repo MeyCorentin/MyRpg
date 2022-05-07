@@ -54,7 +54,6 @@ void set_gold_player(game_ *game, char *pseudo)
     game->player->m_up = 1;
     game->player->m_left = 1;
     game->player->m_right = 1;
-    game->player->kills = 0;
     game->player->nb_log = create_text("0", (sfVector2f){2, 2},
     (sfVector2f){820, 300}, "font/Stardew_Valley.ttf");
     game->player->nb_rock = create_text("0", (sfVector2f){2, 2},
@@ -66,8 +65,6 @@ void set_gold_player(game_ *game, char *pseudo)
 void create_player(game_ *game, char *pseudo)
 {
     game->player = malloc(sizeof(player_));
-    game->player->rock = 0;
-    game->player->log = 0;
     game->player->sprite = sfSprite_create();
     game->player->texture = sfTexture_createFromFile
     ("pictures/player/elliot.png", NULL);

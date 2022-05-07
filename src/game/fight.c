@@ -58,6 +58,7 @@ void update_button_fight(game_ *game)
         game->boole->on_fight = 1;
         game->player->stats->life += 1;
         game->player->kills += 1;
+        game->player->gold += 10;
     }
 }
 

@@ -31,5 +31,16 @@ void save_clock(game_ *game, int fd)
     my_strlen(new_put_nbr(game->clock->days)) + 1);
     write(fd, my_strncat(new_put_nbr(game->clock->saison), "\n", 0),
     my_strlen(new_put_nbr(game->clock->saison)) + 1);
+}
+
+void save_materials(game_ *game, int fd)
+{
+    write(fd, "#MATERIALS\n", 11);
+    write(fd, my_strncat(new_put_nbr(game->player->kills), "\n", 0),
+    my_strlen(new_put_nbr(game->player->kills)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->player->log), "\n", 0),
+    my_strlen(new_put_nbr(game->player->log)) + 1);
+    write(fd, my_strncat(new_put_nbr(game->player->rock), "\n", 0),
+    my_strlen(new_put_nbr(game->player->rock)) + 1);
     write(fd, "#END", 4);
 }
