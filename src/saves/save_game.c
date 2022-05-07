@@ -44,7 +44,7 @@ void save_map(game_ *game, int fd)
     my_strlen(new_put_nbr(game->number)) + 1);
 }
 
-int save_game(game_ *game, int type)
+char *choose_file(game_ *game, int type)
 {
     char *filepath;
 
@@ -54,6 +54,13 @@ int save_game(game_ *game, int type)
         filepath = "save2.txt";
     else
         filepath = "save3.txt";
+    return (filepath);
+}
+
+int save_game(game_ *game, int type)
+{
+    char *filepath = choose_file(game, type);
+
     int fd = open(filepath, O_WRONLY);
     if (fd == -1) {
         write(2, "invalid file\n", 13);

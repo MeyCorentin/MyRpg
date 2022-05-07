@@ -53,6 +53,16 @@ void set_save_map(game_ *game, char **saves)
         game->y_start = my_atoi(saves[9]);
 }
 
+void set_save2(game_ *game, char **saves)
+{
+    game->player->stats->attack = my_atoi(saves[3]);
+    game->player->stats->life = my_atoi(saves[4]);
+    game->player->stats->speed = my_atoi(saves[5]);
+    game->player->rock = my_atoi(saves[25]);
+    game->player->log = my_atoi(saves[24]);
+    game->player->kills = my_atoi(saves[23]);
+}
+
 void set_save(game_ *game, char **saves)
 {
     game->saves = saves;
@@ -66,12 +76,7 @@ void set_save(game_ *game, char **saves)
     game->bonus->life = my_atoi(saves[16]);
     game->bonus->speed = my_atoi(saves[17]);
     game->player->gold = my_atoi(saves[1]);
-    game->player->stats->attack = my_atoi(saves[3]);
-    game->player->stats->life = my_atoi(saves[4]);
-    game->player->stats->speed = my_atoi(saves[5]);
-    game->player->rock = my_atoi(saves[25]);
-    game->player->log = my_atoi(saves[24]);
-    game->player->kills = my_atoi(saves[23]);
+    set_save2(game, saves);
     (game->clock->hours > 6 && game->clock->hours < 20) ?
     (game->clock->color.a = 0) : (game->clock->color.a = 100);
     if (game->boole->is_quit == 0) {

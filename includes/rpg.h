@@ -630,5 +630,6 @@ int update_htp(game_ *game);
 void change_page(game_ *game);
 void save_materials(game_ *game, int fd);
 void save_quests(game_ *game, int fd);
+void set_step_state(game_ *game, quests_ *new, int nb);
 
 #endif /* PROJECT_H_ */

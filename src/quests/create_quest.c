@@ -7,19 +7,6 @@
 
 #include "../../includes/rpg.h"
 
-void set_step_state(game_ *game, quests_ *new, int nb)
-{
-    if (game->boole->new_quests == 0) {
-        new->step = 1;
-        new->state = 0;
-    } else {
-        // new->step = my_atoi(game->saves[30 + nb]);
-        // new->state = my_atoi(game->saves[27 + nb]);
-        new->step = 1;
-        new->state = 0;
-    }
-}
-
 quests_ *set_quest(game_ *game, char **array, int nb)
 {
     quests_ *new = malloc(sizeof(quests_));

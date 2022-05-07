@@ -52,3 +52,14 @@ void event_quests(game_ *game)
         game->clock->check_secs = 0;
     }
 }
+
+void set_step_state(game_ *game, quests_ *new, int nb)
+{
+    if (game->boole->new_quests == 0) {
+        new->step = 1;
+        new->state = 0;
+    } else {
+        new->step = 1;
+        new->state = 0;
+    }
+}
