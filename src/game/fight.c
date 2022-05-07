@@ -57,6 +57,7 @@ void update_button_fight(game_ *game)
     if (game->fight->enemy->pv <= 0) {
         game->boole->on_fight = 1;
         game->player->stats->life += 1;
+        game->player->kills += 1;
     }
 }
 

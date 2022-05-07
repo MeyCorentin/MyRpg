@@ -203,6 +203,7 @@ typedef struct player {
     int rock;
     text_ *nb_log;
     text_ *nb_rock;
+    text_ *nb_kills;
     sfSprite *sprite;
     sfTexture *texture;
     sfVector2f position;

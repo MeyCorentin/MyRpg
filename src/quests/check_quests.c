@@ -16,6 +16,10 @@ void update_materials(game_ *game)
     sfRenderWindow_drawText(game->window, game->player->nb_log->text, sfFalse);
     sfRenderWindow_drawText
     (game->window, game->player->nb_rock->text, sfFalse);
+    sfText_setString(game->player->nb_kills->text,
+    new_put_nbr(game->player->kills));
+    sfRenderWindow_drawText(game->window, game->player->nb_kills->text,
+    sfFalse);
 }
 
 int check_step_quests(quests_ *quest, int id, int is_done, int step)

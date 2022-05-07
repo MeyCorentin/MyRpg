@@ -55,10 +55,12 @@ void set_gold_player(game_ *game, char *pseudo)
     game->player->m_left = 1;
     game->player->m_right = 1;
     game->player->kills = 0;
-    game->player->nb_log = create_text("0", (sfVector2f){900, 300},
-    (sfVector2f){2, 2}, "font/Stardew_Valley.ttf");
-    game->player->nb_rock = create_text("0", (sfVector2f){900, 400},
-    (sfVector2f){2, 2}, "font/Stardew_Valley.ttf");
+    game->player->nb_log = create_text("0", (sfVector2f){2, 2},
+    (sfVector2f){820, 300}, "font/Stardew_Valley.ttf");
+    game->player->nb_rock = create_text("0", (sfVector2f){2, 2},
+    (sfVector2f){820, 380}, "font/Stardew_Valley.ttf");
+    game->player->nb_kills = create_text("0", (sfVector2f){2, 2},
+    (sfVector2f){820, 550}, "font/Stardew_Valley.ttf");
 }
 
 void create_player(game_ *game, char *pseudo)
