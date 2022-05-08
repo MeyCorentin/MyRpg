@@ -31,7 +31,7 @@ void check_help(game_ *game, menu_ *menu, int what)
     change_page(game);
 }
 
-void event_settings(game_ *game, menu_ *menu)
+void check_event_settings(game_ *game, menu_ *menu)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
@@ -42,8 +42,8 @@ void event_settings(game_ *game, menu_ *menu)
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
             menu->settings->in_settings = 1;
         check_settings(game, menu, 1);
-        event_buttons(game, menu);
-        event_cursor(game);
+        check_event_buttons(game, menu);
+        check_event_cursor(game);
         change_volume(game, menu, menu->settings->music, 0);
         change_volume(game, menu, menu->settings->sounds, 1);
     }
@@ -80,7 +80,7 @@ void launch_settings(game_ *game, menu_ *menu)
         menu->back->rect.top = 540;
         game->boole->on_button = 1;
         sfRenderWindow_clear(game->window, sfBlack);
-        event_settings(game, menu);
+        check_event_settings(game, menu);
         draw_settings(game, menu);
         sfRenderWindow_display(game->window);
     }

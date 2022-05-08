@@ -77,7 +77,7 @@ void is_on_button(game_ *game, text_ *text, int len, int action)
         sfText_setColor(text->text, sfBlack);
 }
 
-void event_buttons(game_ *game, menu_ *menu)
+void check_event_buttons(game_ *game, menu_ *menu)
 {
     is_on_button(game, menu->settings->max, 155, 0);
     is_on_button(game, menu->settings->mid, 135, 1);

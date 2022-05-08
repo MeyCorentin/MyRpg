@@ -7,7 +7,7 @@
 
 #include "../../includes/rpg.h"
 
-void its_wall(sfSprite ***map, int y, int x, game_ *game)
+void is_wall(sfSprite ***map, int y, int x, game_ *game)
 {
     sfVector2f pos_ = sfSprite_getPosition(map[y][x]);
     if (pos_.y >= 560 - 40 && pos_.y <= 560 && pos_.x >= 970 - 20 &&
@@ -24,7 +24,7 @@ void its_wall(sfSprite ***map, int y, int x, game_ *game)
         game->player->m_right = 0;
 }
 
-void its_not_wall(sfSprite ***map, int y, int x, game_ *game)
+void is_not_wall(sfSprite ***map, int y, int x, game_ *game)
 {
     sfVector2f pos_ = sfSprite_getPosition(map[y][x]);
     if (pos_.y > 560 - 40 && pos_.y < 560 && pos_.x > 970 - 20 &&
@@ -45,9 +45,9 @@ void check_hitbox(sfSprite ***map, int y, int x, game_ *game)
 {
     if (game->layer_->id_hitbox[y][x] != NULL) {
         if (my_atoi(game->layer_->id_hitbox[y][x]) != 1945) {
-            its_wall(map, y, x, game);
+            is_wall(map, y, x, game);
         } else {
-            its_not_wall(map, y, x, game);
+            is_not_wall(map, y, x, game);
         }
     }
 }

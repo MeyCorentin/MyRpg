@@ -30,7 +30,7 @@ void check_event_game(game_ *game)
         }
         check_if_quit(game);
         open_close_hint(game);
-        event_cursor(game);
+        check_event_cursor(game);
         move_select(game);
         check_event_items(game);
         open_close_inv(game);
@@ -38,7 +38,7 @@ void check_event_game(game_ *game)
         open_close_best(game);
         spawn_parrot(game);
         dialogues_event(game);
-        event_quests(game);
+        check_event_quests(game);
     }
 }
 

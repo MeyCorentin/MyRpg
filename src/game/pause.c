@@ -15,7 +15,7 @@ int quit_game(game_ *game)
     return (0);
 }
 
-void event_pause(game_ *game)
+void check_event_pause(game_ *game)
 {
     if (game->mouse.x > game->inv->quit->position.x && game->mouse.x <
     game->inv->quit->position.x + 370 && game->mouse.y > game->inv->quit->

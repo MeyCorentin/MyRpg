@@ -64,7 +64,7 @@ void check_event_gen(game_ *game, paint_ *paint)
             paint->scale += 1;
         if (sfKeyboard_isKeyPressed(sfKeyHyphen) && paint->scale > 1)
             paint->scale -= 1;
-        gen_control_disp(game);
+        check_gen_control_disp(game);
         check_gen(game, game->gen_control->up, 1, paint);
         check_gen(game, game->gen_control->down, 2, paint);
         check_gen(game, game->gen_control_mob->up, 1, paint);

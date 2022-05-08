@@ -7,7 +7,7 @@
 
 #include "../../includes/rpg.h"
 
-void quests_abigail2(quests_ *quest, game_ *game)
+void do_quests_abigail2(quests_ *quest, game_ *game)
 {
     if (quest->step == 3) {
         game->dialogues->quest = "#tuto_monster";
@@ -22,7 +22,7 @@ void quests_abigail2(quests_ *quest, game_ *game)
     }
 }
 
-void quests_abigail(quests_ *quest, game_ *game)
+void do_quests_abigail(quests_ *quest, game_ *game)
 {
     if (quest->step == 1) {
         game->dialogues->quest = "#tuto_wood";
@@ -39,10 +39,10 @@ void quests_abigail(quests_ *quest, game_ *game)
         if (game->player->rock >= 5)
             change_step(quest);
     }
-    quests_abigail2(quest, game);
+    do_quests_abigail2(quest, game);
 }
 
-void quests_alex(quests_ *quest, game_ *game)
+void do_quests_alex(quests_ *quest, game_ *game)
 {
     if (quest->step == 1 && check_state_quests(game->quests, 10, 1) == 0) {
         game->dialogues->quest = "#intro";
@@ -61,7 +61,7 @@ void quests_alex(quests_ *quest, game_ *game)
     }
 }
 
-void quests_levis(quests_ *quest, game_ *game)
+void do_quests_levis(quests_ *quest, game_ *game)
 {
     if (quest->step == 1 && check_step_quests(game->quests, 9, 1, 2) == 0) {
         game->dialogues->quest = "#lewis_help";
@@ -74,7 +74,7 @@ void quests_levis(quests_ *quest, game_ *game)
     }
 }
 
-void quests_clint(quests_ *quest, game_ *game)
+void do_quests_clint(quests_ *quest, game_ *game)
 {
     if (quest->step == 1 && check_step_quests(game->quests, 9, 1, 3) == 0) {
         game->dialogues->quest = "#clint_help";

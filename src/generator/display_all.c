@@ -16,7 +16,7 @@ paint_ *paint)
         (40 * paint->scale)) {
         if (grid->click == 0 && gen_control->sprites_on != 0)
             sfRectangleShape_setFillColor(grid->rect, sfGreen);
-        } else {
+    } else {
             sfRectangleShape_setFillColor(grid->rect, sfWhite);
     }
     if (grid->click == 1 && grid->foreground->sprite == NULL &&
@@ -28,7 +28,7 @@ paint_ *paint)
         display_square(game, grid->next_cell, gen_control, paint);
 }
 
-void gen_control_disp(game_ *game)
+void check_gen_control_disp(game_ *game)
 {
     if (sfKeyboard_isKeyPressed(sfKeyO)) {
         game->gen_control->sprites_on = 0;

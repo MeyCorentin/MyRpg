@@ -50,7 +50,7 @@ void create_tree(game_ *game)
     set_all_skills(game);
 }
 
-void active_bonus(game_ *game, chained_skill_ *skill)
+void enable_bonus(game_ *game, chained_skill_ *skill)
 {
     skill->active = 0;
     sfSprite_setColor(skill->skill, (sfColor){255, 255, 255, 255});

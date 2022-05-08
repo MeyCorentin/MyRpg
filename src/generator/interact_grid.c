@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "../../includes/rpg.h"
 
-int map_key_moov(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
+int move_map_key(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
         (gen_control->sprites_on == 0) ? (moov_up_gen(gen_control->list)) :
@@ -32,7 +32,7 @@ int map_key_moov(game_ *game, grid_cell_ *grid, gen_control_ *gen_control)
     return (0);
 }
 
-int wall_moov(game_ *game, grid_cell_ *wall_1, grid_cell_ *wall_2)
+int move_wall(game_ *game, grid_cell_ *wall_1, grid_cell_ *wall_2)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
         moov_up_(wall_1);
@@ -53,10 +53,10 @@ int wall_moov(game_ *game, grid_cell_ *wall_1, grid_cell_ *wall_2)
     return (0);
 }
 
-int map_key_input(game_ *game, grid_cell_ *grid)
+int check_map_key_input(game_ *game, grid_cell_ *grid)
 {
-    map_key_moov(game, grid, game->gen_control);
-    map_key_moov(game, grid, game->gen_control_mob);
+    move_map_key(game, grid, game->gen_control);
+    move_map_key(game, grid, game->gen_control_mob);
     (sfKeyboard_isKeyPressed(sfKeyR)) ? (reset_grid(grid)) : 1;
     (sfKeyboard_isKeyPressed(sfKeyEnter)) ? (save_all(game, grid)) : 1;
     (sfKeyboard_isKeyPressed(sfKeyUp)) ? (game->layer = 1) : 1;
@@ -68,7 +68,7 @@ int map_key_input(game_ *game, grid_cell_ *grid)
     return (0);
 }
 
-void map_mouse_input(game_ *game, grid_cell_ *grid, paint_ *paint)
+void check_map_mouse_input(game_ *game, grid_cell_ *grid, paint_ *paint)
 {
     if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue)
         left_click_grid(game, grid, paint);

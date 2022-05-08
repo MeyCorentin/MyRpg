@@ -18,7 +18,7 @@ int set_pos_item(game_ *game, char ***inv, item_ *item, int line)
             + 103 + (55 * line);
             item->line = line;
             item->col = col;
-            inv_to_bar(game->first_item, game);
+            move_item_to_bar(game->first_item, game);
             return (0);
         }
     }

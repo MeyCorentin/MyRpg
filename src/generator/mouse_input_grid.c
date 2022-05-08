@@ -7,7 +7,7 @@
 
 #include "../../includes/rpg.h"
 
-void background_or_foreground(game_ *game, grid_cell_ *grid, paint_ *paint,
+void check_back_or_fore(game_ *game, grid_cell_ *grid, paint_ *paint,
 gen_control_ *gen_control)
 {
     switch (game->layer) {
@@ -36,7 +36,7 @@ void left_click_grid(game_ *game, grid_cell_ *grid, paint_ *paint)
         game->gen_control_mob->selected != NULL) &&
         (game->gen_control->selected_ == 1 ||
         game->gen_control_mob->selected_ == 1)) {
-            background_or_foreground(game, grid, paint, game->gen_control);
+            check_back_or_fore(game, grid, paint, game->gen_control);
         }
     }
     if (grid->next_cell != NULL)

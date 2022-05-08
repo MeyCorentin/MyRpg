@@ -46,7 +46,7 @@ void check_mouse_tree(game_ *game, chained_skill_ *skill)
         if (game->event.type == sfEvtMouseButtonReleased && game->player->gold
         >= skill->price && skill->prev->active == 0) {
             sfSound_play(game->sounds->click);
-            active_bonus(game, skill);
+            enable_bonus(game, skill);
         }
     } else {
         sfSprite_setPosition(skill->skill, skill->pos_skill);
@@ -66,7 +66,7 @@ void event_tree(game_ *game)
     check_mouse_tree(game, game->inv->tree->first_skill);
 }
 
-void loop_tree(game_ *game)
+void is_in_loop_tree(game_ *game)
 {
     sfRenderWindow_drawSprite(game->window, game->inv->tree->back, sfFalse);
     draw_skill_tree(game, game->inv->tree->first_skill);

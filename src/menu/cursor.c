@@ -7,7 +7,7 @@
 
 #include "../../includes/rpg.h"
 
-void event_cursor(game_ *game)
+void check_event_cursor(game_ *game)
 {
     if (game->boole->on_button == 0)
         sfSprite_setTexture

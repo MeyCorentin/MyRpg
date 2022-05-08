@@ -7,7 +7,7 @@
 
 #include "../../includes/rpg.h"
 
-void inv_to_bar(item_ *item, game_ *game)
+void move_item_to_bar(item_ *item, game_ *game)
 {
     if (item->line == 0 && item->on_inv == 0) {
         if (game->boole->on_inv == 1)
@@ -17,7 +17,7 @@ void inv_to_bar(item_ *item, game_ *game)
         sfSprite_setPosition(item->sprite, item->position);
     }
     if (item->next != NULL)
-        inv_to_bar(item->next, game);
+        move_item_to_bar(item->next, game);
 }
 
 void check_cible(game_ *game, item_ *item)

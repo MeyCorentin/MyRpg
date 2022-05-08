@@ -20,13 +20,13 @@ void check_quest(game_ *game, int id, quests_ *quest)
 {
     game->dialogues->quest = "#not_now";
     if (quest->id_mob == 10)
-        quests_abigail(quest, game);
+        do_quests_abigail(quest, game);
     if (quest->id_mob == 9)
-        quests_alex(quest, game);
+        do_quests_alex(quest, game);
     if (quest->id_mob == 11)
-        quests_levis(quest, game);
+        do_quests_levis(quest, game);
     if (quest->id_mob == 16)
-        quests_clint(quest, game);
+        do_quests_clint(quest, game);
     game->dialogues->pnj = quest->id_mob - 8;
 }
 
@@ -40,7 +40,7 @@ void active_quest(game_ *game, int id, quests_ *quest)
         active_quest(game, id, quest->next);
 }
 
-void event_quests(game_ *game)
+void check_event_quests(game_ *game)
 {
     if (sfKeyboard_isKeyPressed(sfKeyC) && game->boole->on_quests == 1 &&
     game->clock->check_secs != 0) {

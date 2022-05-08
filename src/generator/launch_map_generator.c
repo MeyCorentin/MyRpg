@@ -29,8 +29,8 @@ void update_type_layer(game_ *game)
 
 void launch_map_gen(game_ *game, grid_cell_ *grid, paint_ *paint)
 {
-    map_key_input(game, grid);
-    map_mouse_input(game, grid, paint);
+    check_map_key_input(game, grid);
+    check_map_mouse_input(game, grid, paint);
     display_all(game, grid, paint);
     (game->layer == 3) ?
     interact_sprite(game, game->gen_control_mob->list, game->gen_control_mob) :

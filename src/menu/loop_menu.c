@@ -19,7 +19,7 @@ void check_all_buttons(game_ *game, menu_ *menu)
     check_on_coin(game, menu->coin, menu->parrot);
     check_settings(game, menu, 0);
     check_help(game, menu, 0);
-    event_cursor(game);
+    check_event_cursor(game);
 }
 
 int check_event_menu(game_ *game, menu_ *menu)

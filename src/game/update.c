@@ -20,10 +20,10 @@ void update_inv(game_ *game)
         sfRenderWindow_drawText(game->window, game->inv->text_quit->text,
         sfFalse);
     } if (game->boole->on_tree == 0)
-        loop_tree(game);
+        is_in_loop_tree(game);
     if (game->boole->on_potion == 0)
         update_materials(game);
-    event_pause(game);
+    check_event_pause(game);
     update_time(game);
     draw_hearth(game, game->inv->life, game->player->stats->life);
     update_bestiary(game);
@@ -67,7 +67,7 @@ void check_cross(game_ *game)
     game->clock->check_secs != 0) {
         game->clock->check_secs = 0;
         clear_all(game);
-        inv_to_bar(game->first_item, game);
+        move_item_to_bar(game->first_item, game);
     }
 }
 
@@ -78,7 +78,7 @@ void open_close_inv(game_ *game)
         game->clock->check_secs = 0;
         game->boole->on_best = 1;
         game->boole->on_inv = 0;
-        inv_to_bar(game->first_item, game);
+        move_item_to_bar(game->first_item, game);
     }
     check_cross(game);
     open_other_pages(game);

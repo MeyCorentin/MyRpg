@@ -7,7 +7,7 @@
 
 #include "../../includes/rpg.h"
 
-void event_death(game_ *game)
+void check_event_death(game_ *game)
 {
     while (sfRenderWindow_pollEvent(game->window, &game->event)) {
         if (game->event.type == sfEvtClosed) {
@@ -42,7 +42,7 @@ void death_loop(game_ *game)
     while (sfRenderWindow_isOpen(game->window) && game->boole->is_dead == 0) {
         game->mouse = sfMouse_getPositionRenderWindow(game->window);
         sfRenderWindow_clear(game->window, sfBlack);
-        event_death(game);
+        check_event_death(game);
         draw_death(game);
         update_cursor(game);
         sfRenderWindow_display(game->window);

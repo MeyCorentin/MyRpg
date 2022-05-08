@@ -60,7 +60,7 @@ int check_p(int argc, char **argv)
     return (0);
 }
 
-int global_gestion(int argc, char **argv)
+int check_glob_gestion(int argc, char **argv)
 {
     if (argc < 2 || argc > 3) {
         write(2, "Invalid number of arguments\n", 28);

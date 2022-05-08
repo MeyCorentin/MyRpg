@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv)
 {
-    if (global_gestion(argc, argv) == 84)
+    if (check_glob_gestion(argc, argv) == 84)
         return (84);
     if (my_strcmp(argv[1], "-p") == 0)
         launch_menu((sfVideoMode){1920, 1080, 120}, (sfVector2u){1920, 10180},

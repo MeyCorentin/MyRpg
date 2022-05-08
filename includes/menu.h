@@ -41,14 +41,14 @@ void draw_sprites_gen(game_ *game, gen_control_ *gen_control);
 void create_gen(gen_control_ *gen_control, int i);
 void create_cursor(game_ *game);
 void update_cursor(game_ *game);
-void event_cursor(game_ *game);
+void check_event_cursor(game_ *game);
 void create_settings(game_ *game, menu_ *menu);
 void launch_settings(game_ *game, menu_ *menu);
 void check_settings(game_ *game, menu_ *menu, int what);
 void create_texts(menu_ *menu);
 char *my_strcat(char *dest, char const *src);
 void loop_menu(game_ *game, menu_ *menu);
-void event_buttons(game_ *game, menu_ *menu);
+void check_event_buttons(game_ *game, menu_ *menu);
 void draw_settings(game_ *game, menu_ *menu);
 void create_audios(game_ *game);
 button_ *create_button(sfVector2f pos, sfVector2f scale,
