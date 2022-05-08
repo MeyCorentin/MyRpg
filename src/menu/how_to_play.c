@@ -10,19 +10,19 @@
 void creatre_textures_htp(game_ *game)
 {
     game->hwtp->htp_1 = sfTexture_createFromFile
-    ("pictures/htp/menu_defender.png", NULL);
+    ("pictures/htp/menu_rpg.png", NULL);
     game->hwtp->htp_2 = sfTexture_createFromFile
-    ("pictures/htp/game_defender.png", NULL);
+    ("pictures/htp/save_rpg.png", NULL);
     game->hwtp->htp_3 = sfTexture_createFromFile
-    ("pictures/htp/shop_defender.png", NULL);
+    ("pictures/htp/setting_rpg.png", NULL);
     game->hwtp->htp_4 = sfTexture_createFromFile
-    ("pictures/htp/reach_defender.png", NULL);
+    ("pictures/htp/mouvement_rpg.png", NULL);
     game->hwtp->htp_5 = sfTexture_createFromFile
-    ("pictures/htp/map_defender.png", NULL);
+    ("pictures/htp/pnj_rpg.png", NULL);
     game->hwtp->htp_6 = sfTexture_createFromFile
-    ("pictures/htp/pause_defender.png", NULL);
+    ("pictures/htp/pause_rpg.png", NULL);
     game->hwtp->htp_7 = sfTexture_createFromFile
-    ("pictures/htp/skills_defender.png", NULL);
+    ("pictures/htp/tree_rpg.png", NULL);
 }
 
 int update_htp(game_ *game)

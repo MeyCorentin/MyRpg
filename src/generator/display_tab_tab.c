@@ -49,7 +49,7 @@ int display_layer_h(sfSprite ***map, game_ *game, sfVector2f pos)
     game->player->m_right = k;
     game->player->m_down = k;
     game->player->m_up = k;
-    for (y = 0; map[y]; y++)
+    for (y = 1; map[y]; y++)
         display_layer_hit(map, game, y, pos);
     return (0);
 }

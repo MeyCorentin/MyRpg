@@ -77,7 +77,6 @@ sfVector2f pos)
         if (map[y][x] != NULL) {
             check_hitbox(map, y, x, game);
             render_hitbox(map, y, x, game);
-
             sfSprite_setColor(map[y][x], (sfColor){255, 0, 0, 100});
         }
     }

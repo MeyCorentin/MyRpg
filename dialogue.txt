@@ -1,3 +1,16 @@
+#first_dialogue
+...
+Uh ? Where am I ?
+Am I dead ?
+...
+I do not remember many things, i saw that big wave comming on our boat
+...
+Everthing went so fast
+I should start exploring this island
+Oh there is someone right there
+#afk
+A group of pirates stole your equipment while your back was turned.
+Sorry...
 #not_now
 I don't want to speak with you.
 #tuto_wood

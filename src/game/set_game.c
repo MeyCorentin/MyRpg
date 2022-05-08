@@ -47,6 +47,5 @@ void set_game(game_ *game, int type)
     game->boole->is_friend = 1;
     game->type = type;
     create_death_menu(game);
-    create_dialogues(game);
     create_particles(game);
 }

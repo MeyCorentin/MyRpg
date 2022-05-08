@@ -60,9 +60,17 @@ void set_button_dialogues(game_ *game)
 void create_dialogues(game_ *game)
 {
     game->dialogues = malloc(sizeof(dialogues_));
-    game->boole->on_dialogue = 1;
+    game->dialogues->line = 0;
     get_dialogues(game);
     set_button_dialogues(game);
+    game->boole->on_dialogue = 0;
+    if (game->x_start == -250 && game->y_start == -445) {
+        game->dialogues->quest = "#first_dialogue";
+    } else {
+        game->dialogues->quest = "#afk";
+    }
+    game->dialogues->name->rect.left = 1000;
+    game->dialogues->speaker->rect.left = 1000;
 }
 
 void dialogues_event(game_ *game)

@@ -52,7 +52,6 @@ void update_button_fight(game_ *game)
     if (boole > 0) {
         boole = 0;
         game->fight->enemy->pv -= game->player->stats->attack;
-        my_put_nbr(game->fight->enemy->pv);
     }
     if (game->fight->enemy->pv <= 0) {
         game->boole->on_fight = 1;

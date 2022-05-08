@@ -47,6 +47,7 @@ void get_last_quest(game_ *game, quests_ *quests, char **array, int nb)
 
 void create_quests(game_ *game)
 {
+    create_dialogues(game);
     int fd = open("quest.txt", O_RDONLY);
     char **quests = read_quests(game, fd, "quest.txt");
     game->quests = malloc(sizeof(quests_));
