@@ -11,7 +11,7 @@ void find_button(game_ *game, int who, menu_ *menu)
 {
     if (who == 1) {
         game->boole->is_quit = 0;
-        launch_game(game, game->number, 1, 0);
+        launch_game(game, 0, 1, 0);
     } if (who == 2)
         menu->on_load = 0;
     if (who == 3) {
@@ -20,13 +20,13 @@ void find_button(game_ *game, int who, menu_ *menu)
     }
     if (who == 4 && menu->on_load == 0) {
         game->boole->is_quit = 0;
-        launch_game(game, game->number, 1, 1);
+        launch_game(game, 0, 1, 1);
     } if (who == 5 && menu->on_load == 0) {
         game->boole->is_quit = 0;
-        launch_game(game, game->number, 1, 2);
+        launch_game(game, 0, 1, 2);
     } if (who == 6 && menu->on_load == 0) {
         game->boole->is_quit = 0;
-        launch_game(game, game->number, 1, 3);
+        launch_game(game, 0, 1, 3);
     }
 }
 

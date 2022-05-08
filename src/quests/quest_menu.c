@@ -58,6 +58,9 @@ void set_step_state(game_ *game, quests_ *new, int nb)
     if (game->boole->new_quests == 0) {
         new->step = 1;
         new->state = 0;
+    } else if (nb < 4) {
+        new->step = my_atoi(game->saves[31 + nb]);
+        new->state = my_atoi(game->saves[27 + nb]);
     } else {
         new->step = 1;
         new->state = 0;

@@ -53,8 +53,8 @@ void create_quests(game_ *game)
     game->quests->description = quests[2];
     game->quests->name = quests[1];
     game->quests->id_mob = my_atoi(quests[0]);
-    set_step_state(game, game->quests, 0);
     game->quests->array = quests;
+    set_step_state(game, game->quests, 0);
     game->quests->loot = quests[3];
     game->quests->next = NULL;
     game->quests->read = 1;

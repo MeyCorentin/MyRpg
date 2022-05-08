@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 char *calculs_str(int count, int nb, char *resultat, int cmpt_str)
 {
@@ -26,8 +27,10 @@ int get_len_nb(int nb)
 {
     int len = 0;
 
-    if (nb < 0)
+    if (nb < 0) {
         nb *= -1;
+        len += 1;
+    }
     while (nb >= 1) {
         nb /= 10;
         len += 1;
@@ -46,10 +49,7 @@ int check_count(int digits, int count)
 
 char *set_end(char *result, int len, int is_neg)
 {
-    if (is_neg == 0)
-        result[len + 1] = '\0';
-    else
-        result[len] = '\0';
+    result[len] = '\0';
     return (result);
 }
 
