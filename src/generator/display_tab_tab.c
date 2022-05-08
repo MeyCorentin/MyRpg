@@ -71,8 +71,6 @@ void display_big_tab(char ***map)
     for (y = 0; map[y]; y++) {
         for (x = 0; map[y][x]; x++) {
             my_put_nbr(my_atoi(map[y][x]));
-            my_putstr("|");
         }
-        my_putstr("\n");
     }
 }

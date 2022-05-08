@@ -15,7 +15,6 @@ void check_help(game_ *game, menu_ *menu, int what)
     position.y && game->mouse.y < menu->help->position.y + menu->
     help->rect.height * menu->help->scale.y &&
     sfMouse_isButtonPressed(sfMouseLeft)) {
-        my_putstr("ok");
         game->boole->on_htp = 1;
         menu->help->rect.left = 372;
         if (game->event.type == sfEvtMouseButtonReleased && what == 0) {

@@ -39,6 +39,7 @@ void check_event_game(game_ *game)
         spawn_parrot(game);
         dialogues_event(game);
         check_event_quests(game);
+        check_events_particles(game);
     }
 }
 

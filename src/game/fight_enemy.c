@@ -47,6 +47,7 @@ int init_fight_pv(game_ *game, int k)
 
 void update_enemy_f(enemy_ *enemy, game_ *game)
 {
+    draw_particles(game);
     enemy->time = sfClock_getElapsedTime(enemy->clock);
     enemy->secs = enemy->time.microseconds / 5000;
     if (enemy->secs > 30) {

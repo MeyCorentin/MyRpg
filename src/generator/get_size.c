@@ -23,7 +23,7 @@ int get_file_len(char *files_name)
 void get_size(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
-    char *temp = malloc(sizeof(char) * len + 1);
+    char *temp = malloc(sizeof(char) * (len + 1));
     int fd = open(files_name, O_RDONLY);
 
     read(fd, temp, len);
@@ -35,7 +35,7 @@ void get_size(char *files_name, load_map_ *load_map)
 void get_size_2(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
-    char *temp = malloc(sizeof(char) * len + 1);
+    char *temp = malloc(sizeof(char) * (len + 1));
     int fd = open(files_name, O_RDONLY);
 
     read(fd, temp, len);
@@ -47,7 +47,7 @@ void get_size_2(char *files_name, load_map_ *load_map)
 void get_size_3(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
-    char *temp = malloc(sizeof(char) * len + 1);
+    char *temp = malloc(sizeof(char) * (len + 1));
     int fd = open(files_name, O_RDONLY);
 
     read(fd, temp, len);
@@ -59,7 +59,7 @@ void get_size_3(char *files_name, load_map_ *load_map)
 void get_size_4(char *files_name, load_map_ *load_map)
 {
     int len = get_file_len(files_name);
-    char *temp = malloc(sizeof(char) * len + 1);
+    char *temp = malloc(sizeof(char) * (len + 1));
     int fd = open(files_name, O_RDONLY);
 
     read(fd, temp, len);

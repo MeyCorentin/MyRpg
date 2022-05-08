@@ -366,6 +366,7 @@ typedef struct boole {
     int on_quests;
     int on_htp;
     int new_quests;
+    int draw_particles;
 } boole_;
 
 typedef struct enemy {
@@ -465,7 +466,23 @@ typedef struct dialogues {
     int line;
 } dialogues_;
 
+typedef struct framebuffer {
+    int width;
+    int height;
+    sfUint8 *pixels;
+} framebuffer_t;
+
+typedef struct particles {
+    sfSprite *sprite;
+    sfTexture *texture;
+    framebuffer_t *framebuffer;
+    sfVector2u position;
+    sfColor color;
+    int size;
+} particles_t;
+
 typedef struct game {
+    particles_t *particles;
     how_to_play_t *hwtp;
     quests_ *quests;
     int number;
@@ -631,5 +648,10 @@ void change_page(game_ *game);
 void save_materials(game_ *game, int fd);
 void save_quests(game_ *game, int fd);
 void set_step_state(game_ *game, quests_ *new, int nb);
+void my_draw_square(game_ *game, sfVector2u position, sfColor color);
+void create_particles(game_ *game);
+void check_events_particles(game_ *game);
+void draw_particles(game_ *game);
+void draw_little(game_ *game, sfVector2u position, sfColor color, int action);
 
 #endif /* PROJECT_H_ */
